@@ -2,6 +2,18 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/Users/aleixcam/Projectes/Poketext/src/cercador/Pokemon.java</file>
+            <file>file:/Users/aleixcam/Projectes/Poketext/src/cercador/Cercador.java</file>
+            <file>file:/Users/aleixcam/Projectes/Poketext/src/cercador/Pokedex.java</file>
+            <file>file:/Users/aleixcam/Projectes/Poketext/src/teambuilder/Moviments.java</file>
+            <file>file:/Users/aleixcam/Projectes/Poketext/src/cercador/Objectes.java</file>
+            <file>file:/Users/aleixcam/Projectes/Poketext/src/teambuilder/Pokes.java</file>
+            <file>file:/Users/aleixcam/Projectes/Poketext/src/cercador/Moves.java</file>
+            <file>file:/Users/aleixcam/Projectes/Poketext/src/poketext/Connector.java</file>
+            <file>file:/Users/aleixcam/Projectes/Poketext/src/teambuilder/Detalls.java</file>
+            <file>file:/Users/aleixcam/Projectes/Poketext/src/cercador/Habilitats.java</file>
+            <file>file:/Users/aleixcam/Projectes/Poketext/src/teambuilder/Equips.java</file>
+        </group>
     </open-files>
 </project-private>
