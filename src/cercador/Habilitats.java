@@ -4,10 +4,11 @@ import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import infrastructure.persistence.sqlite.SQLiteRepository;
 import poketext.Connector;
 import static poketext.Opcions.lang;
 import utils.Comuna;
-import utils.Consultes;
 
 public class Habilitats {
 
@@ -23,7 +24,7 @@ public class Habilitats {
                 + "and f.version_group_id = 16\n"
                 + "and n.name like '%" + filter_name + "%'");
         result = st.executeQuery();
-        return Consultes.desarConsulta(result, col);
+        return SQLiteRepository.resultSetToMatrix(result, col);
     }
 
     // Menú del cercador d'habilitats
@@ -36,7 +37,7 @@ public class Habilitats {
 
                 // Mostrar per pantalla els moviments
                 System.out.printf("Nom: %s%n", filter_name);
-                Consultes.imprimirConsulta(consultarHabilitats(filter_name));
+                SQLiteRepository.printQuery(consultarHabilitats(filter_name));
                 System.out.printf("Nom: %s%n", filter_name);
 
                 // Opcions del menú

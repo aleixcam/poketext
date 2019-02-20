@@ -1,51 +1,25 @@
 package cercador;
 
-import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import poketext.Connector;
-import static poketext.Opcions.lang;
+import infrastructure.persistence.sqlite.MoveRepositorySQLite;
+import infrastructure.persistence.sqlite.SQLiteRepository;
 import utils.Comuna;
-import utils.Consultes;
 
 public class Moves {
 
-    // Fer una consulta a la base de dades sobre els moviments
-    public static String[][] consultarMoviments(String id, String filter_name, String filter_type) throws SQLException {
-        String[] col = {"ID", "Nom", "Tipus", "Classe", "Pow", "Acc", "PP", "Efecte"};
-        ResultSet result;
-        PreparedStatement st = Connector.connect.prepareStatement("select distinct(m.id), n.name, t.name, d.identifier, m.power, m.accuracy, m.pp, f.flavor_text\n"
-                + "from pokemon_moves p, move_names n, moves m, type_names t, move_flavor_text f, move_damage_classes d\n"
-                + "where m.id = p.move_id\n"
-                + "and m.id = n.move_id\n"
-                + "and t.type_id = m.type_id\n"
-                + "and m.id = f.move_id\n"
-                + "and p.version_group_id = 16\n"
-                + "and m.damage_class_id = d.id\n"
-                + "and n.local_language_id = " + lang + "\n"
-                + "and t.local_language_id = " + lang + "\n"
-                + "and f.language_id = " + lang + "\n"
-                + "and p.pokemon_id like '%" + id + "%'\n"
-                + "and f.version_group_id = 16\n"
-                + "and n.name like '%" + filter_name + "%'\n"
-                + "and t.name like '%" + filter_type + "%'\n"
-                + "order by m.id");
-        result = st.executeQuery();
-        return Consultes.desarConsulta(result, col);
-    }
-
-    // Manú del cercador de moviments
-    protected static void cercarMoves() throws IOException {
+    // Menú del cercador de moviments
+    protected static void viewMoves() {
         String filter_type = "", filter_name = "", s[];
         boolean sortir = false;
         
         try {
             do {
 
+                MoveRepositorySQLite repository = new MoveRepositorySQLite();
+                String[][] moves = repository.findByCriteria("", filter_name, filter_type);
+
                 // Mostrar per pantalla els moviments
                 System.out.printf("Nom: %s Tipus: %s%n", filter_name, filter_type);
-                Consultes.imprimirConsulta(consultarMoviments("", filter_name, filter_type));
+                SQLiteRepository.printQuery(moves);
                 System.out.printf("Nom: %s Tipus: %s%n", filter_name, filter_type);
 
                 // Opcions del menú
@@ -73,7 +47,7 @@ public class Moves {
                     System.out.println("Selecció incorrecte");
                 }
             } while (!sortir);
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             System.err.println(ex.getMessage());
         }
     }

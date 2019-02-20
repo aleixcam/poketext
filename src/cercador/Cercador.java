@@ -36,7 +36,7 @@ public class Cercador {
                 Pokedex.cercarPokemons();
                 filtre = null;
             } else if (sel.equals("m")) {
-                Moves.cercarMoves();
+                Moves.viewMoves();
                 filtre = null;
             } else if (sel.equals("o")) {
                 Objectes.cercarObjectes();

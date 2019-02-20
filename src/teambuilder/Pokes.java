@@ -6,9 +6,10 @@ import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import infrastructure.persistence.sqlite.SQLiteRepository;
 import poketext.Connector;
 import utils.Comuna;
-import utils.Consultes;
 
 // Clase de pokèmons del constructor d'equips
 public class Pokes {
@@ -104,7 +105,7 @@ public class Pokes {
 
                 // Mostrar per pantalla els pokèmons
                 System.out.printf("%nNom: %s Tipus: %s%n", filter_name, filter_type);
-                Consultes.imprimirConsulta(Pokemon.consultarPokemon(filter_name, filter_type, "1"));
+                SQLiteRepository.printQuery(Pokemon.consultarPokemon(filter_name, filter_type, "1"));
                 System.out.printf("Nom: %s Tipus: %s%n%n", filter_name, filter_type);
 
                 // Opcions del menú

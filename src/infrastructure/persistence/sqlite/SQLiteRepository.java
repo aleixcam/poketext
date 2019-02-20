@@ -1,14 +1,16 @@
-package utils;
+package infrastructure.persistence.sqlite;
+
+import utils.Comuna;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Consultes {
-    
-    // Convertur un ResultSet a String[][]
-    public static String[][] desarConsulta(ResultSet result, String[] col) throws SQLException {
+public abstract class SQLiteRepository {
+
+    // Convertir un ResultSet a String[][]
+    public static String[][] resultSetToMatrix(ResultSet result, String[] col) throws SQLException {
         int n = result.getMetaData().getColumnCount();
         List<String[]> taula = new ArrayList<>();
         Object raw;
@@ -33,7 +35,7 @@ public class Consultes {
     }
 
     // Imprimir una consulta
-    public static void imprimirConsulta(String[][] consulta) {
+    public static void printQuery(String[][] consulta) {
         String[] format = new String[consulta[0].length];
         format[0] = "%" + (Comuna.llargariaMaxima(consulta, 0) - 2) + "s";
         for (int i = 1; i < format.length; i++) {

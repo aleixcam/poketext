@@ -4,9 +4,10 @@ import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import infrastructure.persistence.sqlite.SQLiteRepository;
 import poketext.Connector;
 import utils.Comuna;
-import utils.Consultes;
 
 public class Pokedex {
 
@@ -67,7 +68,7 @@ public class Pokedex {
                 // Mostrar per pantalla els pokèmons
                 System.out.printf("%nPokèdex: %s%n", consultarIDPokedex(pokedex, false));
                 System.out.printf("Nom: %s Tipus: %s%n", filter_name, filter_type);
-                Consultes.imprimirConsulta(Pokemon.consultarPokemon(filter_name, filter_type, pokedex));
+                SQLiteRepository.printQuery(Pokemon.consultarPokemon(filter_name, filter_type, pokedex));
                 System.out.printf("Nom: %s Tipus: %s%n", filter_name, filter_type);
                 System.out.printf("Pokèdex: %s%n%n", consultarIDPokedex(pokedex, false));
 

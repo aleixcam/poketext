@@ -1,14 +1,15 @@
 package teambuilder;
 
-import cercador.Moves;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import infrastructure.persistence.sqlite.MoveRepositorySQLite;
+import infrastructure.persistence.sqlite.SQLiteRepository;
 import poketext.Connector;
 import static poketext.Opcions.lang;
 import utils.Comuna;
-import utils.Consultes;
 
 public class Moviments {
 
@@ -62,15 +63,18 @@ public class Moviments {
     }
 
     // Escollir un moviment per al Pokèmon
-    private static String escollirMoviments(String poke[][]) throws IOException {
+    private static String escollirMoviments(String poke[][]) {
         String res = "", filter_type = "", filter_name = "", s[];
 
         do {
             try {
 
+                MoveRepositorySQLite repository = new MoveRepositorySQLite();
+                String[][] moves = repository.findByCriteria("", filter_name, filter_type);
+
                 // Mostrar per pantalla els pokèmons
                 System.out.printf("%nNom: %s Tipus: %s%n", filter_name, filter_type);
-                Consultes.imprimirConsulta(Moves.consultarMoviments(poke[0][0], filter_name, filter_type));
+                SQLiteRepository.printQuery(moves);
                 System.out.printf("Nom: %s Tipus: %s%n%n", filter_name, filter_type);
 
                 // Opcions del menú
@@ -100,7 +104,7 @@ public class Moviments {
                 } else {
                     System.out.println("Selecció incorrecte");
                 }
-            } catch (SQLException ex) {
+            } catch (Exception ex) {
                 System.err.println(ex.getMessage());
             }
         } while (res.equals(""));

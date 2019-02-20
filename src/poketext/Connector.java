@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-// Clase que connecta el pograma amb la base de dades sqlite
+// Clase que connecta el programa amb la base de dades sqlite
 public class Connector {
 
     // Variables publiques i privades

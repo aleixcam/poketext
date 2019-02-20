@@ -4,10 +4,11 @@ import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import infrastructure.persistence.sqlite.SQLiteRepository;
 import poketext.Connector;
 import static poketext.Opcions.lang;
 import utils.Comuna;
-import utils.Consultes;
 
 public class Objectes {
     
@@ -28,7 +29,7 @@ public class Objectes {
                 + "and f.version_group_id = 15\n"
                 + "and n.name like '%" + filter_name + "%'");
         result = st.executeQuery();
-        return Consultes.desarConsulta(result, col);
+        return SQLiteRepository.resultSetToMatrix(result, col);
     }
     
     // Menú del cercador de objectes
@@ -41,7 +42,7 @@ public class Objectes {
 
                 // Mostrar per pantalla els objectes
                 System.out.printf("Nom: %s%n", filter_name);
-                Consultes.imprimirConsulta(consultarObjectes(filter_name));
+                SQLiteRepository.printQuery(consultarObjectes(filter_name));
                 System.out.printf("Nom: %s%n", filter_name);
 
                 // Opcions del menú
