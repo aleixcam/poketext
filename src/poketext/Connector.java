@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 // Clase que connecta el programa amb la base de dades sqlite
 public class Connector {
 

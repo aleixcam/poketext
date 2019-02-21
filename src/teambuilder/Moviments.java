@@ -70,7 +70,7 @@ public class Moviments {
             try {
 
                 MoveRepositorySQLite repository = new MoveRepositorySQLite();
-                String[][] moves = repository.findByCriteria("", filter_name, filter_type);
+                String[][] moves = repository.findByCriteria("", filter_name, filter_type).matrix();
 
                 // Mostrar per pantalla els pokèmons
                 System.out.printf("%nNom: %s Tipus: %s%n", filter_name, filter_type);

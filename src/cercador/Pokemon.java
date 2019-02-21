@@ -118,6 +118,6 @@ public class Pokemon {
                 + "and  (type_one like '%" + filter_type + "%' or type_two like '%" + filter_type + "%')\n"
                 + "order by " + type_dex);
         result = st.executeQuery();
-        return SQLiteRepository.resultSetToMatrix(result, col);
+        return SQLiteRepository.getMatrix(result, col);
     }
 }

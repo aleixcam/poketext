@@ -29,7 +29,7 @@ public class Objectes {
                 + "and f.version_group_id = 15\n"
                 + "and n.name like '%" + filter_name + "%'");
         result = st.executeQuery();
-        return SQLiteRepository.resultSetToMatrix(result, col);
+        return SQLiteRepository.getMatrix(result, col);
     }
     
     // Menú del cercador de objectes

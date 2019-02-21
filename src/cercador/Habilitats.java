@@ -24,7 +24,7 @@ public class Habilitats {
                 + "and f.version_group_id = 16\n"
                 + "and n.name like '%" + filter_name + "%'");
         result = st.executeQuery();
-        return SQLiteRepository.resultSetToMatrix(result, col);
+        return SQLiteRepository.getMatrix(result, col);
     }
 
     // Menú del cercador d'habilitats

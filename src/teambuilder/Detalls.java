@@ -108,7 +108,7 @@ public class Detalls {
                 + "and f.version_group_id = 15\n"
                 + "and a.pokemon_id = " + id);
         result = st.executeQuery();
-        return SQLiteRepository.resultSetToMatrix(result, col);
+        return SQLiteRepository.getMatrix(result, col);
     }
 
     // Consultar l'ID del objecte seleccionat

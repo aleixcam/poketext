@@ -15,7 +15,7 @@ public class Poketext {
         String sel;
         
         System.out.println("Carregant...");
-        Connector.connectar();
+        // Connector.connectar();
         do {
 
             // Menú principal
@@ -43,6 +43,6 @@ public class Poketext {
             }
         } while (!sortir);
         System.out.println("Adéu!");
-        Connector.tancar();
+        // Connector.tancar();
     }
 }

@@ -1,59 +1,111 @@
 package infrastructure.persistence.sqlite;
 
-import utils.Comuna;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import utils.Comuna;
+import poketext.Connector;
 
 public abstract class SQLiteRepository {
 
-    // Convertir un ResultSet a String[][]
-    public static String[][] resultSetToMatrix(ResultSet result, String[] col) throws SQLException {
-        int n = result.getMetaData().getColumnCount();
-        List<String[]> taula = new ArrayList<>();
-        Object raw;
-        taula.add(col);
-        while (result.next()) {
-            String[] row = new String[n];
-            for (int i = 1; i <= n; i++) {
-                if ((raw = result.getObject(i)) == null) {
-                    raw = "---";
-                }
-                row[i - 1] = (raw.toString()).replaceAll("\n", " ");
+    private final String URL = "pokedex.sqlite";
+
+    private Connection getConnection() throws SQLException {
+        return DriverManager.getConnection("jdbc:sqlite:" + URL);
+    }
+
+    private void closeConnection(Connection connection) {
+        try {
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(SQLiteRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private static List<String[]> getTable(ResultSet results) throws SQLException {
+        int columns = results.getMetaData().getColumnCount();
+        List<String[]> table = new ArrayList<>();
+        while(results.next()) {
+            String[] row = new String[columns];
+            for( int i = 1; i <= columns; i++ ){
+                Object obj = results.getObject( i );
+                row[i-1] = (obj == null) ? null : obj.toString();
             }
-            taula.add(row);
+            table.add( row );
+        }
+
+        return table;
+    }
+
+    protected List<String[]> executeQuery(String query) {
+        List<String[]> rowset = null;
+
+        try {
+            Connection connection = getConnection();
+            ResultSet results = connection.prepareStatement(query).executeQuery();
+            rowset = getTable(results);
+            closeConnection(connection);
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        return rowset;
+    }
+
+    // Convertir un ResultSet a String[][]
+    public static String[][] getMatrix(ResultSet result, String[] col) {
+        List<String[]> list = new ArrayList<>();
+
+        try {
+            int n = result.getMetaData().getColumnCount();
+            Object raw;
+
+            list.add(col);
+            while (result.next()) {
+                String[] row = new String[n];
+                for (int i = 1; i <= n; i++) {
+                    if ((raw = result.getObject(i)) == null) {
+                        raw = "---";
+                    }
+                    row[i - 1] = (raw.toString()).replaceAll("\n", " ");
+                }
+                list.add(row);
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
         }
 
         // Convertir el ArrayList a una Matriu
-        String[][] arr = new String[taula.size()][];
-        for (int i = 0; i < taula.size(); i++) {
-            arr[i] = taula.get(i);
+        String[][] matrix = new String[list.size()][];
+        for (int i = 0; i < list.size(); i++) {
+            matrix[i] = list.get(i);
         }
-        return arr;
+
+        return matrix;
     }
 
     // Imprimir una consulta
-    public static void printQuery(String[][] consulta) {
-        String[] format = new String[consulta[0].length];
-        format[0] = "%" + (Comuna.llargariaMaxima(consulta, 0) - 2) + "s";
+    public static void printQuery(String[][] query) {
+        String[] format = new String[query[0].length];
+        format[0] = "%" + (Comuna.llargariaMaxima(query, 0) - 2) + "s";
         for (int i = 1; i < format.length; i++) {
-            format[i] = "%-" + Comuna.llargariaMaxima(consulta, i) + "s";
+            format[i] = "%-" + Comuna.llargariaMaxima(query, i) + "s";
         }
-        System.out.printf(format[0], consulta[0][0]);
-        for (int i = 1; i < consulta[0].length; i++) {
-            System.out.printf(format[i], " | " + consulta[0][i]);
+        System.out.printf(format[0], query[0][0]);
+        for (int i = 1; i < query[0].length; i++) {
+            System.out.printf(format[i], " | " + query[0][i]);
         }
         System.out.println();
         for (int i = 0; i < 96; i++) {
             System.out.print("-");
         }
         System.out.println();
-        for (int i = 1; i < consulta.length; i++) {
-            System.out.print(String.format(format[0], consulta[i][0]));
-            for (int j = 1; j < consulta[i].length; j++) {
-                System.out.printf(format[j], " | " + consulta[i][j]);
+        for (int i = 1; i < query.length; i++) {
+            System.out.print(String.format(format[0], query[i][0]));
+            for (int j = 1; j < query[i].length; j++) {
+                System.out.printf(format[j], " | " + query[i][j]);
             }
             System.out.println();
         }
@@ -61,9 +113,9 @@ public abstract class SQLiteRepository {
             System.out.print("-");
         }
         System.out.println();
-        System.out.printf(format[0], consulta[0][0]);
-        for (int i = 1; i < consulta[0].length; i++) {
-            System.out.printf(format[i], " | " + consulta[0][i]);
+        System.out.printf(format[0], query[0][0]);
+        for (int i = 1; i < query[0].length; i++) {
+            System.out.printf(format[i], " | " + query[0][i]);
         }
         System.out.println();
     }

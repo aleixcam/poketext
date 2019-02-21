@@ -1,18 +1,17 @@
 package infrastructure.persistence.sqlite;
 
-import domain.move.MoveRepository;
-import poketext.Connector;
+import java.util.List;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import domain.move.Move;
+import domain.move.MoveRepository;
+import domain.move.MovesCollection;
 
 import static poketext.Opcions.lang;
 
 public class MoveRepositorySQLite extends SQLiteRepository implements MoveRepository {
-    
-    public String[][] findByCriteria(String pokemon_id, String name, String type) throws SQLException {
-        PreparedStatement st = Connector.connect.prepareStatement("select distinct(m.id), n.name, t.name, d.identifier, m.power, m.accuracy, m.pp, f.flavor_text\n"
+
+    public MovesCollection findByCriteria(String pokemon_id, String name, String type) {
+        List<String[]> rowset = executeQuery("select distinct(m.id), n.name, t.name as type, d.identifier, m.power, m.accuracy, m.pp, f.flavor_text\n"
                 + "from pokemon_moves p, move_names n, moves m, type_names t, move_flavor_text f, move_damage_classes d\n"
                 + "where m.id = p.move_id\n"
                 + "and m.id = n.move_id\n"
@@ -29,8 +28,17 @@ public class MoveRepositorySQLite extends SQLiteRepository implements MoveReposi
                 + "and t.name like '%" + type + "%'\n"
                 + "order by m.id");
 
-        ResultSet result = st.executeQuery();
-        String[] col = {"ID", "Nom", "Tipus", "Classe", "Pow", "Acc", "PP", "Efecte"};
-        return resultSetToMatrix(result, col);
+        return buildMoves(rowset);
     }
+
+    private MovesCollection buildMoves(List<String[]> rowset) {
+        MovesCollection moves = new MovesCollection();
+        for (int i = 0; i < rowset.size(); i++) {
+            Move move = new Move(rowset.get(i));
+            moves.add(move);
+        }
+
+        return moves;
+    }
+
 }
