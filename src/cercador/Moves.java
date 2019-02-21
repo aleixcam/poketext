@@ -1,8 +1,13 @@
 package cercador;
 
+import application.move.GetMovesService;
+import domain.move.Move;
+import domain.move.MoveRepository;
 import infrastructure.persistence.sqlite.MoveRepositorySQLite;
 import infrastructure.persistence.sqlite.SQLiteRepository;
 import utils.Comuna;
+
+import java.util.ArrayList;
 
 public class Moves {
 
@@ -13,9 +18,8 @@ public class Moves {
         
         try {
             do {
-
-                MoveRepositorySQLite repository = new MoveRepositorySQLite();
-                String[][] moves = repository.findByCriteria("", filter_name, filter_type).matrix();
+                GetMovesService service = new GetMovesService(new MoveRepositorySQLite());
+                String[][] moves = service.execute(0, filter_name, filter_type);
 
                 // Mostrar per pantalla els moviments
                 System.out.printf("Nom: %s Tipus: %s%n", filter_name, filter_type);

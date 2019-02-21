@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import application.move.GetMovesService;
+import domain.move.Move;
 import infrastructure.persistence.sqlite.MoveRepositorySQLite;
 import infrastructure.persistence.sqlite.SQLiteRepository;
 import poketext.Connector;
@@ -69,8 +72,8 @@ public class Moviments {
         do {
             try {
 
-                MoveRepositorySQLite repository = new MoveRepositorySQLite();
-                String[][] moves = repository.findByCriteria("", filter_name, filter_type).matrix();
+                GetMovesService service = new GetMovesService(new MoveRepositorySQLite());
+                String[][] moves = service.execute(0, filter_name, filter_type);
 
                 // Mostrar per pantalla els pokèmons
                 System.out.printf("%nNom: %s Tipus: %s%n", filter_name, filter_type);

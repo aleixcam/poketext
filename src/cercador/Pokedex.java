@@ -34,11 +34,10 @@ public class Pokedex {
     }
 
     private static void consultarPokedex() throws SQLException {
-        ResultSet result;
         PreparedStatement st = Connector.connect.prepareStatement("select pokedex_id, name, description\n"
                 + "from pokedex_prose\n"
                 + "where local_language_id = 9");
-        result = st.executeQuery();
+        ResultSet result = st.executeQuery();
         System.out.printf("%n%2s | %-16s| %s%n", "ID", "Nom", "Descripció");
         System.out.println("-----------------------------------------------------------------------------------------------");
         while (result.next()) {
