@@ -10,15 +10,15 @@ public class Move {
     private String category;
     private int power;
     private int accuracy;
-    private int powerPoints;
+    private int pp;
     private String effect;
 
     public int getId() {
         return this.id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(String id) {
+        this.id = NumberUtils.isParsable(id) ? Integer.parseInt(id) : 0;
     }
 
     public String getName() {
@@ -49,24 +49,24 @@ public class Move {
         return this.power;
     }
 
-    public void setPower(int power) {
-        this.power = power;
+    public void setPower(String power) {
+        this.power = NumberUtils.isParsable(power) ? Integer.parseInt(power) : 0;
     }
 
     public int getAccuracy() {
         return this.accuracy;
     }
 
-    public void setAccuracy(int accuracy) {
-        this.accuracy = accuracy;
+    public void setAccuracy(String accuracy) {
+        this.accuracy = NumberUtils.isParsable(accuracy) ? Integer.parseInt(accuracy) : 0;
     }
 
-    public int getPowerPoints() {
-        return this.powerPoints;
+    public int getPp() {
+        return this.pp;
     }
 
-    public void setPowerPoints(int powerPoints) {
-        this.powerPoints = powerPoints;
+    public void setPp(String pp) {
+        this.pp = NumberUtils.isParsable(pp) ? Integer.parseInt(pp) : 0;
     }
 
     public String getEffect() {
@@ -74,6 +74,6 @@ public class Move {
     }
 
     public void setEffect(String effect) {
-        this.effect = effect;
+        this.effect = effect.replace("\n", " ");
     }
 }

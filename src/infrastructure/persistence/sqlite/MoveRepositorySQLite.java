@@ -38,13 +38,13 @@ public class MoveRepositorySQLite extends SQLiteRepository implements MoveReposi
         MovesCollection moves = new MovesCollection();
         for (String[] row : rowset) {
             Move move = new Move();
-            move.setId(NumberUtils.isParsable(row[0]) ? Integer.parseInt(row[0]) : 0);
+            move.setId(row[0]);
             move.setName(row[1]);
             move.setType(row[2]);
             move.setCategory(row[3]);
-            move.setPower(NumberUtils.isParsable(row[4]) ? Integer.parseInt(row[4]) : 0);
-            move.setAccuracy(NumberUtils.isParsable(row[5]) ? Integer.parseInt(row[5]) : 0);
-            move.setPowerPoints(NumberUtils.isParsable(row[6]) ? Integer.parseInt(row[6]) : 0);
+            move.setPower(row[4]);
+            move.setAccuracy(row[5]);
+            move.setPp(row[6]);
             move.setEffect(row[7]);
 
             moves.add(move);

@@ -21,7 +21,7 @@ public class MoveAssemblerMatrix extends MatrixAssembler implements MoveAssemble
             matrix[i+1][3] = items.get(i).getCategory();
             matrix[i+1][4] = String.valueOf(items.get(i).getPower());
             matrix[i+1][5] = String.valueOf(items.get(i).getAccuracy());
-            matrix[i+1][6] = String.valueOf(items.get(i).getPowerPoints());
+            matrix[i+1][6] = String.valueOf(items.get(i).getPp());
             matrix[i+1][7] = items.get(i).getEffect();
         }
 
