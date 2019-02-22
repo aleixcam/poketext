@@ -2,7 +2,8 @@ package cercador;
 
 import application.move.GetMoves.GetMovesService;
 import infrastructure.persistence.sqlite.MoveRepositorySQLite;
-import infrastructure.transformer.matrix.MatrixTransformer;
+import infrastructure.transformer.matrix.MatrixAssembler;
+import infrastructure.transformer.matrix.MoveAssemblerMatrix;
 import utils.Comuna;
 
 import java.io.IOException;
@@ -16,12 +17,12 @@ public class Moves {
         
         try {
             do {
-                GetMovesService service = new GetMovesService(new MoveRepositorySQLite());
+                GetMovesService service = new GetMovesService(new MoveRepositorySQLite(), new MoveAssemblerMatrix());
                 String[][] moves = service.execute(0, filter_name, filter_type);
 
                 // Mostrar per pantalla els moviments
                 System.out.printf("Nom: %s Tipus: %s%n", filter_name, filter_type);
-                MatrixTransformer.printQuery(moves);
+                MatrixAssembler.printQuery(moves);
                 System.out.printf("Nom: %s Tipus: %s%n", filter_name, filter_type);
 
                 // Opcions del menú

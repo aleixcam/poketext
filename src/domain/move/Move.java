@@ -1,5 +1,7 @@
 package domain.move;
 
+import org.apache.commons.lang3.math.NumberUtils;
+
 public class Move {
 
     private int id;
@@ -11,44 +13,67 @@ public class Move {
     private int powerPoints;
     private String effect;
 
-    public Move(String[] values) {
-        try {
-            id = Integer.parseInt(values[0]);
-            name = values[1];
-            type = values[2];
-            category = values[3];
-            power = Integer.parseInt(values[4]);
-            accuracy = Integer.parseInt(values[5]);
-            powerPoints = Integer.parseInt(values[6]);
-            effect = values[7];
-        } catch (Exception ex) {}
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
-        return name;
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getType() {
-        return type;
+        return this.type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getCategory() {
-        return category;
+        return this.category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public int getPower() {
-        return power;
+        return this.power;
+    }
+
+    public void setPower(int power) {
+        this.power = power;
     }
 
     public int getAccuracy() {
-        return accuracy;
+        return this.accuracy;
+    }
+
+    public void setAccuracy(int accuracy) {
+        this.accuracy = accuracy;
     }
 
     public int getPowerPoints() {
-        return powerPoints;
+        return this.powerPoints;
+    }
+
+    public void setPowerPoints(int powerPoints) {
+        this.powerPoints = powerPoints;
     }
 
     public String getEffect() {
-        return effect;
+        return this.effect;
+    }
+
+    public void setEffect(String effect) {
+        this.effect = effect;
     }
 }

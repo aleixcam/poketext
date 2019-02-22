@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class MatrixTransformer {
+public abstract class MatrixAssembler {
 
     // Convertir un ResultSet a String[][]
     public static String[][] getMatrix(ResultSet result, String[] col) {

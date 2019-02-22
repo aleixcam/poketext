@@ -1,11 +1,13 @@
 package infrastructure.persistence.sqlite;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import domain.move.Move;
 import domain.move.MoveCriteria;
 import domain.move.MoveRepository;
 import domain.move.MovesCollection;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import static poketext.Opcions.lang;
 
@@ -35,7 +37,16 @@ public class MoveRepositorySQLite extends SQLiteRepository implements MoveReposi
     private MovesCollection buildMoves(List<String[]> rowset) {
         MovesCollection moves = new MovesCollection();
         for (String[] row : rowset) {
-            Move move = new Move(row);
+            Move move = new Move();
+            move.setId(NumberUtils.isParsable(row[0]) ? Integer.parseInt(row[0]) : 0);
+            move.setName(row[1]);
+            move.setType(row[2]);
+            move.setCategory(row[3]);
+            move.setPower(NumberUtils.isParsable(row[4]) ? Integer.parseInt(row[4]) : 0);
+            move.setAccuracy(NumberUtils.isParsable(row[5]) ? Integer.parseInt(row[5]) : 0);
+            move.setPowerPoints(NumberUtils.isParsable(row[6]) ? Integer.parseInt(row[6]) : 0);
+            move.setEffect(row[7]);
+
             moves.add(move);
         }
 

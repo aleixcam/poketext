@@ -7,7 +7,8 @@ import java.sql.SQLException;
 
 import application.move.GetMoves.GetMovesService;
 import infrastructure.persistence.sqlite.MoveRepositorySQLite;
-import infrastructure.transformer.matrix.MatrixTransformer;
+import infrastructure.transformer.matrix.MatrixAssembler;
+import infrastructure.transformer.matrix.MoveAssemblerMatrix;
 import poketext.Connector;
 import static poketext.Opcions.lang;
 import utils.Comuna;
@@ -64,18 +65,18 @@ public class Moviments {
     }
 
     // Escollir un moviment per al Pokèmon
-    private static String escollirMoviments(String poke[][]) {
+    private static String escollirMoviments(String[][] poke) {
         String res = "", filter_type = "", filter_name = "", s[];
 
         do {
             try {
 
-                GetMovesService service = new GetMovesService(new MoveRepositorySQLite());
+                GetMovesService service = new GetMovesService(new MoveRepositorySQLite(), new MoveAssemblerMatrix());
                 String[][] moves = service.execute(0, filter_name, filter_type);
 
                 // Mostrar per pantalla els pokèmons
                 System.out.printf("%nNom: %s Tipus: %s%n", filter_name, filter_type);
-                MatrixTransformer.printQuery(moves);
+                MatrixAssembler.printQuery(moves);
                 System.out.printf("Nom: %s Tipus: %s%n%n", filter_name, filter_type);
 
                 // Opcions del menú

@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import infrastructure.transformer.matrix.MatrixTransformer;
+import infrastructure.transformer.matrix.MatrixAssembler;
 import poketext.Connector;
 import utils.Comuna;
 
@@ -105,7 +105,7 @@ public class Pokes {
 
                 // Mostrar per pantalla els pokèmons
                 System.out.printf("%nNom: %s Tipus: %s%n", filter_name, filter_type);
-                MatrixTransformer.printQuery(Pokemon.consultarPokemon(filter_name, filter_type, "1"));
+                MatrixAssembler.printQuery(Pokemon.consultarPokemon(filter_name, filter_type, "1"));
                 System.out.printf("Nom: %s Tipus: %s%n%n", filter_name, filter_type);
 
                 // Opcions del menú

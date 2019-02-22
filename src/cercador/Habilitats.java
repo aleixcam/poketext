@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import infrastructure.transformer.matrix.MatrixTransformer;
+import infrastructure.transformer.matrix.MatrixAssembler;
 import poketext.Connector;
 import static poketext.Opcions.lang;
 import utils.Comuna;
@@ -24,7 +24,7 @@ public class Habilitats {
                 + "and f.version_group_id = 16\n"
                 + "and n.name like '%" + filter_name + "%'");
         result = st.executeQuery();
-        return MatrixTransformer.getMatrix(result, col);
+        return MatrixAssembler.getMatrix(result, col);
     }
 
     // Menú del cercador d'habilitats
@@ -37,7 +37,7 @@ public class Habilitats {
 
                 // Mostrar per pantalla els moviments
                 System.out.printf("Nom: %s%n", filter_name);
-                MatrixTransformer.printQuery(consultarHabilitats(filter_name));
+                MatrixAssembler.printQuery(consultarHabilitats(filter_name));
                 System.out.printf("Nom: %s%n", filter_name);
 
                 // Opcions del menú
