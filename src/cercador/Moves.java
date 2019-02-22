@@ -1,13 +1,11 @@
 package cercador;
 
-import application.move.GetMovesService;
-import domain.move.Move;
-import domain.move.MoveRepository;
+import application.move.GetMoves.GetMovesService;
 import infrastructure.persistence.sqlite.MoveRepositorySQLite;
-import infrastructure.persistence.sqlite.SQLiteRepository;
+import infrastructure.transformer.matrix.MatrixTransformer;
 import utils.Comuna;
 
-import java.util.ArrayList;
+import java.io.IOException;
 
 public class Moves {
 
@@ -23,7 +21,7 @@ public class Moves {
 
                 // Mostrar per pantalla els moviments
                 System.out.printf("Nom: %s Tipus: %s%n", filter_name, filter_type);
-                SQLiteRepository.printQuery(moves);
+                MatrixTransformer.printQuery(moves);
                 System.out.printf("Nom: %s Tipus: %s%n", filter_name, filter_type);
 
                 // Opcions del menú
@@ -51,7 +49,7 @@ public class Moves {
                     System.out.println("Selecció incorrecte");
                 }
             } while (!sortir);
-        } catch (Exception ex) {
+        } catch (IOException ex) {
             System.err.println(ex.getMessage());
         }
     }

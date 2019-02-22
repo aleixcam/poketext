@@ -1,6 +1,5 @@
 package infrastructure.persistence.sqlite;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import domain.move.Move;
@@ -24,7 +23,7 @@ public class MoveRepositorySQLite extends SQLiteRepository implements MoveReposi
                 + "and n.local_language_id = " + lang + "\n"
                 + "and t.local_language_id = " + lang + "\n"
                 + "and f.language_id = " + lang + "\n"
-                + "and p.pokemon_id = " + criteria.getPokemonId() + "\n"
+                + (criteria.getPokemonId() > 0 ? ("and p.pokemon_id = " + criteria.getPokemonId() + "\n") : "")
                 + "and f.version_group_id = 16\n"
                 + "and n.name like '%" + criteria.getName() + "%'\n"
                 + "and t.name like '%" + criteria.getType() + "%'\n"
@@ -35,8 +34,8 @@ public class MoveRepositorySQLite extends SQLiteRepository implements MoveReposi
 
     private MovesCollection buildMoves(List<String[]> rowset) {
         MovesCollection moves = new MovesCollection();
-        for (String[] strings : rowset) {
-            Move move = new Move(strings);
+        for (String[] row : rowset) {
+            Move move = new Move(row);
             moves.add(move);
         }
 

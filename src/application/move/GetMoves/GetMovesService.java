@@ -1,11 +1,10 @@
-package application.move;
+package application.move.GetMoves;
 
 import domain.move.Move;
 import domain.move.MoveCriteria;
 import domain.move.MoveRepository;
 import domain.move.MovesCollection;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class GetMovesService {
@@ -27,7 +26,7 @@ public class GetMovesService {
         return buildMatrix(moves);
     }
 
-    public String[][] buildMatrix(MovesCollection moves) {
+    private String[][] buildMatrix(MovesCollection moves) {
         ArrayList<Move> items = moves.moves();
         String[][] matrix = new String[items.size()][];
         for (int i = 0; i < items.size(); i++) {

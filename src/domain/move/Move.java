@@ -12,14 +12,16 @@ public class Move {
     private String effect;
 
     public Move(String[] values) {
-        id = Integer.parseInt(values[0]);
-        name = values[1];
-        type = values[2];
-        category = values[3];
-        power = Integer.parseInt(values[4]);
-        accuracy = Integer.parseInt(values[5]);
-        powerPoints = Integer.parseInt(values[6]);
-        effect = values[7];
+        try {
+            id = Integer.parseInt(values[0]);
+            name = values[1];
+            type = values[2];
+            category = values[3];
+            power = Integer.parseInt(values[4]);
+            accuracy = Integer.parseInt(values[5]);
+            powerPoints = Integer.parseInt(values[6]);
+            effect = values[7];
+        } catch (Exception ex) {}
     }
 
     public String getName() {
@@ -39,7 +41,7 @@ public class Move {
     }
 
     public int getAccuracy() {
-        return power;
+        return accuracy;
     }
 
     public int getPowerPoints() {

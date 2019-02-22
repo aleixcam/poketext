@@ -4,12 +4,10 @@ import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
-import application.move.GetMovesService;
-import domain.move.Move;
+import application.move.GetMoves.GetMovesService;
 import infrastructure.persistence.sqlite.MoveRepositorySQLite;
-import infrastructure.persistence.sqlite.SQLiteRepository;
+import infrastructure.transformer.matrix.MatrixTransformer;
 import poketext.Connector;
 import static poketext.Opcions.lang;
 import utils.Comuna;
@@ -77,7 +75,7 @@ public class Moviments {
 
                 // Mostrar per pantalla els pokèmons
                 System.out.printf("%nNom: %s Tipus: %s%n", filter_name, filter_type);
-                SQLiteRepository.printQuery(moves);
+                MatrixTransformer.printQuery(moves);
                 System.out.printf("Nom: %s Tipus: %s%n%n", filter_name, filter_type);
 
                 // Opcions del menú

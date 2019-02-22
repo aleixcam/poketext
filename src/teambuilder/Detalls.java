@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import infrastructure.persistence.sqlite.SQLiteRepository;
+import infrastructure.transformer.matrix.MatrixTransformer;
 import poketext.Connector;
 import static poketext.Opcions.lang;
 import utils.Comuna;
@@ -63,7 +63,7 @@ public class Detalls {
 
                 // Mostrar per pantalla els pokèmons
                 System.out.printf("%nNom: %s%n", filter_name);
-                SQLiteRepository.printQuery(Objectes.consultarObjectes(filter_name));
+                MatrixTransformer.printQuery(Objectes.consultarObjectes(filter_name));
                 System.out.printf("Nom: %s%n%n", filter_name);
 
                 // Opcions del menú
@@ -108,7 +108,7 @@ public class Detalls {
                 + "and f.version_group_id = 15\n"
                 + "and a.pokemon_id = " + id);
         result = st.executeQuery();
-        return SQLiteRepository.getMatrix(result, col);
+        return MatrixTransformer.getMatrix(result, col);
     }
 
     // Consultar l'ID del objecte seleccionat
@@ -156,7 +156,7 @@ public class Detalls {
 
                 // Mostrar per pantalla els pokèmons
                 System.out.println();
-                SQLiteRepository.printQuery(consultarHabilitatsPoke(id));
+                MatrixTransformer.printQuery(consultarHabilitatsPoke(id));
                 System.out.println();
 
                 // Opcions del menú

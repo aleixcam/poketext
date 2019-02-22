@@ -1,11 +1,10 @@
 package domain.move;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MovesCollection {
 
-    private ArrayList<Move> items = new ArrayList<Move>();
+    private ArrayList<Move> items = new ArrayList<>();
 
     public void add(Move move) {
         items.add(move);

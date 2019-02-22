@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import infrastructure.persistence.sqlite.SQLiteRepository;
+import infrastructure.transformer.matrix.MatrixTransformer;
 import poketext.Connector;
 import static poketext.Opcions.lang;
 
@@ -118,6 +118,6 @@ public class Pokemon {
                 + "and  (type_one like '%" + filter_type + "%' or type_two like '%" + filter_type + "%')\n"
                 + "order by " + type_dex);
         result = st.executeQuery();
-        return SQLiteRepository.getMatrix(result, col);
+        return MatrixTransformer.getMatrix(result, col);
     }
 }

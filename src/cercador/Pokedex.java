@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import infrastructure.persistence.sqlite.SQLiteRepository;
+import infrastructure.transformer.matrix.MatrixTransformer;
 import poketext.Connector;
 import utils.Comuna;
 
@@ -67,7 +67,7 @@ public class Pokedex {
                 // Mostrar per pantalla els pokèmons
                 System.out.printf("%nPokèdex: %s%n", consultarIDPokedex(pokedex, false));
                 System.out.printf("Nom: %s Tipus: %s%n", filter_name, filter_type);
-                SQLiteRepository.printQuery(Pokemon.consultarPokemon(filter_name, filter_type, pokedex));
+                MatrixTransformer.printQuery(Pokemon.consultarPokemon(filter_name, filter_type, pokedex));
                 System.out.printf("Nom: %s Tipus: %s%n", filter_name, filter_type);
                 System.out.printf("Pokèdex: %s%n%n", consultarIDPokedex(pokedex, false));
 
