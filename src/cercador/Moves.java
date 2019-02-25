@@ -1,6 +1,6 @@
 package cercador;
 
-import application.move.GetMoves.GetMovesService;
+import application.move.GetMovesService;
 import infrastructure.persistence.sqlite.MoveRepositorySQLite;
 import infrastructure.transformer.matrix.MatrixAssembler;
 import infrastructure.transformer.matrix.MoveAssemblerMatrix;

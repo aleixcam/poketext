@@ -1,4 +1,4 @@
-package application.move.GetMoves;
+package application.move;
 
 import domain.move.*;
 
