@@ -65,10 +65,12 @@ public class Pokemons {
             pokedex = escollirPokedex();
             do {
 
+                PokemonRepositorySQLite repository = new PokemonRepositorySQLite();
+
                 // Mostrar per pantalla els pokèmons
                 System.out.printf("%nPokèdex: %s%n", consultarIDPokedex(pokedex, false));
                 System.out.printf("Nom: %s Tipus: %s%n", filter_name, filter_type);
-                MatrixAssembler.printQuery(PokemonRepositorySQLite.findByCriteria(filter_name, filter_type, pokedex));
+                MatrixAssembler.printQuery(repository.findByCriteria(Integer.parseInt(pokedex), filter_name, filter_type));
                 System.out.printf("Nom: %s Tipus: %s%n", filter_name, filter_type);
                 System.out.printf("Pokèdex: %s%n%n", consultarIDPokedex(pokedex, false));
 

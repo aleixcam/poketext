@@ -79,7 +79,6 @@ public class Pokes {
 
     // Donar-li un sobrenom a un Pokèmon
     private static String sobrenomPokemon(String id) throws SQLException, IOException {
-        ResultSet result;
         String sel, res = "";
 
         do {
@@ -98,15 +97,19 @@ public class Pokes {
     }
 
     // Escollir un pokèmon per a l'equip
-    protected static String[][] escollirPoke(String poke[][]) throws IOException {
-        String filter_type = "", filter_name = "", s[];
+    protected static String[][] escollirPoke(String[][] poke) throws IOException {
+        String filter_type = "";
+        String filter_name = "";
+        String[] s;
 
         do {
             try {
 
+                PokemonRepositorySQLite repository = new PokemonRepositorySQLite();
+
                 // Mostrar per pantalla els pokèmons
                 System.out.printf("%nNom: %s Tipus: %s%n", filter_name, filter_type);
-                MatrixAssembler.printQuery(PokemonRepositorySQLite.findByCriteria(filter_name, filter_type, "1"));
+                MatrixAssembler.printQuery(repository.findByCriteria(1, filter_name, filter_type));
                 System.out.printf("Nom: %s Tipus: %s%n%n", filter_name, filter_type);
 
                 // Opcions del menú
@@ -155,26 +158,26 @@ public class Pokes {
         try {
             System.out.printf("%n%-68s%s%22S%n", "Nom: " + poke[0][1], "Pokèmon:", consultarIDPoke(poke[0][0], false));
             for (j = 0; j <= 48; j++) {
-                System.out.printf("*");
+                System.out.print("*");
             }
-            System.out.printf("* *");
+            System.out.print("* *");
             for (i = 0; i < 28; i++) {
-                System.out.printf("*");
+                System.out.print("*");
             }
-            System.out.printf("* *");
+            System.out.print("* *");
             for (i = 0; i < 14; i++) {
-                System.out.printf("*");
+                System.out.print("*");
             }
             System.out.printf("*%n*  %-46s* *  %-26s* *  %s%6s  *%n", "Detalls:", "Moviments:", "HP: ", poke[3][0]);
             System.out.printf("*  %-10s| %-10s| %-10s| %-10s* *", "Nivell", "Genere", "Felicitat", "Shiny");
             for (i = 0; i < 28; i++) {
-                System.out.printf(" ");
+                System.out.print(" ");
             }
             System.out.printf("* *  %s%6s  *%n", "Atk:", poke[3][1]);
             System.out.printf("*  %-10s| %-10s| %-10s| %-10s* ", poke[1][0], Detalls.consultarGenere(poke[1][1]), poke[1][2], poke[1][3]);
             System.out.printf("*  %-26s* *  %s%6s  *%n*", Moviments.consultarNomMoviment(poke[2][0]), "Def:", poke[3][2]);
             for (i = 0; i < 16; i++) {
-                System.out.printf(" * ");
+                System.out.print(" * ");
             }
             System.out.printf("* *  %-26s* *  %s%6s  *%n", Moviments.consultarNomMoviment(poke[2][1]), "SpA:", poke[3][3]);
             System.out.printf("*  %-22s| %-22s* ", "Objecte:", "Habilitat:");
@@ -182,15 +185,15 @@ public class Pokes {
             System.out.printf("*  %-22s| %-22s* ", Detalls.consultarNomObjecte(poke[1][4]), Detalls.consultarNomHabilitat(poke[1][5]));
             System.out.printf("*  %-26s* *  %s%6s  *%n", Moviments.consultarNomMoviment(poke[2][3]), "Spe:", poke[3][5]);
             for (i = 0; i <= 48; i++) {
-                System.out.printf("*");
+                System.out.print("*");
             }
-            System.out.printf("* *");
+            System.out.print("* *");
             for (i = 0; i < 28; i++) {
-                System.out.printf("*");
+                System.out.print("*");
             }
-            System.out.printf("* *");
+            System.out.print("* *");
             for (i = 0; i < 14; i++) {
-                System.out.printf("*");
+                System.out.print("*");
             }
             System.out.printf("*%n");
         } catch (SQLException ex) {
