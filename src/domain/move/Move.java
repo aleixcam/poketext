@@ -14,7 +14,7 @@ public class Move {
     private String effect;
 
     public int getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(String id) {
@@ -30,7 +30,7 @@ public class Move {
     }
 
     public String getType() {
-        return this.type;
+        return type;
     }
 
     public void setType(String type) {
@@ -38,7 +38,7 @@ public class Move {
     }
 
     public String getCategory() {
-        return this.category;
+        return category;
     }
 
     public void setCategory(String category) {
@@ -46,7 +46,7 @@ public class Move {
     }
 
     public int getPower() {
-        return this.power;
+        return power;
     }
 
     public void setPower(String power) {
@@ -54,7 +54,7 @@ public class Move {
     }
 
     public int getAccuracy() {
-        return this.accuracy;
+        return accuracy;
     }
 
     public void setAccuracy(String accuracy) {
@@ -62,7 +62,7 @@ public class Move {
     }
 
     public int getPp() {
-        return this.pp;
+        return pp;
     }
 
     public void setPp(String pp) {
@@ -70,7 +70,7 @@ public class Move {
     }
 
     public String getEffect() {
-        return this.effect;
+        return effect;
     }
 
     public void setEffect(String effect) {
