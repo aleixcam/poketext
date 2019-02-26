@@ -1,9 +1,10 @@
 package calc;
 
-import cercador.Pokemon;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import infrastructure.persistence.sqlite.PokemonRepositorySQLite;
 import poketext.Connector;
 
 public class Estadistiques {
@@ -42,7 +43,8 @@ public class Estadistiques {
     public static void calcularEstadistiques(String[][] poke) {
         int base[], natura[], lvl = Integer.parseInt(poke[1][0]);
         try {
-            base = Pokemon.obtenirStatsBase(poke[0][0]);
+            PokemonRepositorySQLite repository = new PokemonRepositorySQLite();
+            base = repository.findStatsByPokemonId(Integer.parseInt(poke[0][0]));
             natura = consultarNaturalesa(poke[4][6]);
             for (int i = 1; i < poke[3].length; i++) {
                 poke[3][i] = Long.toString(Math.round((calcularStatsBasics(base[i], poke[5][i], poke[4][i]) * lvl / 100 + 5) * comprovarNaturalesa(natura, i)));

@@ -5,11 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import infrastructure.persistence.sqlite.PokemonRepositorySQLite;
 import infrastructure.transformer.matrix.MatrixAssembler;
 import poketext.Connector;
 import utils.Comuna;
 
-public class Pokedex {
+public class Pokemons {
 
     // Consultar l'ID de la pokèdex seleccionada
     private static String consultarIDPokedex(String id, boolean sel) throws SQLException {
@@ -67,7 +68,7 @@ public class Pokedex {
                 // Mostrar per pantalla els pokèmons
                 System.out.printf("%nPokèdex: %s%n", consultarIDPokedex(pokedex, false));
                 System.out.printf("Nom: %s Tipus: %s%n", filter_name, filter_type);
-                MatrixAssembler.printQuery(Pokemon.consultarPokemon(filter_name, filter_type, pokedex));
+                MatrixAssembler.printQuery(PokemonRepositorySQLite.findByCriteria(filter_name, filter_type, pokedex));
                 System.out.printf("Nom: %s Tipus: %s%n", filter_name, filter_type);
                 System.out.printf("Pokèdex: %s%n%n", consultarIDPokedex(pokedex, false));
 

@@ -1,11 +1,13 @@
 package teambuilder;
 
 import calc.Estadistiques;
-import cercador.Pokemon;
+
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import infrastructure.persistence.sqlite.PokemonRepositorySQLite;
 import poketext.Connector;
 import static poketext.Opcions.lang;
 import utils.Comuna;
@@ -114,7 +116,8 @@ public class Stats {
         int i, j, base[];
         String noms[] = {"HP", "Attack", "Defense", "Sp. Atk.", "Sp. Def.", "Speed"};
         try {
-            base = Pokemon.obtenirStatsBase(poke[0][0]);
+            PokemonRepositorySQLite repository = new PokemonRepositorySQLite();
+            base = repository.findStatsByPokemonId(Integer.parseInt(poke[0][0]));
             System.out.printf("%n%s%n", "Nom: " + poke[0][1]);
             for (i = 0; i < 37; i++) {
                 System.out.print("*");

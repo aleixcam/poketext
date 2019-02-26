@@ -33,7 +33,7 @@ public class Cercador {
                 System.out.print("Introdueix l'element que vols cecar: ");
                 filtre = Comuna.in.readLine();
             } else if (sel.equals("p")) {
-                Pokedex.cercarPokemons();
+                Pokemons.cercarPokemons();
                 filtre = null;
             } else if (sel.equals("m")) {
                 Moves.viewMoves();

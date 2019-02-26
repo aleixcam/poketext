@@ -1,13 +1,11 @@
 package infrastructure.persistence.sqlite;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import domain.move.Move;
 import domain.move.MoveCriteria;
 import domain.move.MoveRepository;
 import domain.move.MovesCollection;
-import org.apache.commons.lang3.math.NumberUtils;
 
 import static poketext.Opcions.lang;
 
@@ -20,15 +18,15 @@ public class MoveRepositorySQLite extends SQLiteRepository implements MoveReposi
                 + "and m.id = n.move_id\n"
                 + "and t.type_id = m.type_id\n"
                 + "and m.id = f.move_id\n"
-                + "and p.version_group_id = 16\n"
                 + "and m.damage_class_id = d.id\n"
+                + "and p.version_group_id = 16\n"
+                + "and f.version_group_id = 16\n"
                 + "and n.local_language_id = " + lang + "\n"
                 + "and t.local_language_id = " + lang + "\n"
                 + "and f.language_id = " + lang + "\n"
                 + (criteria.getPokemonId() > 0 ? ("and p.pokemon_id = " + criteria.getPokemonId() + "\n") : "")
-                + "and f.version_group_id = 16\n"
-                + "and n.name like '%" + criteria.getName() + "%'\n"
-                + "and t.name like '%" + criteria.getType() + "%'\n"
+                + (criteria.getName() != "" ? ("and n.name like '%" + criteria.getName() + "%'\n") : "")
+                + (criteria.getType() != "" ? ("and t.name like '%" + criteria.getType() + "%'\n") : "")
                 + "order by m.id");
 
         return buildMoves(rowset);
