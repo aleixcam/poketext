@@ -18,7 +18,7 @@ public class GetPokemonsService {
         criteria.setName(name);
         criteria.setType(type);
 
-        PokemonsCollection moves = this.repository.findByCriteria(criteria);
-        return this.assembler.assemble(moves);
+        PokemonsCollection pokemons = this.repository.findByCriteria(criteria);
+        return this.assembler.assemble(pokemons);
     }
 }

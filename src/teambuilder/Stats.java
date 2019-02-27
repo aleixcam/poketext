@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import domain.pokemon.PokemonStats;
 import infrastructure.persistence.sqlite.PokemonRepositorySQLite;
 import poketext.Connector;
 import static poketext.Opcions.lang;
@@ -113,11 +114,20 @@ public class Stats {
 
     // Mostar per pantalla els stats
     private static void imprimirStats(String[][] poke) throws IOException {
-        int i, j, base[];
+        int i, j;
         String noms[] = {"HP", "Attack", "Defense", "Sp. Atk.", "Sp. Def.", "Speed"};
         try {
             PokemonRepositorySQLite repository = new PokemonRepositorySQLite();
-            base = repository.findStatsByPokemonId(Integer.parseInt(poke[0][0]));
+            PokemonStats stats = repository.findStatsByPokemonId(Integer.parseInt(poke[0][0]));
+            int[] base = {
+                stats.getHealth(),
+                stats.getAttack(),
+                stats.getDefense(),
+                stats.getSpecialAttack(),
+                stats.getSpecialDefense(),
+                stats.getSpeed()
+            };
+
             System.out.printf("%n%s%n", "Nom: " + poke[0][1]);
             for (i = 0; i < 37; i++) {
                 System.out.print("*");

@@ -1,9 +1,8 @@
 package infrastructure.persistence.sqlite;
 
-import domain.pokemon.Pokemon;
-import domain.pokemon.PokemonCriteria;
-import domain.pokemon.PokemonRepository;
-import domain.pokemon.PokemonsCollection;
+import domain.pokemon.*;
+
+import java.util.Arrays;
 import java.util.List;
 
 import static poketext.Opcions.lang;
@@ -23,31 +22,7 @@ public class PokemonRepositorySQLite extends SQLiteRepository implements Pokemon
             + "where n.type_id = t.type_id\n"
             + "and p.id = t.pokemon_id\n"
             + "and n.local_language_id = " + lang + "\n"
-            + "and t.slot = 2) 'type_two',\n"
-            + "(select s.base_stat\n"
-            + "from pokemon_stats s\n"
-            + "where p.id = s.pokemon_id\n"
-            + "and s.stat_id = 1) 'hp',\n"
-            + "(select s.base_stat\n"
-            + "from pokemon_stats s\n"
-            + "where p.id = s.pokemon_id\n"
-            + "and s.stat_id = 2) 'atk',\n"
-            + "(select s.base_stat\n"
-            + "from pokemon_stats s\n"
-            + "where p.id = s.pokemon_id\n"
-            + "and s.stat_id = 3) 'def',\n"
-            + "(select s.base_stat\n"
-            + "from pokemon_stats s\n"
-            + "where p.id = s.pokemon_id\n"
-            + "and s.stat_id = 4) 'spatk',\n"
-            + "(select s.base_stat\n"
-            + "from pokemon_stats s\n"
-            + "where p.id = s.pokemon_id\n"
-            + "and s.stat_id = 5) 'spdef',\n"
-            + "(select s.base_stat\n"
-            + "from pokemon_stats s\n"
-            + "where p.id = s.pokemon_id\n"
-            + "and s.stat_id = 6) 'spe'\n"
+            + "and t.slot = 2) 'type_two'\n"
             + "from pokemon p, pokemon_dex_numbers d\n"
             + "where p.species_id = d.species_id\n"
             + "and d.pokedex_id = " + criteria.getPokedexId() + "\n"
@@ -68,6 +43,7 @@ public class PokemonRepositorySQLite extends SQLiteRepository implements Pokemon
             pokemon.setName(row[1]);
             pokemon.setTypeOne(row[2]);
             pokemon.setTypeTwo(row[3]);
+            pokemon.setBaseStats(findStatsByPokemonId(pokemon.getId()));
 
             pokemons.add(pokemon);
         }
@@ -75,7 +51,7 @@ public class PokemonRepositorySQLite extends SQLiteRepository implements Pokemon
         return pokemons;
     }
 
-    public int[] findStatsByPokemonId(int pokemon_id) {
+    public PokemonStats findStatsByPokemonId(int pokemon_id) {
         List<String[]> rowset = executeQuery("select"
                 + "(select s.base_stat\n"
                 + "from pokemon_stats s\n"
@@ -107,13 +83,17 @@ public class PokemonRepositorySQLite extends SQLiteRepository implements Pokemon
         return buildStats(rowset);
     }
 
-    private int[] buildStats(List<String[]> rowset) {
-        String[] row = rowset.get(0);
-        int[] stats = new int[row.length];
-        for (int i = 0; i < row.length; i++) {
-            stats[i] = Integer.parseInt(row[i]);
-        }
+    private PokemonStats buildStats(List<String[]> rowset) {
+        int[] stats = Arrays.stream(rowset.get(0)).mapToInt(Integer::parseInt).toArray();
 
-        return stats;
+        PokemonStats base_stats = new PokemonStats();
+        base_stats.setHealth(stats[0]);
+        base_stats.setAttack(stats[1]);
+        base_stats.setDefense(stats[2]);
+        base_stats.setSpecialAttack(stats[3]);
+        base_stats.setSpecialDefense(stats[4]);
+        base_stats.setSpeed(stats[5]);
+
+        return base_stats;
     }
 }
