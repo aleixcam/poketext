@@ -5,8 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import application.pokemon.GetPokemonsService;
 import infrastructure.persistence.sqlite.PokemonRepositorySQLite;
 import infrastructure.transformer.matrix.MatrixAssembler;
+import infrastructure.transformer.matrix.PokemonAssemblerMatrix;
 import poketext.Connector;
 import utils.Comuna;
 
@@ -65,12 +67,13 @@ public class Pokemons {
             pokedex = escollirPokedex();
             do {
 
-                PokemonRepositorySQLite repository = new PokemonRepositorySQLite();
+                GetPokemonsService service = new GetPokemonsService(new PokemonRepositorySQLite(), new PokemonAssemblerMatrix());
+                String[][] pokemons = service.execute(Integer.parseInt(pokedex), filter_name, filter_type);
 
                 // Mostrar per pantalla els pokèmons
                 System.out.printf("%nPokèdex: %s%n", consultarIDPokedex(pokedex, false));
                 System.out.printf("Nom: %s Tipus: %s%n", filter_name, filter_type);
-                MatrixAssembler.printQuery(repository.findByCriteria(Integer.parseInt(pokedex), filter_name, filter_type));
+                MatrixAssembler.printQuery(pokemons);
                 System.out.printf("Nom: %s Tipus: %s%n", filter_name, filter_type);
                 System.out.printf("Pokèdex: %s%n%n", consultarIDPokedex(pokedex, false));
 

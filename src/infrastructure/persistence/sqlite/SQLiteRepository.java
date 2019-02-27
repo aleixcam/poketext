@@ -5,13 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import utils.Comuna;
 
 public abstract class SQLiteRepository {
 
     private String url;
 
-    public SQLiteRepository() {
+    SQLiteRepository() {
         this.url = "jdbc:sqlite:pokedex.sqlite";
     }
 
@@ -36,7 +35,8 @@ public abstract class SQLiteRepository {
                 Object obj = results.getObject( i );
                 row[i-1] = (obj == null) ? null : obj.toString();
             }
-            table.add( row );
+
+            table.add(row);
         }
 
         return table;

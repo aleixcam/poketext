@@ -9,6 +9,10 @@ import java.util.List;
 
 public abstract class MatrixAssembler {
 
+    protected void format() {
+
+    }
+
     // Convertir un ResultSet a String[][]
     public static String[][] getMatrix(ResultSet result, String[] col) {
         List<String[]> list = new ArrayList<>();

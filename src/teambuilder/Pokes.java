@@ -1,5 +1,6 @@
 package teambuilder;
 
+import application.pokemon.GetPokemonsService;
 import calc.Estadistiques;
 
 import java.io.IOException;
@@ -9,6 +10,7 @@ import java.sql.SQLException;
 
 import infrastructure.persistence.sqlite.PokemonRepositorySQLite;
 import infrastructure.transformer.matrix.MatrixAssembler;
+import infrastructure.transformer.matrix.PokemonAssemblerMatrix;
 import poketext.Connector;
 import utils.Comuna;
 
@@ -105,11 +107,13 @@ public class Pokes {
         do {
             try {
 
-                PokemonRepositorySQLite repository = new PokemonRepositorySQLite();
+
+                GetPokemonsService service = new GetPokemonsService(new PokemonRepositorySQLite(), new PokemonAssemblerMatrix());
+                String[][] pokemons = service.execute(1, filter_name, filter_type);
 
                 // Mostrar per pantalla els pokèmons
                 System.out.printf("%nNom: %s Tipus: %s%n", filter_name, filter_type);
-                MatrixAssembler.printQuery(repository.findByCriteria(1, filter_name, filter_type));
+                MatrixAssembler.printQuery(pokemons);
                 System.out.printf("Nom: %s Tipus: %s%n%n", filter_name, filter_type);
 
                 // Opcions del menú

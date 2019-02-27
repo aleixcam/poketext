@@ -14,8 +14,8 @@ public class Pokemon {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(String id) {
+        this.id = NumberUtils.isParsable(id) ? Integer.parseInt(id) : 0;
     }
 
     public String getName() {

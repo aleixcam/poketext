@@ -2,8 +2,6 @@ package application.move;
 
 import domain.move.*;
 
-import java.util.ArrayList;
-
 public class GetMovesService {
 
     private MoveRepository repository;
@@ -21,7 +19,6 @@ public class GetMovesService {
         criteria.setType(type);
 
         MovesCollection moves = this.repository.findByCriteria(criteria);
-        ArrayList<Move> asdf = moves.moves();
         return this.assembler.assemble(moves);
     }
 }

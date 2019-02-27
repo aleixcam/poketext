@@ -1,22 +1,17 @@
 package infrastructure.persistence.sqlite;
 
+import domain.pokemon.Pokemon;
+import domain.pokemon.PokemonCriteria;
 import domain.pokemon.PokemonRepository;
-import infrastructure.transformer.matrix.MatrixAssembler;
-import poketext.Connector;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import domain.pokemon.PokemonsCollection;
 import java.util.List;
 
 import static poketext.Opcions.lang;
 
 public class PokemonRepositorySQLite extends SQLiteRepository implements PokemonRepository {
 
-    public String[][] findByCriteria(int pokedex_id, String filter_name, String filter_type) throws SQLException {
-        final String type_dex = pokedex_id == 1 ? "p.id" : "d.pokedex_number";
-
-        PreparedStatement st = Connector.connect.prepareStatement("select " + type_dex + " 'id', p.identifier 'name',\n"
+    public PokemonsCollection findByCriteria(PokemonCriteria criteria) {
+        List<String[]> rowset = executeQuery("select " + criteria.getIdField() + " 'id', p.identifier 'name',\n"
             + "(select n.name\n"
             + "from type_names n, pokemon_types t\n"
             + "where n.type_id = t.type_id\n"
@@ -55,16 +50,29 @@ public class PokemonRepositorySQLite extends SQLiteRepository implements Pokemon
             + "and s.stat_id = 6) 'spe'\n"
             + "from pokemon p, pokemon_dex_numbers d\n"
             + "where p.species_id = d.species_id\n"
-            + "and d.pokedex_id = " + pokedex_id + "\n"
-            + "and p.identifier like '%" + filter_name + "%'\n"
-            + "and (type_one like '%" + filter_type + "%'"
-            + "or type_two like '%" + filter_type + "%')\n"
-            + (pokedex_id != 1 ? "and p.is_default = 1\n" : "")
-            + "order by " + type_dex);
+            + "and d.pokedex_id = " + criteria.getPokedexId() + "\n"
+            + "and p.identifier like '%" + criteria.getName() + "%'\n"
+            + "and (type_one like '%" + criteria.getType() + "%'"
+            + "or type_two like '%" + criteria.getType() + "%')\n"
+            + (criteria.getPokedexId() != 1 ? "and p.is_default = 1\n" : "")
+            + "order by " + criteria.getIdField());
 
-        ResultSet result = st.executeQuery();
-        String[] col = {"ID", "Nom", "Tipus 1", "Tipus 2", "HP", "Atk", "Def", "SpA", "SpD", "Spe"};
-        return MatrixAssembler.getMatrix(result, col);
+        return buildPokemons(rowset);
+    }
+
+    private PokemonsCollection buildPokemons(List<String[]> rowset) {
+        PokemonsCollection pokemons = new PokemonsCollection();
+        for (String[] row : rowset) {
+            Pokemon pokemon = new Pokemon();
+            pokemon.setId(row[0]);
+            pokemon.setName(row[1]);
+            pokemon.setTypeOne(row[2]);
+            pokemon.setTypeTwo(row[3]);
+
+            pokemons.add(pokemon);
+        }
+
+        return pokemons;
     }
 
     public int[] findStatsByPokemonId(int pokemon_id) {
