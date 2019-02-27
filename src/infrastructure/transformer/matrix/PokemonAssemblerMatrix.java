@@ -27,6 +27,6 @@ public class PokemonAssemblerMatrix extends MatrixAssembler implements PokemonAs
             matrix[i+1][9] = null;
         }
 
-        return matrix;
+        return generate(matrix);
     }
 }

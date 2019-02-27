@@ -74,6 +74,6 @@ public class Move {
     }
 
     public void setEffect(String effect) {
-        this.effect = effect.replace("\n", " ");
+        this.effect = effect;
     }
 }

@@ -25,6 +25,6 @@ public class MoveAssemblerMatrix extends MatrixAssembler implements MoveAssemble
             matrix[i+1][7] = items.get(i).getEffect();
         }
 
-        return matrix;
+        return generate(matrix);
     }
 }
