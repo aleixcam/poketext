@@ -14,7 +14,7 @@ import utils.Comuna;
 
 public class Pokemons {
 
-    static String consultarIDPokedex(String id) throws SQLException {
+    private static String consultarIDPokedex(String id) throws SQLException {
         ResultSet result;
         PreparedStatement select = Connector.connect.prepareStatement("select name from pokedex_prose "
                 + "where pokedex_id = '" + id + "'\n"
@@ -25,23 +25,25 @@ public class Pokemons {
     }
 
     // Escollir un pokèmon per a l'equip
-    public static void cercarPokemons() throws IOException {
-        String pokedex, filter_type = "", filter_name = "", s[];
+    static void cercarPokemons() throws IOException {
+        String[] pokedex;
+        String filter_type = "", filter_name = "", s[];
         boolean sortir = false;
 
         try {
-            pokedex = Pokedex.escollirPokedex();
+            pokedex = Pokedex.cercarPokedex();
+
             do {
 
                 GetPokemonsService service = new GetPokemonsService(new PokemonRepositorySQLite(), new PokemonAssemblerMatrix());
-                String[][] pokemons = service.execute(Integer.parseInt(pokedex), filter_name, filter_type);
+                String[][] pokemons = service.execute(Integer.parseInt(pokedex[0]), filter_name, filter_type);
 
                 // Mostrar per pantalla els pokèmons
-                System.out.printf("%nPokèdex: %s%n", consultarIDPokedex(pokedex));
+                System.out.printf("%nPokèdex: %s%n", consultarIDPokedex(pokedex[0]));
                 System.out.printf("Nom: %s Tipus: %s%n", filter_name, filter_type);
                 MatrixAssembler.printQuery(pokemons);
                 System.out.printf("Nom: %s Tipus: %s%n", filter_name, filter_type);
-                System.out.printf("Pokèdex: %s%n%n", consultarIDPokedex(pokedex));
+                System.out.printf("Pokèdex: %s%n%n", consultarIDPokedex(pokedex[0]));
 
                 // Opcions del menú
                 System.out.printf("%nCERCADOR: POKÈDEX%n");
@@ -54,7 +56,7 @@ public class Pokemons {
 
                 // Seleccions del menú
                 if ((s[0].equalsIgnoreCase("p")) && (s.length == 1)) {
-                    pokedex = Pokedex.escollirPokedex();
+                    pokedex = Pokedex.cercarPokedex();
                 } else if ((s[0].equalsIgnoreCase("n")) && (s.length == 2)) {
                     filter_name = s[1];
                 } else if ((s[0].equalsIgnoreCase("t")) && (s.length == 2)) {
