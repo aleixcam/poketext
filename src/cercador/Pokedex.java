@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 public class Pokedex {
 
-    static String consultarIDPokedex(String id, boolean sel) throws SQLException {
+    private static String consultarIDPokedex(String id) throws SQLException {
         ResultSet result;
         String res = "";
 
@@ -21,16 +21,14 @@ public class Pokedex {
                 + "where pokedex_id = '" + id + "'\n"
                 + "and local_language_id = 9");
         result = select.executeQuery();
-        if (sel) {
-            if (result.next()) {
-                System.out.printf("Has seleccionat la pokèdex %S!%n", result.getString("name"));
-                res = id;
-            } else {
-                System.out.println("No existeix la pokèdex seleccionada");
-            }
-        } else if (result.next()) {
-            res = result.getString("name");
+
+        if (result.next()) {
+            System.out.printf("Has seleccionat la pokèdex %S!%n", result.getString("name"));
+            res = id;
+        } else {
+            System.out.println("No existeix la pokèdex seleccionada");
         }
+
         return res;
     }
 
@@ -46,11 +44,11 @@ public class Pokedex {
         System.out.println("-----------------------------------------------------------------------------------------------");
     }
 
-    static String escollirPokedex() throws SQLException, IOException {
+    public static String escollirPokedex() throws SQLException, IOException {
         String pokedex = "";
         consultarPokedex();
         do {
-            pokedex = consultarIDPokedex(Comuna.obtenirText(), true);
+            pokedex = consultarIDPokedex(Comuna.obtenirText());
         } while (pokedex.equals(""));
         return pokedex;
     }

@@ -1,15 +1,28 @@
 package cercador;
 
 import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import application.pokemon.GetPokemonsService;
 import infrastructure.persistence.sqlite.PokemonRepositorySQLite;
 import infrastructure.transformer.matrix.MatrixAssembler;
 import infrastructure.transformer.matrix.PokemonAssemblerMatrix;
+import poketext.Connector;
 import utils.Comuna;
 
 public class Pokemons {
+
+    static String consultarIDPokedex(String id) throws SQLException {
+        ResultSet result;
+        PreparedStatement select = Connector.connect.prepareStatement("select name from pokedex_prose "
+                + "where pokedex_id = '" + id + "'\n"
+                + "and local_language_id = 9");
+
+        result = select.executeQuery();
+        return result.getString("name");
+    }
 
     // Escollir un pokèmon per a l'equip
     public static void cercarPokemons() throws IOException {
@@ -24,11 +37,11 @@ public class Pokemons {
                 String[][] pokemons = service.execute(Integer.parseInt(pokedex), filter_name, filter_type);
 
                 // Mostrar per pantalla els pokèmons
-                System.out.printf("%nPokèdex: %s%n", Pokedex.consultarIDPokedex(pokedex, false));
+                System.out.printf("%nPokèdex: %s%n", consultarIDPokedex(pokedex));
                 System.out.printf("Nom: %s Tipus: %s%n", filter_name, filter_type);
                 MatrixAssembler.printQuery(pokemons);
                 System.out.printf("Nom: %s Tipus: %s%n", filter_name, filter_type);
-                System.out.printf("Pokèdex: %s%n%n", Pokedex.consultarIDPokedex(pokedex, false));
+                System.out.printf("Pokèdex: %s%n%n", consultarIDPokedex(pokedex));
 
                 // Opcions del menú
                 System.out.printf("%nCERCADOR: POKÈDEX%n");
