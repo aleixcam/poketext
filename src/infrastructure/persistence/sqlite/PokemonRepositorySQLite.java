@@ -4,6 +4,7 @@ import domain.pokemon.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import static poketext.Opcions.lang;
 
@@ -26,9 +27,9 @@ public class PokemonRepositorySQLite extends SQLiteRepository implements Pokemon
             + "from pokemon p, pokemon_dex_numbers d\n"
             + "where p.species_id = d.species_id\n"
             + "and d.pokedex_id = " + criteria.getPokedexId() + "\n"
-            + "and p.identifier like '%" + criteria.getName() + "%'\n"
-            + "and (type_one like '%" + criteria.getType() + "%'"
-            + "or type_two like '%" + criteria.getType() + "%')\n"
+            + (!Objects.equals(criteria.getName(), "") ? "and p.identifier like '%" + criteria.getName() + "%'\n" : "")
+            + (!Objects.equals(criteria.getType(), "") ? "and (type_one like '%" + criteria.getType() + "%'"
+            + "or type_two like '%" + criteria.getType() + "%')\n" : "")
             + (criteria.getPokedexId() != 1 ? "and p.is_default = 1\n" : "")
             + "order by " + criteria.getIdField());
 

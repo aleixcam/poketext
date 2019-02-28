@@ -39,7 +39,7 @@ public class Pokemons {
                 String[][] pokemons = service.execute(Integer.parseInt(pokedex[0]), filter_name, filter_type);
 
                 // Mostrar per pantalla els pokèmons
-                System.out.printf("%nPokèdex: %s%n", consultarIDPokedex(pokedex[0]));
+                System.out.printf("%n%nPokèdex: %s%n", consultarIDPokedex(pokedex[0]));
                 System.out.printf("Nom: %s Tipus: %s%n", filter_name, filter_type);
                 MatrixAssembler.printQuery(pokemons);
                 System.out.printf("Nom: %s Tipus: %s%n", filter_name, filter_type);

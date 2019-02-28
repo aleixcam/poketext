@@ -1,12 +1,14 @@
 package teambuilder;
 
+import application.item.GetItemsService;
 import calc.Estadistiques;
-import cercador.Objectes;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import infrastructure.persistence.sqlite.ItemRepositorySQLite;
+import infrastructure.transformer.matrix.ItemAssemblerMatrix;
 import infrastructure.transformer.matrix.MatrixAssembler;
 import poketext.Connector;
 import static poketext.Opcions.lang;
@@ -36,7 +38,7 @@ public class Detalls {
     }
 
     // Consultar el nom d'un objecte
-    protected static String consultarNomObjecte(String id) throws SQLException {
+    static String consultarNomObjecte(String id) throws SQLException {
         ResultSet result;
         String res = "";
 
@@ -61,9 +63,12 @@ public class Detalls {
         do {
             try {
 
+                GetItemsService service = new GetItemsService(new ItemRepositorySQLite(), new ItemAssemblerMatrix());
+                String[][] items = service.execute(filter_name);
+
                 // Mostrar per pantalla els pokèmons
                 System.out.printf("%nNom: %s%n", filter_name);
-                MatrixAssembler.printQuery(Objectes.consultarObjectes(filter_name));
+                MatrixAssembler.printQuery(items);
                 System.out.printf("Nom: %s%n%n", filter_name);
 
                 // Opcions del menú
@@ -112,7 +117,7 @@ public class Detalls {
     }
 
     // Consultar l'ID del objecte seleccionat
-    protected static String consultarIDHabilitat(String slot, String id) throws SQLException {
+    static String consultarIDHabilitat(String slot, String id) throws SQLException {
         ResultSet result;
         String res = "";
 
@@ -132,7 +137,7 @@ public class Detalls {
     }
 
     // Consultar el nom d'un objecte
-    protected static String consultarNomHabilitat(String id) throws SQLException {
+    static String consultarNomHabilitat(String id) throws SQLException {
         ResultSet result;
         String res = "";
 
@@ -183,23 +188,23 @@ public class Detalls {
     //****EDITAR****************************************************************
     //**************************************************************************
     // Mostar per pantalla els detalls d'un Pokemon
-    private static void imprimirDetalls(String[][] poke) throws IOException {
+    private static void imprimirDetalls(String[][] poke) {
         int i, j;
         try {
             System.out.printf("%n%s%n", "Nom: " + poke[0][1]);
             for (j = 0; j <= 48; j++) {
-                System.out.printf("*");
+                System.out.print("*");
             }
             System.out.printf("*%n*  %-46s*%n", "Detalls:");
             System.out.printf("*  %-10s| %-10s| %-10s| %-10s*%n", "Nivell", "Genere", "Felicitat", "Shiny");
             System.out.printf("*  %-10s| %-10s| %-10s| %-10s*%n*", poke[1][0], consultarGenere(poke[1][1]), poke[1][2], poke[1][3]);
             for (i = 0; i < 16; i++) {
-                System.out.printf(" * ");
+                System.out.print(" * ");
             }
             System.out.printf("*%n*  %-22s| %-22s*%n", "Objecte:", "Habilitat:");
             System.out.printf("*  %-22s| %-22s*%n", consultarNomObjecte(poke[1][4]), consultarNomHabilitat(poke[1][5]));
             for (i = 0; i <= 48; i++) {
-                System.out.printf("*");
+                System.out.print("*");
             }
             System.out.printf("*%n");
         } catch (SQLException ex) {
@@ -208,7 +213,7 @@ public class Detalls {
     }
 
     // Consultar el nom del Pokèmon
-    protected static String consultarGenere(String gen) {
+    static String consultarGenere(String gen) {
         String res;
         switch (gen) {
             case "1":
@@ -225,9 +230,8 @@ public class Detalls {
     }
 
     // Escollir un pokèmon per a l'equip
-    protected static void escollirDetalls(String poke[][]) throws IOException {
+    static void escollirDetalls(String[][] poke) throws IOException {
         boolean sortir = false;
-        String s[];
 
         do {
             imprimirDetalls(poke);
@@ -241,7 +245,7 @@ public class Detalls {
             System.out.println("O. Seleccionar un objecte");
             System.out.println("A. Editar la habilitat");
             System.out.println("F. Finalitzar la edició");
-            s = Comuna.obtenirText().split(" ");
+            String[] s = Comuna.obtenirText().split(" ");
 
             // Seleccions del menú
             if ((s[0].equalsIgnoreCase("n")) && (s.length == 2)) {

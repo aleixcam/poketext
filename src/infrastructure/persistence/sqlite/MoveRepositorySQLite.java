@@ -1,6 +1,7 @@
 package infrastructure.persistence.sqlite;
 
 import java.util.List;
+import java.util.Objects;
 
 import domain.move.Move;
 import domain.move.MoveCriteria;
@@ -25,8 +26,8 @@ public class MoveRepositorySQLite extends SQLiteRepository implements MoveReposi
                 + "and t.local_language_id = " + lang + "\n"
                 + "and f.language_id = " + lang + "\n"
                 + (criteria.getPokemonId() > 0 ? ("and p.pokemon_id = " + criteria.getPokemonId() + "\n") : "")
-                + (criteria.getName() != "" ? ("and n.name like '%" + criteria.getName() + "%'\n") : "")
-                + (criteria.getType() != "" ? ("and t.name like '%" + criteria.getType() + "%'\n") : "")
+                + (!Objects.equals(criteria.getName(), "") ? ("and n.name like '%" + criteria.getName() + "%'\n") : "")
+                + (!Objects.equals(criteria.getType(), "") ? ("and t.name like '%" + criteria.getType() + "%'\n") : "")
                 + "order by m.id");
 
         return buildMoves(rowset);

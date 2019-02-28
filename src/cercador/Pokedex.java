@@ -2,6 +2,7 @@ package cercador;
 
 import application.pokedex.GetPokedexesService;
 import infrastructure.persistence.sqlite.PokedexRepositorySQLite;
+import infrastructure.transformer.matrix.MatrixAssembler;
 import infrastructure.transformer.matrix.PokedexAssemblerMatrix;
 import utils.Comuna;
 
@@ -23,12 +24,8 @@ public class Pokedex {
             ids[i] = pokedexes[i][0];
         }
 
-        System.out.printf("%n%2s | %-16s| %s%n", pokedexes[0][0], pokedexes[0][1], pokedexes[0][2]);
-        System.out.println("-----------------------------------------------------------------------------------------------");
-        for (int i = 1; i < pokedexes.length; i++) {
-            System.out.printf("%2s | %-16s| %s%n", pokedexes[i][0], pokedexes[i][1], pokedexes[i][2]);
-        }
-        System.out.println("-----------------------------------------------------------------------------------------------");
+        MatrixAssembler.printQuery(pokedexes);
+        System.out.printf("%n");
 
         do {
 

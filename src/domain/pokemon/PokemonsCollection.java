@@ -6,13 +6,13 @@ import java.util.ArrayList;
 
 public class PokemonsCollection {
 
-    private ArrayList<Pokemon> items = new ArrayList<>();
+    private ArrayList<Pokemon> pokemons = new ArrayList<>();
 
     public void add(Pokemon pokemon) {
-        items.add(pokemon);
+        pokemons.add(pokemon);
     }
 
-    public ArrayList<Pokemon> pokemons() {
-        return items;
+    public ArrayList<Pokemon> getPokemons() {
+        return pokemons;
     }
 }
