@@ -1,7 +1,7 @@
 package infrastructure.transformer.matrix;
 
 import domain.item.Item;
-import domain.item.ItemAssembler;
+import application.item.ItemAssembler;
 import domain.item.ItemsCollection;
 
 import java.util.ArrayList;

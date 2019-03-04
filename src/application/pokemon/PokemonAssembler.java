@@ -1,4 +1,6 @@
-package domain.pokemon;
+package application.pokemon;
+
+import domain.pokemon.PokemonsCollection;
 
 public interface PokemonAssembler {
 

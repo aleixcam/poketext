@@ -1,7 +1,7 @@
 package infrastructure.transformer.matrix;
 
 import domain.pokedex.Pokedex;
-import domain.pokedex.PokedexAssembler;
+import application.pokedex.PokedexAssembler;
 import domain.pokedex.PokedexesCollection;
 
 import java.util.ArrayList;

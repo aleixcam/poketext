@@ -1,7 +1,7 @@
 package infrastructure.transformer.matrix;
 
 import domain.pokemon.Pokemon;
-import domain.pokemon.PokemonAssembler;
+import application.pokemon.PokemonAssembler;
 import domain.pokemon.PokemonsCollection;
 
 import java.util.ArrayList;

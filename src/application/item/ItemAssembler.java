@@ -1,4 +1,6 @@
-package domain.item;
+package application.item;
+
+import domain.item.ItemsCollection;
 
 public interface ItemAssembler {
 

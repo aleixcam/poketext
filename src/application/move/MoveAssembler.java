@@ -1,4 +1,6 @@
-package domain.move;
+package application.move;
+
+import domain.move.MovesCollection;
 
 public interface MoveAssembler {
 

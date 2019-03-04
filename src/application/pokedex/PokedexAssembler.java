@@ -1,4 +1,6 @@
-package domain.pokedex;
+package application.pokedex;
+
+import domain.pokedex.PokedexesCollection;
 
 public interface PokedexAssembler {
 

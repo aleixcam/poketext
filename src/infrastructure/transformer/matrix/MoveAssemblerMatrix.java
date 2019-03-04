@@ -1,7 +1,7 @@
 package infrastructure.transformer.matrix;
 
 import domain.move.Move;
-import domain.move.MoveAssembler;
+import application.move.MoveAssembler;
 import domain.move.MovesCollection;
 
 import java.util.ArrayList;
