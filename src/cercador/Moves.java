@@ -1,6 +1,6 @@
 package cercador;
 
-import application.move.GetMovesService;
+import application.move.GetMoves.GetMovesUseCase;
 import infrastructure.persistence.sqlite.MoveRepositorySQLite;
 import infrastructure.transformer.matrix.MatrixAssembler;
 import infrastructure.transformer.matrix.MoveAssemblerMatrix;
@@ -17,7 +17,7 @@ public class Moves {
         
         try {
             do {
-                GetMovesService service = new GetMovesService(new MoveRepositorySQLite(), new MoveAssemblerMatrix());
+                GetMovesUseCase service = new GetMovesUseCase(new MoveRepositorySQLite(), new MoveAssemblerMatrix());
                 String[][] moves = service.execute(0, filter_name, filter_type);
 
                 // Mostrar per pantalla els moviments

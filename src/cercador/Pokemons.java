@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import application.pokemon.GetPokemonsService;
+import application.pokemon.GetPokemons.GetPokemonsUseCase;
 import infrastructure.persistence.sqlite.PokemonRepositorySQLite;
 import infrastructure.transformer.matrix.MatrixAssembler;
 import infrastructure.transformer.matrix.PokemonAssemblerMatrix;
@@ -35,7 +35,7 @@ public class Pokemons {
 
             do {
 
-                GetPokemonsService service = new GetPokemonsService(new PokemonRepositorySQLite(), new PokemonAssemblerMatrix());
+                GetPokemonsUseCase service = new GetPokemonsUseCase(new PokemonRepositorySQLite(), new PokemonAssemblerMatrix());
                 String[][] pokemons = service.execute(Integer.parseInt(pokedex[0]), filter_name, filter_type);
 
                 // Mostrar per pantalla els pokèmons

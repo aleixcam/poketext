@@ -2,7 +2,7 @@ package cercador;
 
 import java.io.IOException;
 
-import application.item.GetItemsService;
+import application.item.GetItems.GetItemsUseCase;
 import infrastructure.persistence.sqlite.ItemRepositorySQLite;
 import infrastructure.transformer.matrix.ItemAssemblerMatrix;
 import infrastructure.transformer.matrix.MatrixAssembler;
@@ -17,7 +17,7 @@ public class Objectes {
         
         do {
 
-            GetItemsService service = new GetItemsService(new ItemRepositorySQLite(), new ItemAssemblerMatrix());
+            GetItemsUseCase service = new GetItemsUseCase(new ItemRepositorySQLite(), new ItemAssemblerMatrix());
             String[][] items = service.execute(filter_name);
 
             // Mostrar per pantalla els objectes

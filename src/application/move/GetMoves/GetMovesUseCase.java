@@ -1,13 +1,14 @@
-package application.move;
+package application.move.GetMoves;
 
+import application.move.MoveAssembler;
 import domain.move.*;
 
-public class GetMovesService {
+public class GetMovesUseCase {
 
     private MoveRepository repository;
     private MoveAssembler assembler;
 
-    public GetMovesService(MoveRepository repository, MoveAssembler assembler) {
+    public GetMovesUseCase(MoveRepository repository, MoveAssembler assembler) {
         this.repository = repository;
         this.assembler = assembler;
     }

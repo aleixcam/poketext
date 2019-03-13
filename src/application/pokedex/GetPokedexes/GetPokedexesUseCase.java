@@ -1,13 +1,14 @@
-package application.pokedex;
+package application.pokedex.GetPokedexes;
 
+import application.pokedex.PokedexAssembler;
 import domain.pokedex.*;
 
-public class GetPokedexesService {
+public class GetPokedexesUseCase {
 
     private PokedexRepository repository;
     private PokedexAssembler assembler;
 
-    public GetPokedexesService(PokedexRepository repository, PokedexAssembler assembler) {
+    public GetPokedexesUseCase(PokedexRepository repository, PokedexAssembler assembler) {
         this.repository = repository;
         this.assembler = assembler;
     }

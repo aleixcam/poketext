@@ -1,6 +1,6 @@
 package cercador;
 
-import application.pokedex.GetPokedexesService;
+import application.pokedex.GetPokedexes.GetPokedexesUseCase;
 import infrastructure.persistence.sqlite.PokedexRepositorySQLite;
 import infrastructure.transformer.matrix.MatrixAssembler;
 import infrastructure.transformer.matrix.PokedexAssemblerMatrix;
@@ -16,7 +16,7 @@ public class Pokedex {
         String s;
         int index;
 
-        GetPokedexesService service = new GetPokedexesService(new PokedexRepositorySQLite(), new PokedexAssemblerMatrix());
+        GetPokedexesUseCase service = new GetPokedexesUseCase(new PokedexRepositorySQLite(), new PokedexAssemblerMatrix());
         String[][] pokedexes = service.execute();
 
         String[] ids = new String[pokedexes.length];

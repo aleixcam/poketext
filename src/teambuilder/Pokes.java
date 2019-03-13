@@ -1,6 +1,6 @@
 package teambuilder;
 
-import application.pokemon.GetPokemonsService;
+import application.pokemon.GetPokemons.GetPokemonsUseCase;
 import calc.Estadistiques;
 
 import java.io.IOException;
@@ -108,7 +108,7 @@ public class Pokes {
             try {
 
 
-                GetPokemonsService service = new GetPokemonsService(new PokemonRepositorySQLite(), new PokemonAssemblerMatrix());
+                GetPokemonsUseCase service = new GetPokemonsUseCase(new PokemonRepositorySQLite(), new PokemonAssemblerMatrix());
                 String[][] pokemons = service.execute(1, filter_name, filter_type);
 
                 // Mostrar per pantalla els pokèmons
