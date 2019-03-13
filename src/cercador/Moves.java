@@ -10,13 +10,15 @@ import java.io.IOException;
 
 public class Moves {
 
-    // Menú del cercador de moviments
-    protected static void viewMoves() {
-        String filter_type = "", filter_name = "", s[];
+    static void viewMoves() {
+        String filter_type = "";
+        String filter_name = "";
+        String[] s;
         boolean sortir = false;
         
         try {
             do {
+
                 GetMovesUseCase service = new GetMovesUseCase(new MoveRepositorySQLite(), new MoveAssemblerMatrix());
                 String[][] moves = service.execute(0, filter_name, filter_type);
 

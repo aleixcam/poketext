@@ -1,65 +1,47 @@
 package cercador;
 
 import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
+import application.ability.GetAbilities.GetAbilitesUseCase;
+import infrastructure.persistence.sqlite.AbilityRepositorySQLite;
+import infrastructure.transformer.matrix.AbilityAssemblerMatrix;
 import infrastructure.transformer.matrix.MatrixAssembler;
-import poketext.Connector;
-import static poketext.Opcions.lang;
 import utils.Comuna;
 
 public class Habilitats {
 
-    // Fer una consulta a la base de dades sobre les habilitats
-    private static String[][] consultarHabilitats(String filter_name) throws SQLException {
-        String[] col = {"ID", "Nom", "Efecte"};
-        ResultSet result;
-        PreparedStatement st = Connector.connect.prepareStatement("select f.ability_id, n.name, f.flavor_text\n"
-                + "from ability_flavor_text f, ability_names n\n"
-                + "where f.ability_id = n.ability_id\n"
-                + "and f.language_id = " + lang + "\n"
-                + "and n.local_language_id = " + lang + "\n"
-                + "and f.version_group_id = 16\n"
-                + "and n.name like '%" + filter_name + "%'");
-        result = st.executeQuery();
-        return MatrixAssembler.getMatrix(result, col);
-    }
-
-    // Menú del cercador d'habilitats
-    protected static void cercarHabilitats() throws IOException {
-        String filter_name = "", s[];
+    static void cercarHabilitats() throws IOException {
+        String filter_name = "";
+        String[] s;
         boolean sortir = false;
 
-        try {
-            do {
+        do {
 
-                // Mostrar per pantalla els moviments
-                System.out.printf("Nom: %s%n", filter_name);
-                MatrixAssembler.printQuery(consultarHabilitats(filter_name));
-                System.out.printf("Nom: %s%n", filter_name);
+            GetAbilitesUseCase service = new GetAbilitesUseCase(new AbilityRepositorySQLite(), new AbilityAssemblerMatrix());
+            String[][] abilities = service.execute(filter_name);
 
-                // Opcions del menú
-                System.out.printf("%nCERCADOR: HABILITATS%n");
-                System.out.println("N. Filtrar per nom");
-                System.out.println("E. Eliminar filtre");
-                System.out.println("Q. Sortir");
-                s = Comuna.obtenirText().split(" ");
+            // Mostrar per pantalla els moviments
+            System.out.printf("Nom: %s%n", filter_name);
+            MatrixAssembler.printQuery(abilities);
+            System.out.printf("Nom: %s%n", filter_name);
 
-                // Seleccions del menú
-                if ((s[0].equalsIgnoreCase("n")) && (s.length == 2)) {
-                    filter_name = s[1];
-                } else if ((s[0].equalsIgnoreCase("e")) && (s.length == 1)) {
-                    filter_name = "";
-                } else if ((s[0].equalsIgnoreCase("q")) && (s.length == 1)) {
-                    sortir = true;
-                } else {
-                    System.out.println("Selecció incorrecte");
-                }
-            } while (!sortir);
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
-        }
+            // Opcions del menú
+            System.out.printf("%nCERCADOR: HABILITATS%n");
+            System.out.println("N. Filtrar per nom");
+            System.out.println("E. Eliminar filtre");
+            System.out.println("Q. Sortir");
+            s = Comuna.obtenirText().split(" ");
+
+            // Seleccions del menú
+            if ((s[0].equalsIgnoreCase("n")) && (s.length == 2)) {
+                filter_name = s[1];
+            } else if ((s[0].equalsIgnoreCase("e")) && (s.length == 1)) {
+                filter_name = "";
+            } else if ((s[0].equalsIgnoreCase("q")) && (s.length == 1)) {
+                sortir = true;
+            } else {
+                System.out.println("Selecció incorrecte");
+            }
+        } while (!sortir);
     }
 }
