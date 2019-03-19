@@ -26,7 +26,7 @@ public abstract class SQLiteRepository {
         }
     }
 
-    private static List<String[]> getTable(ResultSet results) throws SQLException {
+    private List<String[]> getTable(ResultSet results) throws SQLException {
         int columns = results.getMetaData().getColumnCount();
         List<String[]> table = new ArrayList<>();
         while(results.next()) {

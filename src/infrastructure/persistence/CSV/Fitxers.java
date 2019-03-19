@@ -14,19 +14,24 @@ import java.util.List;
 public class Fitxers {
 
     // Llegir un fitxer i enmagatzemar les dades en un array
-    public static String[] llegirFitxer(String url) throws IOException {
-        FileReader fr = new FileReader(url);
-        List<String> arr;
-        try (BufferedReader br = new BufferedReader(fr)) {
-            arr = new ArrayList<>();
-            String fila;
-            while ((fila = br.readLine()) != null) {
-                arr.add(fila);
+    public static String[] llegirFitxer(String url) {
+        List<String> csv = new ArrayList<>();
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(url));
+
+            String line;
+            while ((line = br.readLine()) != null) {
+                csv.add(line);
             }
+
+            br.close();
+        } catch (IOException ex) {
+            System.err.println(ex.getMessage());
         }
-        String[] res = new String[arr.size()];
-        res = arr.toArray(res);
-        return res;
+
+        String[] arr = new String[csv.size()];
+        return csv.toArray(arr);
     }
 
     // Escriure les dades d'un array

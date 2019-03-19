@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import infrastructure.persistence.CSV.TeamRepositoryCSV;
 import infrastructure.presentation.reader.StreamReader;
 import infrastructure.persistence.CSV.CSVRepository;
 import infrastructure.persistence.CSV.Fitxers;
@@ -72,14 +73,14 @@ public class Equips {
         List<String[]> list = new ArrayList<>();
         for (String[][] poke : equip) {
             if (poke != null) {
-                list.add(CSVRepository.write(poke, ","));
+                list.add(CSVRepository.exportarCSV(poke, ","));
             }
         }
         String[][] raw = new String[list.size()][];
         for (int i = 0; i < raw.length; i++) {
             raw[i] = list.get(i);
         }
-        Fitxers.escriureFitxer(CSVRepository.write(raw, ";"), Fitxers.obtenirURL("equips"));
+        Fitxers.escriureFitxer(CSVRepository.exportarCSV(raw, ";"), Fitxers.obtenirURL("equips"));
     }
 
     // Crear un nou equip
@@ -127,13 +128,13 @@ public class Equips {
                     }
                 } else if ((s[0].equalsIgnoreCase("i")) && (s.length == 1)) {
                     if ((num = seguentPokemon(equip)) < 6) {
-                        equip[num] = CSVRepository.read(Fitxers.llegirFitxer(Fitxers.obtenirURL("pokemons")), ",");
+                        equip[num] = CSVRepository.importarCSV(Fitxers.llegirFitxer(Fitxers.obtenirURL("pokemons")), ",");
                     } else {
                         System.out.println("No pots escollir més Pokèmons");
                     }
                 } else if ((s[0].equalsIgnoreCase("e")) && (s.length == 2)) {
                     if (equip[Integer.parseInt(s[1]) - 1] != null) {
-                        Fitxers.escriureFitxer(CSVRepository.write(equip[Integer.parseInt(s[1]) - 1], ","), Fitxers.obtenirURL("pokemons"));
+                        Fitxers.escriureFitxer(CSVRepository.exportarCSV(equip[Integer.parseInt(s[1]) - 1], ","), Fitxers.obtenirURL("pokemons"));
                     } else {
                         System.out.println("No hi ha cap Pokèmon");
                     }
@@ -158,11 +159,12 @@ public class Equips {
     }
 
     // Importar un equip
-    public static String[][][] importarEquip() throws IOException, FileNotFoundException {
+    public static String[][][] importarEquip() throws IOException {
         String[][][] equip = new String[6][][];
-        String[][] raw = CSVRepository.read(Fitxers.llegirFitxer(Fitxers.obtenirURL("equips")), ";");
+        TeamRepositoryCSV repository = new TeamRepositoryCSV();
+        String[][] raw = repository.findByName(Fitxers.obtenirURL("equips"));
         for (int i = 0; i < raw.length; i++) {
-            equip[i] = CSVRepository.read(raw[i], ",");
+            equip[i] = CSVRepository.importarCSV(raw[i], ",");
         }
         return equip;
     }
