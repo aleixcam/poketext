@@ -2,11 +2,11 @@ package cercador;
 
 import java.io.IOException;
 
-import application.ability.GetAbilities.GetAbilitesUseCase;
-import infrastructure.persistence.sqlite.AbilityRepositorySQLite;
-import infrastructure.transformer.matrix.AbilityAssemblerMatrix;
-import infrastructure.transformer.matrix.MatrixAssembler;
-import utils.Comuna;
+import application.ability.GetAbilities.GetAbilitiesService;
+import infrastructure.persistence.SQLite.AbilityRepositorySQLite;
+import infrastructure.presentation.printer.MatrixPrinter;
+import infrastructure.presentation.reader.StreamReader;
+import infrastructure.presentation.transformer.matrix.AbilityAssemblerMatrix;
 
 public class Habilitats {
 
@@ -17,12 +17,12 @@ public class Habilitats {
 
         do {
 
-            GetAbilitesUseCase service = new GetAbilitesUseCase(new AbilityRepositorySQLite(), new AbilityAssemblerMatrix());
+            GetAbilitiesService service = new GetAbilitiesService(new AbilityRepositorySQLite(), new AbilityAssemblerMatrix());
             String[][] abilities = service.execute(filter_name);
 
             // Mostrar per pantalla els moviments
             System.out.printf("Nom: %s%n", filter_name);
-            MatrixAssembler.printQuery(abilities);
+            MatrixPrinter.print(abilities);
             System.out.printf("Nom: %s%n", filter_name);
 
             // Opcions del menú
@@ -30,7 +30,7 @@ public class Habilitats {
             System.out.println("N. Filtrar per nom");
             System.out.println("E. Eliminar filtre");
             System.out.println("Q. Sortir");
-            s = Comuna.obtenirText().split(" ");
+            s = StreamReader.read().split(" ");
 
             // Seleccions del menú
             if ((s[0].equalsIgnoreCase("n")) && (s.length == 2)) {

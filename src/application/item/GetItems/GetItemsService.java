@@ -3,12 +3,12 @@ package application.item.GetItems;
 import application.item.ItemAssembler;
 import domain.item.*;
 
-public class GetItemsUseCase {
+public class GetItemsService {
 
     private ItemRepository repository;
     private ItemAssembler assembler;
 
-    public GetItemsUseCase(ItemRepository repository, ItemAssembler assembler) {
+    public GetItemsService(ItemRepository repository, ItemAssembler assembler) {
         this.repository = repository;
         this.assembler = assembler;
     }

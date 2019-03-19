@@ -1,6 +1,6 @@
 package teambuilder;
 
-import application.pokemon.GetPokemons.GetPokemonsUseCase;
+import application.pokemon.GetPokemons.GetPokemonsService;
 import calc.Estadistiques;
 
 import java.io.IOException;
@@ -8,11 +8,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import infrastructure.persistence.sqlite.PokemonRepositorySQLite;
-import infrastructure.transformer.matrix.MatrixAssembler;
-import infrastructure.transformer.matrix.PokemonAssemblerMatrix;
+import infrastructure.persistence.SQLite.PokemonRepositorySQLite;
+import infrastructure.presentation.printer.MatrixPrinter;
+import infrastructure.presentation.reader.StreamReader;
+import infrastructure.presentation.transformer.matrix.PokemonAssemblerMatrix;
 import poketext.Connector;
-import utils.Comuna;
 
 // Clase de pokèmons del constructor d'equips
 public class Pokes {
@@ -85,10 +85,10 @@ public class Pokes {
 
         do {
             System.out.println("Vols posar-li un sobrenom al teu Pokèmon? (S/N)");
-            sel = Comuna.obtenirText();
+            sel = StreamReader.read();
 
             if (sel.equalsIgnoreCase("s")) {
-                res = Comuna.obtenirText();
+                res = StreamReader.read();
             } else if (sel.equalsIgnoreCase("n")) {
                 res = consultarIDPoke(id, false);
             } else {
@@ -108,12 +108,12 @@ public class Pokes {
             try {
 
 
-                GetPokemonsUseCase service = new GetPokemonsUseCase(new PokemonRepositorySQLite(), new PokemonAssemblerMatrix());
+                GetPokemonsService service = new GetPokemonsService(new PokemonRepositorySQLite(), new PokemonAssemblerMatrix());
                 String[][] pokemons = service.execute(1, filter_name, filter_type);
 
                 // Mostrar per pantalla els pokèmons
                 System.out.printf("%nNom: %s Tipus: %s%n", filter_name, filter_type);
-                MatrixAssembler.printQuery(pokemons);
+                MatrixPrinter.print(pokemons);
                 System.out.printf("Nom: %s Tipus: %s%n%n", filter_name, filter_type);
 
                 // Opcions del menú
@@ -121,7 +121,7 @@ public class Pokes {
                 System.out.println("N. Filtrar per nom");
                 System.out.println("T. Filtrar per tipus");
                 System.out.println("E. Eliminar filtre");
-                s = Comuna.obtenirText().split(" ");
+                s = StreamReader.read().split(" ");
 
                 // Seleccions del menú
                 if ((s[0].equalsIgnoreCase("s")) && (s.length == 2)) {
@@ -220,7 +220,7 @@ public class Pokes {
             System.out.println("M. Editar moviments");
             System.out.println("S. Editar estadístiques");
             System.out.println("F. Finalitzar la edició");
-            sel = Comuna.obtenirText();
+            sel = StreamReader.read();
 
             // Seleccions del menú
             if (sel.equalsIgnoreCase("p")) {

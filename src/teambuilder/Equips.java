@@ -4,8 +4,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import utils.Comuna;
-import utils.Fitxers;
+
+import infrastructure.presentation.reader.StreamReader;
+import infrastructure.persistence.CSV.CSVRepository;
+import infrastructure.persistence.CSV.Fitxers;
 
 public class Equips {
 
@@ -70,14 +72,14 @@ public class Equips {
         List<String[]> list = new ArrayList<>();
         for (String[][] poke : equip) {
             if (poke != null) {
-                list.add(Comuna.exportarCSV(poke, ","));
+                list.add(CSVRepository.write(poke, ","));
             }
         }
         String[][] raw = new String[list.size()][];
         for (int i = 0; i < raw.length; i++) {
             raw[i] = list.get(i);
         }
-        Fitxers.escriureFitxer(Comuna.exportarCSV(raw, ";"), Fitxers.obtenirURL("equips"));
+        Fitxers.escriureFitxer(CSVRepository.write(raw, ";"), Fitxers.obtenirURL("equips"));
     }
 
     // Crear un nou equip
@@ -99,7 +101,7 @@ public class Equips {
                 System.out.println("E. Exportar Pokèmon (1-6)");
                 System.out.println("F. Finalitzar i guardar l'equip");
                 System.out.println("Q. Cancelar i sortir");
-                s = Comuna.obtenirText().split(" ");
+                s = StreamReader.read().split(" ");
 
                 // Seleccions del menú principal
                 if ((s[0].equalsIgnoreCase("s")) && (s.length == 1)) {
@@ -125,13 +127,13 @@ public class Equips {
                     }
                 } else if ((s[0].equalsIgnoreCase("i")) && (s.length == 1)) {
                     if ((num = seguentPokemon(equip)) < 6) {
-                        equip[num] = Comuna.importarCSV(Fitxers.llegirFitxer(Fitxers.obtenirURL("pokemons")), ",");
+                        equip[num] = CSVRepository.read(Fitxers.llegirFitxer(Fitxers.obtenirURL("pokemons")), ",");
                     } else {
                         System.out.println("No pots escollir més Pokèmons");
                     }
                 } else if ((s[0].equalsIgnoreCase("e")) && (s.length == 2)) {
                     if (equip[Integer.parseInt(s[1]) - 1] != null) {
-                        Fitxers.escriureFitxer(Comuna.exportarCSV(equip[Integer.parseInt(s[1]) - 1], ","), Fitxers.obtenirURL("pokemons"));
+                        Fitxers.escriureFitxer(CSVRepository.write(equip[Integer.parseInt(s[1]) - 1], ","), Fitxers.obtenirURL("pokemons"));
                     } else {
                         System.out.println("No hi ha cap Pokèmon");
                     }
@@ -158,9 +160,9 @@ public class Equips {
     // Importar un equip
     public static String[][][] importarEquip() throws IOException, FileNotFoundException {
         String[][][] equip = new String[6][][];
-        String[][] raw = Comuna.importarCSV(Fitxers.llegirFitxer(Fitxers.obtenirURL("equips")), ";");
+        String[][] raw = CSVRepository.read(Fitxers.llegirFitxer(Fitxers.obtenirURL("equips")), ";");
         for (int i = 0; i < raw.length; i++) {
-            equip[i] = Comuna.importarCSV(raw[i], ",");
+            equip[i] = CSVRepository.read(raw[i], ",");
         }
         return equip;
     }
@@ -179,7 +181,7 @@ public class Equips {
                 System.out.println("E. Eliminar un equip");
                 System.out.println("P. Eliminar un Pokèmon");
                 System.out.println("Q. Sortir al menú principal");
-                sel = Comuna.obtenirText();
+                sel = StreamReader.read();
 
                 // Seleccions del menú principal
                 if (sel.equalsIgnoreCase("c")) {

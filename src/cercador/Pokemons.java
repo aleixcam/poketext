@@ -2,11 +2,11 @@ package cercador;
 
 import java.io.IOException;
 
-import application.pokemon.GetPokemons.GetPokemonsUseCase;
-import infrastructure.persistence.sqlite.PokemonRepositorySQLite;
-import infrastructure.transformer.matrix.MatrixAssembler;
-import infrastructure.transformer.matrix.PokemonAssemblerMatrix;
-import utils.Comuna;
+import application.pokemon.GetPokemons.GetPokemonsService;
+import infrastructure.persistence.SQLite.PokemonRepositorySQLite;
+import infrastructure.presentation.printer.MatrixPrinter;
+import infrastructure.presentation.reader.StreamReader;
+import infrastructure.presentation.transformer.matrix.PokemonAssemblerMatrix;
 
 public class Pokemons {
 
@@ -20,13 +20,13 @@ public class Pokemons {
 
         do {
 
-            GetPokemonsUseCase service = new GetPokemonsUseCase(new PokemonRepositorySQLite(), new PokemonAssemblerMatrix());
+            GetPokemonsService service = new GetPokemonsService(new PokemonRepositorySQLite(), new PokemonAssemblerMatrix());
             String[][] pokemons = service.execute(Integer.parseInt(pokedex[0]), filter_name, filter_type);
 
             // Mostrar per pantalla els pokèmons
             System.out.printf("%n%nPokèdex: %s%n", pokedex[1]);
             System.out.printf("Nom: %s Tipus: %s%n", filter_name, filter_type);
-            MatrixAssembler.printQuery(pokemons);
+            MatrixPrinter.print(pokemons);
             System.out.printf("Nom: %s Tipus: %s%n", filter_name, filter_type);
             System.out.printf("Pokèdex: %s%n%n", pokedex[1]);
 
@@ -37,7 +37,7 @@ public class Pokemons {
             System.out.println("T. Filtrar per tipus");
             System.out.println("E. Eliminar filtre");
             System.out.println("Q. Sortir");
-            s = Comuna.obtenirText().split(" ");
+            s = StreamReader.read().split(" ");
 
             // Seleccions del menú
             if ((s[0].equalsIgnoreCase("p")) && (s.length == 1)) {

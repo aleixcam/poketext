@@ -1,4 +1,4 @@
-package infrastructure.persistence.sqlite;
+package infrastructure.persistence.SQLite;
 
 import java.util.List;
 import java.util.Objects;

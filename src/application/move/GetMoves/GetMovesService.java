@@ -3,12 +3,12 @@ package application.move.GetMoves;
 import application.move.MoveAssembler;
 import domain.move.*;
 
-public class GetMovesUseCase {
+public class GetMovesService {
 
     private MoveRepository repository;
     private MoveAssembler assembler;
 
-    public GetMovesUseCase(MoveRepository repository, MoveAssembler assembler) {
+    public GetMovesService(MoveRepository repository, MoveAssembler assembler) {
         this.repository = repository;
         this.assembler = assembler;
     }

@@ -1,4 +1,6 @@
-package utils;
+package infrastructure.persistence.CSV;
+
+import infrastructure.presentation.reader.StreamReader;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -44,15 +46,19 @@ public class Fitxers {
     }
 
     // Llistar fitxers dins d'un directori
-    public static void llistarDirectori(String dir) throws IOException {
+    private static void llistarDirectori(String dir) {
         File f = new File(dir);
         boolean sortir = false;
+
         do {
             if (f.exists()) {
                 File[] fitxers = f.listFiles();
-                for (File fitxer : fitxers) {
-                    System.out.println(fitxer.getName());
+                if (fitxers != null) {
+                    for (File fitxer : fitxers) {
+                        System.out.println(fitxer.getName());
+                    }
                 }
+
                 sortir = true;
             } else {
                 f.mkdir();
@@ -66,7 +72,7 @@ public class Fitxers {
         System.out.println("Fitxers desats:");
         llistarDirectori(dir);
         System.out.println();
-        url = String.format("%s/%s", dir, Comuna.obtenirText());
+        url = String.format("%s/%s", dir, StreamReader.read());
         System.out.println("Has seleccionat '" + url + "'");
         return url;
     }

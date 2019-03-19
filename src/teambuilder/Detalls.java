@@ -1,18 +1,19 @@
 package teambuilder;
 
-import application.item.GetItems.GetItemsUseCase;
+import application.item.GetItems.GetItemsService;
 import calc.Estadistiques;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import infrastructure.persistence.sqlite.ItemRepositorySQLite;
-import infrastructure.transformer.matrix.ItemAssemblerMatrix;
-import infrastructure.transformer.matrix.MatrixAssembler;
+import infrastructure.persistence.SQLite.ItemRepositorySQLite;
+import infrastructure.presentation.printer.MatrixPrinter;
+import infrastructure.presentation.reader.StreamReader;
+import infrastructure.presentation.transformer.matrix.ItemAssemblerMatrix;
+import infrastructure.presentation.transformer.matrix.MatrixAssembler;
 import poketext.Connector;
 import static poketext.Opcions.lang;
-import utils.Comuna;
 
 public class Detalls {
 
@@ -53,12 +54,12 @@ public class Detalls {
 
         do {
 
-            GetItemsUseCase service = new GetItemsUseCase(new ItemRepositorySQLite(), new ItemAssemblerMatrix());
+            GetItemsService service = new GetItemsService(new ItemRepositorySQLite(), new ItemAssemblerMatrix());
             String[][] items = service.execute(filter_name);
 
             // Mostrar per pantalla els pokèmons
             System.out.printf("%nNom: %s%n", filter_name);
-            MatrixAssembler.printQuery(items);
+            MatrixPrinter.print(items);
             System.out.printf("Nom: %s%n%n", filter_name);
 
             // Opcions del menú
@@ -66,7 +67,7 @@ public class Detalls {
             System.out.println("N. Filtrar per nom");
             System.out.println("E. Eliminar filtre");
             System.out.println("Q. Eliminar el objecte");
-            s = Comuna.obtenirText().split(" ");
+            s = StreamReader.read().split(" ");
 
             // Seleccions del menú
             if (s[0].equalsIgnoreCase("s") && s.length == 2 && checkItemId(items, s[1])) {
@@ -149,13 +150,13 @@ public class Detalls {
 
                 // Mostrar per pantalla els pokèmons
                 System.out.println();
-                MatrixAssembler.printQuery(consultarHabilitatsPoke(id));
+                MatrixPrinter.print(consultarHabilitatsPoke(id));
                 System.out.println();
 
                 // Opcions del menú
                 System.out.println("S. Seleccionar ID");
                 System.out.println("Q. Deixar la habilitat per defecte");
-                s = Comuna.obtenirText().split(" ");
+                s = StreamReader.read().split(" ");
 
                 // Seleccions del menú
                 if ((s[0].equalsIgnoreCase("s")) && (s.length == 2)) {
@@ -233,7 +234,7 @@ public class Detalls {
             System.out.println("O. Seleccionar un objecte");
             System.out.println("A. Editar la habilitat");
             System.out.println("F. Finalitzar la edició");
-            String[] s = Comuna.obtenirText().split(" ");
+            String[] s = StreamReader.read().split(" ");
 
             // Seleccions del menú
             if ((s[0].equalsIgnoreCase("n")) && (s.length == 2)) {

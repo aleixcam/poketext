@@ -1,4 +1,4 @@
-package infrastructure.persistence.sqlite;
+package infrastructure.persistence.SQLite;
 
 import domain.ability.Ability;
 import domain.ability.AbilitiesCollection;

@@ -1,4 +1,4 @@
-package infrastructure.transformer.matrix;
+package infrastructure.presentation.transformer.matrix;
 
 import application.ability.AbilityAssembler;
 import domain.ability.AbilitiesCollection;

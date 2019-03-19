@@ -1,10 +1,10 @@
 package cercador;
 
-import application.pokedex.GetPokedexes.GetPokedexesUseCase;
-import infrastructure.persistence.sqlite.PokedexRepositorySQLite;
-import infrastructure.transformer.matrix.MatrixAssembler;
-import infrastructure.transformer.matrix.PokedexAssemblerMatrix;
-import utils.Comuna;
+import application.pokedex.GetPokedexes.GetPokedexesService;
+import infrastructure.persistence.SQLite.PokedexRepositorySQLite;
+import infrastructure.presentation.printer.MatrixPrinter;
+import infrastructure.presentation.reader.StreamReader;
+import infrastructure.presentation.transformer.matrix.PokedexAssemblerMatrix;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -16,7 +16,7 @@ public class Pokedex {
         String s;
         int index;
 
-        GetPokedexesUseCase service = new GetPokedexesUseCase(new PokedexRepositorySQLite(), new PokedexAssemblerMatrix());
+        GetPokedexesService service = new GetPokedexesService(new PokedexRepositorySQLite(), new PokedexAssemblerMatrix());
         String[][] pokedexes = service.execute();
 
         String[] ids = new String[pokedexes.length];
@@ -24,12 +24,12 @@ public class Pokedex {
             ids[i] = pokedexes[i][0];
         }
 
-        MatrixAssembler.printQuery(pokedexes);
+        MatrixPrinter.print(pokedexes);
         System.out.printf("%n");
 
         do {
 
-            s = Comuna.obtenirText();
+            s = StreamReader.read();
             index = Arrays.asList(ids).indexOf(s);
 
             if (index >= 0) {

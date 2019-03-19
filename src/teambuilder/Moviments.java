@@ -5,13 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import application.move.GetMoves.GetMovesUseCase;
-import infrastructure.persistence.sqlite.MoveRepositorySQLite;
-import infrastructure.transformer.matrix.MatrixAssembler;
-import infrastructure.transformer.matrix.MoveAssemblerMatrix;
+import application.move.GetMoves.GetMovesService;
+import infrastructure.persistence.SQLite.MoveRepositorySQLite;
+import infrastructure.presentation.printer.MatrixPrinter;
+import infrastructure.presentation.reader.StreamReader;
+import infrastructure.presentation.transformer.matrix.MoveAssemblerMatrix;
 import poketext.Connector;
 import static poketext.Opcions.lang;
-import utils.Comuna;
 
 public class Moviments {
 
@@ -71,12 +71,12 @@ public class Moviments {
         do {
             try {
 
-                GetMovesUseCase service = new GetMovesUseCase(new MoveRepositorySQLite(), new MoveAssemblerMatrix());
+                GetMovesService service = new GetMovesService(new MoveRepositorySQLite(), new MoveAssemblerMatrix());
                 String[][] moves = service.execute(0, filter_name, filter_type);
 
                 // Mostrar per pantalla els pokèmons
                 System.out.printf("%nNom: %s Tipus: %s%n", filter_name, filter_type);
-                MatrixAssembler.printQuery(moves);
+                MatrixPrinter.print(moves);
                 System.out.printf("Nom: %s Tipus: %s%n%n", filter_name, filter_type);
 
                 // Opcions del menú
@@ -84,7 +84,7 @@ public class Moviments {
                 System.out.println("N. Filtrar per nom");
                 System.out.println("T. Filtrar per tipus");
                 System.out.println("E. Eliminar filtre");
-                s = Comuna.obtenirText().split(" ");
+                s = StreamReader.read().split(" ");
 
                 // Seleccions del menú
                 if ((s[0].equalsIgnoreCase("s")) && (s.length == 2)) {
@@ -154,7 +154,7 @@ public class Moviments {
                 System.out.printf("%nPOKETEXT: EDITOR DE MOVIMENTS%n");
                 System.out.println("M. Modificar un moviment (1-4)");
                 System.out.println("F. Finalitzar la edició");
-                s = Comuna.obtenirText().split(" ");
+                s = StreamReader.read().split(" ");
 
                 // Seleccions del menú principal
                 if ((s[0].equalsIgnoreCase("m")) && (s.length == 2)) {

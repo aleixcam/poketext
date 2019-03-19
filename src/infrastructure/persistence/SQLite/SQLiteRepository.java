@@ -1,4 +1,4 @@
-package infrastructure.persistence.sqlite;
+package infrastructure.persistence.SQLite;
 
 import java.sql.*;
 import java.util.ArrayList;

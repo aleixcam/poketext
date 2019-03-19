@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import domain.pokemon.PokemonStats;
-import infrastructure.persistence.sqlite.PokemonRepositorySQLite;
+import infrastructure.persistence.SQLite.PokemonRepositorySQLite;
 import poketext.Connector;
 
 public class Estadistiques {

@@ -5,12 +5,12 @@ import domain.ability.AbilityCriteria;
 import domain.ability.AbilityRepository;
 import domain.ability.AbilitiesCollection;
 
-public class GetAbilitesUseCase {
+public class GetAbilitiesService {
 
     private AbilityRepository repository;
     private AbilityAssembler assembler;
 
-    public GetAbilitesUseCase(AbilityRepository repository, AbilityAssembler assembler) {
+    public GetAbilitiesService(AbilityRepository repository, AbilityAssembler assembler) {
         this.repository = repository;
         this.assembler = assembler;
     }

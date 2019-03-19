@@ -2,11 +2,11 @@ package cercador;
 
 import java.io.IOException;
 
-import application.item.GetItems.GetItemsUseCase;
-import infrastructure.persistence.sqlite.ItemRepositorySQLite;
-import infrastructure.transformer.matrix.ItemAssemblerMatrix;
-import infrastructure.transformer.matrix.MatrixAssembler;
-import utils.Comuna;
+import application.item.GetItems.GetItemsService;
+import infrastructure.persistence.SQLite.ItemRepositorySQLite;
+import infrastructure.presentation.printer.MatrixPrinter;
+import infrastructure.presentation.reader.StreamReader;
+import infrastructure.presentation.transformer.matrix.ItemAssemblerMatrix;
 
 public class Objectes {
     
@@ -17,12 +17,12 @@ public class Objectes {
         
         do {
 
-            GetItemsUseCase service = new GetItemsUseCase(new ItemRepositorySQLite(), new ItemAssemblerMatrix());
+            GetItemsService service = new GetItemsService(new ItemRepositorySQLite(), new ItemAssemblerMatrix());
             String[][] items = service.execute(filter_name);
 
             // Mostrar per pantalla els objectes
             System.out.printf("Nom: %s%n", filter_name);
-            MatrixAssembler.printQuery(items);
+            MatrixPrinter.print(items);
             System.out.printf("Nom: %s%n", filter_name);
 
             // Opcions del menú
@@ -30,7 +30,7 @@ public class Objectes {
             System.out.println("N. Filtrar per nom");
             System.out.println("E. Eliminar filtre");
             System.out.println("Q. Sortir");
-            s = Comuna.obtenirText().split(" ");
+            s = StreamReader.read().split(" ");
 
             // Seleccions del menú
             if ((s[0].equalsIgnoreCase("n")) && (s.length == 2)) {

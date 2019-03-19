@@ -1,4 +1,4 @@
-package infrastructure.transformer.matrix;
+package infrastructure.presentation.transformer.matrix;
 
 import domain.pokedex.Pokedex;
 import application.pokedex.PokedexAssembler;

@@ -8,10 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import domain.pokemon.PokemonStats;
-import infrastructure.persistence.sqlite.PokemonRepositorySQLite;
+import infrastructure.persistence.SQLite.PokemonRepositorySQLite;
+import infrastructure.presentation.reader.StreamReader;
 import poketext.Connector;
 import static poketext.Opcions.lang;
-import utils.Comuna;
 
 public class Stats {
 
@@ -89,7 +89,7 @@ public class Stats {
         do {
             try {
                 imprimirNaturalesa();
-                sel = Comuna.obtenirText();
+                sel = StreamReader.read();
                 if ((res = consultarIDNaturalesa(sel)).equals("")) {
                     System.out.println("Selecció incorrecte");
                 }
@@ -171,7 +171,7 @@ public class Stats {
             System.out.println("I. Editar IVs (0-31)");
             System.out.println("N. Seleccionar una naturalesa");
             System.out.println("F. Finalitzar la edició");
-            s = Comuna.obtenirText().split(" ");
+            s = StreamReader.read().split(" ");
 
             // Seleccions del menú
             if ((s[0].equalsIgnoreCase("e")) && (s.length == 3)) {

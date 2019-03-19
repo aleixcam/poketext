@@ -1,4 +1,4 @@
-package infrastructure.persistence.sqlite;
+package infrastructure.persistence.SQLite;
 
 import domain.item.Item;
 import domain.item.ItemCriteria;

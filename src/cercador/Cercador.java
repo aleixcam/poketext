@@ -1,7 +1,8 @@
 package cercador;
 
 import java.io.IOException;
-import utils.Comuna;
+
+import infrastructure.presentation.reader.StreamReader;
 
 public class Cercador {
 
@@ -26,12 +27,12 @@ public class Cercador {
             System.out.println("O. Cerca Objectes");
             System.out.println("A. Cerca Habilitats");
             System.out.println("Q. Sortir");
-            sel = Comuna.obtenirText();
+            sel = StreamReader.read();
 
             // Seleccions del menú principal
             if (sel.equals("c")) {
                 System.out.print("Introdueix l'element que vols cecar: ");
-                filtre = Comuna.in.readLine();
+                filtre = StreamReader.in.readLine();
             } else if (sel.equals("p")) {
                 Pokemons.cercarPokemons();
                 filtre = null;

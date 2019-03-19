@@ -4,8 +4,8 @@ import combat.Jugadors;
 import cercador.Cercador;
 import java.io.IOException;
 
+import infrastructure.presentation.reader.StreamReader;
 import teambuilder.Equips;
-import utils.Comuna;
 
 // Clase principal
 public class Poketext {
@@ -25,7 +25,7 @@ public class Poketext {
             System.out.println("3. Cercador");
             System.out.println("4. Proves");
             System.out.println("Q. Sortir");
-            sel = Comuna.obtenirText();
+            sel = StreamReader.read();
 
             // Seleccions del menú principal
             if (sel.equals("1")) {
