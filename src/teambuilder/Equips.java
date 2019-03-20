@@ -5,11 +5,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import infrastructure.persistence.CSV.PokemonRepositoryCSV;
-import infrastructure.persistence.CSV.TeamRepositoryCSV;
+import infrastructure.persistence.FileSystem.PokemonRepositoryFileSystem;
+import infrastructure.persistence.FileSystem.TeamRepositoryFileSystem;
 import infrastructure.presentation.reader.StreamReader;
-import infrastructure.persistence.CSV.CSVRepository;
-import infrastructure.persistence.CSV.Fitxers;
+import infrastructure.persistence.FileSystem.FileSystemRepository;
 
 public class Equips {
 
@@ -74,7 +73,7 @@ public class Equips {
         List<String[]> pokemons = new ArrayList<>();
         for (String[][] poke : equip) {
             if (poke != null) {
-                pokemons.add(CSVRepository.exportarCSV(poke, ","));
+                pokemons.add(FileSystemRepository.exportarCSV(poke, ","));
             }
         }
 
@@ -83,8 +82,8 @@ public class Equips {
             team[i] = pokemons.get(i);
         }
 
-        TeamRepositoryCSV repository = new TeamRepositoryCSV();
-        repository.save(team, Fitxers.obtenirURL("equips"));
+        TeamRepositoryFileSystem repository = new TeamRepositoryFileSystem();
+        repository.save(team, FileSystemRepository.obtenirURL("equips"));
     }
 
     // Crear un nou equip
@@ -96,7 +95,7 @@ public class Equips {
         do {
             try {
 
-                PokemonRepositoryCSV repository = new PokemonRepositoryCSV();
+                PokemonRepositoryFileSystem repository = new PokemonRepositoryFileSystem();
 
                 // Opcions del menú
                 System.out.printf("%nPOKETEXT: CONSTRUCTOR D'EQUIPS%n");
@@ -134,13 +133,13 @@ public class Equips {
                     }
                 } else if ((s[0].equalsIgnoreCase("i")) && (s.length == 1)) {
                     if ((num = seguentPokemon(equip)) < 6) {
-                        equip[num] = repository.findByName(Fitxers.obtenirURL("pokemons"));
+                        equip[num] = repository.findByName(FileSystemRepository.obtenirURL("pokemons"));
                     } else {
                         System.out.println("No pots escollir més Pokèmons");
                     }
                 } else if ((s[0].equalsIgnoreCase("e")) && (s.length == 2)) {
                     if (equip[Integer.parseInt(s[1]) - 1] != null) {
-                        repository.save(equip[Integer.parseInt(s[1]) - 1], Fitxers.obtenirURL("pokemons"));
+                        repository.save(equip[Integer.parseInt(s[1]) - 1], FileSystemRepository.obtenirURL("pokemons"));
                     } else {
                         System.out.println("No hi ha cap Pokèmon");
                     }
@@ -167,10 +166,10 @@ public class Equips {
     // Importar un equip
     public static String[][][] importarEquip() throws IOException {
         String[][][] equip = new String[6][][];
-        TeamRepositoryCSV repository = new TeamRepositoryCSV();
-        String[][] raw = repository.findByName(Fitxers.obtenirURL("equips"));
+        TeamRepositoryFileSystem repository = new TeamRepositoryFileSystem();
+        String[][] raw = repository.findByName(FileSystemRepository.obtenirURL("equips"));
         for (int i = 0; i < raw.length; i++) {
-            equip[i] = CSVRepository.importarCSV(raw[i], ",");
+            equip[i] = FileSystemRepository.importarCSV(raw[i], ",");
         }
         return equip;
     }
@@ -197,9 +196,9 @@ public class Equips {
                 } else if (sel.equalsIgnoreCase("m")) {
                     crearEquip(importarEquip());
                 } else if (sel.equalsIgnoreCase("e")) {
-                    Fitxers.eliminarFitxer(Fitxers.obtenirURL("equips"));
+                    FileSystemRepository.eliminarFitxer(FileSystemRepository.obtenirURL("equips"));
                 } else if (sel.equalsIgnoreCase("p")) {
-                    Fitxers.eliminarFitxer(Fitxers.obtenirURL("pokemons"));
+                    FileSystemRepository.eliminarFitxer(FileSystemRepository.obtenirURL("pokemons"));
                 } else if (sel.equalsIgnoreCase("q")) {
                     sortir = true;
                 } else {

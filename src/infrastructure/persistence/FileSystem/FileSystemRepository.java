@@ -1,28 +1,24 @@
-package infrastructure.persistence.CSV;
+package infrastructure.persistence.FileSystem;
 
 import infrastructure.presentation.reader.StreamReader;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Fitxers {
+public abstract class FileSystemRepository {
 
-    // Llegir un fitxer i enmagatzemar les dades en un array
-    static String[] llegirFitxer(String path) {
-        List<String> csv = new ArrayList<>();
+    abstract public String[][] findByName(String name);
+
+    List<String> read(String path) {
+        List<String> data = new ArrayList<>();
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(path));
 
             String line;
             while ((line = br.readLine()) != null) {
-                csv.add(line);
+                data.add(line);
             }
 
             br.close();
@@ -30,12 +26,10 @@ public class Fitxers {
             System.err.println(ex.getMessage());
         }
 
-        String[] arr = new String[csv.size()];
-        return csv.toArray(arr);
+        return data;
     }
 
-    // Escriure les dades d'un array
-    public static void escriureFitxer(String[] data, String path) {
+    void write(String[] data, String path) {
         try {
             PrintWriter pw = new PrintWriter(new FileWriter(path, false));
 
@@ -47,6 +41,30 @@ public class Fitxers {
         } catch (IOException ex) {
             System.err.println(ex.getMessage());
         }
+    }
+
+    public static String[][] importarCSV(String[] data, String comma) {
+        String[][] matrix = new String[data.length][];
+        for (int i = 0; i < data.length; i++) {
+            matrix[i] = data[i].split(comma);
+        }
+
+        return matrix;
+    }
+
+    public static String[] exportarCSV(String[][] matrix, String comma) {
+        List<String> data = new ArrayList<>();
+
+        for (String[] row : matrix) {
+            StringBuilder sb = new StringBuilder(row[0]);
+            for (int i = 1; i < row.length ; i++) {
+                sb.append(comma).append(row[i]);
+            }
+            data.add(sb.toString());
+        }
+
+        String[] arr = new String[data.size()];
+        return data.toArray(arr);
     }
 
     // Eliminar un fitxer
