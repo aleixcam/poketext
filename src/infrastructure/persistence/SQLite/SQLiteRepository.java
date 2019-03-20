@@ -56,5 +56,4 @@ public abstract class SQLiteRepository {
 
         return rowset;
     }
-
 }

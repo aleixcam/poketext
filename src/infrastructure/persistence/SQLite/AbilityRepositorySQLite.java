@@ -21,10 +21,10 @@ public class AbilityRepositorySQLite extends SQLiteRepository implements Ability
                 + "and f.version_group_id = 16\n"
                 + (!Objects.equals(criteria.getName(), "") ? "and n.name like '%" + criteria.getName() + "%'" : ""));
 
-        return buildItems(rowset);
+        return buildAbilities(rowset);
     }
 
-    private AbilitiesCollection buildItems(List<String[]> rowset) {
+    private AbilitiesCollection buildAbilities(List<String[]> rowset) {
         AbilitiesCollection abilities = new AbilitiesCollection();
         for (String[] row : rowset) {
             Ability ability = new Ability();

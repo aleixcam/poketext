@@ -14,11 +14,11 @@ import java.util.List;
 public class Fitxers {
 
     // Llegir un fitxer i enmagatzemar les dades en un array
-    public static String[] llegirFitxer(String url) {
+    static String[] llegirFitxer(String path) {
         List<String> csv = new ArrayList<>();
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader(url));
+            BufferedReader br = new BufferedReader(new FileReader(path));
 
             String line;
             while ((line = br.readLine()) != null) {
@@ -35,19 +35,24 @@ public class Fitxers {
     }
 
     // Escriure les dades d'un array
-    public static void escriureFitxer(String[] dades, String url) throws IOException {
-        FileWriter fw = new FileWriter(url, false);
-        try (PrintWriter pw = new PrintWriter(fw)) {
-            for (String fila : dades) {
-                pw.println(fila);
+    public static void escriureFitxer(String[] data, String path) {
+        try {
+            PrintWriter pw = new PrintWriter(new FileWriter(path, false));
+
+            for (String line : data) {
+                pw.println(line);
             }
+
+            pw.close();
+        } catch (IOException ex) {
+            System.err.println(ex.getMessage());
         }
     }
 
     // Eliminar un fitxer
-    public static void eliminarFitxer(String url) {
-        File fitxer = new File(url);
-        fitxer.delete();
+    public static boolean eliminarFitxer(String path) {
+        File file = new File(path);
+        return file.delete();
     }
 
     // Llistar fitxers dins d'un directori

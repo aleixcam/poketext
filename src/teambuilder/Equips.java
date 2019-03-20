@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import infrastructure.persistence.CSV.PokemonRepositoryCSV;
 import infrastructure.persistence.CSV.TeamRepositoryCSV;
 import infrastructure.presentation.reader.StreamReader;
 import infrastructure.persistence.CSV.CSVRepository;
@@ -39,7 +40,7 @@ public class Equips {
     }
 
     // Iniciar l'array d'equip
-    protected static String[][] iniciarPokemon() {
+    private static String[][] iniciarPokemon() {
         String[][] poke = {
             new String[4],
             new String[6],
@@ -70,27 +71,32 @@ public class Equips {
 
     // Exportar un equip
     private static void exportarEquip(String[][][] equip) throws IOException {
-        List<String[]> list = new ArrayList<>();
+        List<String[]> pokemons = new ArrayList<>();
         for (String[][] poke : equip) {
             if (poke != null) {
-                list.add(CSVRepository.exportarCSV(poke, ","));
+                pokemons.add(CSVRepository.exportarCSV(poke, ","));
             }
         }
-        String[][] raw = new String[list.size()][];
-        for (int i = 0; i < raw.length; i++) {
-            raw[i] = list.get(i);
+
+        String[][] team = new String[pokemons.size()][];
+        for (int i = 0; i < team.length; i++) {
+            team[i] = pokemons.get(i);
         }
-        Fitxers.escriureFitxer(CSVRepository.exportarCSV(raw, ";"), Fitxers.obtenirURL("equips"));
+
+        TeamRepositoryCSV repository = new TeamRepositoryCSV();
+        repository.save(team, Fitxers.obtenirURL("equips"));
     }
 
     // Crear un nou equip
     private static void crearEquip(String[][][] equip) throws IOException {
         boolean sortir = false;
         int num;
-        String s[];
+        String[] s;
 
         do {
             try {
+
+                PokemonRepositoryCSV repository = new PokemonRepositoryCSV();
 
                 // Opcions del menú
                 System.out.printf("%nPOKETEXT: CONSTRUCTOR D'EQUIPS%n");
@@ -128,13 +134,13 @@ public class Equips {
                     }
                 } else if ((s[0].equalsIgnoreCase("i")) && (s.length == 1)) {
                     if ((num = seguentPokemon(equip)) < 6) {
-                        equip[num] = CSVRepository.importarCSV(Fitxers.llegirFitxer(Fitxers.obtenirURL("pokemons")), ",");
+                        equip[num] = repository.findByName(Fitxers.obtenirURL("pokemons"));
                     } else {
                         System.out.println("No pots escollir més Pokèmons");
                     }
                 } else if ((s[0].equalsIgnoreCase("e")) && (s.length == 2)) {
                     if (equip[Integer.parseInt(s[1]) - 1] != null) {
-                        Fitxers.escriureFitxer(CSVRepository.exportarCSV(equip[Integer.parseInt(s[1]) - 1], ","), Fitxers.obtenirURL("pokemons"));
+                        repository.save(equip[Integer.parseInt(s[1]) - 1], Fitxers.obtenirURL("pokemons"));
                     } else {
                         System.out.println("No hi ha cap Pokèmon");
                     }
