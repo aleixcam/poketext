@@ -58,30 +58,6 @@ public abstract class FileSystemRepository {
         }
     }
 
-    public static String[][] importarCSV(String[] data, String comma) {
-        String[][] matrix = new String[data.length][];
-        for (int i = 0; i < data.length; i++) {
-            matrix[i] = data[i].split(comma);
-        }
-
-        return matrix;
-    }
-
-    public static String[] exportarCSV(String[][] matrix, String comma) {
-        List<String> data = new ArrayList<>();
-
-        for (String[] row : matrix) {
-            StringBuilder sb = new StringBuilder(row[0]);
-            for (int i = 1; i < row.length ; i++) {
-                sb.append(comma).append(row[i]);
-            }
-            data.add(sb.toString());
-        }
-
-        String[] arr = new String[data.size()];
-        return data.toArray(arr);
-    }
-
     // Llistar fitxers dins d'un directori
     private static void llistarDirectori(String dir) {
         File f = new File(dir);

@@ -9,6 +9,7 @@ import infrastructure.persistence.FileSystem.PokemonRepositoryFileSystem;
 import infrastructure.persistence.FileSystem.TeamRepositoryFileSystem;
 import infrastructure.presentation.reader.StreamReader;
 import infrastructure.persistence.FileSystem.FileSystemRepository;
+import infrastructure.service.ConvertCSVService;
 
 public class Equips {
 
@@ -73,7 +74,7 @@ public class Equips {
         List<String[]> pokemons = new ArrayList<>();
         for (String[][] poke : equip) {
             if (poke != null) {
-                pokemons.add(FileSystemRepository.exportarCSV(poke, ","));
+                pokemons.add(ConvertCSVService.toCSV(poke, ","));
             }
         }
 
@@ -169,7 +170,7 @@ public class Equips {
         TeamRepositoryFileSystem repository = new TeamRepositoryFileSystem();
         String[][] raw = repository.get(FileSystemRepository.obtenirURL("equips"));
         for (int i = 0; i < raw.length; i++) {
-            equip[i] = FileSystemRepository.importarCSV(raw[i], ",");
+            equip[i] = ConvertCSVService.fromCSV(raw[i], ",");
         }
         return equip;
     }

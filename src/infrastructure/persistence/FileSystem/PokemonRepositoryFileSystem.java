@@ -1,5 +1,7 @@
 package infrastructure.persistence.FileSystem;
 
+import infrastructure.service.ConvertCSVService;
+
 import java.util.List;
 
 public class PokemonRepositoryFileSystem extends FileSystemRepository {
@@ -11,7 +13,7 @@ public class PokemonRepositoryFileSystem extends FileSystemRepository {
     }
 
     public void save(String[][] pokemon, String path) {
-        write(exportarCSV(pokemon, ","), path);
+        write(ConvertCSVService.toCSV(pokemon, ","), path);
     }
 
     public void delete(String path) {
@@ -20,6 +22,6 @@ public class PokemonRepositoryFileSystem extends FileSystemRepository {
 
     private String[][] buildPokemon(List<String> data) {
         String[] arr = new String[data.size()];
-        return importarCSV(data.toArray(arr), ",");
+        return ConvertCSVService.fromCSV(data.toArray(arr), ",");
     }
 }
