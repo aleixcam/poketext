@@ -133,7 +133,7 @@ public class Equips {
                     }
                 } else if ((s[0].equalsIgnoreCase("i")) && (s.length == 1)) {
                     if ((num = seguentPokemon(equip)) < 6) {
-                        equip[num] = repository.findByName(FileSystemRepository.obtenirURL("pokemons"));
+                        equip[num] = repository.get(FileSystemRepository.obtenirURL("pokemons"));
                     } else {
                         System.out.println("No pots escollir més Pokèmons");
                     }
@@ -167,7 +167,7 @@ public class Equips {
     public static String[][][] importarEquip() throws IOException {
         String[][][] equip = new String[6][][];
         TeamRepositoryFileSystem repository = new TeamRepositoryFileSystem();
-        String[][] raw = repository.findByName(FileSystemRepository.obtenirURL("equips"));
+        String[][] raw = repository.get(FileSystemRepository.obtenirURL("equips"));
         for (int i = 0; i < raw.length; i++) {
             equip[i] = FileSystemRepository.importarCSV(raw[i], ",");
         }
@@ -180,6 +180,9 @@ public class Equips {
         String sel;
         do {
             try {
+
+                TeamRepositoryFileSystem teamRepository = new TeamRepositoryFileSystem();
+                PokemonRepositoryFileSystem pokemonRepository = new PokemonRepositoryFileSystem();
 
                 // Opcions del menú
                 System.out.printf("%nPOKETEXT: CONSTRUCTOR D'EQUIPS%n");
@@ -196,9 +199,9 @@ public class Equips {
                 } else if (sel.equalsIgnoreCase("m")) {
                     crearEquip(importarEquip());
                 } else if (sel.equalsIgnoreCase("e")) {
-                    FileSystemRepository.eliminarFitxer(FileSystemRepository.obtenirURL("equips"));
+                    teamRepository.delete(FileSystemRepository.obtenirURL("equips"));
                 } else if (sel.equalsIgnoreCase("p")) {
-                    FileSystemRepository.eliminarFitxer(FileSystemRepository.obtenirURL("pokemons"));
+                    pokemonRepository.delete(FileSystemRepository.obtenirURL("pokemons"));
                 } else if (sel.equalsIgnoreCase("q")) {
                     sortir = true;
                 } else {

@@ -8,7 +8,11 @@ import java.util.List;
 
 public abstract class FileSystemRepository {
 
-    abstract public String[][] findByName(String name);
+    abstract public String[][] get(String path);
+
+    abstract public void save(String[][] matrix, String path);
+
+    abstract public void delete(String path);
 
     List<String> read(String path) {
         List<String> data = new ArrayList<>();
@@ -43,6 +47,17 @@ public abstract class FileSystemRepository {
         }
     }
 
+     void erase(String path) {
+        try {
+            File file = new File(path);
+            if (!file.delete()) {
+                throw new IOException("Can't delete file: " + path);
+            }
+        } catch (IOException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+
     public static String[][] importarCSV(String[] data, String comma) {
         String[][] matrix = new String[data.length][];
         for (int i = 0; i < data.length; i++) {
@@ -65,12 +80,6 @@ public abstract class FileSystemRepository {
 
         String[] arr = new String[data.size()];
         return data.toArray(arr);
-    }
-
-    // Eliminar un fitxer
-    public static boolean eliminarFitxer(String path) {
-        File file = new File(path);
-        return file.delete();
     }
 
     // Llistar fitxers dins d'un directori
