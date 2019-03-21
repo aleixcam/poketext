@@ -12,8 +12,8 @@ public class TeamRepositoryFileSystem extends FileSystemRepository {
         return buildTeam(read(path));
     }
 
-    public void save(String[][] team, String path) {
-        write(ConvertCSVService.toCSV(team, ";"), path);
+    public void save(String[][][] team, String path) {
+        write(ConvertCSVService.toCSV(team), path);
     }
 
     public void delete(String path) {

@@ -69,24 +69,6 @@ public class Equips {
         return poke;
     }
 
-    // Exportar un equip
-    private static void exportarEquip(String[][][] equip) throws IOException {
-        List<String[]> pokemons = new ArrayList<>();
-        for (String[][] poke : equip) {
-            if (poke != null) {
-                pokemons.add(ConvertCSVService.toCSV(poke, ","));
-            }
-        }
-
-        String[][] team = new String[pokemons.size()][];
-        for (int i = 0; i < team.length; i++) {
-            team[i] = pokemons.get(i);
-        }
-
-        TeamRepositoryFileSystem repository = new TeamRepositoryFileSystem();
-        repository.save(team, FileSystemRepository.obtenirURL("equips"));
-    }
-
     // Crear un nou equip
     private static void crearEquip(String[][][] equip) throws IOException {
         boolean sortir = false;
@@ -96,7 +78,8 @@ public class Equips {
         do {
             try {
 
-                PokemonRepositoryFileSystem repository = new PokemonRepositoryFileSystem();
+                PokemonRepositoryFileSystem pokemonRepository = new PokemonRepositoryFileSystem();
+                TeamRepositoryFileSystem teamRepository = new TeamRepositoryFileSystem();
 
                 // Opcions del menú
                 System.out.printf("%nPOKETEXT: CONSTRUCTOR D'EQUIPS%n");
@@ -134,19 +117,19 @@ public class Equips {
                     }
                 } else if ((s[0].equalsIgnoreCase("i")) && (s.length == 1)) {
                     if ((num = seguentPokemon(equip)) < 6) {
-                        equip[num] = repository.get(FileSystemRepository.obtenirURL("pokemons"));
+                        equip[num] = pokemonRepository.get(FileSystemRepository.obtenirURL("pokemons"));
                     } else {
                         System.out.println("No pots escollir més Pokèmons");
                     }
                 } else if ((s[0].equalsIgnoreCase("e")) && (s.length == 2)) {
                     if (equip[Integer.parseInt(s[1]) - 1] != null) {
-                        repository.save(equip[Integer.parseInt(s[1]) - 1], FileSystemRepository.obtenirURL("pokemons"));
+                        pokemonRepository.save(equip[Integer.parseInt(s[1]) - 1], FileSystemRepository.obtenirURL("pokemons"));
                     } else {
                         System.out.println("No hi ha cap Pokèmon");
                     }
                 } else if ((s[0].equalsIgnoreCase("f")) && (s.length == 1)) {
                     if (equipValid(equip)) {
-                        exportarEquip(equip);
+                        teamRepository.save(equip, FileSystemRepository.obtenirURL("equips"));
                         sortir = true;
                     } else {
                         System.out.println("L'equip no és valid i no es pot guardar");

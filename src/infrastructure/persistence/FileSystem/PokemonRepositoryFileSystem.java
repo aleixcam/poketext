@@ -13,7 +13,7 @@ public class PokemonRepositoryFileSystem extends FileSystemRepository {
     }
 
     public void save(String[][] pokemon, String path) {
-        write(ConvertCSVService.toCSV(pokemon, ","), path);
+        write(ConvertCSVService.toCSV(pokemon), path);
     }
 
     public void delete(String path) {

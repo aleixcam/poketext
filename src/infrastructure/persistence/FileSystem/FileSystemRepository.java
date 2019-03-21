@@ -8,10 +8,6 @@ import java.util.List;
 
 public abstract class FileSystemRepository {
 
-    abstract public String[][] get(String path);
-
-    abstract public void save(String[][] matrix, String path);
-
     abstract public void delete(String path);
 
     List<String> read(String path) {
