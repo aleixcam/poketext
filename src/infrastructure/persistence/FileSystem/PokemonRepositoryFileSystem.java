@@ -22,6 +22,6 @@ public class PokemonRepositoryFileSystem extends FileSystemRepository {
 
     private String[][] buildPokemon(List<String> data) {
         String[] arr = new String[data.size()];
-        return ConvertCSVService.fromCSV(data.toArray(arr), ",");
+        return ConvertCSVService.fromCSV(data.toArray(arr));
     }
 }

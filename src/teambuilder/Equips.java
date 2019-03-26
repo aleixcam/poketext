@@ -147,17 +147,6 @@ public class Equips {
         } while (!sortir);
     }
 
-    // Importar un equip
-    public static String[][][] importarEquip() throws IOException {
-        String[][][] equip = new String[6][][];
-        TeamRepositoryFileSystem repository = new TeamRepositoryFileSystem();
-        String[][] raw = repository.get(FileSystemRepository.obtenirURL("equips"));
-        for (int i = 0; i < raw.length; i++) {
-            equip[i] = ConvertCSVService.fromCSV(raw[i], ",");
-        }
-        return equip;
-    }
-
     // Començar a construïr un equip
     public static void construirEquip() throws IOException {
         boolean sortir = false;
@@ -181,7 +170,7 @@ public class Equips {
                 if (sel.equalsIgnoreCase("c")) {
                     crearEquip(new String[6][][]);
                 } else if (sel.equalsIgnoreCase("m")) {
-                    crearEquip(importarEquip());
+                    crearEquip(teamRepository.get(FileSystemRepository.obtenirURL("equips")));
                 } else if (sel.equalsIgnoreCase("e")) {
                     teamRepository.delete(FileSystemRepository.obtenirURL("equips"));
                 } else if (sel.equalsIgnoreCase("p")) {

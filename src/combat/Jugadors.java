@@ -3,6 +3,8 @@ package combat;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import infrastructure.persistence.FileSystem.FileSystemRepository;
+import infrastructure.persistence.FileSystem.TeamRepositoryFileSystem;
 import infrastructure.presentation.reader.StreamReader;
 import teambuilder.Equips;
 import teambuilder.Pokes;
@@ -52,6 +54,9 @@ public class Jugadors {
 
         do {
             try {
+
+                TeamRepositoryFileSystem teamRepository = new TeamRepositoryFileSystem();
+
                 // Opcions del menú
                 System.out.printf("%nPOKETEXT: INICIAR COMBAT%n");
                 System.out.println("S. Seleccionar equip (#J)");
@@ -63,7 +68,7 @@ public class Jugadors {
 
                 // Seleccions del menú principal
                 if ((s[0].equalsIgnoreCase("s")) && (s.length == 2)) {
-                    jugador[Integer.parseInt(s[1]) - 1] = Equips.importarEquip();
+                    jugador[Integer.parseInt(s[1]) - 1] = teamRepository.get(FileSystemRepository.obtenirURL("equips"));
                 } else if ((s[0].equalsIgnoreCase("v")) && (s.length == 2)) {
                     if (jugador[Integer.parseInt(s[1]) - 1] != null) {
                         for (String[][] poke : jugador[Integer.parseInt(s[1]) - 1]) {
