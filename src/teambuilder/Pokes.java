@@ -12,7 +12,7 @@ import infrastructure.persistence.SQLite.PokemonRepositorySQLite;
 import infrastructure.presentation.printer.MatrixPrinter;
 import infrastructure.presentation.reader.StreamReader;
 import infrastructure.presentation.transformer.matrix.PokemonAssemblerMatrix;
-import poketext.Connector;
+import infrastructure.poketext.Connector;
 
 // Clase de pokèmons del constructor d'equips
 public class Pokes {

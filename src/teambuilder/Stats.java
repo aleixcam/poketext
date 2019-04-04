@@ -9,9 +9,9 @@ import java.sql.SQLException;
 
 import domain.pokemon.PokemonStats;
 import infrastructure.persistence.SQLite.PokemonRepositorySQLite;
+import infrastructure.poketext.Poketext;
 import infrastructure.presentation.reader.StreamReader;
-import poketext.Connector;
-import static poketext.Opcions.lang;
+import infrastructure.poketext.Connector;
 
 public class Stats {
 
@@ -26,7 +26,7 @@ public class Stats {
         PreparedStatement select = Connector.connect.prepareStatement("select p.id, n.name, p.increased_stat_id, p.decreased_stat_id \n"
                 + "from nature_names n, natures p\n"
                 + "where p.id = n.nature_id\n"
-                + "and local_language_id =" + lang);
+                + "and local_language_id =" + Poketext.env.getProperty("languageId"));
         result = select.executeQuery();
         return result;
     }
@@ -73,7 +73,7 @@ public class Stats {
 
         PreparedStatement select = Connector.connect.prepareStatement("select name \n"
                 + "from nature_names\n"
-                + "where local_language_id = " + lang + "\n"
+                + "where local_language_id = " + Poketext.env.getProperty("languageId") + "\n"
                 + "and nature_id = " + id);
         result = select.executeQuery();
         if (result.next()) {

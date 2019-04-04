@@ -3,7 +3,7 @@ package calc;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import poketext.Connector;
+import infrastructure.poketext.Connector;
 
 // Clase de efectivitat
 public class Danys {

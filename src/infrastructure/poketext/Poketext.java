@@ -1,21 +1,30 @@
-package poketext;
+package infrastructure.poketext;
 
 import combat.Jugadors;
 import cercador.Cercador;
+
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Map;
+import java.util.Properties;
 
 import infrastructure.presentation.reader.StreamReader;
 import teambuilder.Equips;
 
 // Clase principal
 public class Poketext {
+
+    final public static Properties env = new Properties();
     
     public static void main(String[] args) throws IOException {
         boolean sortir = false;
         String sel;
-        
+
         System.out.println("Carregant...");
+
+        env.loadFromXML(new FileInputStream(".env.xml"));
         Connector.connectar();
+
         do {
 
             // Menú principal

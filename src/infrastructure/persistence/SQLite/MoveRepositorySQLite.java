@@ -7,8 +7,7 @@ import domain.move.Move;
 import domain.move.MoveCriteria;
 import domain.move.MoveRepository;
 import domain.move.MovesCollection;
-
-import static poketext.Opcions.lang;
+import infrastructure.poketext.Poketext;
 
 public class MoveRepositorySQLite extends SQLiteRepository implements MoveRepository {
 
@@ -22,9 +21,9 @@ public class MoveRepositorySQLite extends SQLiteRepository implements MoveReposi
                 + "and m.damage_class_id = d.id\n"
                 + "and p.version_group_id = 16\n"
                 + "and f.version_group_id = 16\n"
-                + "and n.local_language_id = " + lang + "\n"
-                + "and t.local_language_id = " + lang + "\n"
-                + "and f.language_id = " + lang + "\n"
+                + "and n.local_language_id = " + Poketext.env.getProperty("languageId") + "\n"
+                + "and t.local_language_id = " + Poketext.env.getProperty("languageId") + "\n"
+                + "and f.language_id = " + Poketext.env.getProperty("languageId") + "\n"
                 + (criteria.getPokemonId() > 0 ? ("and p.pokemon_id = " + criteria.getPokemonId() + "\n") : "")
                 + (!Objects.equals(criteria.getName(), "") ? ("and n.name like '%" + criteria.getName() + "%'\n") : "")
                 + (!Objects.equals(criteria.getType(), "") ? ("and t.name like '%" + criteria.getType() + "%'\n") : "")

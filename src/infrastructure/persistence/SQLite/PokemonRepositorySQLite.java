@@ -1,12 +1,11 @@
 package infrastructure.persistence.SQLite;
 
 import domain.pokemon.*;
+import infrastructure.poketext.Poketext;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-
-import static poketext.Opcions.lang;
 
 public class PokemonRepositorySQLite extends SQLiteRepository implements PokemonRepository {
 
@@ -16,13 +15,13 @@ public class PokemonRepositorySQLite extends SQLiteRepository implements Pokemon
             + "from type_names n, pokemon_types t\n"
             + "where n.type_id = t.type_id\n"
             + "and p.id = t.pokemon_id\n"
-            + "and n.local_language_id = " + lang + "\n"
+            + "and n.local_language_id = " + Poketext.env.getProperty("languageId") + "\n"
             + "and t.slot = 1) 'type_one',\n"
             + "(select n.name\n"
             + "from type_names n, pokemon_types t\n"
             + "where n.type_id = t.type_id\n"
             + "and p.id = t.pokemon_id\n"
-            + "and n.local_language_id = " + lang + "\n"
+            + "and n.local_language_id = " + Poketext.env.getProperty("languageId") + "\n"
             + "and t.slot = 2) 'type_two'\n"
             + "from pokemon p, pokemon_dex_numbers d\n"
             + "where p.species_id = d.species_id\n"

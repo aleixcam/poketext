@@ -7,11 +7,11 @@ import java.sql.SQLException;
 
 import application.move.GetMoves.GetMovesService;
 import infrastructure.persistence.SQLite.MoveRepositorySQLite;
+import infrastructure.poketext.Poketext;
 import infrastructure.presentation.printer.MatrixPrinter;
 import infrastructure.presentation.reader.StreamReader;
 import infrastructure.presentation.transformer.matrix.MoveAssemblerMatrix;
-import poketext.Connector;
-import static poketext.Opcions.lang;
+import infrastructure.poketext.Connector;
 
 public class Moviments {
 
@@ -45,7 +45,7 @@ public class Moviments {
         PreparedStatement select = Connector.connect.prepareStatement("select name\n"
                 + "from move_names\n"
                 + "where move_id = '" + id + "'\n"
-                + "and local_language_id = " + lang);
+                + "and local_language_id = " + Poketext.env.getProperty("languageId"));
         result = select.executeQuery();
         if (result.next()) {
             res = result.getString("name");
