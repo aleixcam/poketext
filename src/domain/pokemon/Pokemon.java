@@ -8,7 +8,7 @@ public class Pokemon {
     private String name;
     private String type_one;
     private String type_two;
-    private PokemonStats base_stats;
+    private BaseStats base_stats;
 
     public int getId() {
         return id;
@@ -42,11 +42,11 @@ public class Pokemon {
         this.type_two = type_two;
     }
 
-    public PokemonStats getBaseStats() {
+    public BaseStats getBaseStats() {
         return base_stats;
     }
 
-    public void setBaseStats(PokemonStats base_stats) {
+    public void setBaseStats(BaseStats base_stats) {
         this.base_stats = base_stats;
     }
 }

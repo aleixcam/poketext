@@ -1,165 +1,104 @@
 package teambuilder;
 
-import calc.Estadistiques;
-
-import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import domain.pokemon.PokemonStats;
+import application.nature.GetNatures.GetNaturesService;
+import domain.pokemon.BaseStats;
+import infrastructure.persistence.SQLite.NatureRepositorySQLite;
 import infrastructure.persistence.SQLite.PokemonRepositorySQLite;
-import infrastructure.poketext.Poketext;
+import infrastructure.presentation.printer.MatrixPrinter;
 import infrastructure.presentation.reader.StreamReader;
-import infrastructure.poketext.Connector;
+import infrastructure.presentation.transformer.matrix.NatureAssemblerMatrix;
+
+import calc.Estadistiques;
+import java.io.IOException;
+import java.util.Arrays;
 
 public class Stats {
 
-    //**************************************************************************
-    //****NATURALESA************************************************************
-    //**************************************************************************
-    // Consultar les naturaleses
-    private static ResultSet consultarNaturalesa() throws SQLException {
-        ResultSet result;
-        String res = "";
+    private final static int MAX_EVS = 508;
 
-        PreparedStatement select = Connector.connect.prepareStatement("select p.id, n.name, p.increased_stat_id, p.decreased_stat_id \n"
-                + "from nature_names n, natures p\n"
-                + "where p.id = n.nature_id\n"
-                + "and local_language_id =" + Poketext.env.getProperty("languageId"));
-        result = select.executeQuery();
-        return result;
-    }
+    private static String selectNature() throws IOException {
+        String s;
+        int selected;
 
-    // Funció per imprimir per pantalla els pokèmons
-    public static void imprimirNaturalesa() throws SQLException {
-        String[] stats = {"Atk", "Def", "SpA", "SpD", "Spe"};
-        String id, name;
-        int increased, decreased;
-        ResultSet result = consultarNaturalesa();
+        GetNaturesService service = new GetNaturesService(new NatureRepositorySQLite(), new NatureAssemblerMatrix());
+        String[][] natures = service.execute();
 
-        System.out.printf("%n%5s | %-8s| %s%n", "ID", "Nom", "Modificadors");
-        System.out.println("-----------------------------------------------------------------------------------------------");
-        while (result.next()) {
-            id = result.getString("id");
-            name = result.getString("name");
-            increased = result.getInt("increased_stat_id") - 2;
-            decreased = result.getInt("decreased_stat_id") - 2;
-            System.out.printf("%5s | %-8s| %s%n", id, name, "+" + stats[increased] + ", -" + stats[decreased]);
+        String[] options = new String[natures.length];
+        for (int i = 0; i < natures.length; i++) {
+            options[i] = natures[i][0];
         }
-        System.out.println("-----------------------------------------------------------------------------------------------");
-        System.out.printf("%5s | %-8s| %s%n%n", "ID", "Nom", "Modificadors");
-    }
 
-    // Consultar l'ID de la naturalesa seleccionada
-    private static String consultarIDNaturalesa(String id) throws SQLException {
-        ResultSet result;
-        String res = "";
-
-        PreparedStatement select = Connector.connect.prepareStatement("select identifier from natures where id = " + id);
-        result = select.executeQuery();
-        if (result.next()) {
-            res = id;
-        } else {
-            System.out.println("No existeix cap naturalesa amb l'ID seleccionat");
-        }
-        return res;
-    }
-
-    // Consultar el nom de la naturalesa del Pokèmon
-    private static String consultarNomNaturalesa(String id) throws SQLException {
-        ResultSet result;
-        String res = "";
-
-        PreparedStatement select = Connector.connect.prepareStatement("select name \n"
-                + "from nature_names\n"
-                + "where local_language_id = " + Poketext.env.getProperty("languageId") + "\n"
-                + "and nature_id = " + id);
-        result = select.executeQuery();
-        if (result.next()) {
-            res = result.getString("name");
-        }
-        return res;
-    }
-
-    // Escollir una naturalesa per al pokèmon
-    protected static String escollirNaturalesa() throws IOException {
-        String res = "", sel;
+        MatrixPrinter.print(natures);
+        System.out.printf("%n");
 
         do {
-            try {
-                imprimirNaturalesa();
-                sel = StreamReader.read();
-                if ((res = consultarIDNaturalesa(sel)).equals("")) {
-                    System.out.println("Selecció incorrecte");
-                }
-            } catch (SQLException ex) {
-                System.err.println(ex.getMessage());
+
+            s = StreamReader.read();
+            selected = Arrays.asList(options).indexOf(s);
+
+            if (selected < 1) {
+                System.out.println("Selecció incorrecte");
             }
-        } while (res.equals(""));
-        return res;
+        } while (selected < 1);
+
+        return natures[selected][0];
     }
 
-    //**************************************************************************
-    //****STATS*****************************************************************
-    //**************************************************************************
-    // Calcular els EVs restants
-    public static int calcularEVsRestants(String[] evs) {
+    private static int calcularEVsRestants(String[] evs) {
         int suma = 0;
-        for (int i = 0; i < 6; i++) {
-            suma += Integer.parseInt(evs[i]);
+
+        for (String ev : evs) {
+            suma += Integer.parseInt(ev);
         }
-        return 508 - suma;
+
+        return MAX_EVS - suma;
     }
 
     // Mostar per pantalla els stats
-    private static void imprimirStats(String[][] poke) throws IOException {
+    private static void imprimirStats(String[][] poke) {
         int i, j;
-        String noms[] = {"HP", "Attack", "Defense", "Sp. Atk.", "Sp. Def.", "Speed"};
-        try {
-            PokemonRepositorySQLite repository = new PokemonRepositorySQLite();
-            PokemonStats stats = repository.findStatsByPokemonId(Integer.parseInt(poke[0][0]));
-            int[] base = {
-                stats.getHealth(),
-                stats.getAttack(),
-                stats.getDefense(),
-                stats.getSpecialAttack(),
-                stats.getSpecialDefense(),
-                stats.getSpeed()
-            };
+        String[] noms = {"HP", "Attack", "Defense", "Sp. Atk.", "Sp. Def.", "Speed"};
 
-            System.out.printf("%n%s%n", "Nom: " + poke[0][1]);
-            for (i = 0; i < 37; i++) {
-                System.out.print("*");
-            }
-            System.out.printf("%n*%15s%5s%5s%8s  *", "Base", "EVs", "IVs", "Stats");
-            for (i = 0; i < 6; i++) {
-                System.out.printf("%n* ");
-                for (j = 0; j < 33; j++) {
-                    System.out.print("-");
-                }
-                System.out.printf(" *%n*%10s%5d%5s%5s  |%5s  *", noms[i], base[i], poke[4][i], poke[5][i], poke[3][i]);
-            }
+        PokemonRepositorySQLite pokemonRepository = new PokemonRepositorySQLite();
+        NatureRepositorySQLite natureRepository = new NatureRepositorySQLite();
+        BaseStats stats = pokemonRepository.findStatsByPokemonId(Integer.parseInt(poke[0][0]));
+
+        int[] base = {
+            stats.getHealth(),
+            stats.getAttack(),
+            stats.getDefense(),
+            stats.getSpecialAttack(),
+            stats.getSpecialDefense(),
+            stats.getSpeed()
+        };
+
+        System.out.printf("%n%s%n", "Nom: " + poke[0][1]);
+        for (i = 0; i < 37; i++) {
+            System.out.print("*");
+        }
+        System.out.printf("%n*%15s%5s%5s%8s  *", "Base", "EVs", "IVs", "Stats");
+        for (i = 0; i < 6; i++) {
             System.out.printf("%n* ");
             for (j = 0; j < 33; j++) {
                 System.out.print("-");
             }
-
-            System.out.printf(" *%n*   EVs restants:%4s%16s%n*", calcularEVsRestants(poke[4]), "*");
-            for (i = 0; i < 35; i++) {
-                System.out.print("*");
-            }
-            System.out.printf("*%n%s%n", "Naturalesa: " + consultarNomNaturalesa(poke[4][6]));
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
+            System.out.printf(" *%n*%10s%5d%5s%5s  |%5s  *", noms[i], base[i], poke[4][i], poke[5][i], poke[3][i]);
         }
+        System.out.printf("%n* ");
+        for (j = 0; j < 33; j++) {
+            System.out.print("-");
+        }
+
+        System.out.printf(" *%n*   EVs restants:%4s%16s%n*", calcularEVsRestants(poke[4]), "*");
+        for (i = 0; i < 35; i++) {
+            System.out.print("*");
+        }
+        System.out.printf("*%nNaturalesa: %s%n", natureRepository.getNameById(poke[4][6]));
     }
 
-    // Escollir un pokèmon per a l'equip
-    protected static void escollirStats(String poke[][]) throws IOException {
+    static void escollirStats(String[][] poke) throws IOException {
         boolean sortir = false;
-        int evs = 508;
-        String s[];
+        String[] s;
 
         do {
             Estadistiques.calcularEstadistiques(poke);
@@ -195,7 +134,7 @@ public class Stats {
                     System.out.println("No pots posar la quantitat d'IVs seleccionada");
                 }
             } else if ((s[0].equalsIgnoreCase("n")) && (s.length == 1)) {
-                poke[4][6] = escollirNaturalesa();
+                poke[4][6] = selectNature();
             } else if ((s[0].equalsIgnoreCase("f")) && (s.length == 1)) {
                 sortir = true;
             } else {

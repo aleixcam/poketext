@@ -14,14 +14,14 @@ public class Pokedex {
     static String[] cercarPokedex() throws IOException {
         String[] pokedex;
         String s;
-        int index;
+        int selected;
 
         GetPokedexesService service = new GetPokedexesService(new PokedexRepositorySQLite(), new PokedexAssemblerMatrix());
         String[][] pokedexes = service.execute();
 
-        String[] ids = new String[pokedexes.length];
+        String[] options = new String[pokedexes.length];
         for (int i = 0; i < pokedexes.length; i++) {
-            ids[i] = pokedexes[i][0];
+            options[i] = pokedexes[i][0];
         }
 
         MatrixPrinter.print(pokedexes);
@@ -30,16 +30,16 @@ public class Pokedex {
         do {
 
             s = StreamReader.read();
-            index = Arrays.asList(ids).indexOf(s);
+            selected = Arrays.asList(options).indexOf(s);
 
-            if (index >= 0) {
-                pokedex = pokedexes[index];
+            if (selected >= 0) {
+                pokedex = pokedexes[selected];
                 System.out.printf("Has seleccionat la pokèdex %S!%n", pokedex[1]);
             } else {
                 System.out.println("No existeix la pokèdex seleccionada");
             }
-        } while (index < 0);
+        } while (selected < 0);
 
-        return pokedexes[index];
+        return pokedexes[selected];
     }
 }

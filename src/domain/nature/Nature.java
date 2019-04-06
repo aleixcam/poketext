@@ -2,13 +2,12 @@ package domain.nature;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
-import java.util.Map;
-
 public class Nature {
 
     private int id;
     private String name;
-    private Map<String, Integer> modifiers;
+    private int increasedStat;
+    private int decreasedStat;
 
     public int getId() {
         return id;
@@ -26,11 +25,19 @@ public class Nature {
         this.name = name;
     }
 
-    public Map<String, Integer> getModifiers() {
-        return modifiers;
+    public int getIncreasedStat() {
+        return increasedStat;
     }
 
-    public void setModifiers(Map<String, Integer> modifiers) {
-        this.modifiers = modifiers;
+    public void setIncreasedStat(String statId) {
+        this.increasedStat = NumberUtils.isParsable(statId) ? Integer.parseInt(statId) : 0;
+    }
+
+    public int getDecreasedStat() {
+        return decreasedStat;
+    }
+
+    public void setDecreasedStat(String statId) {
+        this.decreasedStat = NumberUtils.isParsable(statId) ? Integer.parseInt(statId) : 0;
     }
 }

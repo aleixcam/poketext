@@ -51,49 +51,49 @@ public class PokemonRepositorySQLite extends SQLiteRepository implements Pokemon
         return pokemons;
     }
 
-    public PokemonStats findStatsByPokemonId(int pokemon_id) {
+    public BaseStats findStatsByPokemonId(int pokemon_id) {
         List<String[]> rowset = executeQuery("select"
-                + "(select s.base_stat\n"
-                + "from pokemon_stats s\n"
-                + "where p.id = s.pokemon_id\n"
-                + "and s.stat_id = 1) 'hp',\n"
-                + "(select s.base_stat\n"
-                + "from pokemon_stats s\n"
-                + "where p.id = s.pokemon_id\n"
-                + "and s.stat_id = 2) 'atk',\n"
-                + "(select s.base_stat\n"
-                + "from pokemon_stats s\n"
-                + "where p.id = s.pokemon_id\n"
-                + "and s.stat_id = 3) 'def',\n"
-                + "(select s.base_stat\n"
-                + "from stat_names n, pokemon_stats s\n"
-                + "where p.id = s.pokemon_id\n"
-                + "and s.stat_id = 4) 'spatk',\n"
-                + "(select s.base_stat\n"
-                + "from pokemon_stats s\n"
-                + "where p.id = s.pokemon_id\n"
-                + "and s.stat_id = 5) 'spdef',\n"
-                + "(select s.base_stat\n"
-                + "from pokemon_stats s\n"
-                + "where p.id = s.pokemon_id\n"
-                + "and s.stat_id = 6) 'spe'\n"
-                + "from pokemon p\n"
-                + "where p.id = " + pokemon_id);
+            + "(select s.base_stat\n"
+            + "from pokemon_stats s\n"
+            + "where p.id = s.pokemon_id\n"
+            + "and s.stat_id = 1) 'hp',\n"
+            + "(select s.base_stat\n"
+            + "from pokemon_stats s\n"
+            + "where p.id = s.pokemon_id\n"
+            + "and s.stat_id = 2) 'atk',\n"
+            + "(select s.base_stat\n"
+            + "from pokemon_stats s\n"
+            + "where p.id = s.pokemon_id\n"
+            + "and s.stat_id = 3) 'def',\n"
+            + "(select s.base_stat\n"
+            + "from stat_names n, pokemon_stats s\n"
+            + "where p.id = s.pokemon_id\n"
+            + "and s.stat_id = 4) 'spatk',\n"
+            + "(select s.base_stat\n"
+            + "from pokemon_stats s\n"
+            + "where p.id = s.pokemon_id\n"
+            + "and s.stat_id = 5) 'spdef',\n"
+            + "(select s.base_stat\n"
+            + "from pokemon_stats s\n"
+            + "where p.id = s.pokemon_id\n"
+            + "and s.stat_id = 6) 'spe'\n"
+            + "from pokemon p\n"
+            + "where p.id = " + pokemon_id);
 
         return buildStats(rowset);
     }
 
-    private PokemonStats buildStats(List<String[]> rowset) {
+    private BaseStats buildStats(List<String[]> rowset) {
         int[] stats = Arrays.stream(rowset.get(0)).mapToInt(Integer::parseInt).toArray();
 
-        PokemonStats base_stats = new PokemonStats();
-        base_stats.setHealth(stats[0]);
-        base_stats.setAttack(stats[1]);
-        base_stats.setDefense(stats[2]);
-        base_stats.setSpecialAttack(stats[3]);
-        base_stats.setSpecialDefense(stats[4]);
-        base_stats.setSpeed(stats[5]);
+        BaseStats baseStats = new BaseStats();
+        baseStats.setHealth(stats[0]);
+        baseStats.setAttack(stats[1]);
+        baseStats.setDefense(stats[2]);
+        baseStats.setSpecialAttack(stats[3]);
+        baseStats.setSpecialDefense(stats[4]);
+        baseStats.setSpeed(stats[5]);
 
-        return base_stats;
+        return baseStats;
     }
 }

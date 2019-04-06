@@ -1,6 +1,6 @@
 package domain.pokemon;
 
-public class PokemonStats {
+public class BaseStats {
 
     private int health;
     private int attack;
