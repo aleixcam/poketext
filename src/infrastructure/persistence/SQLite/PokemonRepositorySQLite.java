@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-public class PokemonRepositorySQLite extends SQLiteRepository implements PokemonRepository {
+final public class PokemonRepositorySQLite extends SQLiteRepository implements PokemonRepository {
 
     public PokemonsCollection findByCriteria(PokemonCriteria criteria) {
         List<String[]> rowset = executeQuery("select " + criteria.getIdField() + " 'id', p.identifier 'name',\n"
@@ -86,14 +86,6 @@ public class PokemonRepositorySQLite extends SQLiteRepository implements Pokemon
     private BaseStats buildStats(List<String[]> rowset) {
         int[] stats = Arrays.stream(rowset.get(0)).mapToInt(Integer::parseInt).toArray();
 
-        BaseStats baseStats = new BaseStats();
-        baseStats.setHealth(stats[0]);
-        baseStats.setAttack(stats[1]);
-        baseStats.setDefense(stats[2]);
-        baseStats.setSpecialAttack(stats[3]);
-        baseStats.setSpecialDefense(stats[4]);
-        baseStats.setSpeed(stats[5]);
-
-        return baseStats;
+        return new BaseStats(stats[0], stats[1], stats[2],stats[3], stats[4], stats[5]);
     }
 }

@@ -54,32 +54,30 @@ public abstract class FileSystemRepository {
         }
     }
 
-    // Llistar fitxers dins d'un directori
-    private static void llistarDirectori(String dir) {
-        File f = new File(dir);
-        boolean sortir = false;
+    static void listDirectory(String dir) {
+        File directory = new File(dir);
 
-        do {
-            if (f.exists()) {
-                File[] fitxers = f.listFiles();
-                if (fitxers != null) {
-                    for (File fitxer : fitxers) {
-                        System.out.println(fitxer.getName());
-                    }
+        if (directory.exists()) {
+            File[] files = directory.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    System.out.println(file.getName());
                 }
-
-                sortir = true;
-            } else {
-                f.mkdir();
             }
-        } while (!sortir);
+        } else {
+            createDirectory(dir);
+        }
+    }
+
+    private static boolean createDirectory(String dir) {
+        return new File(dir).mkdir();
     }
 
     // Obtenir la URL d'un fitxer
     public static String obtenirURL(String dir) throws IOException {
         String url;
         System.out.println("Fitxers desats:");
-        llistarDirectori(dir);
+        listDirectory(dir);
         System.out.println();
         url = String.format("%s/%s", dir, StreamReader.read());
         System.out.println("Has seleccionat '" + url + "'");
