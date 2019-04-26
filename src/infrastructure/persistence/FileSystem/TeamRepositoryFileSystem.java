@@ -6,21 +6,21 @@ import java.util.List;
 
 public class TeamRepositoryFileSystem extends FileSystemRepository {
 
-    // final private String DIRECTORY = "team";
+    final public String DIRECTORY = "team";
 
-    public String[][][] get(String path) {
-        return buildTeam(read(path));
+    public String[][][] get(String name) {
+        return assembleTeam(read(getPath(name)));
     }
 
-    public void save(String[][][] team, String path) {
-        write(ConvertCSVService.toCSV3(team), path);
+    public void save(String[][][] team, String name) {
+        write(ConvertCSVService.toCSV3(team), getPath(name));
     }
 
-    public void delete(String path) {
-        erase(path);
+    protected String getPath(String file) {
+        return String.format("%s/%s", DIRECTORY, file);
     }
 
-    private String[][][] buildTeam(List<String> data) {
+    private String[][][] assembleTeam(List<String> data) {
         String[] arr = new String[data.size()];
         return ConvertCSVService.fromCSV3(data.toArray(arr));
     }

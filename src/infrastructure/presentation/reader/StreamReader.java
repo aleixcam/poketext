@@ -8,8 +8,16 @@ public class StreamReader {
 
     public static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
-    public static String read() throws IOException {
-        System.out.print("Introdueix una opció: ");
-        return (in.readLine().trim()).replaceAll("\\s+", " ");
+    public static String read() {
+        String readed = null;
+
+        try {
+            System.out.print("Introdueix una opció: ");
+            readed = (in.readLine().trim()).replaceAll("\\s+", " ");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return readed;
     }
 }

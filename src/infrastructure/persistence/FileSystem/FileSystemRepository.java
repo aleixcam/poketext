@@ -1,14 +1,12 @@
 package infrastructure.persistence.FileSystem;
 
-import infrastructure.presentation.reader.StreamReader;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class FileSystemRepository {
 
-    abstract public void delete(String path);
+    abstract protected String getPath(String file);
 
     List<String> read(String path) {
         List<String> data = new ArrayList<>();
@@ -43,7 +41,7 @@ public abstract class FileSystemRepository {
         }
     }
 
-     void erase(String path) {
+     public void delete(String path) {
         try {
             File file = new File(path);
             if (!file.delete()) {
@@ -54,33 +52,28 @@ public abstract class FileSystemRepository {
         }
     }
 
-    static void listDirectory(String dir) {
+    public String[] listDirectory(String dir) {
         File directory = new File(dir);
+        ArrayList<String> list = new ArrayList<>();
 
         if (directory.exists()) {
             File[] files = directory.listFiles();
             if (files != null) {
                 for (File file : files) {
-                    System.out.println(file.getName());
+                    list.add(file.getName());
                 }
             }
         } else {
             createDirectory(dir);
         }
+
+        return list.toArray(new String[0]);
     }
 
-    private static boolean createDirectory(String dir) {
-        return new File(dir).mkdir();
-    }
-
-    // Obtenir la URL d'un fitxer
-    public static String obtenirURL(String dir) throws IOException {
-        String url;
-        System.out.println("Fitxers desats:");
-        listDirectory(dir);
-        System.out.println();
-        url = String.format("%s/%s", dir, StreamReader.read());
-        System.out.println("Has seleccionat '" + url + "'");
-        return url;
+    private void createDirectory(String dir) {
+        boolean created = new File(dir).mkdir();
+        if (!created) {
+            System.out.printf("Cannot create directory %s", dir);
+        }
     }
 }

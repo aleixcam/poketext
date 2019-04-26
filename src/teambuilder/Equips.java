@@ -2,14 +2,10 @@ package teambuilder;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import infrastructure.persistence.FileSystem.PokemonRepositoryFileSystem;
 import infrastructure.persistence.FileSystem.TeamRepositoryFileSystem;
 import infrastructure.presentation.reader.StreamReader;
-import infrastructure.persistence.FileSystem.FileSystemRepository;
-import infrastructure.service.ConvertCSVService;
 
 public class Equips {
 
@@ -69,6 +65,38 @@ public class Equips {
         return poke;
     }
 
+    private static String[][] importarPokemon() {
+        PokemonRepositoryFileSystem pokemonRepository = new PokemonRepositoryFileSystem();
+        String[] pokemons = pokemonRepository.listDirectory(pokemonRepository.DIRECTORY);
+        System.out.println("Saved pokemons:");
+        for (String pokemon : pokemons) {
+            System.out.println(pokemon);
+        }
+
+        return pokemonRepository.get(StreamReader.read());
+    }
+
+    private static void exportarPokemon(String[][] pokemon) {
+        PokemonRepositoryFileSystem pokemonRepository = new PokemonRepositoryFileSystem();
+        pokemonRepository.save(pokemon, StreamReader.read());
+    }
+
+    public static String[][][] importarEquip() {
+        TeamRepositoryFileSystem teamRepository = new TeamRepositoryFileSystem();
+        String[] pokemons = teamRepository.listDirectory(teamRepository.DIRECTORY);
+        System.out.println("Saved teams:");
+        for (String pokemon : pokemons) {
+            System.out.println(pokemon);
+        }
+
+        return teamRepository.get(StreamReader.read());
+    }
+
+    private static void exportarEquip(String[][][] equip) {
+        TeamRepositoryFileSystem teamRepository = new TeamRepositoryFileSystem();
+        teamRepository.save(equip, StreamReader.read());
+    }
+
     // Crear un nou equip
     private static void crearEquip(String[][][] equip) throws IOException {
         boolean sortir = false;
@@ -77,9 +105,6 @@ public class Equips {
 
         do {
             try {
-
-                PokemonRepositoryFileSystem pokemonRepository = new PokemonRepositoryFileSystem();
-                TeamRepositoryFileSystem teamRepository = new TeamRepositoryFileSystem();
 
                 // Opcions del menú
                 System.out.printf("%nPOKETEXT: CONSTRUCTOR D'EQUIPS%n");
@@ -117,19 +142,19 @@ public class Equips {
                     }
                 } else if ((s[0].equalsIgnoreCase("i")) && (s.length == 1)) {
                     if ((num = seguentPokemon(equip)) < 6) {
-                        equip[num] = pokemonRepository.get(FileSystemRepository.obtenirURL("pokemons"));
+                        equip[num] = importarPokemon();
                     } else {
                         System.out.println("No pots escollir més Pokèmons");
                     }
                 } else if ((s[0].equalsIgnoreCase("e")) && (s.length == 2)) {
                     if (equip[Integer.parseInt(s[1]) - 1] != null) {
-                        pokemonRepository.save(equip[Integer.parseInt(s[1]) - 1], FileSystemRepository.obtenirURL("pokemons"));
+                        exportarPokemon(equip[Integer.parseInt(s[1]) - 1]);
                     } else {
                         System.out.println("No hi ha cap Pokèmon");
                     }
                 } else if ((s[0].equalsIgnoreCase("f")) && (s.length == 1)) {
                     if (equipValid(equip)) {
-                        teamRepository.save(equip, FileSystemRepository.obtenirURL("equips"));
+                        exportarEquip(equip);
                         sortir = true;
                     } else {
                         System.out.println("L'equip no és valid i no es pot guardar");
@@ -170,11 +195,11 @@ public class Equips {
                 if (sel.equalsIgnoreCase("c")) {
                     crearEquip(new String[6][][]);
                 } else if (sel.equalsIgnoreCase("m")) {
-                    crearEquip(teamRepository.get(FileSystemRepository.obtenirURL("equips")));
+                    crearEquip(importarEquip());
                 } else if (sel.equalsIgnoreCase("e")) {
-                    teamRepository.delete(FileSystemRepository.obtenirURL("equips"));
+                    teamRepository.delete(StreamReader.read());
                 } else if (sel.equalsIgnoreCase("p")) {
-                    pokemonRepository.delete(FileSystemRepository.obtenirURL("pokemons"));
+                    pokemonRepository.delete(StreamReader.read());
                 } else if (sel.equalsIgnoreCase("q")) {
                     sortir = true;
                 } else {

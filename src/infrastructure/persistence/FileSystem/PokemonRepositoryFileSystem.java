@@ -6,21 +6,21 @@ import java.util.List;
 
 public class PokemonRepositoryFileSystem extends FileSystemRepository {
 
-    // final private String DIRECTORY = "pokemon";
+    final public String DIRECTORY = "pokemon";
 
-    public String[][] get(String path) {
-        return buildPokemon(read(path));
+    public String[][] get(String name) {
+        return assemblePokemon(read(getPath(name)));
     }
 
-    public void save(String[][] pokemon, String path) {
-        write(ConvertCSVService.toCSV(pokemon), path);
+    public void save(String[][] pokemon, String name) {
+        write(ConvertCSVService.toCSV(pokemon), getPath(name));
     }
 
-    public void delete(String path) {
-        erase(path);
+    protected String getPath(String file) {
+        return String.format("%s/%s", DIRECTORY, file);
     }
 
-    private String[][] buildPokemon(List<String> data) {
+    private String[][] assemblePokemon(List<String> data) {
         String[] arr = new String[data.size()];
         return ConvertCSVService.fromCSV(data.toArray(arr));
     }
