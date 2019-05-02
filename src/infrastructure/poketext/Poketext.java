@@ -1,29 +1,27 @@
 package infrastructure.poketext;
 
-import combat.Jugadors;
-import cercador.Cercador;
-
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Map;
 import java.util.Properties;
 
+import infrastructure.presentation.controller.BaseController;
 import infrastructure.presentation.reader.StreamReader;
-import teambuilder.Equips;
+import infrastructure.service.MenuService;
 
-// Clase principal
 public class Poketext {
 
     final public static Properties env = new Properties();
     
     public static void main(String[] args) throws IOException {
-        boolean sortir = false;
         String sel;
 
         System.out.println("Carregant...");
 
         env.loadFromXML(new FileInputStream(".env.xml"));
         Connector.connectar();
+
+        BaseController controller = new BaseController();
+        MenuService menu = new MenuService();
 
         do {
 
@@ -36,21 +34,17 @@ public class Poketext {
             System.out.println("Q. Sortir");
             sel = StreamReader.read();
 
-            // Seleccions del menú principal
-            if (sel.equals("1")) {
-                Jugadors.iniciarCombat();
-            } else if (sel.equals("2")) {
-                Equips.construirEquip();
-            } else if (sel.equals("3")) {
-                Cercador.cercadorPrincipal();
-            } else if (sel.equals("4")) {
-                System.out.println("Proves");
-            } else if (sel.equalsIgnoreCase("q")) {
-                sortir = true;
-            } else {
-                System.out.println("Selecció incorrecte");
+            if (sel.equalsIgnoreCase("q")) {
+                break;
             }
-        } while (!sortir);
+
+            menu.register("1", controller::play);
+            menu.register("2", controller::teambuilder);
+            menu.register("3", controller::pokedex);
+
+            menu.execute(sel.toUpperCase());
+        } while (true);
+
         System.out.println("Adéu!");
         Connector.tancar();
     }

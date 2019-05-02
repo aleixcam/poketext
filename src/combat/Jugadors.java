@@ -21,7 +21,7 @@ public class Jugadors {
     }
 
     // Cambiar les opcions del combat
-    private static int opcionsCombat() throws IOException {
+    private static int opcionsCombat() {
         int mode = 0;
         String sel;
 
@@ -44,7 +44,7 @@ public class Jugadors {
     }
 
     // Iniciar el combat
-    public static void iniciarCombat() throws IOException {
+    public static void iniciarCombat() {
         boolean sortir = false;
         int mode = 1;
         String[][][][] jugador = new String[2][][][];
@@ -91,6 +91,8 @@ public class Jugadors {
                 }
             } catch (FileNotFoundException ex) {
                 System.err.println("Fitxer no trobat");
+            } catch (IOException ex) {
+                System.err.println(ex.getMessage());
             }
         } while (!sortir);
     }

@@ -173,7 +173,7 @@ public class Equips {
     }
 
     // Començar a construïr un equip
-    public static void construirEquip() throws IOException {
+    public static void construirEquip() {
         boolean sortir = false;
         String sel;
         do {
@@ -207,6 +207,8 @@ public class Equips {
                 }
             } catch (FileNotFoundException ex) {
                 System.err.println("Fitxer no trobat");
+            } catch (IOException ex) {
+                System.err.println(ex.getMessage());
             }
         } while (!sortir);
     }
