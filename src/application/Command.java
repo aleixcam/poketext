@@ -1,4 +1,4 @@
-package infrastructure.service;
+package application;
 
 public interface Command {
 

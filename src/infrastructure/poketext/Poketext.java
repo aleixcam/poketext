@@ -4,9 +4,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import infrastructure.presentation.controller.BaseController;
+import application.AppReceiver;
 import infrastructure.presentation.reader.StreamReader;
-import infrastructure.service.Menu;
+import application.Menu;
 
 public class Poketext {
 
@@ -20,12 +20,12 @@ public class Poketext {
         env.loadFromXML(new FileInputStream(".env.xml"));
         Connector.connectar();
 
-        BaseController controller = new BaseController();
+        AppReceiver receiver = new AppReceiver();
 
         Menu menu = new Menu("POKETEXT: MENÚ PRINCIPAL");
-        menu.register("1", "Jugar", controller::play);
-        menu.register("2", "Construir un Equip", controller::teambuilder);
-        menu.register("3", "Cercador", controller::pokedex);
+        menu.register("1", receiver::play, "Jugar");
+        menu.register("2", receiver::teambuilder, "Construir un Equip");
+        menu.register("3", receiver::pokedex, "Cercador");
 
         do {
             menu.print();

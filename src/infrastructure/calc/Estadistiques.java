@@ -1,4 +1,4 @@
-package calc;
+package infrastructure.calc;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

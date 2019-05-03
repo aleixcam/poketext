@@ -1,7 +1,7 @@
-package teambuilder;
+package infrastructure.teambuilder;
 
 import application.item.GetItems.GetItemsService;
-import calc.Estadistiques;
+import infrastructure.calc.Estadistiques;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

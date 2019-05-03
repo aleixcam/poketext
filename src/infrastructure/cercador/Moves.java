@@ -1,38 +1,31 @@
-package cercador;
+package infrastructure.cercador;
 
-import java.io.IOException;
-
-import application.pokemon.GetPokemons.GetPokemonsService;
-import infrastructure.persistence.SQLite.PokemonRepositorySQLite;
+import application.move.GetMoves.GetMovesService;
+import infrastructure.persistence.SQLite.MoveRepositorySQLite;
 import infrastructure.presentation.printer.MatrixPrinter;
 import infrastructure.presentation.reader.StreamReader;
-import infrastructure.presentation.transformer.matrix.PokemonAssemblerMatrix;
+import infrastructure.presentation.transformer.matrix.MoveAssemblerMatrix;
 
-public class Pokemons {
+public class Moves {
 
-    static void cercarPokemons() throws IOException {
-        String[] pokedex, s;
+    public static void viewMoves() {
         String filter_type = "";
         String filter_name = "";
+        String[] s;
         boolean sortir = false;
-
-        pokedex = Pokedex.cercarPokedex();
-
+        
         do {
 
-            GetPokemonsService service = new GetPokemonsService(new PokemonRepositorySQLite(), new PokemonAssemblerMatrix());
-            String[][] pokemons = service.execute(Integer.parseInt(pokedex[0]), filter_name, filter_type);
+            GetMovesService service = new GetMovesService(new MoveRepositorySQLite(), new MoveAssemblerMatrix());
+            String[][] moves = service.execute(0, filter_name, filter_type);
 
-            // Mostrar per pantalla els pokèmons
-            System.out.printf("%n%nPokèdex: %s%n", pokedex[1]);
+            // Mostrar per pantalla els moviments
             System.out.printf("Nom: %s Tipus: %s%n", filter_name, filter_type);
-            MatrixPrinter.print(pokemons);
+            MatrixPrinter.print(moves);
             System.out.printf("Nom: %s Tipus: %s%n", filter_name, filter_type);
-            System.out.printf("Pokèdex: %s%n%n", pokedex[1]);
 
             // Opcions del menú
-            System.out.printf("%nCERCADOR: POKÈDEX%n");
-            System.out.println("P. Cambiar Pokèdex");
+            System.out.printf("%nCERCADOR: MOVIMENTS%n");
             System.out.println("N. Filtrar per nom");
             System.out.println("T. Filtrar per tipus");
             System.out.println("E. Eliminar filtre");
@@ -40,9 +33,7 @@ public class Pokemons {
             s = StreamReader.read().split(" ");
 
             // Seleccions del menú
-            if ((s[0].equalsIgnoreCase("p")) && (s.length == 1)) {
-                pokedex = Pokedex.cercarPokedex();
-            } else if ((s[0].equalsIgnoreCase("n")) && (s.length == 2)) {
+            if ((s[0].equalsIgnoreCase("n")) && (s.length == 2)) {
                 filter_name = s[1];
             } else if ((s[0].equalsIgnoreCase("t")) && (s.length == 2)) {
                 filter_type = s[1];

@@ -1,4 +1,4 @@
-package teambuilder;
+package infrastructure.teambuilder;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;

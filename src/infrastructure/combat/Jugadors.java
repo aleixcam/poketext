@@ -1,11 +1,11 @@
-package combat;
+package infrastructure.combat;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import infrastructure.presentation.reader.StreamReader;
-import teambuilder.Equips;
-import teambuilder.Pokes;
+import infrastructure.teambuilder.Equips;
+import infrastructure.teambuilder.Pokes;
 
 public class Jugadors {
 
@@ -20,7 +20,7 @@ public class Jugadors {
         return b;
     }
 
-    // Cambiar les opcions del combat
+    // Cambiar les opcions del infrastructure.combat
     private static int opcionsCombat() {
         int mode = 0;
         String sel;
@@ -43,7 +43,7 @@ public class Jugadors {
         return mode;
     }
 
-    // Iniciar el combat
+    // Iniciar el infrastructure.combat
     public static void iniciarCombat() {
         boolean sortir = false;
         int mode = 1;

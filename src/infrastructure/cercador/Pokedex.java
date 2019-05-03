@@ -1,4 +1,4 @@
-package cercador;
+package infrastructure.cercador;
 
 import application.pokedex.GetPokedexes.GetPokedexesService;
 import infrastructure.persistence.SQLite.PokedexRepositorySQLite;

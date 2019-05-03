@@ -1,6 +1,4 @@
-package cercador;
-
-import java.io.IOException;
+package infrastructure.cercador;
 
 import application.ability.GetAbilities.GetAbilitiesService;
 import infrastructure.persistence.SQLite.AbilityRepositorySQLite;
@@ -10,7 +8,7 @@ import infrastructure.presentation.transformer.matrix.AbilityAssemblerMatrix;
 
 public class Habilitats {
 
-    static void cercarHabilitats() throws IOException {
+    public static void cercarHabilitats() {
         String filter_name = "";
         String[] s;
         boolean sortir = false;

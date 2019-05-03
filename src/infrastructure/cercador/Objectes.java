@@ -1,6 +1,4 @@
-package cercador;
-
-import java.io.IOException;
+package infrastructure.cercador;
 
 import application.item.GetItems.GetItemsService;
 import infrastructure.persistence.SQLite.ItemRepositorySQLite;
@@ -10,7 +8,7 @@ import infrastructure.presentation.transformer.matrix.ItemAssemblerMatrix;
 
 public class Objectes {
     
-    static void cercarObjectes() throws IOException {
+    public static void cercarObjectes() {
         String filter_name = "";
         String[] s;
         boolean sortir = false;
