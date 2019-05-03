@@ -1,6 +1,6 @@
 package infrastructure.service;
 
-public interface Action {
+public interface Command {
 
     void execute();
 }
