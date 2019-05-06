@@ -3,7 +3,7 @@ package infrastructure.cercador;
 import application.ability.GetAbilities.GetAbilitiesService;
 import infrastructure.persistence.SQLite.AbilityRepositorySQLite;
 import infrastructure.presentation.printer.MatrixPrinter;
-import infrastructure.presentation.reader.StreamReader;
+import infrastructure.service.ReaderService;
 import infrastructure.presentation.transformer.matrix.AbilityAssemblerMatrix;
 
 public class Habilitats {
@@ -28,7 +28,7 @@ public class Habilitats {
             System.out.println("N. Filtrar per nom");
             System.out.println("E. Eliminar filtre");
             System.out.println("Q. Sortir");
-            s = StreamReader.read().split(" ");
+            s = ReaderService.read().split(" ");
 
             // Seleccions del menú
             if ((s[0].equalsIgnoreCase("n")) && (s.length == 2)) {

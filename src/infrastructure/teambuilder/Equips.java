@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import infrastructure.persistence.FileSystem.PokemonRepositoryFileSystem;
 import infrastructure.persistence.FileSystem.TeamRepositoryFileSystem;
-import infrastructure.presentation.reader.StreamReader;
+import infrastructure.service.ReaderService;
 
 public class Equips {
 
@@ -73,12 +73,12 @@ public class Equips {
             System.out.println(pokemon);
         }
 
-        return pokemonRepository.get(StreamReader.read());
+        return pokemonRepository.get(ReaderService.read());
     }
 
     private static void exportarPokemon(String[][] pokemon) {
         PokemonRepositoryFileSystem pokemonRepository = new PokemonRepositoryFileSystem();
-        pokemonRepository.save(pokemon, StreamReader.read());
+        pokemonRepository.save(pokemon, ReaderService.read());
     }
 
     public static String[][][] importarEquip() {
@@ -89,12 +89,12 @@ public class Equips {
             System.out.println(pokemon);
         }
 
-        return teamRepository.get(StreamReader.read());
+        return teamRepository.get(ReaderService.read());
     }
 
     private static void exportarEquip(String[][][] equip) {
         TeamRepositoryFileSystem teamRepository = new TeamRepositoryFileSystem();
-        teamRepository.save(equip, StreamReader.read());
+        teamRepository.save(equip, ReaderService.read());
     }
 
     // Crear un nou equip
@@ -116,7 +116,7 @@ public class Equips {
                 System.out.println("E. Exportar Pokèmon (1-6)");
                 System.out.println("F. Finalitzar i guardar l'equip");
                 System.out.println("Q. Cancelar i sortir");
-                s = StreamReader.read().split(" ");
+                s = ReaderService.read().split(" ");
 
                 // Seleccions del menú principal
                 if ((s[0].equalsIgnoreCase("s")) && (s.length == 1)) {
@@ -189,7 +189,7 @@ public class Equips {
                 System.out.println("E. Eliminar un equip");
                 System.out.println("P. Eliminar un Pokèmon");
                 System.out.println("Q. Sortir al menú principal");
-                sel = StreamReader.read();
+                sel = ReaderService.read();
 
                 // Seleccions del menú principal
                 if (sel.equalsIgnoreCase("c")) {
@@ -197,9 +197,9 @@ public class Equips {
                 } else if (sel.equalsIgnoreCase("m")) {
                     crearEquip(importarEquip());
                 } else if (sel.equalsIgnoreCase("e")) {
-                    teamRepository.delete(StreamReader.read());
+                    teamRepository.delete(ReaderService.read());
                 } else if (sel.equalsIgnoreCase("p")) {
-                    pokemonRepository.delete(StreamReader.read());
+                    pokemonRepository.delete(ReaderService.read());
                 } else if (sel.equalsIgnoreCase("q")) {
                     sortir = true;
                 } else {

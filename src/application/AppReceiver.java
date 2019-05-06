@@ -2,7 +2,7 @@ package application;
 
 import application.pokedex.PokedexReceiver;
 import infrastructure.combat.Jugadors;
-import infrastructure.presentation.reader.StreamReader;
+import infrastructure.service.ReaderService;
 import infrastructure.teambuilder.Equips;
 
 public class AppReceiver {
@@ -28,7 +28,7 @@ public class AppReceiver {
 
         do {
             menu.print();
-            selection = StreamReader.read().toUpperCase();
+            selection = ReaderService.read().toUpperCase();
 
             menu.execute(selection);
         } while (!selection.equals(menu.EXIT));

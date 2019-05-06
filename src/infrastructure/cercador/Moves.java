@@ -3,7 +3,7 @@ package infrastructure.cercador;
 import application.move.GetMoves.GetMovesService;
 import infrastructure.persistence.SQLite.MoveRepositorySQLite;
 import infrastructure.presentation.printer.MatrixPrinter;
-import infrastructure.presentation.reader.StreamReader;
+import infrastructure.service.ReaderService;
 import infrastructure.presentation.transformer.matrix.MoveAssemblerMatrix;
 
 public class Moves {
@@ -30,7 +30,7 @@ public class Moves {
             System.out.println("T. Filtrar per tipus");
             System.out.println("E. Eliminar filtre");
             System.out.println("Q. Sortir");
-            s = StreamReader.read().split(" ");
+            s = ReaderService.read().split(" ");
 
             // Seleccions del menú
             if ((s[0].equalsIgnoreCase("n")) && (s.length == 2)) {

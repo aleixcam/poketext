@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import infrastructure.persistence.SQLite.ItemRepositorySQLite;
 import infrastructure.poketext.Poketext;
 import infrastructure.presentation.printer.MatrixPrinter;
-import infrastructure.presentation.reader.StreamReader;
+import infrastructure.service.ReaderService;
 import infrastructure.presentation.transformer.matrix.ItemAssemblerMatrix;
 import infrastructure.presentation.transformer.matrix.MatrixAssembler;
 import infrastructure.poketext.Connector;
@@ -67,7 +67,7 @@ public class Detalls {
             System.out.println("N. Filtrar per nom");
             System.out.println("E. Eliminar filtre");
             System.out.println("Q. Eliminar el objecte");
-            s = StreamReader.read().split(" ");
+            s = ReaderService.read().split(" ");
 
             // Seleccions del menú
             if (s[0].equalsIgnoreCase("s") && s.length == 2 && checkItemId(items, s[1])) {
@@ -156,7 +156,7 @@ public class Detalls {
                 // Opcions del menú
                 System.out.println("S. Seleccionar ID");
                 System.out.println("Q. Deixar la habilitat per defecte");
-                s = StreamReader.read().split(" ");
+                s = ReaderService.read().split(" ");
 
                 // Seleccions del menú
                 if ((s[0].equalsIgnoreCase("s")) && (s.length == 2)) {
@@ -234,7 +234,7 @@ public class Detalls {
             System.out.println("O. Seleccionar un objecte");
             System.out.println("A. Editar la habilitat");
             System.out.println("F. Finalitzar la edició");
-            String[] s = StreamReader.read().split(" ");
+            String[] s = ReaderService.read().split(" ");
 
             // Seleccions del menú
             if ((s[0].equalsIgnoreCase("n")) && (s.length == 2)) {

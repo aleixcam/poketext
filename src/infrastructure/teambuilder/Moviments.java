@@ -9,7 +9,7 @@ import application.move.GetMoves.GetMovesService;
 import infrastructure.persistence.SQLite.MoveRepositorySQLite;
 import infrastructure.poketext.Poketext;
 import infrastructure.presentation.printer.MatrixPrinter;
-import infrastructure.presentation.reader.StreamReader;
+import infrastructure.service.ReaderService;
 import infrastructure.presentation.transformer.matrix.MoveAssemblerMatrix;
 import infrastructure.poketext.Connector;
 
@@ -84,7 +84,7 @@ public class Moviments {
                 System.out.println("N. Filtrar per nom");
                 System.out.println("T. Filtrar per tipus");
                 System.out.println("E. Eliminar filtre");
-                s = StreamReader.read().split(" ");
+                s = ReaderService.read().split(" ");
 
                 // Seleccions del menú
                 if ((s[0].equalsIgnoreCase("s")) && (s.length == 2)) {
@@ -154,7 +154,7 @@ public class Moviments {
                 System.out.printf("%nPOKETEXT: EDITOR DE MOVIMENTS%n");
                 System.out.println("M. Modificar un moviment (1-4)");
                 System.out.println("F. Finalitzar la edició");
-                s = StreamReader.read().split(" ");
+                s = ReaderService.read().split(" ");
 
                 // Seleccions del menú principal
                 if ((s[0].equalsIgnoreCase("m")) && (s.length == 2)) {

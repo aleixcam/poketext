@@ -3,7 +3,7 @@ package infrastructure.combat;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import infrastructure.presentation.reader.StreamReader;
+import infrastructure.service.ReaderService;
 import infrastructure.teambuilder.Equips;
 import infrastructure.teambuilder.Pokes;
 
@@ -30,7 +30,7 @@ public class Jugadors {
             // Opcions del menú
             System.out.printf("%nPOKETEXT: MODE DE JOC%n");
             System.out.println("1. Combat Individual");
-            sel = StreamReader.read();
+            sel = ReaderService.read();
 
             // Seleccions del menú principal
             if (sel.equals("1")) {
@@ -60,7 +60,7 @@ public class Jugadors {
                 System.out.println("M. Mode de joc");
                 System.out.println("A. Acceptar");
                 System.out.println("Q. Sortir al menú principal");
-                s = StreamReader.read().split(" ");
+                s = ReaderService.read().split(" ");
 
                 // Seleccions del menú principal
                 if ((s[0].equalsIgnoreCase("s")) && (s.length == 2)) {

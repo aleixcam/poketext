@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 import infrastructure.persistence.SQLite.PokemonRepositorySQLite;
 import infrastructure.presentation.printer.MatrixPrinter;
-import infrastructure.presentation.reader.StreamReader;
+import infrastructure.service.ReaderService;
 import infrastructure.presentation.transformer.matrix.PokemonAssemblerMatrix;
 import infrastructure.poketext.Connector;
 
@@ -85,10 +85,10 @@ public class Pokes {
 
         do {
             System.out.println("Vols posar-li un sobrenom al teu Pokèmon? (S/N)");
-            sel = StreamReader.read();
+            sel = ReaderService.read();
 
             if (sel.equalsIgnoreCase("s")) {
-                res = StreamReader.read();
+                res = ReaderService.read();
             } else if (sel.equalsIgnoreCase("n")) {
                 res = consultarIDPoke(id, false);
             } else {
@@ -121,7 +121,7 @@ public class Pokes {
                 System.out.println("N. Filtrar per nom");
                 System.out.println("T. Filtrar per tipus");
                 System.out.println("E. Eliminar filtre");
-                s = StreamReader.read().split(" ");
+                s = ReaderService.read().split(" ");
 
                 // Seleccions del menú
                 if ((s[0].equalsIgnoreCase("s")) && (s.length == 2)) {
@@ -220,7 +220,7 @@ public class Pokes {
             System.out.println("M. Editar moviments");
             System.out.println("S. Editar estadístiques");
             System.out.println("F. Finalitzar la edició");
-            sel = StreamReader.read();
+            sel = ReaderService.read();
 
             // Seleccions del menú
             if (sel.equalsIgnoreCase("p")) {

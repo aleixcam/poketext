@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 import application.AppReceiver;
-import infrastructure.presentation.reader.StreamReader;
+import infrastructure.service.ReaderService;
 import application.Menu;
 
 public class Poketext {
@@ -29,7 +29,7 @@ public class Poketext {
 
         do {
             menu.print();
-            selection = StreamReader.read().toUpperCase();
+            selection = ReaderService.read().toUpperCase();
 
             menu.execute(selection);
         } while (!selection.equals(menu.EXIT));

@@ -5,7 +5,7 @@ import domain.pokemon.BaseStats;
 import infrastructure.persistence.SQLite.NatureRepositorySQLite;
 import infrastructure.persistence.SQLite.PokemonRepositorySQLite;
 import infrastructure.presentation.printer.MatrixPrinter;
-import infrastructure.presentation.reader.StreamReader;
+import infrastructure.service.ReaderService;
 import infrastructure.presentation.transformer.matrix.NatureAssemblerMatrix;
 
 import infrastructure.calc.Estadistiques;
@@ -33,7 +33,7 @@ public class Stats {
 
         do {
 
-            s = StreamReader.read();
+            s = ReaderService.read();
             selected = Arrays.asList(options).indexOf(s);
 
             if (selected < 1) {
@@ -110,7 +110,7 @@ public class Stats {
             System.out.println("I. Editar IVs (0-31)");
             System.out.println("N. Seleccionar una naturalesa");
             System.out.println("F. Finalitzar la edició");
-            s = StreamReader.read().split(" ");
+            s = ReaderService.read().split(" ");
 
             // Seleccions del menú
             if ((s[0].equalsIgnoreCase("e")) && (s.length == 3)) {
