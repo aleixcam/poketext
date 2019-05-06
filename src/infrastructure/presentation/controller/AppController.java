@@ -1,11 +1,11 @@
-package application;
+package infrastructure.presentation.controller;
 
-import application.pokedex.PokedexReceiver;
+import application.command.Menu;
 import infrastructure.combat.Jugadors;
 import infrastructure.service.ReaderService;
 import infrastructure.teambuilder.Equips;
 
-public class AppReceiver {
+final public class AppController {
 
     public void play() {
         Jugadors.iniciarCombat();
@@ -18,7 +18,7 @@ public class AppReceiver {
     public void pokedex() {
         String selection;
 
-        PokedexReceiver receiver = new PokedexReceiver();
+        PokedexController receiver = new PokedexController();
 
         Menu menu = new Menu("POKETEXT: POKEDEX");
         menu.register("P", receiver::pokemons, "Cerca Pokèmons");

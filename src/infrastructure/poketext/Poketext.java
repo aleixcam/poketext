@@ -1,8 +1,8 @@
 package infrastructure.poketext;
 
-import application.AppReceiver;
+import infrastructure.presentation.controller.AppController;
 import infrastructure.service.ReaderService;
-import application.Menu;
+import application.command.Menu;
 
 public class Poketext {
 
@@ -13,7 +13,7 @@ public class Poketext {
 
         Connector.connectar();
 
-        AppReceiver receiver = new AppReceiver();
+        AppController receiver = new AppController();
 
         Menu menu = new Menu("POKETEXT: MENÚ PRINCIPAL");
         menu.register("1", receiver::play, "Jugar");

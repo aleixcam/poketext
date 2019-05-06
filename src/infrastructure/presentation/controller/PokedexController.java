@@ -1,4 +1,4 @@
-package application.pokedex;
+package infrastructure.presentation.controller;
 
 import application.pokemon.GetPokemons.GetPokemonsService;
 import infrastructure.cercador.*;
@@ -7,7 +7,7 @@ import infrastructure.presentation.printer.MatrixPrinter;
 import infrastructure.service.ReaderService;
 import infrastructure.presentation.transformer.matrix.PokemonAssemblerMatrix;
 
-public class PokedexReceiver {
+final public class PokedexController {
 
     public void pokemons() {
         String[] s;
@@ -17,9 +17,10 @@ public class PokedexReceiver {
 
         GetPokemonsService service = new GetPokemonsService(new PokemonRepositorySQLite(), new PokemonAssemblerMatrix());
         String[] pokedex = Pokedex.cercarPokedex();
-        String[][] pokemons = service.execute(Integer.parseInt(pokedex[0]), filter_name, filter_type);
 
         do {
+
+            String[][] pokemons = service.execute(Integer.parseInt(pokedex[0]), filter_name, filter_type);
 
             // Mostrar per pantalla els pokèmons
             System.out.printf("%n%nPokèdex: %s%n", pokedex[1]);
