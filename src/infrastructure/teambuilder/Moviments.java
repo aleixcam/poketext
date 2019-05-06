@@ -1,14 +1,13 @@
 package infrastructure.teambuilder;
 
-import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import application.move.GetMoves.GetMovesService;
 import infrastructure.persistence.SQLite.MoveRepositorySQLite;
-import infrastructure.poketext.Poketext;
 import infrastructure.presentation.printer.MatrixPrinter;
+import infrastructure.service.LanguageService;
 import infrastructure.service.ReaderService;
 import infrastructure.presentation.transformer.matrix.MoveAssemblerMatrix;
 import infrastructure.poketext.Connector;
@@ -38,14 +37,14 @@ public class Moviments {
     }
 
     // Consultar el nom del Pokèmon
-    protected static String consultarNomMoviment(String id) throws SQLException {
+    static String consultarNomMoviment(String id) throws SQLException {
         ResultSet result;
         String res = "";
 
         PreparedStatement select = Connector.connect.prepareStatement("select name\n"
                 + "from move_names\n"
                 + "where move_id = '" + id + "'\n"
-                + "and local_language_id = " + Poketext.env.getProperty("languageId"));
+                + "and local_language_id = " + LanguageService.ENGLISH);
         result = select.executeQuery();
         if (result.next()) {
             res = result.getString("name");
@@ -53,7 +52,7 @@ public class Moviments {
         return res;
     }// Consultar el nom del Pokèmon
 
-    protected static boolean comprovarMoviment(String[] moves, String id) throws SQLException {
+    private static boolean comprovarMoviment(String[] moves, String id) {
         boolean b = true;
         for (int i = 0; i < moves.length && b; i++) {
             if (id.equals(moves[i])) {
@@ -66,7 +65,10 @@ public class Moviments {
 
     // Escollir un moviment per al Pokèmon
     private static String escollirMoviments(String[][] poke) {
-        String res = "", filter_type = "", filter_name = "", s[];
+        String res = "";
+        String filter_type = "";
+        String filter_name = "";
+        String[] s;
 
         do {
             try {
@@ -117,7 +119,7 @@ public class Moviments {
     //****EDITAR****************************************************************
     //**************************************************************************
     // Mostar per pantalla els moviments d'un Pokemon
-    private static void imprimirMoviments(String[][] poke) throws IOException {
+    private static void imprimirMoviments(String[][] poke) {
         int i;
         try {
             System.out.printf("%n%s%n", "Nom: " + poke[0][1]);
@@ -142,9 +144,9 @@ public class Moviments {
     }
 
     // Crear un nou equip
-    protected static void editarMoviments(String[][] poke) throws IOException {
+    static void editarMoviments(String[][] poke) {
         boolean sortir = false;
-        String s[];
+        String[] s;
 
         do {
             try {

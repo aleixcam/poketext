@@ -1,23 +1,16 @@
 package infrastructure.poketext;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
-
 import application.AppReceiver;
 import infrastructure.service.ReaderService;
 import application.Menu;
 
 public class Poketext {
 
-    final public static Properties env = new Properties();
-    
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         String selection;
 
         System.out.println("Carregant...");
 
-        env.loadFromXML(new FileInputStream(".env.xml"));
         Connector.connectar();
 
         AppReceiver receiver = new AppReceiver();

@@ -4,7 +4,7 @@ import domain.ability.Ability;
 import domain.ability.AbilitiesCollection;
 import domain.ability.AbilityCriteria;
 import domain.ability.AbilityRepository;
-import infrastructure.poketext.Poketext;
+import infrastructure.service.LanguageService;
 
 import java.util.List;
 import java.util.Objects;
@@ -15,8 +15,8 @@ public class AbilityRepositorySQLite extends SQLiteRepository implements Ability
         List<String[]> rowset = executeQuery("select f.ability_id, n.name, f.flavor_text\n"
                 + "from ability_flavor_text f, ability_names n\n"
                 + "where f.ability_id = n.ability_id\n"
-                + "and f.language_id = " + Poketext.env.getProperty("languageId") + "\n"
-                + "and n.local_language_id = " + Poketext.env.getProperty("languageId") + "\n"
+                + "and f.language_id = " + LanguageService.ENGLISH + "\n"
+                + "and n.local_language_id = " + LanguageService.ENGLISH + "\n"
                 + "and f.version_group_id = 16\n"
                 + (!Objects.equals(criteria.getName(), "") ? "and n.name like '%" + criteria.getName() + "%'" : ""));
 

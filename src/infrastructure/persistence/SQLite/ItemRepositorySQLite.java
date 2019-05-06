@@ -5,6 +5,7 @@ import domain.item.ItemCriteria;
 import domain.item.ItemRepository;
 import domain.item.ItemsCollection;
 import infrastructure.poketext.Poketext;
+import infrastructure.service.LanguageService;
 
 import java.util.List;
 import java.util.Objects;
@@ -20,7 +21,7 @@ public class ItemRepositorySQLite extends SQLiteRepository implements ItemReposi
                 + "and (c.pocket_id = 1\n"
                 + "or c.pocket_id = 3\n"
                 + "or c.pocket_id = 5)\n"
-                + "and n.local_language_id = " + Poketext.env.getProperty("languageId") + "\n"
+                + "and n.local_language_id = " + LanguageService.ENGLISH + "\n"
                 + "and f.language_id = 9\n"
                 + "and f.version_group_id = 15\n"
                 + (!Objects.equals(criteria.getName(), "") ? "and n.name like '%" + criteria.getName() + "%'" : ""));

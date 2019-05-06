@@ -3,7 +3,7 @@ package infrastructure.persistence.SQLite;
 import domain.nature.Nature;
 import domain.nature.NatureRepository;
 import domain.nature.NaturesCollection;
-import infrastructure.poketext.Poketext;
+import infrastructure.service.LanguageService;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class NatureRepositorySQLite extends SQLiteRepository implements NatureRe
         List<String[]> rowset = executeQuery("select p.id, n.name, p.increased_stat_id, p.decreased_stat_id \n"
             + "from nature_names n, natures p\n"
             + "where p.id = n.nature_id\n"
-            + "and local_language_id =" + Poketext.env.getProperty("languageId"));
+            + "and local_language_id =" + LanguageService.ENGLISH);
 
         return buildPokedexes(rowset);
     }
@@ -36,7 +36,7 @@ public class NatureRepositorySQLite extends SQLiteRepository implements NatureRe
     public String getNameById(String id) {
         String[] nature = executeQuery("select name \n"
             + "from nature_names\n"
-            + "where local_language_id = " + Poketext.env.getProperty("languageId") + "\n"
+            + "where local_language_id = " + LanguageService.ENGLISH + "\n"
             + "and nature_id = " + id).get(0);
 
         return nature[0];

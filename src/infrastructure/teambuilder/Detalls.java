@@ -8,8 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import infrastructure.persistence.SQLite.ItemRepositorySQLite;
-import infrastructure.poketext.Poketext;
 import infrastructure.presentation.printer.MatrixPrinter;
+import infrastructure.service.LanguageService;
 import infrastructure.service.ReaderService;
 import infrastructure.presentation.transformer.matrix.ItemAssemblerMatrix;
 import infrastructure.presentation.transformer.matrix.MatrixAssembler;
@@ -36,7 +36,7 @@ public class Detalls {
             PreparedStatement select = Connector.connect.prepareStatement("select name\n"
                     + "from item_names\n"
                     + "where item_id = '" + id + "'\n"
-                    + "and local_language_id = " + Poketext.env.getProperty("languageId"));
+                    + "and local_language_id = " + LanguageService.ENGLISH);
             result = select.executeQuery();
             if (result.next()) {
                 res = result.getString("name");
@@ -46,7 +46,7 @@ public class Detalls {
     }
 
     // Escollir un pokèmon per a l'equip
-    private static String escollirObjecte() throws IOException {
+    private static String escollirObjecte() {
         boolean sortir = false;
         String res = "";
         String filter_name = "";
@@ -96,8 +96,8 @@ public class Detalls {
                 + "from pokemon_abilities a, ability_names n, ability_flavor_text f\n"
                 + "where a.ability_id = n.ability_id\n"
                 + "and a.ability_id = f.ability_id\n"
-                + "and n.local_language_id = " + Poketext.env.getProperty("languageId") + "\n"
-                + "and f.language_id = " + Poketext.env.getProperty("languageId") + "\n"
+                + "and n.local_language_id = " + LanguageService.ENGLISH + "\n"
+                + "and f.language_id = " + LanguageService.ENGLISH + "\n"
                 + "and f.version_group_id = 15\n"
                 + "and a.pokemon_id = " + id);
         result = st.executeQuery();
@@ -112,7 +112,7 @@ public class Detalls {
         PreparedStatement select = Connector.connect.prepareStatement("select a.ability_id, n.name\n"
                 + "from pokemon_abilities a, ability_names n\n"
                 + "where a.ability_id = n.ability_id\n"
-                + "and n.local_language_id = " + Poketext.env.getProperty("languageId") + "\n"
+                + "and n.local_language_id = " + LanguageService.ENGLISH + "\n"
                 + "and a.slot = " + slot + "\n"
                 + "and a.pokemon_id = " + id);
         result = select.executeQuery();
@@ -131,7 +131,7 @@ public class Detalls {
 
         PreparedStatement select = Connector.connect.prepareStatement("select name\n"
                 + "from ability_names\n"
-                + "where local_language_id = " + Poketext.env.getProperty("languageId") + "\n"
+                + "where local_language_id = " + LanguageService.ENGLISH + "\n"
                 + "and ability_id = " + id);
         result = select.executeQuery();
         if (result.next()) {
@@ -141,7 +141,7 @@ public class Detalls {
     }
 
     // Escollir un pokèmon per a l'equip
-    private static String escollirHabilitat(String id) throws IOException {
+    private static String escollirHabilitat(String id) {
         String res = "";
         String[] s;
 
