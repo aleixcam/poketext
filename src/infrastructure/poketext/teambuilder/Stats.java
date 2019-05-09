@@ -1,4 +1,4 @@
-package infrastructure.teambuilder;
+package infrastructure.poketext.teambuilder;
 
 import application.nature.GetNatures.GetNaturesService;
 import domain.pokemon.BaseStats;
@@ -8,7 +8,7 @@ import infrastructure.presentation.printer.MatrixPrinter;
 import infrastructure.service.ReaderService;
 import infrastructure.presentation.transformer.matrix.NatureAssemblerMatrix;
 
-import infrastructure.calc.Estadistiques;
+import infrastructure.poketext.calc.Estadistiques;
 import java.io.IOException;
 import java.util.Arrays;
 

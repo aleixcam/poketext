@@ -1,4 +1,4 @@
-package infrastructure.teambuilder;
+package infrastructure.poketext.teambuilder;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

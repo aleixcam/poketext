@@ -1,4 +1,4 @@
-package infrastructure.cercador;
+package infrastructure.poketext.cercador;
 
 import application.move.GetMoves.GetMovesService;
 import infrastructure.persistence.SQLite.MoveRepositorySQLite;

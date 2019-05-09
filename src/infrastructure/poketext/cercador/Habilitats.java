@@ -1,30 +1,30 @@
-package infrastructure.cercador;
+package infrastructure.poketext.cercador;
 
-import application.item.GetItems.GetItemsService;
-import infrastructure.persistence.SQLite.ItemRepositorySQLite;
+import application.ability.GetAbilities.GetAbilitiesService;
+import infrastructure.persistence.SQLite.AbilityRepositorySQLite;
 import infrastructure.presentation.printer.MatrixPrinter;
 import infrastructure.service.ReaderService;
-import infrastructure.presentation.transformer.matrix.ItemAssemblerMatrix;
+import infrastructure.presentation.transformer.matrix.AbilityAssemblerMatrix;
 
-public class Objectes {
-    
-    public static void cercarObjectes() {
+public class Habilitats {
+
+    public static void cercarHabilitats() {
         String filter_name = "";
         String[] s;
         boolean sortir = false;
-        
+
         do {
 
-            GetItemsService service = new GetItemsService(new ItemRepositorySQLite(), new ItemAssemblerMatrix());
-            String[][] items = service.execute(filter_name);
+            GetAbilitiesService service = new GetAbilitiesService(new AbilityRepositorySQLite(), new AbilityAssemblerMatrix());
+            String[][] abilities = service.execute(filter_name);
 
-            // Mostrar per pantalla els objectes
+            // Mostrar per pantalla els moviments
             System.out.printf("Nom: %s%n", filter_name);
-            MatrixPrinter.print(items);
+            MatrixPrinter.print(abilities);
             System.out.printf("Nom: %s%n", filter_name);
 
             // Opcions del menú
-            System.out.printf("%nCERCADOR: ITEMS%n");
+            System.out.printf("%nCERCADOR: HABILITATS%n");
             System.out.println("N. Filtrar per nom");
             System.out.println("E. Eliminar filtre");
             System.out.println("Q. Sortir");

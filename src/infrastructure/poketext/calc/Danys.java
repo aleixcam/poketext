@@ -1,4 +1,4 @@
-package infrastructure.calc;
+package infrastructure.poketext.calc;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import infrastructure.poketext.Connector;
 
 // Clase de efectivitat
-public class Efectivitat {
+public class Danys {
 
     // Consultar el tipus del moviment
     private static String tipusMoviment(String id) {

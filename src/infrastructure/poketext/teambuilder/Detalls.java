@@ -1,7 +1,7 @@
-package infrastructure.teambuilder;
+package infrastructure.poketext.teambuilder;
 
 import application.item.GetItems.GetItemsService;
-import infrastructure.calc.Estadistiques;
+import infrastructure.poketext.calc.Estadistiques;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

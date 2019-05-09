@@ -1,7 +1,7 @@
 package infrastructure.presentation.controller;
 
 import application.pokemon.GetPokemons.GetPokemonsService;
-import infrastructure.cercador.*;
+import infrastructure.poketext.cercador.*;
 import infrastructure.persistence.SQLite.PokemonRepositorySQLite;
 import infrastructure.presentation.printer.MatrixPrinter;
 import infrastructure.service.ReaderService;
@@ -9,7 +9,7 @@ import infrastructure.presentation.transformer.matrix.PokemonAssemblerMatrix;
 
 final public class PokedexController {
 
-    public void pokemons() {
+    void pokemons() {
         String[] s;
         String filter_type = "";
         String filter_name = "";
@@ -63,11 +63,11 @@ final public class PokedexController {
         Moves.viewMoves();
     }
 
-    public void objects() {
+    void objects() {
         Objectes.cercarObjectes();
     }
 
-    public void abilities() {
+    void abilities() {
         Habilitats.cercarHabilitats();
     }
 }

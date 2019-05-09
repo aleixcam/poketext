@@ -1,9 +1,9 @@
 package infrastructure.presentation.controller;
 
 import application.command.Menu;
-import infrastructure.combat.Jugadors;
+import infrastructure.poketext.combat.Jugadors;
 import infrastructure.service.ReaderService;
-import infrastructure.teambuilder.Equips;
+import infrastructure.poketext.teambuilder.Equips;
 
 final public class AppController {
 
@@ -20,7 +20,7 @@ final public class AppController {
 
         PokedexController receiver = new PokedexController();
 
-        Menu menu = new Menu("POKETEXT: POKEDEX");
+        Menu menu = new Menu("POKETEXT: POKÈDEX");
         menu.register("P", receiver::pokemons, "Cerca Pokèmons");
         menu.register("M", receiver::moves, "Cerca Moviments");
         menu.register("O", receiver::objects, "Cerca Objectes");

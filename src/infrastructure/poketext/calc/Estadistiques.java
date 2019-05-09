@@ -1,4 +1,4 @@
-package infrastructure.calc;
+package infrastructure.poketext.calc;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -42,17 +42,19 @@ public class Estadistiques {
 
     // Calcular les estadístiques d'un Pokèmon
     public static void calcularEstadistiques(String[][] poke) {
-        int natura[], lvl = Integer.parseInt(poke[1][0]);
+        int lvl = Integer.parseInt(poke[1][0]);
+        int[] natura;
+
         try {
             PokemonRepositorySQLite repository = new PokemonRepositorySQLite();
             BaseStats stats = repository.findStatsByPokemonId(Integer.parseInt(poke[0][0]));
             int[] base = {
-                    stats.getHealth(),
-                    stats.getAttack(),
-                    stats.getDefense(),
-                    stats.getSpecialAttack(),
-                    stats.getSpecialDefense(),
-                    stats.getSpeed()
+                stats.getHealth(),
+                stats.getAttack(),
+                stats.getDefense(),
+                stats.getSpecialAttack(),
+                stats.getSpecialDefense(),
+                stats.getSpeed()
             };
 
             natura = consultarNaturalesa(poke[4][6]);
