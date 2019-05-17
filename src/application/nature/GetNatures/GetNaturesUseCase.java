@@ -4,12 +4,12 @@ import application.nature.NatureAssembler;
 import domain.nature.NatureRepository;
 import domain.nature.NaturesCollection;
 
-public class GetNaturesService {
+public class GetNaturesUseCase {
 
     private NatureRepository repository;
     private NatureAssembler assembler;
 
-    public GetNaturesService(NatureRepository repository, NatureAssembler assembler) {
+    public GetNaturesUseCase(NatureRepository repository, NatureAssembler assembler) {
         this.repository = repository;
         this.assembler = assembler;
     }

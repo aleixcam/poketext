@@ -1,6 +1,6 @@
 package infrastructure.poketext.cercador;
 
-import application.item.GetItems.GetItemsService;
+import application.item.GetItems.GetItemsUseCase;
 import infrastructure.persistence.SQLite.ItemRepositorySQLite;
 import infrastructure.presentation.printer.MatrixPrinter;
 import infrastructure.service.ReaderService;
@@ -15,7 +15,7 @@ public class Objectes {
         
         do {
 
-            GetItemsService service = new GetItemsService(new ItemRepositorySQLite(), new ItemAssemblerMatrix());
+            GetItemsUseCase service = new GetItemsUseCase(new ItemRepositorySQLite(), new ItemAssemblerMatrix());
             String[][] items = service.execute(filter_name);
 
             // Mostrar per pantalla els objectes

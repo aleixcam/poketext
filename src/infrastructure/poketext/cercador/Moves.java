@@ -1,6 +1,6 @@
 package infrastructure.poketext.cercador;
 
-import application.move.GetMoves.GetMovesService;
+import application.move.GetMoves.GetMovesUseCase;
 import infrastructure.persistence.SQLite.MoveRepositorySQLite;
 import infrastructure.presentation.printer.MatrixPrinter;
 import infrastructure.service.ReaderService;
@@ -16,7 +16,7 @@ public class Moves {
         
         do {
 
-            GetMovesService service = new GetMovesService(new MoveRepositorySQLite(), new MoveAssemblerMatrix());
+            GetMovesUseCase service = new GetMovesUseCase(new MoveRepositorySQLite(), new MoveAssemblerMatrix());
             String[][] moves = service.execute(0, filter_name, filter_type);
 
             // Mostrar per pantalla els moviments

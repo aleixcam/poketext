@@ -1,6 +1,6 @@
 package infrastructure.poketext.teambuilder;
 
-import application.nature.GetNatures.GetNaturesService;
+import application.nature.GetNatures.GetNaturesUseCase;
 import domain.pokemon.BaseStats;
 import infrastructure.persistence.SQLite.NatureRepositorySQLite;
 import infrastructure.persistence.SQLite.PokemonRepositorySQLite;
@@ -20,7 +20,7 @@ public class Stats {
         String s;
         int selected;
 
-        GetNaturesService service = new GetNaturesService(new NatureRepositorySQLite(), new NatureAssemblerMatrix());
+        GetNaturesUseCase service = new GetNaturesUseCase(new NatureRepositorySQLite(), new NatureAssemblerMatrix());
         String[][] natures = service.execute();
 
         String[] options = new String[natures.length];

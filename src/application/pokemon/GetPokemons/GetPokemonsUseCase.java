@@ -3,12 +3,12 @@ package application.pokemon.GetPokemons;
 import application.pokemon.PokemonAssembler;
 import domain.pokemon.*;
 
-public class GetPokemonsService {
+public class GetPokemonsUseCase {
 
     private PokemonRepository repository;
     private PokemonAssembler assembler;
 
-    public GetPokemonsService(PokemonRepository repository, PokemonAssembler assembler) {
+    public GetPokemonsUseCase(PokemonRepository repository, PokemonAssembler assembler) {
         this.repository = repository;
         this.assembler = assembler;
     }

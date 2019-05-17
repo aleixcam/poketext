@@ -1,6 +1,6 @@
 package infrastructure.poketext.teambuilder;
 
-import application.item.GetItems.GetItemsService;
+import application.item.GetItems.GetItemsUseCase;
 import infrastructure.poketext.calc.Estadistiques;
 import java.io.IOException;
 import java.sql.PreparedStatement;
@@ -54,7 +54,7 @@ public class Detalls {
 
         do {
 
-            GetItemsService service = new GetItemsService(new ItemRepositorySQLite(), new ItemAssemblerMatrix());
+            GetItemsUseCase service = new GetItemsUseCase(new ItemRepositorySQLite(), new ItemAssemblerMatrix());
             String[][] items = service.execute(filter_name);
 
             // Mostrar per pantalla els pokèmons

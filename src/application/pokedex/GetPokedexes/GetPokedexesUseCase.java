@@ -4,12 +4,12 @@ import application.pokedex.PokedexAssembler;
 import domain.pokedex.PokedexRepository;
 import domain.pokedex.PokedexesCollection;
 
-public class GetPokedexesService {
+public class GetPokedexesUseCase {
 
     private PokedexRepository repository;
     private PokedexAssembler assembler;
 
-    public GetPokedexesService(PokedexRepository repository, PokedexAssembler assembler) {
+    public GetPokedexesUseCase(PokedexRepository repository, PokedexAssembler assembler) {
         this.repository = repository;
         this.assembler = assembler;
     }
