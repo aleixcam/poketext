@@ -6,7 +6,7 @@ import infrastructure.poketext.cercador.Pokedex;
 import infrastructure.presentation.printer.MatrixPrinter;
 import infrastructure.presentation.transformer.matrix.PokemonAssemblerMatrix;
 
-public class SearchPokemonsService implements {
+public class SearchPokemonsService {
 
     private String nameFilter = "";
     private String typeFilter = "";
@@ -32,11 +32,11 @@ public class SearchPokemonsService implements {
         this.typeFilter = typeFilter;
     }
 
-    public void removeNameFilter() {
+    void removeNameFilter() {
         this.nameFilter = "";
     }
 
-    public void removeTypeFilter() {
+    void removeTypeFilter() {
         this.nameFilter = "";
     }
 }

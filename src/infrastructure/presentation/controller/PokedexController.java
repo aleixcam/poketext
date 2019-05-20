@@ -17,8 +17,7 @@ final public class PokedexController {
         String[] s;
 
         SearchPokemonsService receiver = new SearchPokemonsService();
-
-        Command removeFilters = new RemoveFilterCommand();
+        Command removeFilters = new RemoveFilterCommand(receiver, "n");
 
         Menu menu = new Menu("POKÈDEX: POKÈMONS");
         menu.register("P", this::select, "Cambiar Pokèdex");
@@ -30,7 +29,7 @@ final public class PokedexController {
             menu.print();
             s = ReaderService.read().split(" ");
 
-            menu.execute(s);
+            menu.execute(s[0]);
         } while (!s[0].equals(menu.EXIT));
     }
 

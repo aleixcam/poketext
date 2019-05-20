@@ -5,11 +5,11 @@ import application.command.Command;
 public class RemoveFilterCommand implements Command {
 
     private final SearchPokemonsService service;
+    private final String filter;
 
-    private String filter;
-
-    public RemoveFilterCommand(SearchPokemonsService service) {
+    public RemoveFilterCommand(SearchPokemonsService service, String filter) {
         this.service = service;
+        this.filter = filter;
     }
 
     public void execute() {
