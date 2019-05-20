@@ -1,5 +1,6 @@
 package application.command;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,6 +31,20 @@ public class Menu implements MenuInvoker {
         }
 
         option.getAction().execute();
+    }
+
+    public void execute(String[] args) {
+        if (args[0].equals(EXIT)) {
+            return;
+        }
+
+        MenuOption option = actions.get(args[0]);
+        if (option == null) {
+            System.out.println("Invalid selection");
+            return;
+        }
+
+        option.getAction().execute(Arrays.copyOfRange(args, 1, args.length));
     }
 
     public void print() {

@@ -10,11 +10,10 @@ public class SearchPokemonsService {
 
     private String nameFilter = "";
     private String typeFilter = "";
+    private String[] pokedex;
 
     public void execute() {
         GetPokemonsUseCase service = new GetPokemonsUseCase(new PokemonRepositorySQLite(), new PokemonAssemblerMatrix());
-        String[] pokedex = Pokedex.cercarPokedex();
-
         String[][] pokemons = service.execute(Integer.parseInt(pokedex[0]), nameFilter, typeFilter);
 
         System.out.printf("%n%nPokèdex: %s%n", pokedex[1]);
@@ -22,6 +21,10 @@ public class SearchPokemonsService {
         MatrixPrinter.print(pokemons);
         System.out.printf("Nom: %s Tipus: %s%n", nameFilter, typeFilter);
         System.out.printf("Pokèdex: %s%n%n", pokedex[1]);
+    }
+
+    public void selectPokedex() {
+        this.pokedex = Pokedex.cercarPokedex();
     }
 
     public void setNameFilter(String nameFilter) {
@@ -32,11 +35,11 @@ public class SearchPokemonsService {
         this.typeFilter = typeFilter;
     }
 
-    void removeNameFilter() {
+    public void removeNameFilter() {
         this.nameFilter = "";
     }
 
-    void removeTypeFilter() {
+    public void removeTypeFilter() {
         this.nameFilter = "";
     }
 }
