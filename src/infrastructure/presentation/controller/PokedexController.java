@@ -1,6 +1,5 @@
 package infrastructure.presentation.controller;
 
-import application.command.Command;
 import application.command.Menu;
 import application.pokedex.Command.SelectPokedexCommand;
 import application.pokemon.Command.RemoveFilterCommand;
@@ -12,21 +11,16 @@ import infrastructure.service.ReaderService;
 
 final public class PokedexController {
 
-
-    void pokemons() {
+    public void pokemons() {
         String[] s;
 
         SearchPokemonsService receiver = new SearchPokemonsService();
-        Command selectPokedex = new SelectPokedexCommand(receiver);
-        Command setNameFilter = new SetNameFilterCommand(receiver);
-        Command setTypeFilter = new SetTypeFilterCommand(receiver);
-        Command removeFilters = new RemoveFilterCommand(receiver);
 
         Menu menu = new Menu("POKÈDEX: POKÈMONS");
-        menu.register("P", selectPokedex, "Cambiar Pokèdex");
-        menu.register("N", setNameFilter, "Filtrar per nom");
-        menu.register("T", setTypeFilter, "Filtrar per tipus");
-        menu.register("E", removeFilters, "Eliminar filtre");
+        menu.register("P", SelectPokedexCommand.of(receiver), "Cambiar Pokèdex");
+        menu.register("N", SetNameFilterCommand.of(receiver), "Filtrar per nom");
+        menu.register("T", SetTypeFilterCommand.of(receiver), "Filtrar per tipus");
+        menu.register("E", RemoveFilterCommand.of(receiver), "Eliminar filtre");
 
         do {
             menu.print();
@@ -40,11 +34,11 @@ final public class PokedexController {
         Moves.viewMoves();
     }
 
-    void objects() {
+    public void items() {
         Objectes.cercarObjectes();
     }
 
-    void abilities() {
+    public void abilities() {
         Habilitats.cercarHabilitats();
     }
 }

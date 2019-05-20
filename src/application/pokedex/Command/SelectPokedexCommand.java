@@ -3,12 +3,16 @@ package application.pokedex.Command;
 import application.command.Command;
 import application.pokemon.Service.SearchPokemonsService;
 
-public class SelectPokedexCommand implements Command {
+final public class SelectPokedexCommand implements Command {
 
     private final SearchPokemonsService receiver;
 
-    public SelectPokedexCommand(SearchPokemonsService receiver) {
+    private SelectPokedexCommand(SearchPokemonsService receiver) {
         this.receiver = receiver;
+    }
+
+    public static SelectPokedexCommand of(SearchPokemonsService receiver) {
+        return new SelectPokedexCommand(receiver);
     }
 
     public void execute(String... args) {

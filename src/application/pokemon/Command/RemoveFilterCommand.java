@@ -3,12 +3,16 @@ package application.pokemon.Command;
 import application.command.Command;
 import application.pokemon.Service.SearchPokemonsService;
 
-public class RemoveFilterCommand implements Command {
+final public class RemoveFilterCommand implements Command {
 
     private final SearchPokemonsService receiver;
 
-    public RemoveFilterCommand(SearchPokemonsService receiver) {
+    private RemoveFilterCommand(SearchPokemonsService receiver) {
         this.receiver = receiver;
+    }
+
+    public static RemoveFilterCommand of(SearchPokemonsService receiver) {
+        return new RemoveFilterCommand(receiver);
     }
 
     public void execute(String... args) {
