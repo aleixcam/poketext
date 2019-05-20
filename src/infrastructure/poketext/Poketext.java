@@ -1,5 +1,8 @@
 package infrastructure.poketext;
 
+import application.player.Command.StartBattleCommand;
+import application.pokedex.Command.StartPokedexCommand;
+import application.team.Command.TeamBuilderCommand;
 import infrastructure.presentation.controller.AppController;
 import infrastructure.service.ReaderService;
 import application.command.Menu;
@@ -16,9 +19,9 @@ public class Poketext {
         AppController receiver = new AppController();
 
         Menu menu = new Menu("POKETEXT: MENÚ PRINCIPAL");
-        menu.register("1", receiver::play, "Jugar");
-        menu.register("2", receiver::teambuilder, "Construir un Equip");
-        menu.register("3", receiver::pokedex, "Cercador");
+        menu.register("1", StartBattleCommand.of(receiver), "Jugar");
+        menu.register("2", TeamBuilderCommand.of(receiver), "Construir un Equip");
+        menu.register("3", StartPokedexCommand.of(receiver), "Cercador");
 
         do {
             menu.print();
