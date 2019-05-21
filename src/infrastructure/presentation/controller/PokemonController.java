@@ -1,4 +1,4 @@
-package application.pokemon.Service;
+package infrastructure.presentation.controller;
 
 import application.pokemon.GetPokemons.GetPokemonsUseCase;
 import infrastructure.persistence.SQLite.PokemonRepositorySQLite;
@@ -6,7 +6,7 @@ import infrastructure.poketext.cercador.Pokedex;
 import infrastructure.presentation.printer.MatrixPrinter;
 import infrastructure.presentation.transformer.matrix.PokemonAssemblerMatrix;
 
-public class SearchPokemonsService {
+final public class PokemonController {
 
     private String nameFilter = "";
     private String typeFilter = "";

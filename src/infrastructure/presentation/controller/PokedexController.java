@@ -5,7 +5,6 @@ import application.pokedex.Command.SelectPokedexCommand;
 import application.pokemon.Command.RemoveFilterCommand;
 import application.pokemon.Command.SetNameFilterCommand;
 import application.pokemon.Command.SetTypeFilterCommand;
-import application.pokemon.Service.SearchPokemonsService;
 import infrastructure.poketext.cercador.*;
 import infrastructure.service.ReaderService;
 
@@ -14,7 +13,7 @@ final public class PokedexController {
     public void pokemons() {
         String[] s;
 
-        SearchPokemonsService receiver = new SearchPokemonsService();
+        PokemonController receiver = new PokemonController();
 
         Menu menu = new Menu("POKÈDEX: POKÈMONS");
         menu.register("P", SelectPokedexCommand.of(receiver), "Cambiar Pokèdex");

@@ -1,17 +1,17 @@
 package application.pokemon.Command;
 
 import application.command.Command;
-import application.pokemon.Service.SearchPokemonsService;
+import infrastructure.presentation.controller.PokemonController;
 
 final public class RemoveFilterCommand implements Command {
 
-    private final SearchPokemonsService receiver;
+    private final PokemonController receiver;
 
-    private RemoveFilterCommand(SearchPokemonsService receiver) {
+    private RemoveFilterCommand(PokemonController receiver) {
         this.receiver = receiver;
     }
 
-    public static RemoveFilterCommand of(SearchPokemonsService receiver) {
+    public static RemoveFilterCommand of(PokemonController receiver) {
         return new RemoveFilterCommand(receiver);
     }
 

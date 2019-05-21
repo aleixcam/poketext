@@ -24,13 +24,13 @@ public class Menu implements MenuInvoker {
             return;
         }
 
-        MenuOption option = actions.get(selector);
-        if (option == null) {
-            System.out.println("Invalid selection");
-            return;
+        try {
+            guardFromInvalidSelection(selector);
+            MenuOption option = actions.get(selector);
+            option.getAction().execute();
+        } catch (InvalidSelectionException e) {
+            System.out.print(e.getMessage());
         }
-
-        option.getAction().execute();
     }
 
     public void execute(String[] args) {
@@ -38,13 +38,13 @@ public class Menu implements MenuInvoker {
             return;
         }
 
-        MenuOption option = actions.get(args[0]);
-        if (option == null) {
-            System.out.println("Invalid selection");
-            return;
+        try {
+            guardFromInvalidSelection(args[0]);
+            MenuOption option = actions.get(args[0]);
+            option.getAction().execute(Arrays.copyOfRange(args, 1, args.length));
+        } catch (InvalidSelectionException e) {
+            System.out.print(e.getMessage());
         }
-
-        option.getAction().execute(Arrays.copyOfRange(args, 1, args.length));
     }
 
     public void print() {
@@ -55,5 +55,11 @@ public class Menu implements MenuInvoker {
         }
 
         System.out.printf("%s. Sortir%n", EXIT);
+    }
+
+    private void guardFromInvalidSelection(String selector) throws InvalidSelectionException {
+        if (!actions.containsKey(selector)) {
+            throw new InvalidSelectionException();
+        }
     }
 }

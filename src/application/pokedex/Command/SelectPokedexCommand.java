@@ -1,17 +1,17 @@
 package application.pokedex.Command;
 
 import application.command.Command;
-import application.pokemon.Service.SearchPokemonsService;
+import infrastructure.presentation.controller.PokemonController;
 
 final public class SelectPokedexCommand implements Command {
 
-    private final SearchPokemonsService receiver;
+    private final PokemonController receiver;
 
-    private SelectPokedexCommand(SearchPokemonsService receiver) {
+    private SelectPokedexCommand(PokemonController receiver) {
         this.receiver = receiver;
     }
 
-    public static SelectPokedexCommand of(SearchPokemonsService receiver) {
+    public static SelectPokedexCommand of(PokemonController receiver) {
         return new SelectPokedexCommand(receiver);
     }
 

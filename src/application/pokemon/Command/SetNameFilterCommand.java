@@ -1,17 +1,17 @@
 package application.pokemon.Command;
 
 import application.command.Command;
-import application.pokemon.Service.SearchPokemonsService;
+import infrastructure.presentation.controller.PokemonController;
 
 final public class SetNameFilterCommand implements Command {
 
-    private final SearchPokemonsService receiver;
+    private final PokemonController receiver;
 
-    private SetNameFilterCommand(SearchPokemonsService receiver) {
+    private SetNameFilterCommand(PokemonController receiver) {
         this.receiver = receiver;
     }
 
-    public static SetNameFilterCommand of(SearchPokemonsService receiver) {
+    public static SetNameFilterCommand of(PokemonController receiver) {
         return new SetNameFilterCommand(receiver);
     }
 
