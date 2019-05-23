@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class Menu implements MenuInvoker {
 
-    public final String EXIT = "Q";
+    private final String EXIT = "Q";
 
     private final String title;
     private final HashMap<String, MenuOption> actions = new HashMap<>();
@@ -20,6 +20,7 @@ public class Menu implements MenuInvoker {
     }
 
     public void execute(String selector) {
+        selector = selector.toUpperCase();
         if (selector.equals(EXIT)) {
             return;
         }
@@ -34,17 +35,26 @@ public class Menu implements MenuInvoker {
     }
 
     public void execute(String[] args) {
-        if (args[0].equals(EXIT)) {
+        String selector = args[0].toUpperCase();
+        if (selector.equals(EXIT)) {
             return;
         }
 
         try {
-            guardFromInvalidSelection(args[0]);
-            MenuOption option = actions.get(args[0]);
+            guardFromInvalidSelection(selector);
+            MenuOption option = actions.get(selector);
             option.getAction().execute(Arrays.copyOfRange(args, 1, args.length));
         } catch (InvalidSelectionException e) {
             System.out.print(e.getMessage());
         }
+    }
+
+    public boolean isExit(String selector) {
+        return selector.equalsIgnoreCase(EXIT);
+    }
+
+    public boolean isExit(String[] args) {
+        return args[0].equalsIgnoreCase(EXIT);
     }
 
     public void print() {

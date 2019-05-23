@@ -23,10 +23,10 @@ final public class PokedexController {
 
         do {
             menu.print();
-            s = ReaderService.read().split(" ");
+            s = ReaderService.toArray();
 
             menu.execute(s);
-        } while (!s[0].equals(menu.EXIT));
+        } while (!menu.isExit(s));
     }
 
     public void moves() {

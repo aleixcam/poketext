@@ -20,4 +20,8 @@ public class ReaderService {
 
         return readed;
     }
+
+    public static String[] toArray() {
+        return read().split(" ");
+    }
 }

@@ -25,10 +25,10 @@ public class Poketext {
 
         do {
             menu.print();
-            selection = ReaderService.read().toUpperCase();
+            selection = ReaderService.read();
 
             menu.execute(selection);
-        } while (!selection.equals(menu.EXIT));
+        } while (!menu.isExit(selection));
 
         System.out.println("Adéu!");
         Connector.tancar();
