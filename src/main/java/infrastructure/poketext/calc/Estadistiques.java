@@ -14,7 +14,7 @@ public class Estadistiques {
     private static int[] consultarNaturalesa(String id) throws SQLException {
         int[] natura = new int[2];
         ResultSet result;
-        PreparedStatement st = Connector.connect.prepareStatement("select decreased_stat_id, increased_stat_id\n"
+        PreparedStatement st = Connector.connection.prepareStatement("select decreased_stat_id, increased_stat_id\n"
                 + "from natures where id = " + id);
         result = st.executeQuery();
         natura[0] = result.getInt("decreased_stat_id") - 1;

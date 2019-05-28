@@ -3,31 +3,32 @@ package infrastructure.poketext;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Objects;
 
-// Clase que connecta el programa amb la base de dades sqlite
 public class Connector {
 
-    // Variables publiques i privades
-    private static final String URL = "pokedex.sqlite";
-    public static Connection connect;
+    public static Connection connection;
 
-    // Funció que es connecta a la base de dades
-    public static void connectar() {
+    public static String getDatabase() {
+        return "jdbc:sqlite:" + Objects.requireNonNull(
+            Connector.class.getClassLoader().getResource("data/sqlite/pokedex.sqlite")
+        ).getPath();
+    }
+
+    static void connectar() {
         try {
-            connect = DriverManager.getConnection("jdbc:sqlite:" + URL);
-        } catch (SQLException ex) {
+            Class.forName("org.sqlite.JDBC");
+            connection = DriverManager.getConnection(getDatabase());
+        } catch (SQLException | ClassNotFoundException ex) {
             System.err.println(ex.getMessage());
         }
     }
 
-    // Funció per tancar la base de dades
-    public static void tancar() {
+    static void tancar() {
         try {
-            connect.close();
+            connection.close();
         } catch (SQLException ex) {
-            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
         }
     }
 }

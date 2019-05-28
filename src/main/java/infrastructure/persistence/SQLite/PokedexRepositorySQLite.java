@@ -6,7 +6,7 @@ import domain.pokedex.PokedexesCollection;
 
 import java.util.List;
 
-public class PokedexRepositorySQLite extends SQLiteRepository implements PokedexRepository {
+final public class PokedexRepositorySQLite extends SQLiteRepository implements PokedexRepository {
 
     public PokedexesCollection findAll() {
         List<String[]> rowset = executeQuery("select pokedex_id, name, description\n"

@@ -33,7 +33,7 @@ public class Detalls {
         String res = "";
 
         if (!id.equals("")) {
-            PreparedStatement select = Connector.connect.prepareStatement("select name\n"
+            PreparedStatement select = Connector.connection.prepareStatement("select name\n"
                     + "from item_names\n"
                     + "where item_id = '" + id + "'\n"
                     + "and local_language_id = " + LanguageService.ENGLISH);
@@ -92,7 +92,7 @@ public class Detalls {
     private static String[][] consultarHabilitatsPoke(String id) throws SQLException {
         String[] col = {"Slot", "Nom", "Efecte"};
         ResultSet result;
-        PreparedStatement st = Connector.connect.prepareStatement("select a.slot, n.name, f.flavor_text\n"
+        PreparedStatement st = Connector.connection.prepareStatement("select a.slot, n.name, f.flavor_text\n"
                 + "from pokemon_abilities a, ability_names n, ability_flavor_text f\n"
                 + "where a.ability_id = n.ability_id\n"
                 + "and a.ability_id = f.ability_id\n"
@@ -109,7 +109,7 @@ public class Detalls {
         ResultSet result;
         String res = "";
 
-        PreparedStatement select = Connector.connect.prepareStatement("select a.ability_id, n.name\n"
+        PreparedStatement select = Connector.connection.prepareStatement("select a.ability_id, n.name\n"
                 + "from pokemon_abilities a, ability_names n\n"
                 + "where a.ability_id = n.ability_id\n"
                 + "and n.local_language_id = " + LanguageService.ENGLISH + "\n"
@@ -129,7 +129,7 @@ public class Detalls {
         ResultSet result;
         String res = "";
 
-        PreparedStatement select = Connector.connect.prepareStatement("select name\n"
+        PreparedStatement select = Connector.connection.prepareStatement("select name\n"
                 + "from ability_names\n"
                 + "where local_language_id = " + LanguageService.ENGLISH + "\n"
                 + "and ability_id = " + id);

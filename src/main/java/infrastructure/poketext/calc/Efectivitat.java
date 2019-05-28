@@ -13,7 +13,7 @@ public class Efectivitat {
         ResultSet result;
         String res = "";
         try {
-            PreparedStatement st = Connector.connect.prepareStatement("select type_id from moves where id = " + id);
+            PreparedStatement st = Connector.connection.prepareStatement("select type_id from moves where id = " + id);
             result = st.executeQuery();
             while (result.next()) {
                 res = result.getString("type_id");
@@ -29,7 +29,7 @@ public class Efectivitat {
         ResultSet result;
         int res = 0;
         try {
-            PreparedStatement st = Connector.connect.prepareStatement("select damage_factor\n"
+            PreparedStatement st = Connector.connection.prepareStatement("select damage_factor\n"
                     + "from type_efficacy\n"
                     + "where damage_type_id = " + damage + "\n"
                     + "and target_type_id = " + target);

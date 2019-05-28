@@ -25,7 +25,7 @@ public class Pokes {
         ResultSet result;
         String res = "";
 
-        PreparedStatement select = Connector.connect.prepareStatement("select identifier from pokemon where id = '" + id + "'");
+        PreparedStatement select = Connector.connection.prepareStatement("select identifier from pokemon where id = '" + id + "'");
         result = select.executeQuery();
         if (sel) {
             if (result.next()) {
@@ -45,7 +45,7 @@ public class Pokes {
         ResultSet result;
         String res = "";
 
-        PreparedStatement select = Connector.connect.prepareStatement("select gender_rate from pokemon_species where id = " + id);
+        PreparedStatement select = Connector.connection.prepareStatement("select gender_rate from pokemon_species where id = " + id);
         result = select.executeQuery();
         if (result.next()) {
             res = result.getString("gender_rate");
@@ -63,7 +63,7 @@ public class Pokes {
     // Consultar les estadístiques d'un Pokèmon
     private static ResultSet consultarTipusPoke(String id) throws SQLException {
         ResultSet result;
-        PreparedStatement st = Connector.connect.prepareStatement("select type_id\n"
+        PreparedStatement st = Connector.connection.prepareStatement("select type_id\n"
                 + "from pokemon_types\n"
                 + "where pokemon_id = " + id);
         result = st.executeQuery();

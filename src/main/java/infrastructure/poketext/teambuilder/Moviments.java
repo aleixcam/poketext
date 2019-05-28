@@ -22,7 +22,7 @@ public class Moviments {
         ResultSet result;
         String res = "";
 
-        PreparedStatement select = Connector.connect.prepareStatement("select move_id\n"
+        PreparedStatement select = Connector.connection.prepareStatement("select move_id\n"
                 + "from pokemon_moves\n"
                 + "where version_group_id = 16\n"
                 + "and pokemon_id = " + poke + "\n"
@@ -41,7 +41,7 @@ public class Moviments {
         ResultSet result;
         String res = "";
 
-        PreparedStatement select = Connector.connect.prepareStatement("select name\n"
+        PreparedStatement select = Connector.connection.prepareStatement("select name\n"
                 + "from move_names\n"
                 + "where move_id = '" + id + "'\n"
                 + "and local_language_id = " + LanguageService.ENGLISH);

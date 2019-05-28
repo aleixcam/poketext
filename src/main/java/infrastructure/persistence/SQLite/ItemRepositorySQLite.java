@@ -9,7 +9,7 @@ import infrastructure.service.LanguageService;
 import java.util.List;
 import java.util.Objects;
 
-public class ItemRepositorySQLite extends SQLiteRepository implements ItemRepository {
+final public class ItemRepositorySQLite extends SQLiteRepository implements ItemRepository {
 
     public ItemsCollection findByCriteria(ItemCriteria criteria) {
         List<String[]> rowset = executeQuery("select i.id, n.name, f.flavor_text\n"

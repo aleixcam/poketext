@@ -7,7 +7,7 @@ import infrastructure.service.LanguageService;
 
 import java.util.List;
 
-public class NatureRepositorySQLite extends SQLiteRepository implements NatureRepository {
+final public class NatureRepositorySQLite extends SQLiteRepository implements NatureRepository {
 
     public NaturesCollection findAll() {
         List<String[]> rowset = executeQuery("select p.id, n.name, p.increased_stat_id, p.decreased_stat_id \n"

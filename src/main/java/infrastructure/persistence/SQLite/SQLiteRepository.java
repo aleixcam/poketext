@@ -1,29 +1,31 @@
 package infrastructure.persistence.SQLite;
 
+import infrastructure.poketext.Connector;
+import org.sqlite.JDBC;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-public abstract class SQLiteRepository {
+public class SQLiteRepository {
 
-    private String url;
+    private Driver driver;
+    private String database;
+    private Connection connection;
 
     SQLiteRepository() {
-        this.url = "jdbc:sqlite:pokedex.sqlite";
+        this.driver = new JDBC();
+        this.database = Connector.getDatabase();
     }
 
-    private Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(this.url);
+    private void openConnection() throws SQLException {
+        DriverManager.registerDriver(driver);
+        this.connection = DriverManager.getConnection(database);
     }
 
-    private void closeConnection(Connection connection) {
-        try {
-            connection.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(SQLiteRepository.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    private void closeConnection() throws SQLException {
+        connection.close();
+        DriverManager.deregisterDriver(driver);
     }
 
     private List<String[]> getTable(ResultSet results) throws SQLException {
@@ -42,16 +44,15 @@ public abstract class SQLiteRepository {
         return table;
     }
 
-    protected List<String[]> executeQuery(String query) {
+    public List<String[]> executeQuery(String query) {
         List<String[]> rowset = null;
 
         try {
-            Connection connection = getConnection();
-            ResultSet results = connection.prepareStatement(query).executeQuery();
-            rowset = getTable(results);
-            closeConnection(connection);
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
+            openConnection();
+            rowset = getTable(connection.prepareStatement(query).executeQuery());
+            closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
         return rowset;

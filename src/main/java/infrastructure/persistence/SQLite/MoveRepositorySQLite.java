@@ -9,7 +9,7 @@ import domain.move.MoveRepository;
 import domain.move.MovesCollection;
 import infrastructure.service.LanguageService;
 
-public class MoveRepositorySQLite extends SQLiteRepository implements MoveRepository {
+final public class MoveRepositorySQLite extends SQLiteRepository implements MoveRepository {
 
     public MovesCollection findByCriteria(MoveCriteria criteria) {
         List<String[]> rowset = executeQuery("select distinct(m.id), n.name, t.name as type, d.identifier, m.power, m.accuracy, m.pp, f.flavor_text\n"

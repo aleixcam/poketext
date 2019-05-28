@@ -9,7 +9,7 @@ import infrastructure.service.LanguageService;
 import java.util.List;
 import java.util.Objects;
 
-public class AbilityRepositorySQLite extends SQLiteRepository implements AbilityRepository {
+final public class AbilityRepositorySQLite extends SQLiteRepository implements AbilityRepository {
 
     public AbilitiesCollection findByCriteria(AbilityCriteria criteria) {
         List<String[]> rowset = executeQuery("select f.ability_id, n.name, f.flavor_text\n"
