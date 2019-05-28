@@ -4,7 +4,6 @@ import domain.item.Item;
 import domain.item.ItemCriteria;
 import domain.item.ItemRepository;
 import domain.item.ItemsCollection;
-import infrastructure.poketext.Poketext;
 import infrastructure.service.LanguageService;
 
 import java.util.List;
