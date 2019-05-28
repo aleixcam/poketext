@@ -6,7 +6,7 @@ import java.util.List;
 
 public class PokemonRepositoryFileSystem extends FileSystemRepository {
 
-    final public String DIRECTORY = "pokemon";
+    final public String DIRECTORY = "data/memory/pokemon";
 
     public String[][] get(String name) {
         return assemblePokemon(read(getPath(name)));

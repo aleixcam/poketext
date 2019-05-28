@@ -31,9 +31,9 @@ public abstract class SQLiteRepository {
         List<String[]> table = new ArrayList<>();
         while(results.next()) {
             String[] row = new String[columns];
-            for( int i = 1; i <= columns; i++ ){
-                Object obj = results.getObject( i );
-                row[i-1] = (obj == null) ? null : obj.toString();
+            for(int i = 1; i <= columns; i++)  {
+                Object obj = results.getObject(i);
+                row[i - 1] = (obj == null) ? null : obj.toString();
             }
 
             table.add(row);

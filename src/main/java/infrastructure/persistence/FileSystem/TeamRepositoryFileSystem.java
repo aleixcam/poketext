@@ -6,7 +6,7 @@ import java.util.List;
 
 public class TeamRepositoryFileSystem extends FileSystemRepository {
 
-    final public String DIRECTORY = "team";
+    final public String DIRECTORY = "data/memory/team";
 
     public String[][][] get(String name) {
         return assembleTeam(read(getPath(name)));
