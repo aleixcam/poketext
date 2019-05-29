@@ -1,8 +1,8 @@
-package common.infrastructure.controller;
+package pokemon.infrastructure.controller;
 
 import pokemon.application.GetPokemons.GetPokemonsUseCase;
 import pokemon.infrastructure.persistence.SQLite.PokemonRepositorySQLite;
-import common.infrastructure.poketext.cercador.Pokedex;
+import common.infrastructure.classes.cercador.Pokedex;
 import common.infrastructure.printer.MatrixPrinter;
 import pokemon.infrastructure.transformer.Matrix.PokemonTransformerImpl;
 

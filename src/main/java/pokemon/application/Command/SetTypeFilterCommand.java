@@ -1,7 +1,7 @@
 package pokemon.application.Command;
 
 import common.application.Command.Command;
-import common.infrastructure.controller.PokemonController;
+import pokemon.infrastructure.controller.PokemonController;
 
 final public class SetTypeFilterCommand implements Command {
 

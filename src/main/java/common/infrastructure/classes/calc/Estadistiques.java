@@ -1,4 +1,4 @@
-package common.infrastructure.poketext.calc;
+package common.infrastructure.classes.calc;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import pokemon.domain.BaseStats;
 import pokemon.infrastructure.persistence.SQLite.PokemonRepositorySQLite;
-import common.infrastructure.poketext.Connector;
+import poketext.infrastructure.Connector;
 
 public class Estadistiques {
 

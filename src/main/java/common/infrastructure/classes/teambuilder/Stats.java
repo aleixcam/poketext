@@ -1,4 +1,4 @@
-package common.infrastructure.poketext.teambuilder;
+package common.infrastructure.classes.teambuilder;
 
 import nature.application.GetNatures.GetNaturesUseCase;
 import pokemon.domain.BaseStats;
@@ -8,7 +8,7 @@ import common.infrastructure.printer.MatrixPrinter;
 import common.infrastructure.service.ReaderService;
 import nature.infrastructure.transformer.Matrix.NatureTransformerImpl;
 
-import common.infrastructure.poketext.calc.Estadistiques;
+import common.infrastructure.classes.calc.Estadistiques;
 import java.io.IOException;
 import java.util.Arrays;
 

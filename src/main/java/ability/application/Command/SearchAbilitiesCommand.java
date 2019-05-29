@@ -1,7 +1,7 @@
 package ability.application.Command;
 
 import common.application.Command.Command;
-import common.infrastructure.controller.PokedexController;
+import pokedex.infrastructure.controller.PokedexController;
 
 final public class SearchAbilitiesCommand implements Command {
 

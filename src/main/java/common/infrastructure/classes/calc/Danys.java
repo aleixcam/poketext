@@ -1,9 +1,9 @@
-package common.infrastructure.poketext.calc;
+package common.infrastructure.classes.calc;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import common.infrastructure.poketext.Connector;
+import poketext.infrastructure.Connector;
 
 // Clase de efectivitat
 public class Danys {

@@ -5,9 +5,9 @@ import common.application.Command.Menu;
 import item.application.Command.SearchItemsCommand;
 import move.application.Command.SearchMovesCommand;
 import pokemon.application.Command.SearchPokemonsCommand;
-import common.infrastructure.poketext.combat.Jugadors;
+import poketext.combat.Jugadors;
 import common.infrastructure.service.ReaderService;
-import common.infrastructure.poketext.teambuilder.Equips;
+import poketext.teambuilder.Equips;
 
 final public class AppController {
 

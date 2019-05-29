@@ -1,9 +1,9 @@
-package common.infrastructure.poketext;
+package poketext.infrastructure;
 
 import player.application.Command.StartBattleCommand;
 import pokedex.application.Command.StartPokedexCommand;
 import team.application.Command.TeamBuilderCommand;
-import common.infrastructure.controller.AppController;
+import poketext.infrastructure.controller.AppController;
 import common.infrastructure.service.ReaderService;
 import common.application.Command.Menu;
 

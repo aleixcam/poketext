@@ -1,4 +1,4 @@
-package common.infrastructure.poketext.teambuilder;
+package common.infrastructure.classes.teambuilder;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

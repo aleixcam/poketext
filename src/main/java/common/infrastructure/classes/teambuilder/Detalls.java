@@ -1,7 +1,7 @@
-package common.infrastructure.poketext.teambuilder;
+package common.infrastructure.classes.teambuilder;
 
 import item.application.GetItems.GetItemsUseCase;
-import common.infrastructure.poketext.calc.Estadistiques;
+import common.infrastructure.classes.calc.Estadistiques;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +13,7 @@ import common.infrastructure.service.LanguageService;
 import common.infrastructure.service.ReaderService;
 import item.infrastructure.transformer.Matrix.ItemTransformerImpl;
 import common.infrastructure.transformer.MatrixTransformer;
-import common.infrastructure.poketext.Connector;
+import poketext.infrastructure.Connector;
 
 public class Detalls {
 

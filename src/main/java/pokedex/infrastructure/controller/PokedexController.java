@@ -1,11 +1,12 @@
-package common.infrastructure.controller;
+package pokedex.infrastructure.controller;
 
 import common.application.Command.Menu;
+import pokemon.infrastructure.controller.PokemonController;
 import pokedex.application.Command.SelectPokedexCommand;
 import pokemon.application.Command.RemoveFilterCommand;
 import pokemon.application.Command.SetNameFilterCommand;
 import pokemon.application.Command.SetTypeFilterCommand;
-import common.infrastructure.poketext.cercador.*;
+import common.infrastructure.classes.cercador.*;
 import common.infrastructure.service.ReaderService;
 
 final public class PokedexController {

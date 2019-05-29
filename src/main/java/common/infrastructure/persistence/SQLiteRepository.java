@@ -1,6 +1,6 @@
 package common.infrastructure.persistence;
 
-import common.infrastructure.poketext.Connector;
+import poketext.infrastructure.Connector;
 import org.sqlite.JDBC;
 
 import java.sql.*;

@@ -1,4 +1,4 @@
-package common.infrastructure.poketext.cercador;
+package common.infrastructure.classes.cercador;
 
 import item.application.GetItems.GetItemsUseCase;
 import item.infrastructure.persistence.SQLite.ItemRepositorySQLite;
