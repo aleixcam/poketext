@@ -1,13 +1,14 @@
-package common.infrastructure.controller;
+package poketext.infrastructure.controller;
 
 import ability.application.Command.SearchAbilitiesCommand;
 import common.application.Command.Menu;
+import pokedex.infrastructure.controller.PokedexController;
 import item.application.Command.SearchItemsCommand;
 import move.application.Command.SearchMovesCommand;
 import pokemon.application.Command.SearchPokemonsCommand;
-import poketext.combat.Jugadors;
+import common.infrastructure.classes.combat.Jugadors;
 import common.infrastructure.service.ReaderService;
-import poketext.teambuilder.Equips;
+import common.infrastructure.classes.teambuilder.Equips;
 
 final public class AppController {
 
