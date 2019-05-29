@@ -1,10 +1,10 @@
-package infrastructure.poketext.cercador;
+package common.infrastructure.poketext.cercador;
 
 import item.application.GetItems.GetItemsUseCase;
-import item.infrastructure.ItemRepositorySQLite;
-import infrastructure.presentation.printer.MatrixPrinter;
-import infrastructure.service.ReaderService;
-import infrastructure.presentation.transformer.matrix.ItemAssemblerMatrix;
+import item.infrastructure.persistence.SQLite.ItemRepositorySQLite;
+import common.infrastructure.printer.MatrixPrinter;
+import common.infrastructure.service.ReaderService;
+import item.infrastructure.transformer.Matrix.ItemTransformerImpl;
 
 public class Objectes {
     
@@ -15,7 +15,7 @@ public class Objectes {
         
         do {
 
-            GetItemsUseCase service = new GetItemsUseCase(new ItemRepositorySQLite(), new ItemAssemblerMatrix());
+            GetItemsUseCase service = new GetItemsUseCase(new ItemRepositorySQLite(), new ItemTransformerImpl());
             String[][] items = service.execute(filter_name);
 
             // Mostrar per pantalla els objectes

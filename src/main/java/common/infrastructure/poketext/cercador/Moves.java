@@ -1,10 +1,10 @@
-package infrastructure.poketext.cercador;
+package common.infrastructure.poketext.cercador;
 
 import move.application.GetMoves.GetMovesUseCase;
-import move.infrastructure.MoveRepositorySQLite;
-import infrastructure.presentation.printer.MatrixPrinter;
-import infrastructure.service.ReaderService;
-import infrastructure.presentation.transformer.matrix.MoveAssemblerMatrix;
+import move.infrastructure.persistence.SQLite.MoveRepositorySQLite;
+import common.infrastructure.printer.MatrixPrinter;
+import common.infrastructure.service.ReaderService;
+import move.infrastructure.transformer.Matrix.MoveTransformerImpl;
 
 public class Moves {
 
@@ -16,7 +16,7 @@ public class Moves {
         
         do {
 
-            GetMovesUseCase service = new GetMovesUseCase(new MoveRepositorySQLite(), new MoveAssemblerMatrix());
+            GetMovesUseCase service = new GetMovesUseCase(new MoveRepositorySQLite(), new MoveTransformerImpl());
             String[][] moves = service.execute(0, filter_name, filter_type);
 
             // Mostrar per pantalla els moviments

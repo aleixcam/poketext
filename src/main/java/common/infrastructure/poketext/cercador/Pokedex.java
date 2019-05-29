@@ -1,10 +1,10 @@
-package infrastructure.poketext.cercador;
+package common.infrastructure.poketext.cercador;
 
 import pokedex.application.GetPokedexes.GetPokedexesUseCase;
-import pokedex.infrastructure.PokedexRepositorySQLite;
-import infrastructure.presentation.printer.MatrixPrinter;
-import infrastructure.service.ReaderService;
-import infrastructure.presentation.transformer.matrix.PokedexAssemblerMatrix;
+import pokedex.infrastructure.persistence.SQLite.PokedexRepositorySQLite;
+import common.infrastructure.printer.MatrixPrinter;
+import common.infrastructure.service.ReaderService;
+import pokedex.infrastructure.transformer.Matrix.PokedexTransformerImpl;
 
 import java.util.Arrays;
 
@@ -15,7 +15,7 @@ public class Pokedex {
         String s;
         int selected;
 
-        GetPokedexesUseCase service = new GetPokedexesUseCase(new PokedexRepositorySQLite(), new PokedexAssemblerMatrix());
+        GetPokedexesUseCase service = new GetPokedexesUseCase(new PokedexRepositorySQLite(), new PokedexTransformerImpl());
         String[][] pokedexes = service.execute();
 
         String[] options = new String[pokedexes.length];

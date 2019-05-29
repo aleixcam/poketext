@@ -1,11 +1,11 @@
-package infrastructure.poketext.combat;
+package common.infrastructure.poketext.combat;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import infrastructure.service.ReaderService;
-import infrastructure.poketext.teambuilder.Equips;
-import infrastructure.poketext.teambuilder.Pokes;
+import common.infrastructure.service.ReaderService;
+import common.infrastructure.poketext.teambuilder.Equips;
+import common.infrastructure.poketext.teambuilder.Pokes;
 
 public class Jugadors {
 
@@ -20,7 +20,7 @@ public class Jugadors {
         return b;
     }
 
-    // Cambiar les opcions del infrastructure.poketext.combat
+    // Cambiar les opcions del common.infrastructure.poketext.combat
     private static int opcionsCombat() {
         int mode = 0;
         String sel;
@@ -43,7 +43,7 @@ public class Jugadors {
         return mode;
     }
 
-    // Iniciar el infrastructure.poketext.combat
+    // Iniciar el common.infrastructure.poketext.combat
     public static void iniciarCombat() {
         boolean sortir = false;
         int mode = 1;

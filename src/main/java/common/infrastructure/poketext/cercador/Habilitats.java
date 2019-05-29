@@ -1,10 +1,10 @@
-package infrastructure.poketext.cercador;
+package common.infrastructure.poketext.cercador;
 
 import ability.application.GetAbilities.GetAbilitiesUseCase;
-import ability.infrastructure.AbilityRepositorySQLite;
-import infrastructure.presentation.printer.MatrixPrinter;
-import infrastructure.service.ReaderService;
-import infrastructure.presentation.transformer.matrix.AbilityAssemblerMatrix;
+import ability.infrastructure.persistence.SQLite.AbilityRepositorySQLite;
+import common.infrastructure.printer.MatrixPrinter;
+import common.infrastructure.service.ReaderService;
+import ability.infrastructure.transformer.Matrix.AbilityTransformerImpl;
 
 public class Habilitats {
 
@@ -15,7 +15,7 @@ public class Habilitats {
 
         do {
 
-            GetAbilitiesUseCase service = new GetAbilitiesUseCase(new AbilityRepositorySQLite(), new AbilityAssemblerMatrix());
+            GetAbilitiesUseCase service = new GetAbilitiesUseCase(new AbilityRepositorySQLite(), new AbilityTransformerImpl());
             String[][] abilities = service.execute(filter_name);
 
             // Mostrar per pantalla els moviments

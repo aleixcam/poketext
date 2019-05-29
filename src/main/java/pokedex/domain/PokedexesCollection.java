@@ -1,4 +1,4 @@
-package domain.pokedex;
+package pokedex.domain;
 
 import java.util.ArrayList;
 
