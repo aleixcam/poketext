@@ -2,8 +2,8 @@ package common.infrastructure.classes.teambuilder;
 
 import nature.application.GetNatures.GetNaturesUseCase;
 import pokemon.domain.BaseStats;
-import nature.infrastructure.persistence.SQLite.NatureRepositorySQLite;
-import pokemon.infrastructure.persistence.SQLite.PokemonRepositorySQLite;
+import nature.infrastructure.persistence.SQLite.NatureRepositoryImpl;
+import pokemon.infrastructure.persistence.SQLite.PokemonRepositoryImpl;
 import common.infrastructure.printer.MatrixPrinter;
 import common.infrastructure.service.ReaderService;
 import nature.infrastructure.transformer.Matrix.NatureTransformerImpl;
@@ -20,7 +20,7 @@ public class Stats {
         String s;
         int selected;
 
-        GetNaturesUseCase service = new GetNaturesUseCase(new NatureRepositorySQLite(), new NatureTransformerImpl());
+        GetNaturesUseCase service = new GetNaturesUseCase(new NatureRepositoryImpl(), new NatureTransformerImpl());
         String[][] natures = service.execute();
 
         String[] options = new String[natures.length];
@@ -59,8 +59,8 @@ public class Stats {
         int i, j;
         String[] noms = {"HP", "Attack", "Defense", "Sp. Atk.", "Sp. Def.", "Speed"};
 
-        PokemonRepositorySQLite pokemonRepository = new PokemonRepositorySQLite();
-        NatureRepositorySQLite natureRepository = new NatureRepositorySQLite();
+        PokemonRepositoryImpl pokemonRepository = new PokemonRepositoryImpl();
+        NatureRepositoryImpl natureRepository = new NatureRepositoryImpl();
         BaseStats stats = pokemonRepository.findStatsByPokemonId(Integer.parseInt(poke[0][0]));
 
         int[] base = {

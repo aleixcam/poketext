@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import pokemon.infrastructure.persistence.SQLite.PokemonRepositorySQLite;
+import pokemon.infrastructure.persistence.SQLite.PokemonRepositoryImpl;
 import common.infrastructure.printer.MatrixPrinter;
 import common.infrastructure.service.ReaderService;
 import pokemon.infrastructure.transformer.Matrix.PokemonTransformerImpl;
@@ -108,7 +108,7 @@ public class Pokes {
             try {
 
 
-                GetPokemonsUseCase service = new GetPokemonsUseCase(new PokemonRepositorySQLite(), new PokemonTransformerImpl());
+                GetPokemonsUseCase service = new GetPokemonsUseCase(new PokemonRepositoryImpl(), new PokemonTransformerImpl());
                 String[][] pokemons = service.execute(1, filter_name, filter_type);
 
                 // Mostrar per pantalla els pokèmons

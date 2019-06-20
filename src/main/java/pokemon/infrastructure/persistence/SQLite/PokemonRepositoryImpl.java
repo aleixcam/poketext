@@ -1,6 +1,6 @@
 package pokemon.infrastructure.persistence.SQLite;
 
-import common.infrastructure.persistence.SQLiteRepository;
+import common.infrastructure.persistence.SQLiteRepositoryImpl;
 import common.infrastructure.service.LanguageService;
 import pokemon.domain.*;
 
@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-final public class PokemonRepositorySQLite extends SQLiteRepository implements PokemonRepository {
+final public class PokemonRepositoryImpl extends SQLiteRepositoryImpl implements PokemonRepository {
 
     public PokemonsCollection findByCriteria(PokemonCriteria criteria) {
         List<String[]> rowset = executeQuery("select " + criteria.getIdField() + " 'id', p.identifier 'name',\n"

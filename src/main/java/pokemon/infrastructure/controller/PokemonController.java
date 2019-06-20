@@ -1,7 +1,7 @@
 package pokemon.infrastructure.controller;
 
 import pokemon.application.GetPokemons.GetPokemonsUseCase;
-import pokemon.infrastructure.persistence.SQLite.PokemonRepositorySQLite;
+import pokemon.infrastructure.persistence.SQLite.PokemonRepositoryImpl;
 import common.infrastructure.classes.cercador.Pokedex;
 import common.infrastructure.printer.MatrixPrinter;
 import pokemon.infrastructure.transformer.Matrix.PokemonTransformerImpl;
@@ -13,7 +13,7 @@ final public class PokemonController {
     private String[] pokedex;
 
     public void execute() {
-        GetPokemonsUseCase service = new GetPokemonsUseCase(new PokemonRepositorySQLite(), new PokemonTransformerImpl());
+        GetPokemonsUseCase service = new GetPokemonsUseCase(new PokemonRepositoryImpl(), new PokemonTransformerImpl());
         String[][] pokemons = service.execute(Integer.parseInt(pokedex[0]), nameFilter, typeFilter);
 
         System.out.printf("%n%nPokèdex: %s%n", pokedex[1]);

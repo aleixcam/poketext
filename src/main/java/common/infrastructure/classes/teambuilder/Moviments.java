@@ -5,7 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import move.application.GetMoves.GetMovesUseCase;
-import move.infrastructure.persistence.SQLite.MoveRepositorySQLite;
+import move.application.MoveApplicationInjector;
+import move.infrastructure.persistence.SQLite.MoveRepositoryImpl;
 import common.infrastructure.printer.MatrixPrinter;
 import common.infrastructure.service.LanguageService;
 import common.infrastructure.service.ReaderService;
@@ -73,7 +74,7 @@ public class Moviments {
         do {
             try {
 
-                GetMovesUseCase service = new GetMovesUseCase(new MoveRepositorySQLite(), new MoveTransformerImpl());
+                GetMovesUseCase service = MoveApplicationInjector.injectGetMovesUseCase();
                 String[][] moves = service.execute(0, filter_name, filter_type);
 
                 // Mostrar per pantalla els pokèmons

@@ -1,10 +1,10 @@
 package common.infrastructure;
 
-import common.infrastructure.persistence.SQLiteRepository;
+import common.infrastructure.persistence.SQLiteRepositoryImpl;
 
-public class CommonInfrastructureInjector {
+final public class CommonInfrastructureInjector {
 
-    public static SQLiteRepository injectSQLiteRepository() {
-        return new SQLiteRepository();
+    public static SQLiteRepositoryImpl injectSQLiteRepository() {
+        return new SQLiteRepositoryImpl();
     }
 }

@@ -3,7 +3,7 @@ package move.application.GetMoves;
 import move.application.MoveTransformer;
 import move.domain.*;
 
-public class GetMovesUseCase {
+final public class GetMovesUseCase {
 
     private MoveRepository repository;
     private MoveTransformer assembler;

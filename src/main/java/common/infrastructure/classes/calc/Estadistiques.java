@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import pokemon.domain.BaseStats;
-import pokemon.infrastructure.persistence.SQLite.PokemonRepositorySQLite;
+import pokemon.infrastructure.persistence.SQLite.PokemonRepositoryImpl;
 import poketext.infrastructure.Connector;
 
 public class Estadistiques {
@@ -46,7 +46,7 @@ public class Estadistiques {
         int[] natura;
 
         try {
-            PokemonRepositorySQLite repository = new PokemonRepositorySQLite();
+            PokemonRepositoryImpl repository = new PokemonRepositoryImpl();
             BaseStats stats = repository.findStatsByPokemonId(Integer.parseInt(poke[0][0]));
             int[] base = {
                 stats.getHealth(),

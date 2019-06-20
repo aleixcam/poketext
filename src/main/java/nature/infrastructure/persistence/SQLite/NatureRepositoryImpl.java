@@ -1,6 +1,6 @@
 package nature.infrastructure.persistence.SQLite;
 
-import common.infrastructure.persistence.SQLiteRepository;
+import common.infrastructure.persistence.SQLiteRepositoryImpl;
 import nature.domain.Nature;
 import nature.domain.NatureRepository;
 import nature.domain.NaturesCollection;
@@ -8,7 +8,7 @@ import common.infrastructure.service.LanguageService;
 
 import java.util.List;
 
-final public class NatureRepositorySQLite extends SQLiteRepository implements NatureRepository {
+final public class NatureRepositoryImpl extends SQLiteRepositoryImpl implements NatureRepository {
 
     public NaturesCollection findAll() {
         List<String[]> rowset = executeQuery("select p.id, n.name, p.increased_stat_id, p.decreased_stat_id \n"

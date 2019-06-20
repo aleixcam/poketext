@@ -10,10 +10,16 @@ import move.domain.MoveRepository;
 import move.domain.MovesCollection;
 import common.infrastructure.service.LanguageService;
 
-final public class MoveRepositorySQLite extends SQLiteRepository implements MoveRepository {
+final public class MoveRepositoryImpl implements MoveRepository {
+
+    private final SQLiteRepository repository;
+
+    public MoveRepositoryImpl(SQLiteRepository repository) {
+        this.repository = repository;
+    }
 
     public MovesCollection findByCriteria(MoveCriteria criteria) {
-        List<String[]> rowset = executeQuery("select distinct(m.id), n.name, t.name as type, d.identifier, m.power, m.accuracy, m.pp, f.flavor_text\n"
+        List<String[]> rowset = repository.executeQuery("select distinct(m.id), n.name, t.name as type, d.identifier, m.power, m.accuracy, m.pp, f.flavor_text\n"
                 + "from pokemon_moves p, move_names n, moves m, type_names t, move_flavor_text f, move_damage_classes d\n"
                 + "where m.id = p.move_id\n"
                 + "and m.id = n.move_id\n"

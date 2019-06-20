@@ -1,7 +1,7 @@
 package common.infrastructure.classes.cercador;
 
 import pokedex.application.GetPokedexes.GetPokedexesUseCase;
-import pokedex.infrastructure.persistence.SQLite.PokedexRepositorySQLite;
+import pokedex.infrastructure.persistence.SQLite.PokedexRepositoryImpl;
 import common.infrastructure.printer.MatrixPrinter;
 import common.infrastructure.service.ReaderService;
 import pokedex.infrastructure.transformer.Matrix.PokedexTransformerImpl;
@@ -15,7 +15,7 @@ public class Pokedex {
         String s;
         int selected;
 
-        GetPokedexesUseCase service = new GetPokedexesUseCase(new PokedexRepositorySQLite(), new PokedexTransformerImpl());
+        GetPokedexesUseCase service = new GetPokedexesUseCase(new PokedexRepositoryImpl(), new PokedexTransformerImpl());
         String[][] pokedexes = service.execute();
 
         String[] options = new String[pokedexes.length];

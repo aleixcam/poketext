@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import item.infrastructure.persistence.SQLite.ItemRepositorySQLite;
+import item.infrastructure.persistence.SQLite.ItemRepositorySQLiteImpl;
 import common.infrastructure.printer.MatrixPrinter;
 import common.infrastructure.service.LanguageService;
 import common.infrastructure.service.ReaderService;
@@ -54,7 +54,7 @@ public class Detalls {
 
         do {
 
-            GetItemsUseCase service = new GetItemsUseCase(new ItemRepositorySQLite(), new ItemTransformerImpl());
+            GetItemsUseCase service = new GetItemsUseCase(new ItemRepositorySQLiteImpl(), new ItemTransformerImpl());
             String[][] items = service.execute(filter_name);
 
             // Mostrar per pantalla els pokèmons

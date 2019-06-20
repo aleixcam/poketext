@@ -1,10 +1,9 @@
 package common.infrastructure.classes.cercador;
 
 import move.application.GetMoves.GetMovesUseCase;
-import move.infrastructure.persistence.SQLite.MoveRepositorySQLite;
+import move.application.MoveApplicationInjector;
 import common.infrastructure.printer.MatrixPrinter;
 import common.infrastructure.service.ReaderService;
-import move.infrastructure.transformer.Matrix.MoveTransformerImpl;
 
 public class Moves {
 
@@ -16,7 +15,7 @@ public class Moves {
         
         do {
 
-            GetMovesUseCase service = new GetMovesUseCase(new MoveRepositorySQLite(), new MoveTransformerImpl());
+            GetMovesUseCase service = MoveApplicationInjector.injectGetMovesUseCase();
             String[][] moves = service.execute(0, filter_name, filter_type);
 
             // Mostrar per pantalla els moviments
