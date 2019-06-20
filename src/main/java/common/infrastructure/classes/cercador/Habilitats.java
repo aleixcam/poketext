@@ -1,6 +1,6 @@
 package common.infrastructure.classes.cercador;
 
-import ability.application.AbilityApplicationInjector;
+import ability.infrastructure.injector.AbilityApplicationInjector;
 import ability.application.GetAbilities.GetAbilitiesUseCase;
 import common.infrastructure.printer.MatrixPrinter;
 import common.infrastructure.service.ReaderService;

@@ -1,7 +1,7 @@
 package common.infrastructure.classes.cercador;
 
 import item.application.GetItems.GetItemsUseCase;
-import item.application.ItemApplicationInjector;
+import item.infrastructure.injector.ItemApplicationInjector;
 import common.infrastructure.printer.MatrixPrinter;
 import common.infrastructure.service.ReaderService;
 

@@ -1,4 +1,4 @@
-package ability.infrastructure;
+package ability.infrastructure.injector;
 
 import ability.infrastructure.persistence.SQLite.AbilityRepositoryImpl;
 import ability.infrastructure.transformer.Matrix.AbilityTransformerImpl;

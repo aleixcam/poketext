@@ -1,7 +1,6 @@
-package move.application;
+package move.infrastructure.injector;
 
 import move.application.GetMoves.GetMovesUseCase;
-import move.infrastructure.MoveInfrastructureInjector;
 
 final public class MoveApplicationInjector {
 

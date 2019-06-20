@@ -1,7 +1,6 @@
-package item.application;
+package item.infrastructure.injector;
 
 import item.application.GetItems.GetItemsUseCase;
-import item.infrastructure.ItemInfrastructureInjector;
 
 final public class ItemApplicationInjector {
 

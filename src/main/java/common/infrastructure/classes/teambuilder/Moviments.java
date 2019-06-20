@@ -5,12 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import move.application.GetMoves.GetMovesUseCase;
-import move.application.MoveApplicationInjector;
-import move.infrastructure.persistence.SQLite.MoveRepositoryImpl;
+import move.infrastructure.injector.MoveApplicationInjector;
 import common.infrastructure.printer.MatrixPrinter;
 import common.infrastructure.service.LanguageService;
 import common.infrastructure.service.ReaderService;
-import move.infrastructure.transformer.Matrix.MoveTransformerImpl;
 import poketext.infrastructure.Connector;
 
 public class Moviments {

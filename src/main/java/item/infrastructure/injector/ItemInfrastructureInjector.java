@@ -1,4 +1,4 @@
-package item.infrastructure;
+package item.infrastructure.injector;
 
 import common.infrastructure.CommonInfrastructureInjector;
 import item.infrastructure.persistence.SQLite.ItemRepositoryImpl;

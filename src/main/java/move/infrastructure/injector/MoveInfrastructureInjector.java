@@ -1,4 +1,4 @@
-package move.infrastructure;
+package move.infrastructure.injector;
 
 import common.infrastructure.CommonInfrastructureInjector;
 import move.infrastructure.persistence.SQLite.MoveRepositoryImpl;

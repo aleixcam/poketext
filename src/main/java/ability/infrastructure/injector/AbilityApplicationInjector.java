@@ -1,7 +1,6 @@
-package ability.application;
+package ability.infrastructure.injector;
 
 import ability.application.GetAbilities.GetAbilitiesUseCase;
-import ability.infrastructure.AbilityInfrastructureInjector;
 
 final public class AbilityApplicationInjector {
 

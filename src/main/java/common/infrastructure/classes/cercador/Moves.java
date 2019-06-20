@@ -1,7 +1,7 @@
 package common.infrastructure.classes.cercador;
 
 import move.application.GetMoves.GetMovesUseCase;
-import move.application.MoveApplicationInjector;
+import move.infrastructure.injector.MoveApplicationInjector;
 import common.infrastructure.printer.MatrixPrinter;
 import common.infrastructure.service.ReaderService;
 

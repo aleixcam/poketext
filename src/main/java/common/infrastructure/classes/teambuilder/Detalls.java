@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import item.application.ItemApplicationInjector;
+import item.infrastructure.injector.ItemApplicationInjector;
 import common.infrastructure.printer.MatrixPrinter;
 import common.infrastructure.service.LanguageService;
 import common.infrastructure.service.ReaderService;
