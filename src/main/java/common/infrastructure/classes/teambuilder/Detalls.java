@@ -2,20 +2,18 @@ package common.infrastructure.classes.teambuilder;
 
 import item.application.GetItems.GetItemsUseCase;
 import common.infrastructure.classes.calc.Estadistiques;
-import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import item.infrastructure.persistence.SQLite.ItemRepositorySQLiteImpl;
+import item.application.ItemApplicationInjector;
 import common.infrastructure.printer.MatrixPrinter;
 import common.infrastructure.service.LanguageService;
 import common.infrastructure.service.ReaderService;
-import item.infrastructure.transformer.Matrix.ItemTransformerImpl;
 import common.infrastructure.transformer.MatrixTransformer;
 import poketext.infrastructure.Connector;
 
-public class Detalls {
+class Detalls {
 
     private static boolean checkItemId(String[][] items, String id) {
         for (String[] item : items) {
@@ -54,7 +52,7 @@ public class Detalls {
 
         do {
 
-            GetItemsUseCase service = new GetItemsUseCase(new ItemRepositorySQLiteImpl(), new ItemTransformerImpl());
+            GetItemsUseCase service = ItemApplicationInjector.injectGetItemsUseCase();
             String[][] items = service.execute(filter_name);
 
             // Mostrar per pantalla els pokèmons
@@ -219,7 +217,7 @@ public class Detalls {
     }
 
     // Escollir un pokèmon per a l'equip
-    static void escollirDetalls(String[][] poke) throws IOException {
+    static void escollirDetalls(String[][] poke) {
         boolean sortir = false;
 
         do {

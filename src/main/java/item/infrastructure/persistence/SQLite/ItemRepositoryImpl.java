@@ -1,6 +1,6 @@
 package item.infrastructure.persistence.SQLite;
 
-import common.infrastructure.persistence.SQLiteRepositoryImpl;
+import common.infrastructure.persistence.SQLiteRepository;
 import item.domain.Item;
 import item.domain.ItemCriteria;
 import item.domain.ItemRepository;
@@ -10,10 +10,16 @@ import common.infrastructure.service.LanguageService;
 import java.util.List;
 import java.util.Objects;
 
-final public class ItemRepositorySQLiteImpl extends SQLiteRepositoryImpl implements ItemRepository {
+final public class ItemRepositoryImpl implements ItemRepository {
+
+    private final SQLiteRepository repository;
+
+    public ItemRepositoryImpl(SQLiteRepository repository) {
+        this.repository = repository;
+    }
 
     public ItemsCollection findByCriteria(ItemCriteria criteria) {
-        List<String[]> rowset = executeQuery("select i.id, n.name, f.flavor_text\n"
+        List<String[]> rowset = repository.executeQuery("select i.id, n.name, f.flavor_text\n"
                 + "from items i, item_categories c,  item_names n, item_flavor_text f\n"
                 + "where i.category_id = c.id\n"
                 + "and i.id = n.item_id\n"

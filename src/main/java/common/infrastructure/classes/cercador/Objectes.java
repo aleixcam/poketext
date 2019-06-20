@@ -1,10 +1,9 @@
 package common.infrastructure.classes.cercador;
 
 import item.application.GetItems.GetItemsUseCase;
-import item.infrastructure.persistence.SQLite.ItemRepositorySQLiteImpl;
+import item.application.ItemApplicationInjector;
 import common.infrastructure.printer.MatrixPrinter;
 import common.infrastructure.service.ReaderService;
-import item.infrastructure.transformer.Matrix.ItemTransformerImpl;
 
 public class Objectes {
     
@@ -15,7 +14,7 @@ public class Objectes {
         
         do {
 
-            GetItemsUseCase service = new GetItemsUseCase(new ItemRepositorySQLiteImpl(), new ItemTransformerImpl());
+            GetItemsUseCase service = ItemApplicationInjector.injectGetItemsUseCase();
             String[][] items = service.execute(filter_name);
 
             // Mostrar per pantalla els objectes

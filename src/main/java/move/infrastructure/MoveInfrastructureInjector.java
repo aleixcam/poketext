@@ -7,7 +7,9 @@ import move.infrastructure.transformer.Matrix.MoveTransformerImpl;
 final public class MoveInfrastructureInjector {
 
     public static MoveRepositoryImpl injectMoveRepository() {
-        return new MoveRepositoryImpl(CommonInfrastructureInjector.injectSQLiteRepository());
+        return new MoveRepositoryImpl(
+            CommonInfrastructureInjector.injectSQLiteRepository()
+        );
     }
 
     public static MoveTransformerImpl injectMoveTransformer() {

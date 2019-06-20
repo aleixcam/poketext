@@ -4,16 +4,22 @@ import ability.domain.Ability;
 import ability.domain.AbilitiesCollection;
 import ability.domain.AbilityCriteria;
 import ability.domain.AbilityRepository;
-import common.infrastructure.persistence.SQLiteRepositoryImpl;
+import common.infrastructure.persistence.SQLiteRepository;
 import common.infrastructure.service.LanguageService;
 
 import java.util.List;
 import java.util.Objects;
 
-final public class AbilityRepositorySQLiteImpl extends SQLiteRepositoryImpl implements AbilityRepository {
+final public class AbilityRepositoryImpl implements AbilityRepository {
+
+    private final SQLiteRepository repository;
+
+    public AbilityRepositoryImpl(SQLiteRepository repository) {
+        this.repository = repository;
+    }
 
     public AbilitiesCollection findByCriteria(AbilityCriteria criteria) {
-        List<String[]> rowset = executeQuery("select f.ability_id, n.name, f.flavor_text\n"
+        List<String[]> rowset = repository.executeQuery("select f.ability_id, n.name, f.flavor_text\n"
                 + "from ability_flavor_text f, ability_names n\n"
                 + "where f.ability_id = n.ability_id\n"
                 + "and f.language_id = " + LanguageService.ENGLISH + "\n"
