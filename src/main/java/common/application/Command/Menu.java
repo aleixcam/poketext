@@ -1,5 +1,7 @@
 package common.application.Command;
 
+import common.infrastructure.service.ReaderService;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,42 +21,39 @@ public class Menu implements MenuInvoker {
         actions.put(selector, new MenuOption(action, text));
     }
 
-    public void execute(String selector) {
-        selector = selector.toUpperCase();
-        if (selector.equals(EXIT)) {
+    public void execute(String... args) {
+        if (isExit(args[0])) {
             return;
         }
 
-        try {
-            guardFromInvalidSelection(selector);
-            MenuOption option = actions.get(selector);
-            option.getAction().execute();
-        } catch (InvalidSelectionException e) {
-            System.out.print(e.getMessage());
-        }
-    }
-
-    public void execute(String[] args) {
-        String selector = args[0].toUpperCase();
-        if (selector.equals(EXIT)) {
+        if (!isValidSelection(args[0])) {
+            System.out.print("Invalid selection");
             return;
         }
 
-        try {
-            guardFromInvalidSelection(selector);
-            MenuOption option = actions.get(selector);
-            option.getAction().execute(Arrays.copyOfRange(args, 1, args.length));
-        } catch (InvalidSelectionException e) {
-            System.out.print(e.getMessage());
-        }
+        MenuOption option = actions.get(args[0]);
+        option.getAction().execute(Arrays.copyOfRange(args, 1, args.length));
     }
 
-    public boolean isExit(String selector) {
-        return selector.equalsIgnoreCase(EXIT);
+
+    public void recursiveExecute() {
+        String[] args;
+        do {
+            print();
+
+            args = ReaderService.toArray();
+            args[0] = args[0].toUpperCase();
+
+            execute(args);
+        } while (!isExit(args[0]));
     }
 
-    public boolean isExit(String[] args) {
+    public boolean isExit(String... args) {
         return args[0].equalsIgnoreCase(EXIT);
+    }
+
+    private boolean isValidSelection(String selector) {
+        return actions.containsKey(selector);
     }
 
     public void print() {
@@ -65,11 +64,5 @@ public class Menu implements MenuInvoker {
         }
 
         System.out.printf("%s. Sortir%n", EXIT);
-    }
-
-    private void guardFromInvalidSelection(String selector) throws InvalidSelectionException {
-        if (!actions.containsKey(selector)) {
-            throw new InvalidSelectionException();
-        }
     }
 }

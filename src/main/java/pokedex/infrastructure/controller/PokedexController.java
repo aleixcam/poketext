@@ -21,13 +21,7 @@ final public class PokedexController {
         menu.register("N", SetNameFilterCommand.of(receiver), "Filtrar per nom");
         menu.register("T", SetTypeFilterCommand.of(receiver), "Filtrar per tipus");
         menu.register("E", RemoveFilterCommand.of(receiver), "Eliminar filtre");
-
-        do {
-            menu.print();
-            s = ReaderService.toArray();
-
-            menu.execute(s);
-        } while (!menu.isExit(s));
+        menu.recursiveExecute();
     }
 
     public void moves() {
