@@ -21,7 +21,18 @@ public class Menu implements MenuInvoker {
         actions.put(selector, new MenuOption(action, text));
     }
 
-    public void execute(String... args) {
+    public void execute() {
+        String[] args;
+
+        do {
+            args = print();
+            args[0] = args[0].toUpperCase();
+
+            execute(args);
+        } while (!isExit(args[0]));
+    }
+
+    private void execute(String... args) {
         if (isExit(args[0])) {
             return;
         }
@@ -35,20 +46,7 @@ public class Menu implements MenuInvoker {
         option.getAction().execute(Arrays.copyOfRange(args, 1, args.length));
     }
 
-
-    public void recursiveExecute() {
-        String[] args;
-        do {
-            print();
-
-            args = ReaderService.toArray();
-            args[0] = args[0].toUpperCase();
-
-            execute(args);
-        } while (!isExit(args[0]));
-    }
-
-    public boolean isExit(String... args) {
+    private boolean isExit(String... args) {
         return args[0].equalsIgnoreCase(EXIT);
     }
 
@@ -56,7 +54,7 @@ public class Menu implements MenuInvoker {
         return actions.containsKey(selector);
     }
 
-    public void print() {
+    public String[] print() {
         System.out.printf("%n%s%n", title);
 
         for(Map.Entry<String, MenuOption> entry : actions.entrySet()) {
@@ -64,5 +62,7 @@ public class Menu implements MenuInvoker {
         }
 
         System.out.printf("%s. Sortir%n", EXIT);
+
+        return ReaderService.toArray();
     }
 }

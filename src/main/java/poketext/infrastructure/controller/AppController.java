@@ -7,7 +7,6 @@ import item.application.Command.SearchItemsCommand;
 import move.application.Command.SearchMovesCommand;
 import pokemon.application.Command.SearchPokemonsCommand;
 import common.infrastructure.classes.combat.Jugadors;
-import common.infrastructure.service.ReaderService;
 import common.infrastructure.classes.teambuilder.Equips;
 
 final public class AppController {
@@ -21,8 +20,6 @@ final public class AppController {
     }
 
     public void pokedex() {
-        String selection;
-
         PokedexController receiver = new PokedexController();
 
         Menu menu = new Menu("POKETEXT: POKÈDEX");
@@ -31,11 +28,6 @@ final public class AppController {
         menu.register("O", SearchItemsCommand.of(receiver), "Cerca Objectes");
         menu.register("A", SearchAbilitiesCommand.of(receiver), "Cerca Habilitats");
 
-        do {
-            menu.print();
-            selection = ReaderService.read();
-
-            menu.execute(selection);
-        } while (!menu.isExit(selection));
+        menu.execute();
     }
 }

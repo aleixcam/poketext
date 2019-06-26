@@ -7,13 +7,10 @@ import pokemon.application.Command.RemoveFilterCommand;
 import pokemon.application.Command.SetNameFilterCommand;
 import pokemon.application.Command.SetTypeFilterCommand;
 import common.infrastructure.classes.cercador.*;
-import common.infrastructure.service.ReaderService;
 
 final public class PokedexController {
 
     public void pokemons() {
-        String[] s;
-
         PokemonController receiver = new PokemonController();
 
         Menu menu = new Menu("POKÈDEX: POKÈMONS");
@@ -21,7 +18,8 @@ final public class PokedexController {
         menu.register("N", SetNameFilterCommand.of(receiver), "Filtrar per nom");
         menu.register("T", SetTypeFilterCommand.of(receiver), "Filtrar per tipus");
         menu.register("E", RemoveFilterCommand.of(receiver), "Eliminar filtre");
-        menu.recursiveExecute();
+
+        menu.execute();
     }
 
     public void moves() {
