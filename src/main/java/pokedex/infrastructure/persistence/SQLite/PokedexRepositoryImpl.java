@@ -10,16 +10,16 @@ import java.util.List;
 final public class PokedexRepositoryImpl extends SQLiteRepositoryImpl implements PokedexRepository {
 
     public PokedexesCollection findAll() {
-        List<String[]> rowset = executeQuery("select pokedex_id, name, description\n"
+        List<String[]> list = executeQuery("select pokedex_id, name, description\n"
             + "from pokedex_prose\n"
             + "where local_language_id = 9");
 
-        return buildPokedexes(rowset);
+        return buildPokedexes(list);
     }
 
-    private PokedexesCollection buildPokedexes(List<String[]> rowset) {
+    private PokedexesCollection buildPokedexes(List<String[]> list) {
         PokedexesCollection pokedexes = new PokedexesCollection();
-        for (String[] row : rowset) {
+        for (String[] row : list) {
             Pokedex pokedex = new Pokedex();
             pokedex.setId(row[0]);
             pokedex.setName(row[1]);

@@ -11,7 +11,7 @@ import java.util.Objects;
 final public class PokemonRepositoryImpl extends SQLiteRepositoryImpl implements PokemonRepository {
 
     public PokemonsCollection findByCriteria(PokemonCriteria criteria) {
-        List<String[]> rowset = executeQuery("select " + criteria.getIdField() + " 'id', p.identifier 'name',\n"
+        List<String[]> list = executeQuery("select " + criteria.getIdField() + " 'id', p.identifier 'name',\n"
             + "(select n.name\n"
             + "from type_names n, pokemon_types t\n"
             + "where n.type_id = t.type_id\n"
@@ -33,12 +33,12 @@ final public class PokemonRepositoryImpl extends SQLiteRepositoryImpl implements
             + (criteria.getPokedexId() != 1 ? "and p.is_default = 1\n" : "")
             + "order by " + criteria.getIdField());
 
-        return buildPokemons(rowset);
+        return buildPokemons(list);
     }
 
-    private PokemonsCollection buildPokemons(List<String[]> rowset) {
+    private PokemonsCollection buildPokemons(List<String[]> list) {
         PokemonsCollection pokemons = new PokemonsCollection();
-        for (String[] row : rowset) {
+        for (String[] row : list) {
             Pokemon pokemon = new Pokemon();
             pokemon.setId(row[0]);
             pokemon.setName(row[1]);
@@ -53,7 +53,7 @@ final public class PokemonRepositoryImpl extends SQLiteRepositoryImpl implements
     }
 
     public BaseStats findStatsByPokemonId(int pokemon_id) {
-        List<String[]> rowset = executeQuery("select"
+        List<String[]> list = executeQuery("select"
             + "(select s.base_stat\n"
             + "from pokemon_stats s\n"
             + "where p.id = s.pokemon_id\n"
@@ -81,11 +81,11 @@ final public class PokemonRepositoryImpl extends SQLiteRepositoryImpl implements
             + "from pokemon p\n"
             + "where p.id = " + pokemon_id);
 
-        return buildStats(rowset);
+        return buildStats(list);
     }
 
-    private BaseStats buildStats(List<String[]> rowset) {
-        int[] stats = Arrays.stream(rowset.get(0)).mapToInt(Integer::parseInt).toArray();
+    private BaseStats buildStats(List<String[]> list) {
+        int[] stats = Arrays.stream(list.get(0)).mapToInt(Integer::parseInt).toArray();
 
         return new BaseStats(stats[0], stats[1], stats[2],stats[3], stats[4], stats[5]);
     }

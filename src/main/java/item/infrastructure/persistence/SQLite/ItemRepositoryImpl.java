@@ -19,7 +19,7 @@ final public class ItemRepositoryImpl implements ItemRepository {
     }
 
     public ItemsCollection findByCriteria(ItemCriteria criteria) {
-        List<String[]> rowset = repository.executeQuery("select i.id, n.name, f.flavor_text\n"
+        List<String[]> list = repository.executeQuery("select i.id, n.name, f.flavor_text\n"
                 + "from items i, item_categories c,  item_names n, item_flavor_text f\n"
                 + "where i.category_id = c.id\n"
                 + "and i.id = n.item_id\n"
@@ -32,12 +32,12 @@ final public class ItemRepositoryImpl implements ItemRepository {
                 + "and f.version_group_id = 15\n"
                 + (!Objects.equals(criteria.getName(), "") ? "and n.name like '%" + criteria.getName() + "%'" : ""));
 
-        return buildItems(rowset);
+        return buildItems(list);
     }
 
-    private ItemsCollection buildItems(List<String[]> rowset) {
+    private ItemsCollection buildItems(List<String[]> list) {
         ItemsCollection items = new ItemsCollection();
-        for (String[] row : rowset) {
+        for (String[] row : list) {
             Item item = new Item();
             item.setId(row[0]);
             item.setName(row[1]);

@@ -19,7 +19,7 @@ final public class AbilityRepositoryImpl implements AbilityRepository {
     }
 
     public AbilitiesCollection findByCriteria(AbilityCriteria criteria) {
-        List<String[]> rowset = repository.executeQuery("select f.ability_id, n.name, f.flavor_text\n"
+        List<String[]> list = repository.executeQuery("select f.ability_id, n.name, f.flavor_text\n"
                 + "from ability_flavor_text f, ability_names n\n"
                 + "where f.ability_id = n.ability_id\n"
                 + "and f.language_id = " + LanguageService.ENGLISH + "\n"
@@ -27,12 +27,12 @@ final public class AbilityRepositoryImpl implements AbilityRepository {
                 + "and f.version_group_id = 16\n"
                 + (!Objects.equals(criteria.getName(), "") ? "and n.name like '%" + criteria.getName() + "%'" : ""));
 
-        return buildAbilities(rowset);
+        return buildAbilities(list);
     }
 
-    private AbilitiesCollection buildAbilities(List<String[]> rowset) {
+    private AbilitiesCollection buildAbilities(List<String[]> list) {
         AbilitiesCollection abilities = new AbilitiesCollection();
-        for (String[] row : rowset) {
+        for (String[] row : list) {
             Ability ability = new Ability();
             ability.setId(row[0]);
             ability.setName(row[1]);

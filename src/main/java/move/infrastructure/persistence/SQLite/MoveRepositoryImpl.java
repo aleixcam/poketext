@@ -19,7 +19,7 @@ final public class MoveRepositoryImpl implements MoveRepository {
     }
 
     public MovesCollection findByCriteria(MoveCriteria criteria) {
-        List<String[]> rowset = repository.executeQuery("select distinct(m.id), n.name, t.name as type, d.identifier, m.power, m.accuracy, m.pp, f.flavor_text\n"
+        List<String[]> list = repository.executeQuery("select distinct(m.id), n.name, t.name as type, d.identifier, m.power, m.accuracy, m.pp, f.flavor_text\n"
                 + "from pokemon_moves p, move_names n, moves m, type_names t, move_flavor_text f, move_damage_classes d\n"
                 + "where m.id = p.move_id\n"
                 + "and m.id = n.move_id\n"
@@ -36,12 +36,12 @@ final public class MoveRepositoryImpl implements MoveRepository {
                 + (!Objects.equals(criteria.getType(), "") ? ("and t.name like '%" + criteria.getType() + "%'\n") : "")
                 + "order by m.id");
 
-        return buildMoves(rowset);
+        return buildMoves(list);
     }
 
-    private MovesCollection buildMoves(List<String[]> rowset) {
+    private MovesCollection buildMoves(List<String[]> list) {
         MovesCollection moves = new MovesCollection();
-        for (String[] row : rowset) {
+        for (String[] row : list) {
             Move move = new Move();
             move.setId(row[0]);
             move.setName(row[1]);

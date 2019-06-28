@@ -1,26 +1,26 @@
 package common.infrastructure.classes.teambuilder;
 
 import nature.application.GetNatures.GetNaturesUseCase;
+import nature.infrastructure.injector.NatureApplicationInjector;
+import nature.infrastructure.injector.NatureInfrastructureInjector;
 import pokemon.domain.BaseStats;
 import nature.infrastructure.persistence.SQLite.NatureRepositoryImpl;
 import pokemon.infrastructure.persistence.SQLite.PokemonRepositoryImpl;
 import common.infrastructure.printer.MatrixPrinter;
 import common.infrastructure.service.ReaderService;
-import nature.infrastructure.transformer.Matrix.NatureTransformerImpl;
 
 import common.infrastructure.classes.calc.Estadistiques;
-import java.io.IOException;
 import java.util.Arrays;
 
-public class Stats {
+class Stats {
 
     private final static int MAX_EVS = 508;
 
-    private static String selectNature() throws IOException {
+    private static String selectNature() {
         String s;
         int selected;
 
-        GetNaturesUseCase service = new GetNaturesUseCase(new NatureRepositoryImpl(), new NatureTransformerImpl());
+        GetNaturesUseCase service = NatureApplicationInjector.injectGetNaturesUseCase();
         String[][] natures = service.execute();
 
         String[] options = new String[natures.length];
@@ -60,7 +60,7 @@ public class Stats {
         String[] noms = {"HP", "Attack", "Defense", "Sp. Atk.", "Sp. Def.", "Speed"};
 
         PokemonRepositoryImpl pokemonRepository = new PokemonRepositoryImpl();
-        NatureRepositoryImpl natureRepository = new NatureRepositoryImpl();
+        NatureRepositoryImpl natureRepository = NatureInfrastructureInjector.injectNatureRepository();
         BaseStats stats = pokemonRepository.findStatsByPokemonId(Integer.parseInt(poke[0][0]));
 
         int[] base = {
@@ -96,7 +96,7 @@ public class Stats {
         System.out.printf("*%nNaturalesa: %s%n", natureRepository.getNameById(poke[4][6]));
     }
 
-    static void escollirStats(String[][] poke) throws IOException {
+    static void escollirStats(String[][] poke) {
         boolean sortir = false;
         String[] s;
 
