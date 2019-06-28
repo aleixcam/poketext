@@ -25,36 +25,26 @@ public class Menu implements MenuInvoker {
         String[] args;
 
         do {
-            args = print();
+            args = render();
             args[0] = args[0].toUpperCase();
-
-            execute(args);
-        } while (!isExit(args[0]));
+        } while (execute(args));
     }
 
-    private void execute(String... args) {
-        if (isExit(args[0])) {
-            return;
+    private boolean execute(String... args) {
+        if (args[0].equalsIgnoreCase(EXIT)) {
+            return false;
         }
 
-        if (!isValidSelection(args[0])) {
+        if (!actions.containsKey(args[0])) {
             System.out.print("Invalid selection");
-            return;
         }
 
         MenuOption option = actions.get(args[0]);
         option.getAction().execute(Arrays.copyOfRange(args, 1, args.length));
+        return true;
     }
 
-    private boolean isExit(String... args) {
-        return args[0].equalsIgnoreCase(EXIT);
-    }
-
-    private boolean isValidSelection(String selector) {
-        return actions.containsKey(selector);
-    }
-
-    public String[] print() {
+    private String[] render() {
         System.out.printf("%n%s%n", title);
 
         for(Map.Entry<String, MenuOption> entry : actions.entrySet()) {
