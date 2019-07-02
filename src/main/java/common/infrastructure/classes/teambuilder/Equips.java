@@ -2,6 +2,7 @@ package common.infrastructure.classes.teambuilder;
 
 import pokemon.infrastructure.injector.PokemonInfrastructureInjector;
 import pokemon.infrastructure.persistence.FileSystem.PokemonRepositoryFileSystem;
+import team.infrastructure.injector.TeamInfrastructureInjector;
 import team.infrastructure.persistence.FileSystem.TeamRepositoryFileSystem;
 import common.infrastructure.service.ReaderService;
 
@@ -78,19 +79,17 @@ public class Equips {
     }
 
     public static String[][][] importarEquip() {
-        TeamRepositoryFileSystem teamRepository = new TeamRepositoryFileSystem();
-        String[] pokemons = teamRepository.listDirectory(teamRepository.DIRECTORY);
+        String[] pokemons = teamFileSystemRepository().listDirectory(teamFileSystemRepository().DIRECTORY);
         System.out.println("Saved teams:");
         for (String pokemon : pokemons) {
             System.out.println(pokemon);
         }
 
-        return teamRepository.get(ReaderService.read());
+        return teamFileSystemRepository().get(ReaderService.read());
     }
 
     private static void exportarEquip(String[][][] equip) {
-        TeamRepositoryFileSystem teamRepository = new TeamRepositoryFileSystem();
-        teamRepository.save(equip, ReaderService.read());
+        teamFileSystemRepository().save(equip, ReaderService.read());
     }
 
     // Crear un nou equip
@@ -172,9 +171,6 @@ public class Equips {
         String sel;
         do {
 
-            TeamRepositoryFileSystem teamRepository = new TeamRepositoryFileSystem();
-
-            // Opcions del menú
             System.out.printf("%nPOKETEXT: CONSTRUCTOR D'EQUIPS%n");
             System.out.println("C. Crear un nou equip");
             System.out.println("M. Modificar un equip");
@@ -189,7 +185,7 @@ public class Equips {
             } else if (sel.equalsIgnoreCase("m")) {
                 crearEquip(importarEquip());
             } else if (sel.equalsIgnoreCase("e")) {
-                teamRepository.delete(ReaderService.read());
+                teamFileSystemRepository().delete(ReaderService.read());
             } else if (sel.equalsIgnoreCase("p")) {
                 pokemonFileSystemRepository().delete(ReaderService.read());
             } else if (sel.equalsIgnoreCase("q")) {
@@ -202,5 +198,9 @@ public class Equips {
 
     private static PokemonRepositoryFileSystem pokemonFileSystemRepository() {
         return PokemonInfrastructureInjector.injectFileSystemPokemonRepository();
+    }
+
+    private static TeamRepositoryFileSystem teamFileSystemRepository() {
+        return TeamInfrastructureInjector.injectFileSystemTeamRepository();
     }
 }
