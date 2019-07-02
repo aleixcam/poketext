@@ -1,6 +1,6 @@
 package pokemon.infrastructure.persistence.SQLite;
 
-import common.infrastructure.persistence.SQLiteRepositoryImpl;
+import common.infrastructure.persistence.SQLiteRepository;
 import common.infrastructure.service.LanguageService;
 import pokemon.domain.*;
 
@@ -8,10 +8,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-final public class PokemonRepositoryImpl extends SQLiteRepositoryImpl implements PokemonRepository {
+final public class PokemonRepositoryImpl implements PokemonRepository {
+
+    private final SQLiteRepository repository;
+
+    public PokemonRepositoryImpl(SQLiteRepository repository) {
+        this.repository = repository;
+    }
 
     public PokemonsCollection findByCriteria(PokemonCriteria criteria) {
-        List<String[]> list = executeQuery("select " + criteria.getIdField() + " 'id', p.identifier 'name',\n"
+        List<String[]> list = repository.executeQuery("select " + criteria.getIdField() + " 'id', p.identifier 'name',\n"
             + "(select n.name\n"
             + "from type_names n, pokemon_types t\n"
             + "where n.type_id = t.type_id\n"
@@ -53,7 +59,7 @@ final public class PokemonRepositoryImpl extends SQLiteRepositoryImpl implements
     }
 
     public BaseStats findStatsByPokemonId(int pokemon_id) {
-        List<String[]> list = executeQuery("select"
+        List<String[]> list = repository.executeQuery("select"
             + "(select s.base_stat\n"
             + "from pokemon_stats s\n"
             + "where p.id = s.pokemon_id\n"

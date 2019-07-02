@@ -3,15 +3,13 @@ package common.infrastructure.classes.teambuilder;
 import pokemon.application.GetPokemons.GetPokemonsUseCase;
 import common.infrastructure.classes.calc.Estadistiques;
 
-import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import pokemon.infrastructure.persistence.SQLite.PokemonRepositoryImpl;
+import pokemon.infrastructure.injector.PokemonApplicationInjector;
 import common.infrastructure.printer.MatrixPrinter;
 import common.infrastructure.service.ReaderService;
-import pokemon.infrastructure.transformer.Matrix.PokemonTransformerImpl;
 import poketext.infrastructure.Connector;
 
 // Clase de pokèmons del constructor d'equips
@@ -80,7 +78,7 @@ public class Pokes {
     }
 
     // Donar-li un sobrenom a un Pokèmon
-    private static String sobrenomPokemon(String id) throws SQLException, IOException {
+    private static String sobrenomPokemon(String id) throws SQLException {
         String sel, res = "";
 
         do {
@@ -99,7 +97,7 @@ public class Pokes {
     }
 
     // Escollir un pokèmon per a l'equip
-    protected static String[][] escollirPoke(String[][] poke) throws IOException {
+    static String[][] escollirPoke(String[][] poke) {
         String filter_type = "";
         String filter_name = "";
         String[] s;
@@ -107,8 +105,7 @@ public class Pokes {
         do {
             try {
 
-
-                GetPokemonsUseCase service = new GetPokemonsUseCase(new PokemonRepositoryImpl(), new PokemonTransformerImpl());
+                GetPokemonsUseCase service = PokemonApplicationInjector.injectGetPokemonsUseCase();
                 String[][] pokemons = service.execute(1, filter_name, filter_type);
 
                 // Mostrar per pantalla els pokèmons
@@ -157,7 +154,7 @@ public class Pokes {
     //****EDITAR****************************************************************
     //**************************************************************************
     // Mostar per pantalla un Pokèmon
-    public static void imprimirPoke(String[][] poke) throws IOException {
+    public static void imprimirPoke(String[][] poke) {
         int i, j;
         try {
             System.out.printf("%n%-68s%s%22S%n", "Nom: " + poke[0][1], "Pokèmon:", consultarIDPoke(poke[0][0], false));
@@ -206,7 +203,7 @@ public class Pokes {
     }
 
     // Editar un Pokèmon
-    protected static String[][] editarPoke(String[][] poke) throws IOException {
+    static String[][] editarPoke(String[][] poke) {
         boolean sortir = false;
         String sel;
 

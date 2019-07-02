@@ -1,8 +1,6 @@
 package common.infrastructure.classes.teambuilder;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
+import pokemon.infrastructure.injector.PokemonInfrastructureInjector;
 import pokemon.infrastructure.persistence.FileSystem.PokemonRepositoryFileSystem;
 import team.infrastructure.persistence.FileSystem.TeamRepositoryFileSystem;
 import common.infrastructure.service.ReaderService;
@@ -66,19 +64,17 @@ public class Equips {
     }
 
     private static String[][] importarPokemon() {
-        PokemonRepositoryFileSystem pokemonRepository = new PokemonRepositoryFileSystem();
-        String[] pokemons = pokemonRepository.listDirectory(pokemonRepository.DIRECTORY);
+        String[] pokemons = pokemonFileSystemRepository().listDirectory(pokemonFileSystemRepository().DIRECTORY);
         System.out.println("Saved pokemons:");
         for (String pokemon : pokemons) {
             System.out.println(pokemon);
         }
 
-        return pokemonRepository.get(ReaderService.read());
+        return pokemonFileSystemRepository().get(ReaderService.read());
     }
 
     private static void exportarPokemon(String[][] pokemon) {
-        PokemonRepositoryFileSystem pokemonRepository = new PokemonRepositoryFileSystem();
-        pokemonRepository.save(pokemon, ReaderService.read());
+        pokemonFileSystemRepository().save(pokemon, ReaderService.read());
     }
 
     public static String[][][] importarEquip() {
@@ -98,7 +94,7 @@ public class Equips {
     }
 
     // Crear un nou equip
-    private static void crearEquip(String[][][] equip) throws IOException {
+    private static void crearEquip(String[][][] equip) {
         boolean sortir = false;
         int num;
         String[] s;
@@ -127,7 +123,7 @@ public class Equips {
                     }
                 } else if ((s[0].equalsIgnoreCase("m")) && (s.length == 2)) {
                     if (equip[Integer.parseInt(s[1]) - 1] != null) {
-                        Pokes.editarPoke(equip[Integer.parseInt(s[1]) - 1]);
+                        equip[Integer.parseInt(s[1]) - 1] = Pokes.editarPoke(equip[Integer.parseInt(s[1]) - 1]);
                     } else {
                         System.out.println("No hi ha cap Pokèmon");
                     }
@@ -166,8 +162,6 @@ public class Equips {
                 }
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException ex) {
                 System.err.println("Paràmetres incorrectes");
-            } catch (FileNotFoundException ex) {
-                System.err.println("Fitxer no trobat");
             }
         } while (!sortir);
     }
@@ -177,39 +171,36 @@ public class Equips {
         boolean sortir = false;
         String sel;
         do {
-            try {
 
-                TeamRepositoryFileSystem teamRepository = new TeamRepositoryFileSystem();
-                PokemonRepositoryFileSystem pokemonRepository = new PokemonRepositoryFileSystem();
+            TeamRepositoryFileSystem teamRepository = new TeamRepositoryFileSystem();
 
-                // Opcions del menú
-                System.out.printf("%nPOKETEXT: CONSTRUCTOR D'EQUIPS%n");
-                System.out.println("C. Crear un nou equip");
-                System.out.println("M. Modificar un equip");
-                System.out.println("E. Eliminar un equip");
-                System.out.println("P. Eliminar un Pokèmon");
-                System.out.println("Q. Sortir al menú principal");
-                sel = ReaderService.read();
+            // Opcions del menú
+            System.out.printf("%nPOKETEXT: CONSTRUCTOR D'EQUIPS%n");
+            System.out.println("C. Crear un nou equip");
+            System.out.println("M. Modificar un equip");
+            System.out.println("E. Eliminar un equip");
+            System.out.println("P. Eliminar un Pokèmon");
+            System.out.println("Q. Sortir al menú principal");
+            sel = ReaderService.read();
 
-                // Seleccions del menú principal
-                if (sel.equalsIgnoreCase("c")) {
-                    crearEquip(new String[6][][]);
-                } else if (sel.equalsIgnoreCase("m")) {
-                    crearEquip(importarEquip());
-                } else if (sel.equalsIgnoreCase("e")) {
-                    teamRepository.delete(ReaderService.read());
-                } else if (sel.equalsIgnoreCase("p")) {
-                    pokemonRepository.delete(ReaderService.read());
-                } else if (sel.equalsIgnoreCase("q")) {
-                    sortir = true;
-                } else {
-                    System.out.println("Selecció incorrecte");
-                }
-            } catch (FileNotFoundException ex) {
-                System.err.println("Fitxer no trobat");
-            } catch (IOException ex) {
-                System.err.println(ex.getMessage());
+            // Seleccions del menú principal
+            if (sel.equalsIgnoreCase("c")) {
+                crearEquip(new String[6][][]);
+            } else if (sel.equalsIgnoreCase("m")) {
+                crearEquip(importarEquip());
+            } else if (sel.equalsIgnoreCase("e")) {
+                teamRepository.delete(ReaderService.read());
+            } else if (sel.equalsIgnoreCase("p")) {
+                pokemonFileSystemRepository().delete(ReaderService.read());
+            } else if (sel.equalsIgnoreCase("q")) {
+                sortir = true;
+            } else {
+                System.out.println("Selecció incorrecte");
             }
         } while (!sortir);
+    }
+
+    private static PokemonRepositoryFileSystem pokemonFileSystemRepository() {
+        return PokemonInfrastructureInjector.injectFileSystemPokemonRepository();
     }
 }

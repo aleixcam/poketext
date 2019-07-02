@@ -1,8 +1,5 @@
 package common.infrastructure.classes.combat;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 import common.infrastructure.service.ReaderService;
 import common.infrastructure.classes.teambuilder.Equips;
 import common.infrastructure.classes.teambuilder.Pokes;
@@ -51,48 +48,42 @@ public class Jugadors {
         String[] s;
 
         do {
-            try {
 
-                // Opcions del menú
-                System.out.printf("%nPOKETEXT: INICIAR COMBAT%n");
-                System.out.println("S. Seleccionar equip (#J)");
-                System.out.println("V. Veure equip (#J)");
-                System.out.println("M. Mode de joc");
-                System.out.println("A. Acceptar");
-                System.out.println("Q. Sortir al menú principal");
-                s = ReaderService.read().split(" ");
+            // Opcions del menú
+            System.out.printf("%nPOKETEXT: INICIAR COMBAT%n");
+            System.out.println("S. Seleccionar equip (#J)");
+            System.out.println("V. Veure equip (#J)");
+            System.out.println("M. Mode de joc");
+            System.out.println("A. Acceptar");
+            System.out.println("Q. Sortir al menú principal");
+            s = ReaderService.read().split(" ");
 
-                // Seleccions del menú principal
-                if ((s[0].equalsIgnoreCase("s")) && (s.length == 2)) {
-                    jugador[Integer.parseInt(s[1]) - 1] = Equips.importarEquip();
-                } else if ((s[0].equalsIgnoreCase("v")) && (s.length == 2)) {
-                    if (jugador[Integer.parseInt(s[1]) - 1] != null) {
-                        for (String[][] poke : jugador[Integer.parseInt(s[1]) - 1]) {
-                            if (poke != null) {
-                                Pokes.imprimirPoke(poke);
-                            }
+            // Seleccions del menú principal
+            if ((s[0].equalsIgnoreCase("s")) && (s.length == 2)) {
+                jugador[Integer.parseInt(s[1]) - 1] = Equips.importarEquip();
+            } else if ((s[0].equalsIgnoreCase("v")) && (s.length == 2)) {
+                if (jugador[Integer.parseInt(s[1]) - 1] != null) {
+                    for (String[][] poke : jugador[Integer.parseInt(s[1]) - 1]) {
+                        if (poke != null) {
+                            Pokes.imprimirPoke(poke);
                         }
-                    } else {
-                        System.out.println("No has escollit cap equip");
                     }
-                } else if ((s[0].equalsIgnoreCase("m")) && (s.length == 1)) {
-                    mode = opcionsCombat();
-                } else if ((s[0].equalsIgnoreCase("a")) && (s.length == 1)) {
-                    if (comprovarJugadors(jugador)) {
-                        System.out.println("Acceptar");
-                        sortir = true;
-                    } else {
-                        System.out.println("Els jugadors no estàn preparats");
-                    }
-                } else if ((s[0].equalsIgnoreCase("q")) && (s.length == 1)) {
+                } else {
+                    System.out.println("No has escollit cap equip");
+                }
+            } else if ((s[0].equalsIgnoreCase("m")) && (s.length == 1)) {
+                mode = opcionsCombat();
+            } else if ((s[0].equalsIgnoreCase("a")) && (s.length == 1)) {
+                if (comprovarJugadors(jugador)) {
+                    System.out.println("Acceptar");
                     sortir = true;
                 } else {
-                    System.out.println("Selecció incorrecte");
+                    System.out.println("Els jugadors no estàn preparats");
                 }
-            } catch (FileNotFoundException ex) {
-                System.err.println("Fitxer no trobat");
-            } catch (IOException ex) {
-                System.err.println(ex.getMessage());
+            } else if ((s[0].equalsIgnoreCase("q")) && (s.length == 1)) {
+                sortir = true;
+            } else {
+                System.out.println("Selecció incorrecte");
             }
         } while (!sortir);
     }

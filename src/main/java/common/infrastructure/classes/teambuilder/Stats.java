@@ -5,6 +5,7 @@ import nature.infrastructure.injector.NatureApplicationInjector;
 import nature.infrastructure.injector.NatureInfrastructureInjector;
 import pokemon.domain.BaseStats;
 import nature.infrastructure.persistence.SQLite.NatureRepositoryImpl;
+import pokemon.infrastructure.injector.PokemonInfrastructureInjector;
 import pokemon.infrastructure.persistence.SQLite.PokemonRepositoryImpl;
 import common.infrastructure.printer.MatrixPrinter;
 import common.infrastructure.service.ReaderService;
@@ -59,7 +60,7 @@ class Stats {
         int i, j;
         String[] noms = {"HP", "Attack", "Defense", "Sp. Atk.", "Sp. Def.", "Speed"};
 
-        PokemonRepositoryImpl pokemonRepository = new PokemonRepositoryImpl();
+        PokemonRepositoryImpl pokemonRepository = PokemonInfrastructureInjector.injectPokemonRepository();
         NatureRepositoryImpl natureRepository = NatureInfrastructureInjector.injectNatureRepository();
         BaseStats stats = pokemonRepository.findStatsByPokemonId(Integer.parseInt(poke[0][0]));
 

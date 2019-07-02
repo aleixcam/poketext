@@ -1,16 +1,22 @@
 package pokedex.infrastructure.persistence.SQLite;
 
-import common.infrastructure.persistence.SQLiteRepositoryImpl;
+import common.infrastructure.persistence.SQLiteRepository;
 import pokedex.domain.Pokedex;
 import pokedex.domain.PokedexRepository;
 import pokedex.domain.PokedexesCollection;
 
 import java.util.List;
 
-final public class PokedexRepositoryImpl extends SQLiteRepositoryImpl implements PokedexRepository {
+final public class PokedexRepositoryImpl implements PokedexRepository {
+
+    private final SQLiteRepository repository;
+
+    public PokedexRepositoryImpl(SQLiteRepository repository) {
+        this.repository = repository;
+    }
 
     public PokedexesCollection findAll() {
-        List<String[]> list = executeQuery("select pokedex_id, name, description\n"
+        List<String[]> list = repository.executeQuery("select pokedex_id, name, description\n"
             + "from pokedex_prose\n"
             + "where local_language_id = 9");
 
