@@ -12,8 +12,7 @@ final public class PokemonController {
     private String[] pokedex;
 
     public void execute() {
-        GetPokemonsUseCase service = PokemonApplicationInjector.injectGetPokemonsUseCase();
-        String[][] pokemons = service.execute(Integer.parseInt(pokedex[0]), nameFilter, typeFilter);
+        String[][] pokemons = getPokemonsUseCase().execute(Integer.parseInt(pokedex[0]), nameFilter, typeFilter);
 
         System.out.printf("%n%nPokèdex: %s%n", pokedex[1]);
         System.out.printf("Nom: %s Tipus: %s%n", nameFilter, typeFilter);
@@ -40,5 +39,9 @@ final public class PokemonController {
 
     public void removeTypeFilter() {
         this.nameFilter = "";
+    }
+
+    private GetPokemonsUseCase getPokemonsUseCase() {
+        return PokemonApplicationInjector.injectGetPokemonsUseCase();
     }
 }
