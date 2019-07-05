@@ -15,13 +15,13 @@ public class GetPokemonsUseCase {
         this.assembler = assembler;
     }
 
-    public String[][] execute(int pokedex_id, String name, String type) {
+    public String[][] execute(GetPokemonsRequest request) {
         PokemonCriteria criteria = new PokemonCriteria();
-        criteria.setPokedexId(pokedex_id);
-        criteria.setName(name);
-        criteria.setType(type);
+        criteria.setPokedexId(request.getPokedexId());
+        criteria.setName(request.getName());
+        criteria.setType(request.getType());
 
-        PokemonsCollection pokemons = this.repository.findByCriteria(criteria);
-        return this.assembler.assemble(pokemons);
+        PokemonsCollection pokemons = repository.findByCriteria(criteria);
+        return assembler.assemble(pokemons);
     }
 }

@@ -2,18 +2,18 @@ package pokemon.domain;
 
 public class PokemonCriteria {
 
-    private int pokedex_id;
+    private int pokedexId;
     private String name;
     private String type;
-    private String id_field;
+    private String idField;
 
     public int getPokedexId() {
-        return pokedex_id;
+        return pokedexId;
     }
 
-    public void setPokedexId(int pokedex_id) {
-        this.pokedex_id = pokedex_id;
-        this.id_field = pokedex_id == 1 ? "p.id" : "d.pokedex_number";
+    public void setPokedexId(int pokedexId) {
+        this.pokedexId = pokedexId;
+        this.idField = pokedexId == 1 ? "p.id" : "d.pokedex_number";
     }
 
     public String getName() {
@@ -33,6 +33,6 @@ public class PokemonCriteria {
     }
 
     public String getIdField() {
-        return id_field;
+        return idField;
     }
 }

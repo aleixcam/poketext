@@ -1,5 +1,6 @@
 package common.infrastructure.classes.teambuilder;
 
+import pokemon.application.GetPokemons.GetPokemonsRequest;
 import pokemon.application.GetPokemons.GetPokemonsUseCase;
 import common.infrastructure.classes.calc.Estadistiques;
 
@@ -106,7 +107,9 @@ public class Pokes {
             try {
 
                 GetPokemonsUseCase service = PokemonApplicationInjector.injectGetPokemonsUseCase();
-                String[][] pokemons = service.execute(1, filter_name, filter_type);
+                String[][] pokemons = service.execute(
+                    new GetPokemonsRequest("1", filter_name, filter_type)
+                );
 
                 // Mostrar per pantalla els pokèmons
                 System.out.printf("%nNom: %s Tipus: %s%n", filter_name, filter_type);
