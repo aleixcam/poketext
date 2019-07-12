@@ -12,7 +12,11 @@ final public class PokemonController {
     private String typeFilter = "";
     private String[] pokedex;
 
-    private void execute() {
+    public PokemonController() {
+        selectPokedex();
+    }
+
+    private void search() {
         String[][] pokemons = getPokemonsUseCase().execute(
             new GetPokemonsRequest(pokedex[0], nameFilter, typeFilter)
         );
@@ -26,27 +30,27 @@ final public class PokemonController {
 
     public void selectPokedex() {
         this.pokedex = Pokedex.cercarPokedex();
-        execute();
+        search();
     }
 
     public void setNameFilter(String nameFilter) {
         this.nameFilter = nameFilter;
-        execute();
+        search();
     }
 
     public void setTypeFilter(String typeFilter) {
         this.typeFilter = typeFilter;
-        execute();
+        search();
     }
 
     public void removeNameFilter() {
         this.nameFilter = "";
-        execute();
+        search();
     }
 
     public void removeTypeFilter() {
         this.nameFilter = "";
-        execute();
+        search();
     }
 
     private GetPokemonsUseCase getPokemonsUseCase() {

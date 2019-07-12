@@ -12,7 +12,6 @@ final public class PokedexController {
 
     public void pokemons() {
         PokemonController receiver = new PokemonController();
-        receiver.selectPokedex();
 
         Menu menu = new Menu("POKÈDEX: POKÈMONS");
         menu.register("P", SelectPokedexCommand.of(receiver), "Cambiar Pokèdex");
