@@ -13,6 +13,8 @@ final public class AbilityInfrastructureInjector {
     }
 
     public static AbilityTransformerImpl injectAbilityTransformer() {
-        return new AbilityTransformerImpl();
+        return new AbilityTransformerImpl(
+            CommonInfrastructureInjector.injectMatrixService()
+        );
     }
 }
