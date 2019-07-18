@@ -13,6 +13,8 @@ public class PokedexInfrastructureInjector {
     }
 
     public static PokedexTransformerImpl injectPokedexTransformer() {
-        return new PokedexTransformerImpl();
+        return new PokedexTransformerImpl(
+            CommonInfrastructureInjector.injectMatrixService()
+        );
     }
 }

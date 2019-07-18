@@ -1,6 +1,6 @@
 package common.infrastructure.classes.teambuilder;
 
-import common.infrastructure.service.MatrixService;
+import common.infrastructure.service.MatrixServiceImpl;
 import item.application.GetItems.GetItemsUseCase;
 import common.infrastructure.classes.calc.Estadistiques;
 import java.sql.PreparedStatement;
@@ -99,7 +99,7 @@ class Detalls {
                 + "and f.version_group_id = 15\n"
                 + "and a.pokemon_id = " + id);
         result = st.executeQuery();
-        return MatrixService.getMatrix(result, col);
+        return MatrixServiceImpl.getMatrix(result, col);
     }
 
     // Consultar l'ID del objecte seleccionat

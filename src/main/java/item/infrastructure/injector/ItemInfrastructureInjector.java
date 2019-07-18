@@ -13,6 +13,8 @@ final public class ItemInfrastructureInjector {
     }
 
     public static ItemTransformerImpl injectItemTransformer() {
-        return new ItemTransformerImpl();
+        return new ItemTransformerImpl(
+            CommonInfrastructureInjector.injectMatrixService()
+        );
     }
 }

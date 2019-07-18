@@ -18,6 +18,8 @@ public class PokemonInfrastructureInjector {
     }
 
     public static PokemonTransformerImpl injectPokemonTransformer() {
-        return new PokemonTransformerImpl();
+        return new PokemonTransformerImpl(
+            CommonInfrastructureInjector.injectMatrixService()
+        );
     }
 }

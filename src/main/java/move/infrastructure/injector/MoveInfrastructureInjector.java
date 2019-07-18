@@ -13,6 +13,8 @@ final public class MoveInfrastructureInjector {
     }
 
     public static MoveTransformerImpl injectMoveTransformer() {
-        return new MoveTransformerImpl();
+        return new MoveTransformerImpl(
+            CommonInfrastructureInjector.injectMatrixService()
+        );
     }
 }

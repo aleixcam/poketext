@@ -1,20 +1,26 @@
 package pokemon.infrastructure.transformer.Matrix;
 
-import common.infrastructure.transformer.MatrixTransformer;
+import common.domain.service.MatrixService;
 import pokemon.domain.Pokemon;
 import pokemon.application.PokemonTransformer;
 import pokemon.domain.PokemonsCollection;
 
 import java.util.ArrayList;
 
-final public class PokemonTransformerImpl extends MatrixTransformer implements PokemonTransformer {
+final public class PokemonTransformerImpl implements PokemonTransformer {
+
+    private final String[] COLUMNS = {"ID", "Name", "Type 1", "Type 2", "HP", "Atk", "Def", "SpA", "SpD", "Spe"};
+
+    private final MatrixService matrixService;
+
+    public PokemonTransformerImpl(MatrixService matrixService) {
+        this.matrixService = matrixService;
+    }
 
     public String[][] assemble(PokemonsCollection collection) {
         ArrayList<Pokemon> pokemons = collection.getPokemons();
-        String[] columns = {"ID", "Name", "Type 1", "Type 2", "HP", "Atk", "Def", "SpA", "SpD", "Spe"};
-        String[][] matrix = new String[pokemons.size() + 1][columns.length];
+        String[][] matrix = matrixService.generate(COLUMNS, pokemons.size());
 
-        matrix[0] = columns;
         for (int i = 0; i < pokemons.size(); i++) {
             matrix[i+1][0] = String.valueOf(pokemons.get(i).getId());
             matrix[i+1][1] = pokemons.get(i).getName();
@@ -28,6 +34,6 @@ final public class PokemonTransformerImpl extends MatrixTransformer implements P
             matrix[i+1][9] = String.valueOf(pokemons.get(i).getBaseStats().getSpeed());
         }
 
-        return generate(matrix);
+        return matrixService.beautify(matrix);
     }
 }

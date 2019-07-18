@@ -1,14 +1,16 @@
 package common.infrastructure.service;
 
+import common.domain.service.MatrixService;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MatrixService {
+public class MatrixServiceImpl implements MatrixService {
 
     public String[][] generate(String[] columns, int rows) {
-        String[][] matrix = new String[rows][columns.length];
+        String[][] matrix = new String[rows + 1][columns.length];
         matrix[0] = columns;
 
         return matrix;

@@ -13,6 +13,8 @@ public class NatureInfrastructureInjector {
     }
 
     public static NatureTransformerImpl injectNatureTransformer() {
-        return new NatureTransformerImpl();
+        return new NatureTransformerImpl(
+            CommonInfrastructureInjector.injectMatrixService()
+        );
     }
 }

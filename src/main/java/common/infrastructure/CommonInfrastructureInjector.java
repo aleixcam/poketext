@@ -1,7 +1,7 @@
 package common.infrastructure;
 
 import common.infrastructure.persistence.SQLiteRepositoryImpl;
-import common.infrastructure.service.MatrixService;
+import common.infrastructure.service.MatrixServiceImpl;
 
 final public class CommonInfrastructureInjector {
 
@@ -9,7 +9,7 @@ final public class CommonInfrastructureInjector {
         return new SQLiteRepositoryImpl();
     }
 
-    public static MatrixService injectMatrixService() {
-        return new MatrixService();
+    public static MatrixServiceImpl injectMatrixService() {
+        return new MatrixServiceImpl();
     }
 }

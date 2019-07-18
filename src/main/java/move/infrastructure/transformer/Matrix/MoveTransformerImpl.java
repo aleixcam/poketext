@@ -1,20 +1,26 @@
 package move.infrastructure.transformer.Matrix;
 
-import common.infrastructure.transformer.MatrixTransformer;
+import common.domain.service.MatrixService;
 import move.domain.Move;
 import move.application.MoveTransformer;
 import move.domain.MovesCollection;
 
 import java.util.ArrayList;
 
-final public class MoveTransformerImpl extends MatrixTransformer implements MoveTransformer {
+final public class MoveTransformerImpl implements MoveTransformer {
+
+    private final String[] COLUMNS = {"ID", "Name", "Type", "Class", "Pow", "Acc", "PP", "Effect"};
+
+    private final MatrixService matrixService;
+
+    public MoveTransformerImpl(MatrixService matrixService) {
+        this.matrixService = matrixService;
+    }
 
     public String[][] assemble(MovesCollection collection) {
         ArrayList<Move> moves = collection.getMoves();
-        String[] columns = {"ID", "Name", "Type", "Class", "Pow", "Acc", "PP", "Effect"};
-        String[][] matrix = new String[moves.size() + 1][columns.length];
+        String[][] matrix = matrixService.generate(COLUMNS, moves.size());
 
-        matrix[0] = columns;
         for (int i = 0; i < moves.size(); i++) {
             matrix[i+1][0] = String.valueOf(moves.get(i).getId());
             matrix[i+1][1] = moves.get(i).getName();
@@ -26,6 +32,6 @@ final public class MoveTransformerImpl extends MatrixTransformer implements Move
             matrix[i+1][7] = moves.get(i).getEffect();
         }
 
-        return generate(matrix);
+        return matrixService.beautify(matrix);
     }
 }
