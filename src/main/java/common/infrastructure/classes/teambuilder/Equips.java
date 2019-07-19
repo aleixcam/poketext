@@ -1,9 +1,9 @@
 package common.infrastructure.classes.teambuilder;
 
 import pokemon.infrastructure.injector.PokemonInfrastructureInjector;
-import pokemon.infrastructure.persistence.FileSystem.PokemonRepositoryFileSystem;
+import pokemon.infrastructure.persistence.FileSystem.PokemonRepositoryImpl;
 import team.infrastructure.injector.TeamInfrastructureInjector;
-import team.infrastructure.persistence.FileSystem.TeamRepositoryFileSystem;
+import team.infrastructure.persistence.FileSystem.TeamRepositoryImpl;
 import common.infrastructure.service.ReaderService;
 
 public class Equips {
@@ -65,7 +65,7 @@ public class Equips {
     }
 
     private static String[][] importarPokemon() {
-        String[] pokemons = pokemonFileSystemRepository().listDirectory(pokemonFileSystemRepository().DIRECTORY);
+        String[] pokemons = pokemonFileSystemRepository().listDirectory(pokemonFileSystemRepository().directory);
         System.out.println("Saved pokemons:");
         for (String pokemon : pokemons) {
             System.out.println(pokemon);
@@ -79,7 +79,7 @@ public class Equips {
     }
 
     public static String[][][] importarEquip() {
-        String[] pokemons = teamFileSystemRepository().listDirectory(teamFileSystemRepository().DIRECTORY);
+        String[] pokemons = teamFileSystemRepository().listDirectory(teamFileSystemRepository().directory);
         System.out.println("Saved teams:");
         for (String pokemon : pokemons) {
             System.out.println(pokemon);
@@ -196,11 +196,11 @@ public class Equips {
         } while (!sortir);
     }
 
-    private static PokemonRepositoryFileSystem pokemonFileSystemRepository() {
+    private static PokemonRepositoryImpl pokemonFileSystemRepository() {
         return PokemonInfrastructureInjector.injectFileSystemPokemonRepository();
     }
 
-    private static TeamRepositoryFileSystem teamFileSystemRepository() {
+    private static TeamRepositoryImpl teamFileSystemRepository() {
         return TeamInfrastructureInjector.injectFileSystemTeamRepository();
     }
 }

@@ -3,7 +3,7 @@ package move.infrastructure.persistence.SQLite;
 import java.util.List;
 import java.util.Objects;
 
-import common.infrastructure.persistence.SQLiteRepository;
+import common.domain.service.SQLiteRepository;
 import move.domain.Move;
 import move.domain.MoveCriteria;
 import move.domain.MoveRepository;

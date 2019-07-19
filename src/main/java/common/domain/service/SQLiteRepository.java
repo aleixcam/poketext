@@ -1,4 +1,4 @@
-package common.infrastructure.persistence;
+package common.domain.service;
 
 import java.util.List;
 

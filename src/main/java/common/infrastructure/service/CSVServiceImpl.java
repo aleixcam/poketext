@@ -1,13 +1,14 @@
 package common.infrastructure.service;
 
+import common.domain.service.CSVService;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConvertCSVService {
+public class CSVServiceImpl implements CSVService {
 
-    public static String[] toCSV(String[][] matrix) {
+    public String[] toCSV(String[][] matrix) {
         List<String> data = new ArrayList<>();
         for (String[] row : matrix) {
             StringBuilder sb = new StringBuilder(row[0]);
@@ -21,7 +22,7 @@ public class ConvertCSVService {
         return data.toArray(arr);
     }
 
-    public static String[] toCSV3(String[][][] parallelepiped) {
+    public String[] toCSV3(String[][][] parallelepiped) {
         List<String> data = new ArrayList<>();
         for (String[][] matrix : parallelepiped) {
             data.add(StringUtils.join(toCSV(matrix), ';'));
@@ -31,7 +32,7 @@ public class ConvertCSVService {
         return data.toArray(arr);
     }
 
-    public static String[][] fromCSV(String[] data) {
+    public String[][] fromCSV(String[] data) {
         String[][] matrix = new String[data.length][];
         for (int i = 0; i < data.length; i++) {
             matrix[i] = data[i].split("");
@@ -40,7 +41,7 @@ public class ConvertCSVService {
         return matrix;
     }
 
-    public static String[][][] fromCSV3(String[] data) {
+    public String[][][] fromCSV3(String[] data) {
         String[][][] parallelepiped = new String[data.length][][];
         for (int i = 0; i < data.length; i++) {
             String[] line = data[i].split(";");

@@ -1,10 +1,13 @@
 package team.infrastructure.injector;
 
-import team.infrastructure.persistence.FileSystem.TeamRepositoryFileSystem;
+import common.infrastructure.CommonInfrastructureInjector;
+import team.infrastructure.persistence.FileSystem.TeamRepositoryImpl;
 
 public class TeamInfrastructureInjector {
 
-    public static TeamRepositoryFileSystem injectFileSystemTeamRepository() {
-        return new TeamRepositoryFileSystem();
+    public static TeamRepositoryImpl injectFileSystemTeamRepository() {
+        return new TeamRepositoryImpl(
+            CommonInfrastructureInjector.injectCSVService()
+        );
     }
 }

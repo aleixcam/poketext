@@ -1,5 +1,6 @@
 package common.infrastructure.persistence;
 
+import common.domain.service.SQLiteRepository;
 import poketext.infrastructure.Connector;
 import org.sqlite.JDBC;
 

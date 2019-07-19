@@ -1,20 +1,21 @@
 package pokemon.infrastructure.injector;
 
 import common.infrastructure.CommonInfrastructureInjector;
-import pokemon.infrastructure.persistence.FileSystem.PokemonRepositoryFileSystem;
-import pokemon.infrastructure.persistence.SQLite.PokemonRepositoryImpl;
+import pokemon.infrastructure.persistence.FileSystem.PokemonRepositoryImpl;
 import pokemon.infrastructure.transformer.Matrix.PokemonTransformerImpl;
 
 public class PokemonInfrastructureInjector {
 
-    public static PokemonRepositoryImpl injectPokemonRepository() {
-        return new PokemonRepositoryImpl(
+    public static pokemon.infrastructure.persistence.SQLite.PokemonRepositoryImpl injectPokemonRepository() {
+        return new pokemon.infrastructure.persistence.SQLite.PokemonRepositoryImpl(
             CommonInfrastructureInjector.injectSQLiteRepository()
         );
     }
 
-    public static PokemonRepositoryFileSystem injectFileSystemPokemonRepository() {
-        return new PokemonRepositoryFileSystem();
+    public static PokemonRepositoryImpl injectFileSystemPokemonRepository() {
+        return new PokemonRepositoryImpl(
+            CommonInfrastructureInjector.injectCSVService()
+        );
     }
 
     public static PokemonTransformerImpl injectPokemonTransformer() {

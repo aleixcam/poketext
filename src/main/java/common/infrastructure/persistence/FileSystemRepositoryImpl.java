@@ -1,12 +1,16 @@
 package common.infrastructure.persistence;
 
+import common.domain.service.CSVService;
+import common.domain.service.FileSystemRepository;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class FileSystemRepository {
+public abstract class FileSystemRepositoryImpl implements FileSystemRepository {
 
-    abstract protected String getPath(String file);
+    protected CSVService csvService;
+    public String directory;
 
     protected List<String> read(String path) {
         List<String> data = new ArrayList<>();
@@ -76,4 +80,6 @@ public abstract class FileSystemRepository {
             System.out.printf("Cannot create directory %s", dir);
         }
     }
+
+    abstract protected String getPath(String file);
 }
