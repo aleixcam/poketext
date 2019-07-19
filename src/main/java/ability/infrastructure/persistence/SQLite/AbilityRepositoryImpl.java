@@ -4,7 +4,7 @@ import ability.domain.Ability;
 import ability.domain.AbilitiesCollection;
 import ability.domain.AbilityCriteria;
 import ability.domain.AbilityRepository;
-import common.domain.service.SQLiteRepository;
+import common.domain.SQLiteRepository;
 import common.infrastructure.service.LanguageService;
 
 import java.util.List;

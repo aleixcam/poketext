@@ -1,6 +1,6 @@
 package common.infrastructure.service;
 
-import common.domain.service.MatrixService;
+import common.domain.MatrixService;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -1,6 +1,6 @@
 package item.infrastructure.persistence.SQLite;
 
-import common.domain.service.SQLiteRepository;
+import common.domain.SQLiteRepository;
 import item.domain.Item;
 import item.domain.ItemCriteria;
 import item.domain.ItemRepository;

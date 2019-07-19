@@ -2,6 +2,7 @@ package common.infrastructure.classes.teambuilder;
 
 import pokemon.infrastructure.injector.PokemonInfrastructureInjector;
 import pokemon.infrastructure.persistence.FileSystem.PokemonRepositoryImpl;
+import pokemon.infrastructure.transformer.Matrix.PokemonTransformerImpl;
 import team.infrastructure.injector.TeamInfrastructureInjector;
 import team.infrastructure.persistence.FileSystem.TeamRepositoryImpl;
 import common.infrastructure.service.ReaderService;
@@ -71,11 +72,11 @@ public class Equips {
             System.out.println(pokemon);
         }
 
-        return pokemonFileSystemRepository().get(ReaderService.read());
+        return pokemonFileSystemRepository().read(ReaderService.read());
     }
 
     private static void exportarPokemon(String[][] pokemon) {
-        pokemonFileSystemRepository().save(pokemon, ReaderService.read());
+        pokemonFileSystemRepository().write(pokemon, ReaderService.read());
     }
 
     public static String[][][] importarEquip() {
@@ -85,11 +86,11 @@ public class Equips {
             System.out.println(pokemon);
         }
 
-        return teamFileSystemRepository().get(ReaderService.read());
+        return teamFileSystemRepository().read(ReaderService.read());
     }
 
     private static void exportarEquip(String[][][] equip) {
-        teamFileSystemRepository().save(equip, ReaderService.read());
+        teamFileSystemRepository().write(equip, ReaderService.read());
     }
 
     // Crear un nou equip

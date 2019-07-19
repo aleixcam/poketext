@@ -1,4 +1,4 @@
-package common.domain.service;
+package common.domain;
 
 import java.util.List;
 

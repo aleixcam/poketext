@@ -1,6 +1,6 @@
 package nature.infrastructure.persistence.SQLite;
 
-import common.domain.service.SQLiteRepository;
+import common.domain.SQLiteRepository;
 import nature.domain.Nature;
 import nature.domain.NatureRepository;
 import nature.domain.NaturesCollection;

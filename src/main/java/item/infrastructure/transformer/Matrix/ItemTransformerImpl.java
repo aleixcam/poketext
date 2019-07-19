@@ -1,6 +1,6 @@
 package item.infrastructure.transformer.Matrix;
 
-import common.domain.service.MatrixService;
+import common.domain.MatrixService;
 import item.domain.Item;
 import item.application.ItemTransformer;
 import item.domain.ItemsCollection;

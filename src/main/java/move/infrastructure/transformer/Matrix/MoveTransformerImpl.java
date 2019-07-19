@@ -1,6 +1,6 @@
 package move.infrastructure.transformer.Matrix;
 
-import common.domain.service.MatrixService;
+import common.domain.MatrixService;
 import move.domain.Move;
 import move.application.MoveTransformer;
 import move.domain.MovesCollection;

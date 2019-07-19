@@ -1,22 +1,22 @@
 package common.infrastructure.persistence;
 
-import common.domain.service.CSVService;
-import common.domain.service.FileSystemRepository;
+import common.domain.CSVService;
+import common.domain.FileSystemRepository;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class FileSystemRepositoryImpl implements FileSystemRepository {
+public abstract class FileSystemRepositoryImpl<T> implements FileSystemRepository<T> {
 
     protected CSVService csvService;
     public String directory;
 
-    protected List<String> read(String path) {
+    public T read(String name) {
         List<String> data = new ArrayList<>();
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader(path));
+            BufferedReader br = new BufferedReader(new FileReader(getPath(name)));
 
             String line;
             while ((line = br.readLine()) != null) {
@@ -28,10 +28,12 @@ public abstract class FileSystemRepositoryImpl implements FileSystemRepository {
             System.err.println(ex.getMessage());
         }
 
-        return data;
+        return build(data);
     }
 
-    protected void write(String[] data, String path) {
+    public void write(T entity, String path) {
+        String[] data = deconstruct(entity);
+
         try {
             PrintWriter pw = new PrintWriter(new FileWriter(path, false));
 
@@ -81,5 +83,11 @@ public abstract class FileSystemRepositoryImpl implements FileSystemRepository {
         }
     }
 
-    abstract protected String getPath(String file);
+
+    private String getPath(String file) {
+        return String.format("%s/%s", directory, file);
+    }
+
+    abstract protected T build(List<String> data);
+    abstract protected String[] deconstruct(T entity);
 }
