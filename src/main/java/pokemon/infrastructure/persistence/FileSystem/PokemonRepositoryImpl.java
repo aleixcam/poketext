@@ -2,11 +2,10 @@ package pokemon.infrastructure.persistence.FileSystem;
 
 import common.domain.CSVService;
 import common.infrastructure.persistence.FileSystemRepositoryImpl;
-import pokemon.domain.Pokemon;
 
 import java.util.List;
 
-final public class PokemonRepositoryImpl extends FileSystemRepositoryImpl<Pokemon> {
+final public class PokemonRepositoryImpl extends FileSystemRepositoryImpl<String[][]> {
 
     public PokemonRepositoryImpl(CSVService csvService) {
         this.csvService = csvService;
@@ -14,12 +13,12 @@ final public class PokemonRepositoryImpl extends FileSystemRepositoryImpl<Pokemo
     }
 
     @Override
-    protected Pokemon build(List<String> data) {
-        return new Pokemon();
+    protected String[][] build(List<String> csv) {
+        return csvService.fromCSV(csv.toArray(new String[0]));
     }
 
     @Override
-    protected String[] deconstruct(Pokemon entity) {
-        return new String[0];
+    protected String[] getCSV(String[][] pokemon) {
+        return csvService.toCSV(pokemon);
     }
 }

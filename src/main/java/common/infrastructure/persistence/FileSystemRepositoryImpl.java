@@ -6,11 +6,12 @@ import common.domain.FileSystemRepository;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class FileSystemRepositoryImpl<T> implements FileSystemRepository<T> {
 
     protected CSVService csvService;
-    public String directory;
+    protected String directory;
 
     public T read(String name) {
         List<String> data = new ArrayList<>();
@@ -31,13 +32,11 @@ public abstract class FileSystemRepositoryImpl<T> implements FileSystemRepositor
         return build(data);
     }
 
-    public void write(T entity, String path) {
-        String[] data = deconstruct(entity);
-
+    public void write(T entity, String name) {
         try {
-            PrintWriter pw = new PrintWriter(new FileWriter(path, false));
+            PrintWriter pw = new PrintWriter(new FileWriter(getPath(name), false));
 
-            for (String line : data) {
+            for (String line : getCSV(entity)) {
                 pw.println(line);
             }
 
@@ -47,20 +46,20 @@ public abstract class FileSystemRepositoryImpl<T> implements FileSystemRepositor
         }
     }
 
-     public void delete(String path) {
+     public void erase(String name) {
         try {
-            File file = new File(path);
+            File file = new File(name);
             if (!file.delete()) {
-                throw new IOException("Can't delete file: " + path);
+                throw new IOException("Can't erase file: " + name);
             }
         } catch (IOException ex) {
             System.err.println(ex.getMessage());
         }
     }
 
-    public String[] listDirectory(String dir) {
-        File directory = new File(dir);
+    public String[] list() {
         ArrayList<String> list = new ArrayList<>();
+        File directory = getDirectory(this.directory);
 
         if (directory.exists()) {
             File[] files = directory.listFiles();
@@ -70,24 +69,31 @@ public abstract class FileSystemRepositoryImpl<T> implements FileSystemRepositor
                 }
             }
         } else {
-            createDirectory(dir);
+            createDirectory(this.directory);
         }
 
         return list.toArray(new String[0]);
     }
 
+    private File getDirectory(String dir) {
+        return new File(
+            Objects.requireNonNull(
+                getClass().getClassLoader().getResource(dir)
+            ).getFile()
+        );
+    }
+
     private void createDirectory(String dir) {
         boolean created = new File(dir).mkdir();
         if (!created) {
-            System.out.printf("Cannot create directory %s", dir);
+            System.out.printf("Cannot create directory %s%n", dir);
         }
     }
 
-
-    private String getPath(String file) {
-        return String.format("%s/%s", directory, file);
+    private File getPath(String file) {
+        return getDirectory(String.format("%s/%s", directory, file));
     }
 
-    abstract protected T build(List<String> data);
-    abstract protected String[] deconstruct(T entity);
+    abstract protected T build(List<String> csv);
+    abstract protected String[] getCSV(T entity);
 }
