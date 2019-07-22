@@ -26,13 +26,12 @@ final public class PokedexController {
     public void moves() {
         MoveController receiver = new MoveController();
 
-        Menu menu = new Menu("POKÈDEX: POKÈMONS");
+        Menu menu = new Menu("POKÈDEX: MOVIMENTS");
         menu.register("N", SetNameFilterCommand.of(receiver), "Filtrar per nom");
         menu.register("T", SetTypeFilterCommand.of(receiver), "Filtrar per tipus");
         menu.register("E", RemoveFilterCommand.of(receiver), "Eliminar filtre");
 
         menu.execute();
-        MoveController.viewMoves();
     }
 
     public void items() {

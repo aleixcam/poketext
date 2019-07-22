@@ -4,14 +4,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import move.application.GetMoves.GetMovesUseCase;
+import move.application.GetMoves.GetMovesRequest;
 import move.infrastructure.injector.MoveApplicationInjector;
 import common.infrastructure.printer.MatrixPrinter;
 import common.infrastructure.service.LanguageService;
 import common.infrastructure.service.ReaderService;
 import poketext.infrastructure.Connector;
 
-public class Moviments {
+class Moviments {
 
     //**************************************************************************
     //****ESCOLLIR**************************************************************
@@ -72,8 +72,9 @@ public class Moviments {
         do {
             try {
 
-                GetMovesUseCase service = MoveApplicationInjector.injectGetMovesUseCase();
-                String[][] moves = service.execute(0, filter_name, filter_type);
+                String[][] moves = MoveApplicationInjector.injectGetMovesUseCase().execute(
+                    new GetMovesRequest(filter_name, filter_type)
+                );
 
                 // Mostrar per pantalla els pokèmons
                 System.out.printf("%nNom: %s Tipus: %s%n", filter_name, filter_type);
