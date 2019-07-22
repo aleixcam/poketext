@@ -1,4 +1,4 @@
-package common.infrastructure.classes.cercador;
+package pokedex.infrastructure.controller;
 
 import pokedex.application.GetPokedexes.GetPokedexesUseCase;
 import pokedex.infrastructure.injector.PokedexApplicationInjector;
@@ -7,15 +7,14 @@ import common.infrastructure.service.ReaderService;
 
 import java.util.Arrays;
 
-public class Pokedex {
+final public class SearchController {
 
-    public static String[] cercarPokedex() {
+    public static String[] search() {
         String[] pokedex;
         String s;
         int selected;
 
-        GetPokedexesUseCase service = PokedexApplicationInjector.injectGetPokedexesUseCase();
-        String[][] pokedexes = service.execute();
+        String[][] pokedexes = getGetPokedexesUseCase().execute();
 
         String[] options = new String[pokedexes.length];
         for (int i = 0; i < pokedexes.length; i++) {
@@ -39,5 +38,9 @@ public class Pokedex {
         } while (selected < 0);
 
         return pokedexes[selected];
+    }
+
+    private static GetPokedexesUseCase getGetPokedexesUseCase() {
+        return PokedexApplicationInjector.injectGetPokedexesUseCase();
     }
 }

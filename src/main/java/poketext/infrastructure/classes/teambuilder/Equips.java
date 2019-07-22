@@ -1,4 +1,4 @@
-package common.infrastructure.classes.teambuilder;
+package poketext.infrastructure.classes.teambuilder;
 
 import pokemon.infrastructure.injector.PokemonInfrastructureInjector;
 import pokemon.infrastructure.persistence.FileSystem.PokemonRepositoryImpl;

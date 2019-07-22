@@ -1,8 +1,8 @@
-package common.infrastructure.classes.teambuilder;
+package poketext.infrastructure.classes.teambuilder;
 
 import pokemon.application.GetPokemons.GetPokemonsRequest;
 import pokemon.application.GetPokemons.GetPokemonsUseCase;
-import common.infrastructure.classes.calc.Estadistiques;
+import poketext.infrastructure.classes.calc.Estadistiques;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

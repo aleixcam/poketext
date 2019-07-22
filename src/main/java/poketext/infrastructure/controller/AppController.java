@@ -6,8 +6,8 @@ import pokedex.infrastructure.controller.PokedexController;
 import item.application.Command.SearchItemsCommand;
 import move.application.Command.SearchMovesCommand;
 import pokemon.application.Command.SearchPokemonsCommand;
-import common.infrastructure.classes.combat.Jugadors;
-import common.infrastructure.classes.teambuilder.Equips;
+import poketext.infrastructure.classes.combat.Jugadors;
+import poketext.infrastructure.classes.teambuilder.Equips;
 
 final public class AppController {
 

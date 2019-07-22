@@ -1,8 +1,8 @@
-package common.infrastructure.classes.teambuilder;
+package poketext.infrastructure.classes.teambuilder;
 
 import common.infrastructure.service.MatrixServiceImpl;
 import item.application.GetItems.GetItemsUseCase;
-import common.infrastructure.classes.calc.Estadistiques;
+import poketext.infrastructure.classes.calc.Estadistiques;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -1,4 +1,4 @@
-package common.infrastructure.classes.teambuilder;
+package poketext.infrastructure.classes.teambuilder;
 
 import nature.application.GetNatures.GetNaturesUseCase;
 import nature.infrastructure.injector.NatureApplicationInjector;
@@ -10,7 +10,7 @@ import pokemon.infrastructure.persistence.SQLite.PokemonRepositoryImpl;
 import common.infrastructure.printer.MatrixPrinter;
 import common.infrastructure.service.ReaderService;
 
-import common.infrastructure.classes.calc.Estadistiques;
+import poketext.infrastructure.classes.calc.Estadistiques;
 import java.util.Arrays;
 
 class Stats {

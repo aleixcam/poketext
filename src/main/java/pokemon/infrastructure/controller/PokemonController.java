@@ -4,7 +4,7 @@ import common.application.search.Searcher;
 import pokemon.application.GetPokemons.GetPokemonsRequest;
 import pokemon.application.GetPokemons.GetPokemonsUseCase;
 import pokemon.infrastructure.injector.PokemonApplicationInjector;
-import common.infrastructure.classes.cercador.Pokedex;
+import pokedex.infrastructure.controller.SearchController;
 import common.infrastructure.printer.MatrixPrinter;
 
 final public class PokemonController implements Searcher {
@@ -30,7 +30,7 @@ final public class PokemonController implements Searcher {
     }
 
     public void selectPokedex() {
-        this.pokedex = Pokedex.cercarPokedex();
+        this.pokedex = SearchController.search();
         search();
     }
 

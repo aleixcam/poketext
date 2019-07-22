@@ -1,8 +1,8 @@
-package common.infrastructure.classes.combat;
+package poketext.infrastructure.classes.combat;
 
 import common.infrastructure.service.ReaderService;
-import common.infrastructure.classes.teambuilder.Equips;
-import common.infrastructure.classes.teambuilder.Pokes;
+import poketext.infrastructure.classes.teambuilder.Equips;
+import poketext.infrastructure.classes.teambuilder.Pokes;
 
 public class Jugadors {
 
@@ -17,7 +17,7 @@ public class Jugadors {
         return b;
     }
 
-    // Cambiar les opcions del common.infrastructure.classes.combat
+    // Cambiar les opcions del poketext.infrastructure.classes.combat
     private static int opcionsCombat() {
         int mode = 0;
         String sel;
@@ -40,7 +40,7 @@ public class Jugadors {
         return mode;
     }
 
-    // Iniciar el common.infrastructure.classes.combat
+    // Iniciar el poketext.infrastructure.classes.combat
     public static void iniciarCombat() {
         boolean sortir = false;
         int mode = 1;

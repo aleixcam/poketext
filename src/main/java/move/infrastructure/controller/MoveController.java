@@ -6,7 +6,7 @@ import move.application.GetMoves.GetMovesUseCase;
 import move.infrastructure.injector.MoveApplicationInjector;
 import common.infrastructure.printer.MatrixPrinter;
 
-public class MoveController implements Searcher {
+final public class MoveController implements Searcher {
 
     private String nameFilter = "";
     private String typeFilter = "";
