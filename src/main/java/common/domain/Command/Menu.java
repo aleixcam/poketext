@@ -1,4 +1,4 @@
-package common.application.Command;
+package common.domain.Command;
 
 import common.infrastructure.service.ReaderService;
 

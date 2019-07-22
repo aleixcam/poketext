@@ -1,12 +1,13 @@
 package pokemon.infrastructure.controller;
 
+import common.application.search.Searcher;
 import pokemon.application.GetPokemons.GetPokemonsRequest;
 import pokemon.application.GetPokemons.GetPokemonsUseCase;
 import pokemon.infrastructure.injector.PokemonApplicationInjector;
 import common.infrastructure.classes.cercador.Pokedex;
 import common.infrastructure.printer.MatrixPrinter;
 
-final public class PokemonController {
+final public class PokemonController implements Searcher {
 
     private String nameFilter = "";
     private String typeFilter = "";

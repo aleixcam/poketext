@@ -1,6 +1,6 @@
 package pokedex.application.Command;
 
-import common.application.Command.Command;
+import common.domain.Command.Command;
 import pokemon.infrastructure.controller.PokemonController;
 
 final public class SelectPokedexCommand implements Command {

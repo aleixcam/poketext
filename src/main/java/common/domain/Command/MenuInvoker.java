@@ -1,4 +1,4 @@
-package common.application.Command;
+package common.domain.Command;
 
 public interface MenuInvoker {
 

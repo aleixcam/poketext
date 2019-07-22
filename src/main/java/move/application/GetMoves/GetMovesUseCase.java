@@ -13,11 +13,11 @@ final public class GetMovesUseCase {
         this.assembler = assembler;
     }
 
-    public String[][] execute(int pokemon_id, String name, String type) {
+    public String[][] execute(GetMovesRequest request) {
         MoveCriteria criteria = new MoveCriteria();
-        criteria.setPokemonId(pokemon_id);
-        criteria.setName(name);
-        criteria.setType(type);
+        criteria.setPokemonId(request.getPokemonId());
+        criteria.setName(request.getName());
+        criteria.setType(request.getType());
 
         MovesCollection moves = this.repository.findByCriteria(criteria);
         return this.assembler.assemble(moves);

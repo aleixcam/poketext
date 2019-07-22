@@ -1,11 +1,50 @@
-package common.infrastructure.classes.cercador;
+package move.infrastructure.controller;
 
+import common.application.search.Searcher;
+import move.application.GetMoves.GetMovesRequest;
 import move.application.GetMoves.GetMovesUseCase;
 import move.infrastructure.injector.MoveApplicationInjector;
 import common.infrastructure.printer.MatrixPrinter;
 import common.infrastructure.service.ReaderService;
 
-public class Moves {
+public class MoveController implements Searcher {
+
+    private String nameFilter = "";
+    private String typeFilter = "";
+
+    private void search() {
+        String[][] moves = getMovesUseCase().execute(
+            new GetMovesRequest(nameFilter, typeFilter)
+        );
+
+        System.out.printf("Nom: %s Tipus: %s%n", nameFilter, typeFilter);
+        MatrixPrinter.print(moves);
+        System.out.printf("Nom: %s Tipus: %s%n", nameFilter, typeFilter);
+    }
+
+    public void setNameFilter(String nameFilter) {
+        this.nameFilter = nameFilter;
+        search();
+    }
+
+    public void setTypeFilter(String typeFilter) {
+        this.typeFilter = typeFilter;
+        search();
+    }
+
+    public void removeNameFilter() {
+        this.nameFilter = "";
+        search();
+    }
+
+    public void removeTypeFilter() {
+        this.nameFilter = "";
+        search();
+    }
+
+    private GetMovesUseCase getMovesUseCase() {
+        return MoveApplicationInjector.injectGetMovesUseCase();
+    }
 
     public static void viewMoves() {
         String filter_type = "";
@@ -14,14 +53,6 @@ public class Moves {
         boolean sortir = false;
         
         do {
-
-            GetMovesUseCase service = MoveApplicationInjector.injectGetMovesUseCase();
-            String[][] moves = service.execute(0, filter_name, filter_type);
-
-            // Mostrar per pantalla els moviments
-            System.out.printf("Nom: %s Tipus: %s%n", filter_name, filter_type);
-            MatrixPrinter.print(moves);
-            System.out.printf("Nom: %s Tipus: %s%n", filter_name, filter_type);
 
             // Opcions del menú
             System.out.printf("%nCERCADOR: MOVIMENTS%n");

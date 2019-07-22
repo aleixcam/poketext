@@ -1,17 +1,17 @@
-package pokemon.application.Command;
+package common.application.search.Command;
 
-import common.application.Command.Command;
-import pokemon.infrastructure.controller.PokemonController;
+import common.application.search.Searcher;
+import common.domain.Command.Command;
 
 final public class RemoveFilterCommand implements Command {
 
-    private final PokemonController receiver;
+    private final Searcher receiver;
 
-    private RemoveFilterCommand(PokemonController receiver) {
+    private RemoveFilterCommand(Searcher receiver) {
         this.receiver = receiver;
     }
 
-    public static RemoveFilterCommand of(PokemonController receiver) {
+    public static RemoveFilterCommand of(Searcher receiver) {
         return new RemoveFilterCommand(receiver);
     }
 

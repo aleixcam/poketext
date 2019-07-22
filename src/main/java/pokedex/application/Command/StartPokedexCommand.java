@@ -1,6 +1,6 @@
 package pokedex.application.Command;
 
-import common.application.Command.Command;
+import common.domain.Command.Command;
 import poketext.infrastructure.controller.AppController;
 
 final public class StartPokedexCommand implements Command {
