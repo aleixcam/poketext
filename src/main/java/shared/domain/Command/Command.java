@@ -1,4 +1,4 @@
-package common.domain.Command;
+package shared.domain.Command;
 
 public interface Command {
 
