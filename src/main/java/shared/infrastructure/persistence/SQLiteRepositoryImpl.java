@@ -1,6 +1,6 @@
-package common.infrastructure.persistence;
+package shared.infrastructure.persistence;
 
-import common.domain.SQLiteRepository;
+import shared.domain.SQLiteRepository;
 import poketext.infrastructure.Connector;
 import org.sqlite.JDBC;
 

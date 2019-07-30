@@ -1,7 +1,7 @@
 package pokemon.infrastructure.persistence.SQLite;
 
-import common.domain.SQLiteRepository;
-import common.infrastructure.service.LanguageService;
+import shared.domain.SQLiteRepository;
+import shared.infrastructure.service.LanguageService;
 import pokemon.domain.*;
 
 import java.util.Arrays;

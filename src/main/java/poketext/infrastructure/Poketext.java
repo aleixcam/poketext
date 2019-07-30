@@ -4,7 +4,7 @@ import player.application.Command.StartBattleCommand;
 import pokedex.application.Command.StartPokedexCommand;
 import team.application.Command.TeamBuilderCommand;
 import poketext.infrastructure.controller.AppController;
-import common.domain.Command.Menu;
+import shared.domain.Command.Menu;
 
 public class Poketext {
 

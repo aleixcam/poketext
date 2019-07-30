@@ -1,6 +1,6 @@
 package poketext.infrastructure.classes.combat;
 
-import common.infrastructure.service.ReaderService;
+import shared.infrastructure.service.ReaderService;
 import poketext.infrastructure.classes.teambuilder.Equips;
 import poketext.infrastructure.classes.teambuilder.Pokes;
 

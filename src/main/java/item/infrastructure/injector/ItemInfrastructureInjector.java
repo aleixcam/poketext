@@ -1,6 +1,6 @@
 package item.infrastructure.injector;
 
-import common.infrastructure.CommonInfrastructureInjector;
+import shared.infrastructure.CommonInfrastructureInjector;
 import item.infrastructure.persistence.SQLite.ItemRepositoryImpl;
 import item.infrastructure.transformer.Matrix.ItemTransformerImpl;
 

@@ -2,17 +2,17 @@ package pokedex.infrastructure.controller;
 
 import ability.application.GetAbilities.GetAbilitiesUseCase;
 import ability.infrastructure.injector.AbilityApplicationInjector;
-import common.domain.Command.Menu;
-import common.infrastructure.printer.MatrixPrinter;
-import common.infrastructure.service.ReaderService;
+import shared.domain.Command.Menu;
+import shared.infrastructure.printer.MatrixPrinter;
+import shared.infrastructure.service.ReaderService;
 import item.application.GetItems.GetItemsUseCase;
 import item.infrastructure.injector.ItemApplicationInjector;
 import move.infrastructure.controller.MoveController;
 import pokemon.infrastructure.controller.PokemonController;
 import pokedex.application.Command.SelectPokedexCommand;
-import common.application.search.Command.RemoveFilterCommand;
-import common.application.search.Command.SetNameFilterCommand;
-import common.application.search.Command.SetTypeFilterCommand;
+import shared.application.search.Command.RemoveFilterCommand;
+import shared.application.search.Command.SetNameFilterCommand;
+import shared.application.search.Command.SetTypeFilterCommand;
 
 final public class PokedexController {
 

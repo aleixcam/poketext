@@ -1,6 +1,6 @@
 package team.application.Command;
 
-import common.domain.Command.Command;
+import shared.domain.Command.Command;
 import poketext.infrastructure.controller.AppController;
 
 final public class TeamBuilderCommand implements Command {

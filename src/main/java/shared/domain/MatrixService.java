@@ -1,4 +1,4 @@
-package common.domain;
+package shared.domain;
 
 public interface MatrixService {
 

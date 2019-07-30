@@ -1,4 +1,4 @@
-package common.application.search;
+package shared.application.search;
 
 public interface Searcher {
 

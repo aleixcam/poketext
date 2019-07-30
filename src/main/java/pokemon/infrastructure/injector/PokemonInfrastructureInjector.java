@@ -1,6 +1,6 @@
 package pokemon.infrastructure.injector;
 
-import common.infrastructure.CommonInfrastructureInjector;
+import shared.infrastructure.CommonInfrastructureInjector;
 import pokemon.infrastructure.persistence.FileSystem.PokemonRepositoryImpl;
 import pokemon.infrastructure.transformer.Matrix.PokemonTransformerImpl;
 

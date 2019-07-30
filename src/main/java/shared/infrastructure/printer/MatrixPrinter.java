@@ -1,4 +1,4 @@
-package common.infrastructure.printer;
+package shared.infrastructure.printer;
 
 public class MatrixPrinter {
 

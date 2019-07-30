@@ -1,6 +1,6 @@
 package pokedex.infrastructure.transformer.Matrix;
 
-import common.domain.MatrixService;
+import shared.domain.MatrixService;
 import pokedex.domain.Pokedex;
 import pokedex.application.PokedexTransformer;
 import pokedex.domain.PokedexesCollection;

@@ -1,4 +1,4 @@
-package common.domain;
+package shared.domain;
 
 import java.util.List;
 

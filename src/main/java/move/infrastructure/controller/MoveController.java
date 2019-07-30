@@ -1,10 +1,10 @@
 package move.infrastructure.controller;
 
-import common.application.search.Searcher;
+import shared.application.search.Searcher;
 import move.application.GetMoves.GetMovesRequest;
 import move.application.GetMoves.GetMovesUseCase;
 import move.infrastructure.injector.MoveApplicationInjector;
-import common.infrastructure.printer.MatrixPrinter;
+import shared.infrastructure.printer.MatrixPrinter;
 
 final public class MoveController implements Searcher {
 

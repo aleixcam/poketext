@@ -1,6 +1,6 @@
 package nature.infrastructure.transformer.Matrix;
 
-import common.domain.MatrixService;
+import shared.domain.MatrixService;
 import nature.application.NatureTransformer;
 import nature.domain.Nature;
 import nature.domain.NaturesCollection;

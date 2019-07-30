@@ -1,11 +1,11 @@
 package item.infrastructure.persistence.SQLite;
 
-import common.domain.SQLiteRepository;
+import shared.domain.SQLiteRepository;
 import item.domain.Item;
 import item.domain.ItemCriteria;
 import item.domain.ItemRepository;
 import item.domain.ItemsCollection;
-import common.infrastructure.service.LanguageService;
+import shared.infrastructure.service.LanguageService;
 
 import java.util.List;
 import java.util.Objects;

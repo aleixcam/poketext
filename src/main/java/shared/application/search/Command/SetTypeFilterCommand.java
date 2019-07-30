@@ -1,7 +1,7 @@
-package common.application.search.Command;
+package shared.application.search.Command;
 
-import common.application.search.Searcher;
-import common.domain.Command.Command;
+import shared.application.search.Searcher;
+import shared.domain.Command.Command;
 
 final public class SetTypeFilterCommand implements Command {
 

@@ -1,7 +1,7 @@
 package pokemon.infrastructure.persistence.FileSystem;
 
-import common.domain.CSVService;
-import common.infrastructure.persistence.FileSystemRepositoryImpl;
+import shared.domain.CSVService;
+import shared.infrastructure.persistence.FileSystemRepositoryImpl;
 
 import java.util.List;
 

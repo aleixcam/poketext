@@ -1,6 +1,6 @@
 package move.application.Command;
 
-import common.domain.Command.Command;
+import shared.domain.Command.Command;
 import pokedex.infrastructure.controller.PokedexController;
 
 final public class SearchMovesCommand implements Command {

@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 import move.application.GetMoves.GetMovesRequest;
 import move.infrastructure.injector.MoveApplicationInjector;
-import common.infrastructure.printer.MatrixPrinter;
-import common.infrastructure.service.LanguageService;
-import common.infrastructure.service.ReaderService;
+import shared.infrastructure.printer.MatrixPrinter;
+import shared.infrastructure.service.LanguageService;
+import shared.infrastructure.service.ReaderService;
 import poketext.infrastructure.Connector;
 
 class Moviments {

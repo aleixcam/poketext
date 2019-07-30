@@ -1,10 +1,10 @@
 package nature.infrastructure.persistence.SQLite;
 
-import common.domain.SQLiteRepository;
+import shared.domain.SQLiteRepository;
 import nature.domain.Nature;
 import nature.domain.NatureRepository;
 import nature.domain.NaturesCollection;
-import common.infrastructure.service.LanguageService;
+import shared.infrastructure.service.LanguageService;
 
 import java.util.List;
 

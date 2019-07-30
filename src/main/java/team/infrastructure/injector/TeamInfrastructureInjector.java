@@ -1,6 +1,6 @@
 package team.infrastructure.injector;
 
-import common.infrastructure.CommonInfrastructureInjector;
+import shared.infrastructure.CommonInfrastructureInjector;
 import team.infrastructure.persistence.FileSystem.TeamRepositoryImpl;
 
 public class TeamInfrastructureInjector {

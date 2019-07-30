@@ -2,7 +2,7 @@ package ability.infrastructure.injector;
 
 import ability.infrastructure.persistence.SQLite.AbilityRepositoryImpl;
 import ability.infrastructure.transformer.Matrix.AbilityTransformerImpl;
-import common.infrastructure.CommonInfrastructureInjector;
+import shared.infrastructure.CommonInfrastructureInjector;
 
 final public class AbilityInfrastructureInjector {
 

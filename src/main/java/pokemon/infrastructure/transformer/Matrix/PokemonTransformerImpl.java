@@ -1,6 +1,6 @@
 package pokemon.infrastructure.transformer.Matrix;
 
-import common.domain.MatrixService;
+import shared.domain.MatrixService;
 import pokemon.domain.Pokemon;
 import pokemon.application.PokemonTransformer;
 import pokemon.domain.PokemonsCollection;

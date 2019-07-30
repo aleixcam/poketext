@@ -2,8 +2,8 @@ package pokedex.infrastructure.controller;
 
 import pokedex.application.GetPokedexes.GetPokedexesUseCase;
 import pokedex.infrastructure.injector.PokedexApplicationInjector;
-import common.infrastructure.printer.MatrixPrinter;
-import common.infrastructure.service.ReaderService;
+import shared.infrastructure.printer.MatrixPrinter;
+import shared.infrastructure.service.ReaderService;
 
 import java.util.Arrays;
 

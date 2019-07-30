@@ -4,7 +4,7 @@ import pokemon.infrastructure.injector.PokemonInfrastructureInjector;
 import pokemon.infrastructure.persistence.FileSystem.PokemonRepositoryImpl;
 import team.infrastructure.injector.TeamInfrastructureInjector;
 import team.infrastructure.persistence.FileSystem.TeamRepositoryImpl;
-import common.infrastructure.service.ReaderService;
+import shared.infrastructure.service.ReaderService;
 
 public class Equips {
 

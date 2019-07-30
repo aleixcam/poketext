@@ -1,4 +1,4 @@
-package common.infrastructure.service;
+package shared.infrastructure.service;
 
 import java.io.BufferedReader;
 import java.io.IOException;

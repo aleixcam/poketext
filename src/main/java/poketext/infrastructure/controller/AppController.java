@@ -1,7 +1,7 @@
 package poketext.infrastructure.controller;
 
 import ability.application.Command.SearchAbilitiesCommand;
-import common.domain.Command.Menu;
+import shared.domain.Command.Menu;
 import pokedex.infrastructure.controller.PokedexController;
 import item.application.Command.SearchItemsCommand;
 import move.application.Command.SearchMovesCommand;

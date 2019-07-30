@@ -1,8 +1,8 @@
-package common.infrastructure;
+package shared.infrastructure;
 
-import common.infrastructure.persistence.SQLiteRepositoryImpl;
-import common.infrastructure.service.CSVServiceImpl;
-import common.infrastructure.service.MatrixServiceImpl;
+import shared.infrastructure.persistence.SQLiteRepositoryImpl;
+import shared.infrastructure.service.CSVServiceImpl;
+import shared.infrastructure.service.MatrixServiceImpl;
 
 final public class CommonInfrastructureInjector {
 

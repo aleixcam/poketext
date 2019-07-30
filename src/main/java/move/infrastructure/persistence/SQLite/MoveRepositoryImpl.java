@@ -3,12 +3,12 @@ package move.infrastructure.persistence.SQLite;
 import java.util.List;
 import java.util.Objects;
 
-import common.domain.SQLiteRepository;
+import shared.domain.SQLiteRepository;
 import move.domain.Move;
 import move.domain.MoveCriteria;
 import move.domain.MoveRepository;
 import move.domain.MovesCollection;
-import common.infrastructure.service.LanguageService;
+import shared.infrastructure.service.LanguageService;
 
 final public class MoveRepositoryImpl implements MoveRepository {
 

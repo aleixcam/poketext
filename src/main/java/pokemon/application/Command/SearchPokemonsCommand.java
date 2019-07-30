@@ -1,6 +1,6 @@
 package pokemon.application.Command;
 
-import common.domain.Command.Command;
+import shared.domain.Command.Command;
 import pokedex.infrastructure.controller.PokedexController;
 
 final public class SearchPokemonsCommand implements Command {

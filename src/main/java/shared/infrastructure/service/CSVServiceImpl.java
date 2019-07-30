@@ -1,6 +1,6 @@
-package common.infrastructure.service;
+package shared.infrastructure.service;
 
-import common.domain.CSVService;
+import shared.domain.CSVService;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;

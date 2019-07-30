@@ -9,8 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import pokemon.infrastructure.injector.PokemonApplicationInjector;
-import common.infrastructure.printer.MatrixPrinter;
-import common.infrastructure.service.ReaderService;
+import shared.infrastructure.printer.MatrixPrinter;
+import shared.infrastructure.service.ReaderService;
 import poketext.infrastructure.Connector;
 
 // Clase de pokèmons del constructor d'equips

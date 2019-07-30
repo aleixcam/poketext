@@ -1,6 +1,6 @@
 package poketext.infrastructure.classes.teambuilder;
 
-import common.infrastructure.service.MatrixServiceImpl;
+import shared.infrastructure.service.MatrixServiceImpl;
 import item.application.GetItems.GetItemsUseCase;
 import poketext.infrastructure.classes.calc.Estadistiques;
 import java.sql.PreparedStatement;
@@ -8,9 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import item.infrastructure.injector.ItemApplicationInjector;
-import common.infrastructure.printer.MatrixPrinter;
-import common.infrastructure.service.LanguageService;
-import common.infrastructure.service.ReaderService;
+import shared.infrastructure.printer.MatrixPrinter;
+import shared.infrastructure.service.LanguageService;
+import shared.infrastructure.service.ReaderService;
 import poketext.infrastructure.Connector;
 
 class Detalls {
