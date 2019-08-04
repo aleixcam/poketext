@@ -1,8 +1,8 @@
-package poketext.infrastructure.classes.teambuilder;
+package shared.infrastructure.classes.teambuilder;
 
 import pokemon.application.GetPokemons.GetPokemonsRequest;
 import pokemon.application.GetPokemons.GetPokemonsUseCase;
-import poketext.infrastructure.classes.calc.Estadistiques;
+import shared.infrastructure.classes.calc.Estadistiques;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import pokemon.infrastructure.injector.PokemonApplicationInjector;
 import shared.infrastructure.printer.MatrixPrinter;
 import shared.infrastructure.service.ReaderService;
-import poketext.infrastructure.Connector;
+import shared.infrastructure.classes.shared.Connector;
 
 // Clase de pokèmons del constructor d'equips
 public class Pokes {

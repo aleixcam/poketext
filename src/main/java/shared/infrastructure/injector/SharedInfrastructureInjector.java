@@ -1,4 +1,4 @@
-package shared.infrastructure;
+package shared.infrastructure.injector;
 
 import shared.infrastructure.persistence.SQLiteRepositoryImpl;
 import shared.infrastructure.service.CSVServiceImpl;

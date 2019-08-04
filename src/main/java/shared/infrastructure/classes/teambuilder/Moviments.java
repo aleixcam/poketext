@@ -1,4 +1,4 @@
-package poketext.infrastructure.classes.teambuilder;
+package shared.infrastructure.classes.teambuilder;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,7 +9,7 @@ import move.infrastructure.injector.MoveApplicationInjector;
 import shared.infrastructure.printer.MatrixPrinter;
 import shared.infrastructure.service.LanguageService;
 import shared.infrastructure.service.ReaderService;
-import poketext.infrastructure.Connector;
+import shared.infrastructure.classes.shared.Connector;
 
 class Moviments {
 

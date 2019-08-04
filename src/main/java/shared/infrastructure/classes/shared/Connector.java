@@ -1,4 +1,4 @@
-package shared.infrastructure;
+package shared.infrastructure.classes.shared;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,7 +15,7 @@ public class Connector {
         ).getPath();
     }
 
-    static void connectar() {
+    public static void connectar() {
         try {
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection(getDatabase());
@@ -24,7 +24,7 @@ public class Connector {
         }
     }
 
-    static void tancar() {
+    public static void tancar() {
         try {
             connection.close();
         } catch (SQLException ex) {

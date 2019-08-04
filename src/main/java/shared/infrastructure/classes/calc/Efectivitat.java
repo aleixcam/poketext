@@ -1,9 +1,9 @@
-package poketext.infrastructure.classes.calc;
+package shared.infrastructure.classes.calc;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import poketext.infrastructure.Connector;
+import shared.infrastructure.classes.shared.Connector;
 
 // Clase de efectivitat
 public class Efectivitat {
