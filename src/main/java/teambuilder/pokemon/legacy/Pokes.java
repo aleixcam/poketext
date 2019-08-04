@@ -98,7 +98,7 @@ public class Pokes {
     }
 
     // Escollir un pokèmon per a l'equip
-    static String[][] escollirPoke(String[][] poke) {
+    public static String[][] escollirPoke(String[][] poke) {
         String filter_type = "";
         String filter_name = "";
         String[] s;
@@ -206,7 +206,7 @@ public class Pokes {
     }
 
     // Editar un Pokèmon
-    static String[][] editarPoke(String[][] poke) {
+    public static String[][] editarPoke(String[][] poke) {
         boolean sortir = false;
         String sel;
 
