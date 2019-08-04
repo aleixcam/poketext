@@ -1,14 +1,15 @@
-package poketext.infrastructure;
+package shared.infrastructure;
 
 import player.application.Command.StartBattleCommand;
 import pokedex.application.Command.StartPokedexCommand;
+import shared.infrastructure.classes.shared.Connector;
 import team.application.Command.TeamBuilderCommand;
-import poketext.infrastructure.controller.AppController;
+import shared.infrastructure.controller.AppController;
 import shared.domain.Command.Menu;
 
 public class Poketext {
 
-    public static void main(String[] args) {
+    public static void main(String... args) {
         System.out.println("Carregant...");
 
         Connector.connectar();

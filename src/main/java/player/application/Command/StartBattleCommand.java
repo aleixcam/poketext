@@ -1,7 +1,7 @@
 package player.application.Command;
 
 import shared.domain.Command.Command;
-import poketext.infrastructure.controller.AppController;
+import shared.infrastructure.controller.AppController;
 
 final public class StartBattleCommand implements Command {
 

@@ -4,7 +4,7 @@ import shared.infrastructure.persistence.SQLiteRepositoryImpl;
 import shared.infrastructure.service.CSVServiceImpl;
 import shared.infrastructure.service.MatrixServiceImpl;
 
-final public class CommonInfrastructureInjector {
+final public class SharedInfrastructureInjector {
 
     public static SQLiteRepositoryImpl injectSQLiteRepository() {
         return new SQLiteRepositoryImpl();

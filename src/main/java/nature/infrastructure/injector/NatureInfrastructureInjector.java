@@ -1,6 +1,6 @@
 package nature.infrastructure.injector;
 
-import shared.infrastructure.CommonInfrastructureInjector;
+import shared.infrastructure.injector.SharedInfrastructureInjector;
 import nature.infrastructure.persistence.SQLite.NatureRepositoryImpl;
 import nature.infrastructure.transformer.Matrix.NatureTransformerImpl;
 
@@ -8,13 +8,13 @@ public class NatureInfrastructureInjector {
 
     public static NatureRepositoryImpl injectNatureRepository() {
         return new NatureRepositoryImpl(
-            CommonInfrastructureInjector.injectSQLiteRepository()
+            SharedInfrastructureInjector.injectSQLiteRepository()
         );
     }
 
     public static NatureTransformerImpl injectNatureTransformer() {
         return new NatureTransformerImpl(
-            CommonInfrastructureInjector.injectMatrixService()
+            SharedInfrastructureInjector.injectMatrixService()
         );
     }
 }

@@ -1,4 +1,4 @@
-package poketext.infrastructure;
+package shared.infrastructure;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

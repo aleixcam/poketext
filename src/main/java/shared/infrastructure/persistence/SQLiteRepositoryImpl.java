@@ -1,7 +1,7 @@
 package shared.infrastructure.persistence;
 
 import shared.domain.SQLiteRepository;
-import poketext.infrastructure.Connector;
+import shared.infrastructure.classes.shared.Connector;
 import org.sqlite.JDBC;
 
 import java.sql.*;
@@ -18,7 +18,6 @@ public class SQLiteRepositoryImpl implements SQLiteRepository {
         this.driver = new JDBC();
         this.database = Connector.getDatabase();
     }
-
 
     public List<String[]> executeQuery(String query) {
         List<String[]> rowset = null;
