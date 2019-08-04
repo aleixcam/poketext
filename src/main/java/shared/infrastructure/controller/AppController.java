@@ -1,13 +1,13 @@
 package shared.infrastructure.controller;
 
-import ability.application.Command.SearchAbilitiesCommand;
+import indexer.ability.application.Command.SearchAbilitiesCommand;
 import shared.domain.Command.Menu;
-import pokedex.infrastructure.controller.PokedexController;
-import item.application.Command.SearchItemsCommand;
-import move.application.Command.SearchMovesCommand;
-import pokemon.application.Command.SearchPokemonsCommand;
-import shared.infrastructure.classes.combat.Jugadors;
-import shared.infrastructure.classes.teambuilder.Equips;
+import indexer.pokedex.infrastructure.controller.PokedexController;
+import indexer.item.application.Command.SearchItemsCommand;
+import indexer.move.application.Command.SearchMovesCommand;
+import indexer.pokemon.application.Command.SearchPokemonsCommand;
+import showndown.player.legacy.Jugadors;
+import teambuilder.team.legacy.Equips;
 
 final public class AppController {
 

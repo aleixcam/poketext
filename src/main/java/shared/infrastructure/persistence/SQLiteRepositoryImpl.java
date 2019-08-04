@@ -1,7 +1,7 @@
 package shared.infrastructure.persistence;
 
 import shared.domain.SQLiteRepository;
-import shared.infrastructure.classes.shared.Connector;
+import shared.legacy.Connector;
 import org.sqlite.JDBC;
 
 import java.sql.*;
