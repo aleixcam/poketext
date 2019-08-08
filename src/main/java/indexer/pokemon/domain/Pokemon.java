@@ -6,9 +6,9 @@ public class Pokemon {
 
     private int id;
     private String name;
-    private String type_one;
-    private String type_two;
-    private BaseStats base_stats;
+    private String typeOne;
+    private String typeTwo;
+    private BaseStats baseStats;
 
     public int getId() {
         return id;
@@ -27,26 +27,26 @@ public class Pokemon {
     }
 
     public String getTypeOne() {
-        return type_one;
+        return typeOne;
     }
 
     public void setTypeOne(String type_one) {
-        this.type_one = type_one;
+        this.typeOne = type_one;
     }
 
     public String getTypeTwo() {
-        return type_two;
+        return typeTwo;
     }
 
     public void setTypeTwo(String type_two) {
-        this.type_two = type_two;
+        this.typeTwo = type_two;
     }
 
     public BaseStats getBaseStats() {
-        return base_stats;
+        return baseStats;
     }
 
     public void setBaseStats(BaseStats base_stats) {
-        this.base_stats = base_stats;
+        this.baseStats = base_stats;
     }
 }
