@@ -4,7 +4,7 @@ public class Type {
 
     private String name;
 
-    public String getName() {
+    public String name() {
         return name;
     }
 }

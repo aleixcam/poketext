@@ -13,11 +13,11 @@ final public class TypeRepositoryImpl implements TypeRepository {
         this.repository = repository;
     }
 
-    public int getDamageFactor(Type attacking, Type defending) {
+    public int getDamageFactor(Type attackingType, Type defendingType) {
         String[] result = repository.executeQuery("select damage_factor\n"
                 + "from type_efficacy\n"
-                + "where damage_type_id = " + attacking.getName() + "\n"
-                + "and target_type_id = " + defending.getName()).get(0);
+                + "where damage_type_id = " + attackingType.name() + "\n"
+                + "and target_type_id = " + defendingType.name()).get(0);
 
         return NumberUtils.isParsable(result[0]) ? Integer.parseInt(result[0]) : 100;
     }
