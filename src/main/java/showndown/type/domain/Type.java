@@ -2,9 +2,13 @@ package showndown.type.domain;
 
 public class Type {
 
-    private String name;
+    private String value;
 
-    public String name() {
-        return name;
+    public Type(String value) {
+        this.value = value;
+    }
+
+    public String value() {
+        return value;
     }
 }
