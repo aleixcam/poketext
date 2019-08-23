@@ -1,4 +1,4 @@
-package shared.infrastructure.controller;
+package core.infrastructure.controller;
 
 import indexer.ability.application.Command.SearchAbilitiesCommand;
 import shared.domain.Command.Menu;
