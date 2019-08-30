@@ -2,7 +2,7 @@ package indexer.pokemon.application;
 
 import indexer.pokemon.domain.PokemonsCollection;
 
-public interface PokemonTransformer {
+public interface PokemonTransformer<E> {
 
-    String[][] assemble(PokemonsCollection moves);
+    E transform(PokemonsCollection collection);
 }
