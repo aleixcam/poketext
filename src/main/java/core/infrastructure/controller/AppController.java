@@ -30,4 +30,8 @@ final public class AppController {
 
         menu.execute();
     }
+
+    public void welcome() {
+        System.out.print("Hola Crispi");
+    }
 }

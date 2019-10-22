@@ -20,6 +20,7 @@ public class Poketext {
         menu.register("1", ShowdownCommand.of(receiver), "Jugar");
         menu.register("2", TeamBuilderCommand.of(receiver), "Construir un Equip");
         menu.register("3", StartPokedexCommand.of(receiver), "Cercador");
+        menu.register("4", WelcomeCommand.of(receiver), "Hola Crispi");
 
         menu.execute();
 
