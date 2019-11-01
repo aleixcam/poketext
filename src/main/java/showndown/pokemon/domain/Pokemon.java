@@ -5,14 +5,14 @@ import showndown.type.domain.Type;
 public class Pokemon {
 
     private int id;
-    private Type typeOne;
-    private Type typeTwo;
+    private Type type;
+    private Type subtype;
 
-    public Type getTypeOne() {
-        return typeOne;
+    public Type type() {
+        return type;
     }
 
-    public Type getTypeTwo() {
-        return typeTwo;
+    public Type subtype() {
+        return subtype;
     }
 }

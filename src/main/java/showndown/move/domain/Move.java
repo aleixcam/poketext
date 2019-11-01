@@ -1,47 +1,42 @@
 package showndown.move.domain;
 
-import org.apache.commons.lang3.math.NumberUtils;
+import showndown.type.domain.Type;
 
 public class Move {
 
     private int id;
     private String name;
-    private String type;
-    private String category;
+    private Type type;
+    private Category category;
     private int power;
     private int accuracy;
-    private int pp;
-    private String effect;
+    private int powerPoints;
 
-    public int getId() {
+    public int id() {
         return id;
     }
 
-    public String getName() {
+    public String name() {
         return this.name;
     }
 
-    public String getType() {
+    public Type type() {
         return type;
     }
 
-    public String getCategory() {
+    public Category category() {
         return category;
     }
 
-    public int getPower() {
+    public int power() {
         return power;
     }
 
-    public int getAccuracy() {
+    public int accuracy() {
         return accuracy;
     }
 
-    public int getPp() {
-        return pp;
-    }
-
-    public String getEffect() {
-        return effect;
+    public int powerPoints() {
+        return powerPoints;
     }
 }
