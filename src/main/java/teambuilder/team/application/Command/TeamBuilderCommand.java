@@ -1,7 +1,7 @@
 package teambuilder.team.application.Command;
 
 import shared.domain.Command.Command;
-import core.infrastructure.controller.AppController;
+import shared.infrastructure.controller.AppController;
 
 final public class TeamBuilderCommand implements Command {
 
