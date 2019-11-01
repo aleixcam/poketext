@@ -35,12 +35,13 @@ public class Menu implements MenuInvoker {
             return false;
         }
 
-        if (!actions.containsKey(args[0])) {
-            System.out.print("Invalid selection");
+        try {
+            MenuOption option = actions.get(args[0]);
+            option.getAction().execute(Arrays.copyOfRange(args, 1, args.length));
+        } catch (Exception exception) {
+            System.out.printf("Invalid selection%n");
         }
 
-        MenuOption option = actions.get(args[0]);
-        option.getAction().execute(Arrays.copyOfRange(args, 1, args.length));
         return true;
     }
 
