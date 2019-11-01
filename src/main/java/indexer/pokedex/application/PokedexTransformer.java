@@ -2,7 +2,7 @@ package indexer.pokedex.application;
 
 import indexer.pokedex.domain.PokedexesCollection;
 
-public interface PokedexTransformer {
+public interface PokedexTransformer<T> {
 
-    String[][] assemble(PokedexesCollection pokedexes);
+    T transform(PokedexesCollection pokedexes);
 }

@@ -5,21 +5,21 @@ import indexer.ability.domain.AbilityCriteria;
 import indexer.ability.domain.AbilityRepository;
 import indexer.ability.domain.AbilitiesCollection;
 
-public class GetAbilitiesUseCase {
+public class GetAbilitiesUseCase<T> {
 
     private AbilityRepository repository;
-    private AbilityTransformer assembler;
+    private AbilityTransformer<T> transformer;
 
-    public GetAbilitiesUseCase(AbilityRepository repository, AbilityTransformer assembler) {
+    public GetAbilitiesUseCase(AbilityRepository repository, AbilityTransformer<T> transformer) {
         this.repository = repository;
-        this.assembler = assembler;
+        this.transformer = transformer;
     }
 
-    public String[][] execute(String name) {
+    public T execute(String name) {
         AbilityCriteria criteria = new AbilityCriteria();
         criteria.setName(name);
 
         AbilitiesCollection items = this.repository.findByCriteria(criteria);
-        return this.assembler.assemble(items);
+        return this.transformer.transform(items);
     }
 }

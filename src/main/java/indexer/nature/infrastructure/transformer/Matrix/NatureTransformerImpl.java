@@ -7,7 +7,7 @@ import indexer.nature.domain.NaturesCollection;
 
 import java.util.ArrayList;
 
-final public class NatureTransformerImpl implements NatureTransformer {
+final public class NatureTransformerImpl implements NatureTransformer<String[][]> {
 
     private final String[] COLUMNS = {"ID", "Name", "Modifiers"};
 
@@ -17,7 +17,7 @@ final public class NatureTransformerImpl implements NatureTransformer {
         this.matrixService = matrixService;
     }
 
-    public String[][] assemble(NaturesCollection collection) {
+    public String[][] transform(NaturesCollection collection) {
         ArrayList<Nature> natures = collection.getNatures();
         String[][] matrix = matrixService.generate(COLUMNS, natures.size());
         String[] stats = {"HP", "Atk", "Def", "SpA", "SpD", "Spe"};

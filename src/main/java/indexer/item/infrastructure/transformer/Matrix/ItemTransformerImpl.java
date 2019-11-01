@@ -7,7 +7,7 @@ import indexer.item.domain.ItemsCollection;
 
 import java.util.ArrayList;
 
-final public class ItemTransformerImpl implements ItemTransformer {
+final public class ItemTransformerImpl implements ItemTransformer<String[][]> {
 
     private final String[] COLUMNS = {"ID", "Name", "Description"};
 
@@ -17,7 +17,7 @@ final public class ItemTransformerImpl implements ItemTransformer {
         this.matrixService = matrixService;
     }
 
-    public String[][] assemble(ItemsCollection collection) {
+    public String[][] transform(ItemsCollection collection) {
         ArrayList<Item> items = collection.getItems();
         String[][] matrix = matrixService.generate(COLUMNS, items.size());
 

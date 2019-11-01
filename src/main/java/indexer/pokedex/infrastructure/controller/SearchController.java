@@ -40,7 +40,7 @@ final public class SearchController {
         return pokedexes[selected];
     }
 
-    private static GetPokedexesUseCase getGetPokedexesUseCase() {
+    private static GetPokedexesUseCase<String[][]> getGetPokedexesUseCase() {
         return PokedexApplicationInjector.injectGetPokedexesUseCase();
     }
 }

@@ -2,7 +2,7 @@ package indexer.item.application;
 
 import indexer.item.domain.ItemsCollection;
 
-public interface ItemTransformer {
+public interface ItemTransformer<T> {
 
-    String[][] assemble(ItemsCollection items);
+    T transform(ItemsCollection items);
 }

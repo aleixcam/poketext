@@ -1,11 +1,9 @@
 package indexer.pokedex.infrastructure.controller;
 
-import indexer.ability.application.GetAbilities.GetAbilitiesUseCase;
 import indexer.ability.infrastructure.injector.AbilityApplicationInjector;
 import shared.domain.Command.Menu;
 import shared.infrastructure.printer.MatrixPrinter;
 import shared.infrastructure.service.ReaderService;
-import indexer.item.application.GetItems.GetItemsUseCase;
 import indexer.item.infrastructure.injector.ItemApplicationInjector;
 import indexer.move.infrastructure.controller.MoveController;
 import indexer.pokemon.infrastructure.controller.PokemonController;
@@ -46,8 +44,7 @@ final public class PokedexController {
 
         do {
 
-            GetItemsUseCase service = ItemApplicationInjector.injectGetItemsUseCase();
-            String[][] items = service.execute(filter_name);
+            String[][] items = ItemApplicationInjector.injectGetItemsUseCase().execute(filter_name);
 
             // Mostrar per pantalla els objectes
             System.out.printf("Nom: %s%n", filter_name);
@@ -81,8 +78,7 @@ final public class PokedexController {
 
         do {
 
-            GetAbilitiesUseCase service = AbilityApplicationInjector.injectGetAbilitiesUseCase();
-            String[][] abilities = service.execute(filter_name);
+            String[][] abilities = AbilityApplicationInjector.injectGetAbilitiesUseCase().execute(filter_name);
 
             // Mostrar per pantalla els moviments
             System.out.printf("Nom: %s%n", filter_name);

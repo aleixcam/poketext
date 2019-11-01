@@ -4,8 +4,8 @@ import indexer.ability.application.GetAbilities.GetAbilitiesUseCase;
 
 final public class AbilityApplicationInjector {
 
-    public static GetAbilitiesUseCase injectGetAbilitiesUseCase() {
-        return new GetAbilitiesUseCase(
+    public static GetAbilitiesUseCase<String[][]> injectGetAbilitiesUseCase() {
+        return new GetAbilitiesUseCase<>(
             AbilityInfrastructureInjector.injectAbilityRepository(),
             AbilityInfrastructureInjector.injectAbilityTransformer()
         );

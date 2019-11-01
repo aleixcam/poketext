@@ -1,7 +1,6 @@
 package teambuilder.pokemon.legacy;
 
 import shared.infrastructure.service.MatrixServiceImpl;
-import indexer.item.application.GetItems.GetItemsUseCase;
 import showndown.pokemon.legacy.Estadistiques;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -52,8 +51,7 @@ class Detalls {
 
         do {
 
-            GetItemsUseCase service = ItemApplicationInjector.injectGetItemsUseCase();
-            String[][] items = service.execute(filter_name);
+            String[][] items = ItemApplicationInjector.injectGetItemsUseCase().execute(filter_name);
 
             // Mostrar per pantalla els pokèmons
             System.out.printf("%nNom: %s%n", filter_name);

@@ -30,7 +30,7 @@ final public class PokemonRepositoryImpl implements PokemonRepository {
             + "and p.id = t.pokemon_id\n"
             + "and n.local_language_id = " + LanguageService.ENGLISH + "\n"
             + "and t.slot = 2) 'type_two'\n"
-            + "from indexer.pokemon p, pokemon_dex_numbers d\n"
+            + "from pokemon p, pokemon_dex_numbers d\n"
             + "where p.species_id = d.species_id\n"
             + "and d.pokedex_id = " + criteria.getPokedexId() + "\n"
             + (!Objects.equals(criteria.getName(), "") ? "and p.identifier like '%" + criteria.getName() + "%'\n" : "")
@@ -84,7 +84,7 @@ final public class PokemonRepositoryImpl implements PokemonRepository {
             + "from pokemon_stats s\n"
             + "where p.id = s.pokemon_id\n"
             + "and s.stat_id = 6) 'spe'\n"
-            + "from indexer.pokemon p\n"
+            + "from pokemon p\n"
             + "where p.id = " + pokemon_id);
 
         return buildStats(list);

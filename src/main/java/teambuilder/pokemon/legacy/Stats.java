@@ -1,6 +1,5 @@
 package teambuilder.pokemon.legacy;
 
-import indexer.nature.application.GetNatures.GetNaturesUseCase;
 import indexer.nature.infrastructure.injector.NatureApplicationInjector;
 import indexer.nature.infrastructure.injector.NatureInfrastructureInjector;
 import indexer.pokemon.domain.BaseStats;
@@ -21,8 +20,7 @@ class Stats {
         String s;
         int selected;
 
-        GetNaturesUseCase service = NatureApplicationInjector.injectGetNaturesUseCase();
-        String[][] natures = service.execute();
+        String[][] natures = NatureApplicationInjector.injectGetNaturesUseCase().execute();
 
         String[] options = new String[natures.length];
         for (int i = 0; i < natures.length; i++) {

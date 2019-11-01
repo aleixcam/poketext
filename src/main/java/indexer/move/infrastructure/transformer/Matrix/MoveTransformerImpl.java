@@ -7,7 +7,7 @@ import indexer.move.domain.MovesCollection;
 
 import java.util.ArrayList;
 
-final public class MoveTransformerImpl implements MoveTransformer {
+final public class MoveTransformerImpl implements MoveTransformer<String[][]> {
 
     private final String[] COLUMNS = {"ID", "Name", "Type", "Class", "Pow", "Acc", "PP", "Effect"};
 
@@ -17,7 +17,7 @@ final public class MoveTransformerImpl implements MoveTransformer {
         this.matrixService = matrixService;
     }
 
-    public String[][] assemble(MovesCollection collection) {
+    public String[][] transform(MovesCollection collection) {
         ArrayList<Move> moves = collection.getMoves();
         String[][] matrix = matrixService.generate(COLUMNS, moves.size());
 

@@ -7,7 +7,7 @@ import shared.domain.MatrixService;
 
 import java.util.ArrayList;
 
-final public class AbilityTransformerImpl implements AbilityTransformer {
+final public class AbilityTransformerImpl implements AbilityTransformer<String[][]> {
 
     private final String[] COLUMNS = {"ID", "Name", "Effect"};
 
@@ -17,7 +17,7 @@ final public class AbilityTransformerImpl implements AbilityTransformer {
         this.matrixService = matrixService;
     }
 
-    public String[][] assemble(AbilitiesCollection collection) {
+    public String[][] transform(AbilitiesCollection collection) {
         ArrayList<Ability> abilities = collection.getItems();
         String[][] matrix = matrixService.generate(COLUMNS, abilities.size());
 

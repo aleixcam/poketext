@@ -4,18 +4,18 @@ import indexer.nature.application.NatureTransformer;
 import indexer.nature.domain.NatureRepository;
 import indexer.nature.domain.NaturesCollection;
 
-public class GetNaturesUseCase {
+public class GetNaturesUseCase<T> {
 
     private NatureRepository repository;
-    private NatureTransformer assembler;
+    private NatureTransformer<T> transformer;
 
-    public GetNaturesUseCase(NatureRepository repository, NatureTransformer assembler) {
+    public GetNaturesUseCase(NatureRepository repository, NatureTransformer<T> transformer) {
         this.repository = repository;
-        this.assembler = assembler;
+        this.transformer = transformer;
     }
 
-    public String[][] execute() {
+    public T execute() {
         NaturesCollection natures = this.repository.findAll();
-        return this.assembler.assemble(natures);
+        return this.transformer.transform(natures);
     }
 }

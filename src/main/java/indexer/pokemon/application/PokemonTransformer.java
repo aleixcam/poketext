@@ -2,7 +2,7 @@ package indexer.pokemon.application;
 
 import indexer.pokemon.domain.PokemonsCollection;
 
-public interface PokemonTransformer<E> {
+public interface PokemonTransformer<T> {
 
-    E transform(PokemonsCollection collection);
+    T transform(PokemonsCollection collection);
 }

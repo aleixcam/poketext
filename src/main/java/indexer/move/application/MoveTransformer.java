@@ -2,7 +2,7 @@ package indexer.move.application;
 
 import indexer.move.domain.MovesCollection;
 
-public interface MoveTransformer {
+public interface MoveTransformer<T> {
 
-    String[][] assemble(MovesCollection moves);
+    T transform(MovesCollection moves);
 }

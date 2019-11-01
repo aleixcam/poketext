@@ -4,18 +4,18 @@ import indexer.pokedex.application.PokedexTransformer;
 import indexer.pokedex.domain.PokedexRepository;
 import indexer.pokedex.domain.PokedexesCollection;
 
-public class GetPokedexesUseCase {
+public class GetPokedexesUseCase<T> {
 
     private PokedexRepository repository;
-    private PokedexTransformer assembler;
+    private PokedexTransformer<T> transformer;
 
-    public GetPokedexesUseCase(PokedexRepository repository, PokedexTransformer assembler) {
+    public GetPokedexesUseCase(PokedexRepository repository, PokedexTransformer<T> transformer) {
         this.repository = repository;
-        this.assembler = assembler;
+        this.transformer = transformer;
     }
 
-    public String[][] execute() {
+    public T execute() {
         PokedexesCollection pokedexes = this.repository.findAll();
-        return this.assembler.assemble(pokedexes);
+        return this.transformer.transform(pokedexes);
     }
 }

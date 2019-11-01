@@ -5,21 +5,21 @@ import indexer.item.domain.ItemCriteria;
 import indexer.item.domain.ItemRepository;
 import indexer.item.domain.ItemsCollection;
 
-public class GetItemsUseCase {
+public class GetItemsUseCase<T> {
 
     private ItemRepository repository;
-    private ItemTransformer assembler;
+    private ItemTransformer<T> transformer;
 
-    public GetItemsUseCase(ItemRepository repository, ItemTransformer assembler) {
+    public GetItemsUseCase(ItemRepository repository, ItemTransformer<T> transformer) {
         this.repository = repository;
-        this.assembler = assembler;
+        this.transformer = transformer;
     }
 
-    public String[][] execute(String name) {
+    public T execute(String name) {
         ItemCriteria criteria = new ItemCriteria();
         criteria.setName(name);
 
         ItemsCollection items = this.repository.findByCriteria(criteria);
-        return this.assembler.assemble(items);
+        return this.transformer.transform(items);
     }
 }

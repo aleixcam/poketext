@@ -45,7 +45,7 @@ final public class MoveController implements Searcher {
         search();
     }
 
-    private GetMovesUseCase getMovesUseCase() {
+    private GetMovesUseCase<String[][]> getMovesUseCase() {
         return MoveApplicationInjector.injectGetMovesUseCase();
     }
 }

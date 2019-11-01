@@ -2,7 +2,7 @@ package indexer.ability.application;
 
 import indexer.ability.domain.AbilitiesCollection;
 
-public interface AbilityTransformer {
+public interface AbilityTransformer<T> {
 
-    String[][] assemble(AbilitiesCollection items);
+    T transform(AbilitiesCollection items);
 }

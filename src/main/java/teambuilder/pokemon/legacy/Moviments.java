@@ -16,7 +16,6 @@ class Moviments {
     //**************************************************************************
     //****ESCOLLIR**************************************************************
     //**************************************************************************
-    // Consultar l'ID del moviment seleccionat
     private static String consultarIDMoviment(String poke, String id) throws SQLException {
         ResultSet result;
         String res = "";
@@ -35,7 +34,6 @@ class Moviments {
         return res;
     }
 
-    // Consultar el nom del Pokèmon
     static String consultarNomMoviment(String id) throws SQLException {
         ResultSet result;
         String res = "";
@@ -49,20 +47,18 @@ class Moviments {
             res = result.getString("name");
         }
         return res;
-    }// Consultar el nom del Pokèmon
-
-    private static boolean comprovarMoviment(String[] moves, String id) {
-        boolean b = true;
-        for (int i = 0; i < moves.length && b; i++) {
-            if (id.equals(moves[i])) {
-                b = false;
-            }
-            
-        }
-        return b;
     }
 
-    // Escollir un moviment per al Pokèmon
+    private static boolean comprovarMoviment(String[] moves, String id) {
+        for (String move : moves) {
+            if (id.equals(move)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     private static String escollirMoviments(String[][] poke) {
         String res = "";
         String filter_type = "";
