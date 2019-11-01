@@ -1,12 +1,11 @@
 package shared.domain.Command;
 
 import shared.infrastructure.service.ReaderService;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Menu implements MenuInvoker {
+public class Menu {
 
     private final String EXIT = "Q";
 
@@ -37,7 +36,7 @@ public class Menu implements MenuInvoker {
 
         try {
             MenuOption option = actions.get(args[0]);
-            option.getAction().execute(Arrays.copyOfRange(args, 1, args.length));
+            option.action().execute(Arrays.copyOfRange(args, 1, args.length));
         } catch (Exception exception) {
             System.out.printf("Invalid selection%n");
         }
@@ -49,7 +48,7 @@ public class Menu implements MenuInvoker {
         System.out.printf("%n%s%n", title);
 
         for(Map.Entry<String, MenuOption> entry : actions.entrySet()) {
-            System.out.printf("%s. %s%n", entry.getKey(), entry.getValue().getText());
+            System.out.printf("%s. %s%n", entry.getKey(), entry.getValue().text());
         }
 
         System.out.printf("%s. Sortir%n", EXIT);

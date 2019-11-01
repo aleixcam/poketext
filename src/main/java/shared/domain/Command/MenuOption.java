@@ -10,11 +10,11 @@ class MenuOption {
         this.text = text;
     }
 
-    Command getAction() {
+    Command action() {
         return action;
     }
 
-    String getText() {
+    String text() {
         return text;
     }
 }
