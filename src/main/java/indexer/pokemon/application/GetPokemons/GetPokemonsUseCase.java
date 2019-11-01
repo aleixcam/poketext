@@ -3,16 +3,15 @@ package indexer.pokemon.application.GetPokemons;
 import indexer.pokemon.application.PokemonTransformer;
 import indexer.pokemon.domain.PokemonCriteria;
 import indexer.pokemon.domain.PokemonRepository;
-import indexer.pokemon.domain.PokemonsCollection;
 
 public class GetPokemonsUseCase {
 
     private PokemonRepository repository;
-    private PokemonTransformer assembler;
+    private PokemonTransformer<String[][]> transformer;
 
-    public GetPokemonsUseCase(PokemonRepository repository, PokemonTransformer assembler) {
+    public GetPokemonsUseCase(PokemonRepository repository, PokemonTransformer<String[][]> transformer) {
         this.repository = repository;
-        this.assembler = assembler;
+        this.transformer = transformer;
     }
 
     public String[][] execute(GetPokemonsRequest request) {
@@ -21,7 +20,6 @@ public class GetPokemonsUseCase {
         criteria.setName(request.getName());
         criteria.setType(request.getType());
 
-        PokemonsCollection pokemons = repository.findByCriteria(criteria);
-        return assembler.assemble(pokemons);
+        return transformer.transform(repository.findByCriteria(criteria));
     }
 }

@@ -7,7 +7,7 @@ import indexer.pokemon.domain.PokemonsCollection;
 
 import java.util.ArrayList;
 
-final public class PokemonTransformerImpl implements PokemonTransformer {
+final public class PokemonTransformerImpl implements PokemonTransformer<String[][]> {
 
     private final String[] COLUMNS = {"ID", "Name", "Type 1", "Type 2", "HP", "Atk", "Def", "SpA", "SpD", "Spe"};
 
@@ -17,7 +17,7 @@ final public class PokemonTransformerImpl implements PokemonTransformer {
         this.matrixService = matrixService;
     }
 
-    public String[][] assemble(PokemonsCollection collection) {
+    public String[][] transform(PokemonsCollection collection) {
         ArrayList<Pokemon> pokemons = collection.getPokemons();
         String[][] matrix = matrixService.generate(COLUMNS, pokemons.size());
 
