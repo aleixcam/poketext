@@ -79,22 +79,11 @@ public class Equips {
         pokemonFileSystemRepository().write(pokemon, ReaderService.read());
     }
 
-    public static String[][][] importarEquip() {
-        String[] pokemons = teamFileSystemRepository().list();
-        System.out.println("Saved teams:");
-        for (String pokemon : pokemons) {
-            System.out.println(pokemon);
-        }
-
-        return teamFileSystemRepository().read(ReaderService.read());
-    }
-
     private static void exportarEquip(String[][][] equip) {
         teamFileSystemRepository().write(equip, ReaderService.read());
     }
 
-    // Crear un nou equip
-    private static void crearEquip(String[][][] equip) {
+    public static void crearEquip(String[][][] equip) {
         boolean sortir = false;
         int num;
         String[] s;
@@ -162,37 +151,6 @@ public class Equips {
                 }
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException ex) {
                 System.err.println("Paràmetres incorrectes");
-            }
-        } while (!sortir);
-    }
-
-    // Començar a construïr un equip
-    public static void construirEquip() {
-        boolean sortir = false;
-        String sel;
-        do {
-
-            System.out.printf("%nPOKETEXT: CONSTRUCTOR D'EQUIPS%n");
-            System.out.println("C. Crear un nou equip");
-            System.out.println("M. Modificar un equip");
-            System.out.println("E. Eliminar un equip");
-            System.out.println("P. Eliminar un Pokèmon");
-            System.out.println("Q. Sortir al menú principal");
-            sel = ReaderService.read();
-
-            // Seleccions del menú principal
-            if (sel.equalsIgnoreCase("c")) {
-                crearEquip(new String[6][][]);
-            } else if (sel.equalsIgnoreCase("m")) {
-                crearEquip(importarEquip());
-            } else if (sel.equalsIgnoreCase("e")) {
-                teamFileSystemRepository().erase(ReaderService.read());
-            } else if (sel.equalsIgnoreCase("p")) {
-                pokemonFileSystemRepository().erase(ReaderService.read());
-            } else if (sel.equalsIgnoreCase("q")) {
-                sortir = true;
-            } else {
-                System.out.println("Selecció incorrecte");
             }
         } while (!sortir);
     }
