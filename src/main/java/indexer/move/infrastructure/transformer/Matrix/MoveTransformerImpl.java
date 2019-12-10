@@ -1,6 +1,6 @@
 package indexer.move.infrastructure.transformer.Matrix;
 
-import shared.domain.MatrixService;
+import shared.domain.Service.MatrixService;
 import indexer.move.domain.Move;
 import indexer.move.application.MoveTransformer;
 import indexer.move.domain.MoveCollection;

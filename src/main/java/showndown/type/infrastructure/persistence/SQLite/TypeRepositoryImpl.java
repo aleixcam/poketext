@@ -1,7 +1,7 @@
 package showndown.type.infrastructure.persistence.SQLite;
 
 import org.apache.commons.lang3.math.NumberUtils;
-import shared.domain.SQLiteRepository;
+import shared.domain.Service.SQLiteRepository;
 import showndown.type.domain.Type;
 import showndown.type.domain.TypeRepository;
 

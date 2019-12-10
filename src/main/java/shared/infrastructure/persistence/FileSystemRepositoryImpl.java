@@ -1,7 +1,7 @@
 package shared.infrastructure.persistence;
 
-import shared.domain.CSVService;
-import shared.domain.FileSystemRepository;
+import shared.domain.Service.CSVService;
+import shared.domain.Service.FileSystemRepository;
 
 import java.io.*;
 import java.util.ArrayList;

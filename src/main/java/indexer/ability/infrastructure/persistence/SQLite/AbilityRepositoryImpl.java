@@ -4,7 +4,7 @@ import indexer.ability.domain.Ability;
 import indexer.ability.domain.AbilityCollection;
 import indexer.ability.domain.AbilityCriteria;
 import indexer.ability.domain.AbilityRepository;
-import shared.domain.SQLiteRepository;
+import shared.domain.Service.SQLiteRepository;
 import shared.infrastructure.service.LanguageService;
 
 import java.util.List;
@@ -33,12 +33,7 @@ final public class AbilityRepositoryImpl implements AbilityRepository {
     private AbilityCollection buildAbilities(List<String[]> list) {
         AbilityCollection abilities = new AbilityCollection();
         for (String[] row : list) {
-            Ability ability = new Ability();
-            ability.setId(row[0]);
-            ability.setName(row[1]);
-            ability.setEffect(row[2]);
-
-            abilities.add(ability);
+            abilities.add(Ability.instance(row));
         }
 
         return abilities;

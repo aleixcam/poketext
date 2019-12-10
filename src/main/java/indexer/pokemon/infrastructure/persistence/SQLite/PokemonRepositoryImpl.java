@@ -1,6 +1,6 @@
 package indexer.pokemon.infrastructure.persistence.SQLite;
 
-import shared.domain.SQLiteRepository;
+import shared.domain.Service.SQLiteRepository;
 import shared.infrastructure.service.LanguageService;
 import indexer.pokemon.domain.*;
 

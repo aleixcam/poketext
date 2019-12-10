@@ -1,6 +1,6 @@
 package indexer.pokedex.infrastructure.persistence.SQLite;
 
-import shared.domain.SQLiteRepository;
+import shared.domain.Service.SQLiteRepository;
 import indexer.pokedex.domain.Pokedex;
 import indexer.pokedex.domain.PokedexRepository;
 import indexer.pokedex.domain.PokedexCollection;

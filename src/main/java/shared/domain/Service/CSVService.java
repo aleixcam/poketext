@@ -1,4 +1,4 @@
-package shared.domain;
+package shared.domain.Service;
 
 public interface CSVService {
 

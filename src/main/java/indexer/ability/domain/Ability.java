@@ -8,27 +8,43 @@ public class Ability {
     private String name;
     private String effect;
 
-    public int getId() {
-        return id;
+    public Ability(
+        int id,
+        String name,
+        String effect
+    ) {
+        this.id = id;
+        this.name = name;
+        this.effect = effect;
     }
 
-    public void setId(String id) {
-        this.id = NumberUtils.isParsable(id) ? Integer.parseInt(id) : 0;
+    public int getId() {
+        return id;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getEffect() {
         return effect;
     }
 
-    public void setEffect(String effect) {
-        this.effect = effect;
+    public static Ability instance(String[] array){
+        try {
+            return Ability.class.getDeclaredConstructor(
+                int.class,
+                String.class,
+                String.class
+            ).newInstance(
+                NumberUtils.isParsable(array[0]) ? Integer.parseInt(array[0]) : 0,
+                array[1],
+                array[2]
+            );
+        } catch (ReflectiveOperationException e) {
+            e.printStackTrace();
+
+            return null;
+        }
     }
 }

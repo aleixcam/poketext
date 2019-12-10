@@ -3,7 +3,7 @@ package indexer.ability.infrastructure.transformer.Matrix;
 import indexer.ability.application.AbilityTransformer;
 import indexer.ability.domain.AbilityCollection;
 import indexer.ability.domain.Ability;
-import shared.domain.MatrixService;
+import shared.domain.Service.MatrixService;
 
 import java.util.ArrayList;
 
