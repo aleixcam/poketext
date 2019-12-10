@@ -9,33 +9,27 @@ import teambuilder.team.legacy.Equips;
 
 public class TeamController {
 
-    public static void createTeamAction() {
+    public void createTeamAction() {
         Equips.crearEquip(new String[6][][]);
     }
 
-    public static void importTeamAction() {
-        String[] pokemons = teamFileSystemRepository().list();
-        System.out.println("Saved teams:");
-        for (String pokemon : pokemons) {
-            System.out.println(pokemon);
-        }
-
-        Equips.crearEquip(teamFileSystemRepository().read(ReaderService.read()));
+    public void editTeamAction() {
+        Equips.crearEquip(Equips.importarEquip());
     }
 
-    public static void removeTeamAction() {
+    public void removeTeamAction() {
         teamFileSystemRepository().erase(ReaderService.read());
     }
 
-    public static void removePokemonAction() {
+    public void removePokemonAction() {
         pokemonFileSystemRepository().erase(ReaderService.read());
     }
 
-    private static PokemonRepositoryImpl pokemonFileSystemRepository() {
+    private PokemonRepositoryImpl pokemonFileSystemRepository() {
         return PokemonInfrastructureInjector.injectFileSystemPokemonRepository();
     }
 
-    private static TeamRepositoryImpl teamFileSystemRepository() {
+    private TeamRepositoryImpl teamFileSystemRepository() {
         return TeamInfrastructureInjector.injectFileSystemTeamRepository();
     }
 }

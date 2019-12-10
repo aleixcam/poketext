@@ -7,21 +7,23 @@ import teambuilder.team.infrastructure.injector.TeamInfrastructureInjector;
 import teambuilder.team.infrastructure.persistence.FileSystem.TeamRepositoryImpl;
 import shared.infrastructure.service.ReaderService;
 
+import java.util.Arrays;
+
 public class Equips {
 
     // Comprovar si l'equip és vàid
     private static boolean equipValid(String[][][] equip) {
-        boolean correcte = true;
-        for (int i = 0; i < equip.length && correcte; i++) {
-            if (equip[i] != null) {
-                for (int j = 0; j < equip[i][2].length && correcte; j++) {
-                    if (equip[i][2][j].equals("")) {
-                        correcte = false;
+        for (String[][] strings : equip) {
+            if (strings != null) {
+                for (int j = 0; j < strings[2].length; j++) {
+                    if (strings[2][j].equals("")) {
+                        return false;
                     }
                 }
             }
         }
-        return correcte;
+
+        return true;
     }
 
     // Comprovar si l'equip és vàid
@@ -46,10 +48,8 @@ public class Equips {
             new String[6]
         };
 
-        for (int i = 0; i < poke.length; i++) {
-            for (int j = 0; j < poke[i].length; j++) {
-                poke[i][j] = "";
-            }
+        for (String[] strings : poke) {
+            Arrays.fill(strings, "");
         }
 
         for (int i = 0; i < 6; i++) {
@@ -153,6 +153,16 @@ public class Equips {
                 System.err.println("Paràmetres incorrectes");
             }
         } while (!sortir);
+    }
+
+    public static String[][][] importarEquip() {
+        String[] pokemons = teamFileSystemRepository().list();
+        System.out.println("Saved teams:");
+        for (String pokemon : pokemons) {
+            System.out.println(pokemon);
+        }
+
+        return teamFileSystemRepository().read(ReaderService.read());
     }
 
     private static PokemonRepositoryImpl pokemonFileSystemRepository() {

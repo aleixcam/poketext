@@ -6,8 +6,11 @@ import indexer.pokedex.infrastructure.controller.PokedexController;
 import indexer.item.application.Command.SearchItemsCommand;
 import indexer.move.application.Command.SearchMovesCommand;
 import indexer.pokemon.application.Command.SearchPokemonsCommand;
-import shared.infrastructure.service.ReaderService;
 import showndown.player.legacy.Jugadors;
+import teambuilder.pokemon.application.Command.RemovePokemonCommand;
+import teambuilder.team.application.Command.CreateTeamCommand;
+import teambuilder.team.application.Command.EditTeamCommand;
+import teambuilder.team.application.Command.RemoveTeamCommand;
 import teambuilder.team.infrastructure.controller.TeamController;
 
 final public class AppController {
@@ -17,33 +20,16 @@ final public class AppController {
     }
 
     public void teambuilder() {
-        boolean sortir = false;
-        String sel;
-        do {
 
-            System.out.printf("%nPOKETEXT: CONSTRUCTOR D'EQUIPS%n");
-            System.out.println("C. Crear un nou equip");
-            System.out.println("M. Modificar un equip");
-            System.out.println("E. Eliminar un equip");
-            System.out.println("P. Eliminar un Pokèmon");
-            System.out.println("Q. Sortir al menú principal");
-            sel = ReaderService.read();
+        TeamController receiver = new TeamController();
 
-            // Seleccions del menú principal
-            if (sel.equalsIgnoreCase("c")) {
-                TeamController.createTeamAction();
-            } else if (sel.equalsIgnoreCase("m")) {
-                TeamController.importTeamAction();
-            } else if (sel.equalsIgnoreCase("e")) {
-                TeamController.removeTeamAction();
-            } else if (sel.equalsIgnoreCase("p")) {
-                TeamController.removePokemonAction();
-            } else if (sel.equalsIgnoreCase("q")) {
-                sortir = true;
-            } else {
-                System.out.println("Selecció incorrecte");
-            }
-        } while (!sortir);
+        Menu menu = new Menu("POKETEXT: POKÈDEX");
+        menu.register("C", CreateTeamCommand.of(receiver), "Crear un nou equip");
+        menu.register("M", EditTeamCommand.of(receiver), "Modificar un equip");
+        menu.register("E", RemoveTeamCommand.of(receiver), "Eliminar un equip");
+        menu.register("P", RemovePokemonCommand.of(receiver), "Eliminar un Pokèmon");
+
+        menu.execute();
     }
 
     public void pokedex() {
