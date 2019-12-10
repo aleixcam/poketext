@@ -2,7 +2,7 @@ package indexer.ability.domain;
 
 import java.util.ArrayList;
 
-public class AbilitiesCollection {
+public class AbilityCollection {
 
     private ArrayList<Ability> items = new ArrayList<>();
 

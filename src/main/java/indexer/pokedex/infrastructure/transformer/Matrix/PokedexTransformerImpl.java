@@ -3,7 +3,7 @@ package indexer.pokedex.infrastructure.transformer.Matrix;
 import shared.domain.MatrixService;
 import indexer.pokedex.domain.Pokedex;
 import indexer.pokedex.application.PokedexTransformer;
-import indexer.pokedex.domain.PokedexesCollection;
+import indexer.pokedex.domain.PokedexCollection;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ final public class PokedexTransformerImpl implements PokedexTransformer<String[]
         this.matrixService = matrixService;
     }
 
-    public String[][] transform(PokedexesCollection collection) {
+    public String[][] transform(PokedexCollection collection) {
         ArrayList<Pokedex> pokedexes = collection.getPokedexes();
         String[][] matrix = matrixService.generate(COLUMNS, pokedexes.size());
 

@@ -7,7 +7,7 @@ import shared.domain.SQLiteRepository;
 import indexer.move.domain.Move;
 import indexer.move.domain.MoveCriteria;
 import indexer.move.domain.MoveRepository;
-import indexer.move.domain.MovesCollection;
+import indexer.move.domain.MoveCollection;
 import shared.infrastructure.service.LanguageService;
 
 final public class MoveRepositoryImpl implements MoveRepository {
@@ -18,7 +18,7 @@ final public class MoveRepositoryImpl implements MoveRepository {
         this.repository = repository;
     }
 
-    public MovesCollection findByCriteria(MoveCriteria criteria) {
+    public MoveCollection findByCriteria(MoveCriteria criteria) {
         List<String[]> list = repository.executeQuery("select distinct(m.id), n.name, t.name as type, d.identifier, m.power, m.accuracy, m.pp, f.flavor_text\n"
                 + "from pokemon_moves p, move_names n, moves m, type_names t, move_flavor_text f, move_damage_classes d\n"
                 + "where m.id = p.move_id\n"
@@ -39,8 +39,8 @@ final public class MoveRepositoryImpl implements MoveRepository {
         return buildMoves(list);
     }
 
-    private MovesCollection buildMoves(List<String[]> list) {
-        MovesCollection moves = new MovesCollection();
+    private MoveCollection buildMoves(List<String[]> list) {
+        MoveCollection moves = new MoveCollection();
         for (String[] row : list) {
             Move move = new Move();
             move.setId(row[0]);

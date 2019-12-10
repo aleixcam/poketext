@@ -1,16 +1,33 @@
 package teambuilder.team.domain;
 
-import indexer.pokemon.domain.Pokemon;
+import indexer.pokemon.domain.PokemonCollection;
+import shared.infrastructure.service.ReaderService;
+import teambuilder.team.infrastructure.injector.TeamInfrastructureInjector;
+import teambuilder.team.infrastructure.persistence.FileSystem.TeamRepositoryImpl;
 
-public class Team {
+final public class Team {
 
-    private Pokemon[] pokemons;
+    private PokemonCollection pokemons;
 
-    public Pokemon[] getPokemons() {
+    public Team(PokemonCollection pokemons) {
+        this.pokemons = pokemons;
+    }
+
+    public PokemonCollection pokemons() {
         return pokemons;
     }
 
-    public void setPokemons(Pokemon[] pokemons) {
-        this.pokemons = pokemons;
+    public static String[][][] retrieve() {
+        String[] pokemons = teamFileSystemRepository().list();
+        System.out.println("Saved teams:");
+        for (String pokemon : pokemons) {
+            System.out.println(pokemon);
+        }
+
+        return teamFileSystemRepository().read(ReaderService.read());
+    }
+
+    private static TeamRepositoryImpl teamFileSystemRepository() {
+        return TeamInfrastructureInjector.injectFileSystemTeamRepository();
     }
 }

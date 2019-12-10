@@ -2,7 +2,7 @@ package indexer.move.domain;
 
 import java.util.ArrayList;
 
-public class MovesCollection {
+public class MoveCollection {
 
     private ArrayList<Move> moves = new ArrayList<>();
 

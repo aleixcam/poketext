@@ -2,7 +2,7 @@ package indexer.nature.application.GetNatures;
 
 import indexer.nature.application.NatureTransformer;
 import indexer.nature.domain.NatureRepository;
-import indexer.nature.domain.NaturesCollection;
+import indexer.nature.domain.NatureCollection;
 
 public class GetNaturesUseCase<T> {
 
@@ -15,7 +15,7 @@ public class GetNaturesUseCase<T> {
     }
 
     public T execute() {
-        NaturesCollection natures = this.repository.findAll();
+        NatureCollection natures = this.repository.findAll();
         return this.transformer.transform(natures);
     }
 }

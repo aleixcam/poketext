@@ -16,7 +16,7 @@ final public class PokemonRepositoryImpl implements PokemonRepository {
         this.repository = repository;
     }
 
-    public PokemonsCollection findByCriteria(PokemonCriteria criteria) {
+    public PokemonCollection findByCriteria(PokemonCriteria criteria) {
         List<String[]> list = repository.executeQuery("select " + criteria.getIdField() + " 'id', p.identifier 'name',\n"
             + "(select n.name\n"
             + "from type_names n, pokemon_types t\n"
@@ -42,8 +42,8 @@ final public class PokemonRepositoryImpl implements PokemonRepository {
         return buildPokemons(list);
     }
 
-    private PokemonsCollection buildPokemons(List<String[]> list) {
-        PokemonsCollection pokemons = new PokemonsCollection();
+    private PokemonCollection buildPokemons(List<String[]> list) {
+        PokemonCollection pokemons = new PokemonCollection();
         for (String[] row : list) {
             Pokemon pokemon = new Pokemon();
             pokemon.setId(row[0]);

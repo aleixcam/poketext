@@ -3,7 +3,7 @@ package indexer.item.application.GetItems;
 import indexer.item.application.ItemTransformer;
 import indexer.item.domain.ItemCriteria;
 import indexer.item.domain.ItemRepository;
-import indexer.item.domain.ItemsCollection;
+import indexer.item.domain.ItemCollection;
 
 public class GetItemsUseCase<T> {
 
@@ -19,7 +19,7 @@ public class GetItemsUseCase<T> {
         ItemCriteria criteria = new ItemCriteria();
         criteria.setName(name);
 
-        ItemsCollection items = this.repository.findByCriteria(criteria);
+        ItemCollection items = this.repository.findByCriteria(criteria);
         return this.transformer.transform(items);
     }
 }

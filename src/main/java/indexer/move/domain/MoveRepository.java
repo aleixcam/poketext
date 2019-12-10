@@ -2,5 +2,5 @@ package indexer.move.domain;
 
 public interface MoveRepository {
 
-    MovesCollection findByCriteria(MoveCriteria criteria);
+    MoveCollection findByCriteria(MoveCriteria criteria);
 }

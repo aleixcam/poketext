@@ -19,7 +19,7 @@ final public class GetMovesUseCase<T> {
         criteria.setName(request.getName());
         criteria.setType(request.getType());
 
-        MovesCollection moves = this.repository.findByCriteria(criteria);
+        MoveCollection moves = this.repository.findByCriteria(criteria);
         return this.transformer.transform(moves);
     }
 }

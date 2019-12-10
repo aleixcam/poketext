@@ -2,7 +2,7 @@ package indexer.pokemon.domain;
 
 import java.util.ArrayList;
 
-public class PokemonsCollection {
+public class PokemonCollection {
 
     private ArrayList<Pokemon> pokemons = new ArrayList<>();
 

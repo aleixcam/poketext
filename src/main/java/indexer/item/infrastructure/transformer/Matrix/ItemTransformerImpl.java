@@ -3,7 +3,7 @@ package indexer.item.infrastructure.transformer.Matrix;
 import shared.domain.MatrixService;
 import indexer.item.domain.Item;
 import indexer.item.application.ItemTransformer;
-import indexer.item.domain.ItemsCollection;
+import indexer.item.domain.ItemCollection;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ final public class ItemTransformerImpl implements ItemTransformer<String[][]> {
         this.matrixService = matrixService;
     }
 
-    public String[][] transform(ItemsCollection collection) {
+    public String[][] transform(ItemCollection collection) {
         ArrayList<Item> items = collection.getItems();
         String[][] matrix = matrixService.generate(COLUMNS, items.size());
 

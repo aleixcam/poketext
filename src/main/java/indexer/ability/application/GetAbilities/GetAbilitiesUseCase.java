@@ -3,7 +3,7 @@ package indexer.ability.application.GetAbilities;
 import indexer.ability.application.AbilityTransformer;
 import indexer.ability.domain.AbilityCriteria;
 import indexer.ability.domain.AbilityRepository;
-import indexer.ability.domain.AbilitiesCollection;
+import indexer.ability.domain.AbilityCollection;
 
 public class GetAbilitiesUseCase<T> {
 
@@ -19,7 +19,7 @@ public class GetAbilitiesUseCase<T> {
         AbilityCriteria criteria = new AbilityCriteria();
         criteria.setName(name);
 
-        AbilitiesCollection items = this.repository.findByCriteria(criteria);
+        AbilityCollection items = this.repository.findByCriteria(criteria);
         return this.transformer.transform(items);
     }
 }

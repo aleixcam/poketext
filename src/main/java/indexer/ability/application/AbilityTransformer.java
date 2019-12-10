@@ -1,8 +1,8 @@
 package indexer.ability.application;
 
-import indexer.ability.domain.AbilitiesCollection;
+import indexer.ability.domain.AbilityCollection;
 
 public interface AbilityTransformer<T> {
 
-    T transform(AbilitiesCollection items);
+    T transform(AbilityCollection items);
 }

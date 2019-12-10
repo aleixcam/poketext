@@ -2,7 +2,7 @@ package indexer.pokedex.application.GetPokedexes;
 
 import indexer.pokedex.application.PokedexTransformer;
 import indexer.pokedex.domain.PokedexRepository;
-import indexer.pokedex.domain.PokedexesCollection;
+import indexer.pokedex.domain.PokedexCollection;
 
 public class GetPokedexesUseCase<T> {
 
@@ -15,7 +15,7 @@ public class GetPokedexesUseCase<T> {
     }
 
     public T execute() {
-        PokedexesCollection pokedexes = this.repository.findAll();
+        PokedexCollection pokedexes = this.repository.findAll();
         return this.transformer.transform(pokedexes);
     }
 }

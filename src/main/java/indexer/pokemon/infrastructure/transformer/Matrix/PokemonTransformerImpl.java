@@ -3,7 +3,7 @@ package indexer.pokemon.infrastructure.transformer.Matrix;
 import shared.domain.MatrixService;
 import indexer.pokemon.domain.Pokemon;
 import indexer.pokemon.application.PokemonTransformer;
-import indexer.pokemon.domain.PokemonsCollection;
+import indexer.pokemon.domain.PokemonCollection;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ final public class PokemonTransformerImpl implements PokemonTransformer<String[]
         this.matrixService = matrixService;
     }
 
-    public String[][] transform(PokemonsCollection collection) {
+    public String[][] transform(PokemonCollection collection) {
         ArrayList<Pokemon> pokemons = collection.getPokemons();
         String[][] matrix = matrixService.generate(COLUMNS, pokemons.size());
 

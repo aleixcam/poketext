@@ -2,7 +2,7 @@ package indexer.nature.domain;
 
 import java.util.ArrayList;
 
-public class NaturesCollection {
+public class NatureCollection {
 
     private ArrayList<Nature> natures = new ArrayList<>();
 

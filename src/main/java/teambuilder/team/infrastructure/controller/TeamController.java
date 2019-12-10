@@ -1,20 +1,21 @@
 package teambuilder.team.infrastructure.controller;
 
+import indexer.pokemon.domain.PokemonCollection;
 import indexer.pokemon.infrastructure.injector.PokemonInfrastructureInjector;
 import indexer.pokemon.infrastructure.persistence.FileSystem.PokemonRepositoryImpl;
 import shared.infrastructure.service.ReaderService;
+import teambuilder.team.domain.Team;
 import teambuilder.team.infrastructure.injector.TeamInfrastructureInjector;
 import teambuilder.team.infrastructure.persistence.FileSystem.TeamRepositoryImpl;
-import teambuilder.team.legacy.Equips;
 
 public class TeamController {
 
     public void createTeamAction() {
-        Equips.crearEquip(new String[6][][]);
+        new Team(new PokemonCollection());
     }
 
     public void editTeamAction() {
-        Equips.crearEquip(Equips.importarEquip());
+        Team.retrieve();
     }
 
     public void removeTeamAction() {

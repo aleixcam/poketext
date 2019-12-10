@@ -4,7 +4,7 @@ import shared.domain.SQLiteRepository;
 import indexer.item.domain.Item;
 import indexer.item.domain.ItemCriteria;
 import indexer.item.domain.ItemRepository;
-import indexer.item.domain.ItemsCollection;
+import indexer.item.domain.ItemCollection;
 import shared.infrastructure.service.LanguageService;
 
 import java.util.List;
@@ -18,7 +18,7 @@ final public class ItemRepositoryImpl implements ItemRepository {
         this.repository = repository;
     }
 
-    public ItemsCollection findByCriteria(ItemCriteria criteria) {
+    public ItemCollection findByCriteria(ItemCriteria criteria) {
         List<String[]> list = repository.executeQuery("select i.id, n.name, f.flavor_text\n"
                 + "from items i, item_categories c,  item_names n, item_flavor_text f\n"
                 + "where i.category_id = c.id\n"
@@ -35,8 +35,8 @@ final public class ItemRepositoryImpl implements ItemRepository {
         return buildItems(list);
     }
 
-    private ItemsCollection buildItems(List<String[]> list) {
-        ItemsCollection items = new ItemsCollection();
+    private ItemCollection buildItems(List<String[]> list) {
+        ItemCollection items = new ItemCollection();
         for (String[] row : list) {
             Item item = new Item();
             item.setId(row[0]);

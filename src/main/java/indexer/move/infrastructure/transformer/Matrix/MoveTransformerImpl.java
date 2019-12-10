@@ -3,7 +3,7 @@ package indexer.move.infrastructure.transformer.Matrix;
 import shared.domain.MatrixService;
 import indexer.move.domain.Move;
 import indexer.move.application.MoveTransformer;
-import indexer.move.domain.MovesCollection;
+import indexer.move.domain.MoveCollection;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ final public class MoveTransformerImpl implements MoveTransformer<String[][]> {
         this.matrixService = matrixService;
     }
 
-    public String[][] transform(MovesCollection collection) {
+    public String[][] transform(MoveCollection collection) {
         ArrayList<Move> moves = collection.getMoves();
         String[][] matrix = matrixService.generate(COLUMNS, moves.size());
 

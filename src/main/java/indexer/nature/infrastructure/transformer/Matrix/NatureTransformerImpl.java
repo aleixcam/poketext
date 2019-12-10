@@ -3,7 +3,7 @@ package indexer.nature.infrastructure.transformer.Matrix;
 import shared.domain.MatrixService;
 import indexer.nature.application.NatureTransformer;
 import indexer.nature.domain.Nature;
-import indexer.nature.domain.NaturesCollection;
+import indexer.nature.domain.NatureCollection;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ final public class NatureTransformerImpl implements NatureTransformer<String[][]
         this.matrixService = matrixService;
     }
 
-    public String[][] transform(NaturesCollection collection) {
+    public String[][] transform(NatureCollection collection) {
         ArrayList<Nature> natures = collection.getNatures();
         String[][] matrix = matrixService.generate(COLUMNS, natures.size());
         String[] stats = {"HP", "Atk", "Def", "SpA", "SpD", "Spe"};

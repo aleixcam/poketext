@@ -2,7 +2,7 @@ package indexer.item.domain;
 
 import java.util.ArrayList;
 
-public class ItemsCollection {
+public class ItemCollection {
 
     private ArrayList<Item> items = new ArrayList<>();
 

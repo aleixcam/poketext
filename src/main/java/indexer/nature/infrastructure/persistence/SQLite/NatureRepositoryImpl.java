@@ -3,7 +3,7 @@ package indexer.nature.infrastructure.persistence.SQLite;
 import shared.domain.SQLiteRepository;
 import indexer.nature.domain.Nature;
 import indexer.nature.domain.NatureRepository;
-import indexer.nature.domain.NaturesCollection;
+import indexer.nature.domain.NatureCollection;
 import shared.infrastructure.service.LanguageService;
 
 import java.util.List;
@@ -16,7 +16,7 @@ final public class NatureRepositoryImpl implements NatureRepository {
         this.repository = repository;
     }
 
-    public NaturesCollection findAll() {
+    public NatureCollection findAll() {
         List<String[]> list = repository.executeQuery("select p.id, n.name, p.increased_stat_id, p.decreased_stat_id \n"
             + "from nature_names n, natures p\n"
             + "where p.id = n.nature_id\n"
@@ -25,8 +25,8 @@ final public class NatureRepositoryImpl implements NatureRepository {
         return buildPokedexes(list);
     }
 
-    private NaturesCollection buildPokedexes(List<String[]> list) {
-        NaturesCollection natures = new NaturesCollection();
+    private NatureCollection buildPokedexes(List<String[]> list) {
+        NatureCollection natures = new NatureCollection();
         for (String[] row : list) {
             Nature nature = new Nature();
             nature.setId(row[0]);

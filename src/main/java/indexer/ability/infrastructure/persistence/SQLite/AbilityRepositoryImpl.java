@@ -1,7 +1,7 @@
 package indexer.ability.infrastructure.persistence.SQLite;
 
 import indexer.ability.domain.Ability;
-import indexer.ability.domain.AbilitiesCollection;
+import indexer.ability.domain.AbilityCollection;
 import indexer.ability.domain.AbilityCriteria;
 import indexer.ability.domain.AbilityRepository;
 import shared.domain.SQLiteRepository;
@@ -18,7 +18,7 @@ final public class AbilityRepositoryImpl implements AbilityRepository {
         this.repository = repository;
     }
 
-    public AbilitiesCollection findByCriteria(AbilityCriteria criteria) {
+    public AbilityCollection findByCriteria(AbilityCriteria criteria) {
         List<String[]> list = repository.executeQuery("select f.ability_id, n.name, f.flavor_text\n"
                 + "from ability_flavor_text f, ability_names n\n"
                 + "where f.ability_id = n.ability_id\n"
@@ -30,8 +30,8 @@ final public class AbilityRepositoryImpl implements AbilityRepository {
         return buildAbilities(list);
     }
 
-    private AbilitiesCollection buildAbilities(List<String[]> list) {
-        AbilitiesCollection abilities = new AbilitiesCollection();
+    private AbilityCollection buildAbilities(List<String[]> list) {
+        AbilityCollection abilities = new AbilityCollection();
         for (String[] row : list) {
             Ability ability = new Ability();
             ability.setId(row[0]);

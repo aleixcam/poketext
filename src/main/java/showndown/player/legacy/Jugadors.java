@@ -1,20 +1,20 @@
 package showndown.player.legacy;
 
 import shared.infrastructure.service.ReaderService;
-import teambuilder.team.legacy.Equips;
+import teambuilder.team.domain.Team;
 import teambuilder.pokemon.legacy.Pokes;
 
 public class Jugadors {
 
     // Comprovar que tots els jugadors tinguin un equip seleccionat
     private static boolean comprovarJugadors(String[][][][] jugador) {
-        boolean b = true;
         for (String[][][] equip : jugador) {
             if (equip == null) {
-                b = false;
+                return false;
             }
         }
-        return b;
+
+        return true;
     }
 
     // Cambiar les opcions del showndown.legacy.combat
@@ -60,7 +60,7 @@ public class Jugadors {
 
             // Seleccions del menú principal
             if ((s[0].equalsIgnoreCase("s")) && (s.length == 2)) {
-                jugador[Integer.parseInt(s[1]) - 1] = Equips.importarEquip();
+                jugador[Integer.parseInt(s[1]) - 1] = Team.retrieve();
             } else if ((s[0].equalsIgnoreCase("v")) && (s.length == 2)) {
                 if (jugador[Integer.parseInt(s[1]) - 1] != null) {
                     for (String[][] poke : jugador[Integer.parseInt(s[1]) - 1]) {

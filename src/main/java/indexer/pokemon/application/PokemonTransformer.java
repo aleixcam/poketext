@@ -1,8 +1,8 @@
 package indexer.pokemon.application;
 
-import indexer.pokemon.domain.PokemonsCollection;
+import indexer.pokemon.domain.PokemonCollection;
 
 public interface PokemonTransformer<T> {
 
-    T transform(PokemonsCollection collection);
+    T transform(PokemonCollection collection);
 }

@@ -20,10 +20,9 @@ final public class AppController {
     }
 
     public void teambuilder() {
-
         TeamController receiver = new TeamController();
 
-        Menu menu = new Menu("POKETEXT: POKÈDEX");
+        Menu menu = new Menu("POKETEXT: CONSTRUCTOR D'EQUIPS");
         menu.register("C", CreateTeamCommand.of(receiver), "Crear un nou equip");
         menu.register("M", EditTeamCommand.of(receiver), "Modificar un equip");
         menu.register("E", RemoveTeamCommand.of(receiver), "Eliminar un equip");
