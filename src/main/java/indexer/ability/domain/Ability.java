@@ -1,6 +1,7 @@
 package indexer.ability.domain;
 
 import org.apache.commons.lang3.math.NumberUtils;
+import shared.infrastructure.service.SilentObjectCreator;
 
 public class Ability {
 
@@ -18,33 +19,24 @@ public class Ability {
         this.effect = effect;
     }
 
-    public int getId() {
+    public int id() {
         return id;
     }
 
-    public String getName() {
+    public String name() {
         return this.name;
     }
 
-    public String getEffect() {
+    public String effect() {
         return effect;
     }
 
-    public static Ability instance(String[] array){
-        try {
-            return Ability.class.getDeclaredConstructor(
-                int.class,
-                String.class,
-                String.class
-            ).newInstance(
-                NumberUtils.isParsable(array[0]) ? Integer.parseInt(array[0]) : 0,
-                array[1],
-                array[2]
-            );
-        } catch (ReflectiveOperationException e) {
-            e.printStackTrace();
+    public static Ability instance(String[] array) {
+        Ability ability = SilentObjectCreator.create(Ability.class);
+        ability.id = NumberUtils.isParsable(array[0]) ? Integer.parseInt(array[0]) : 0;
+        ability.name = array[1];
+        ability.effect = array[2];
 
-            return null;
-        }
+        return ability;
     }
 }

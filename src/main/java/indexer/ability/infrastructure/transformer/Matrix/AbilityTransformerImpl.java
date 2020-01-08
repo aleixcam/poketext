@@ -22,9 +22,9 @@ final public class AbilityTransformerImpl implements AbilityTransformer<String[]
         String[][] matrix = matrixService.generate(COLUMNS, abilities.size());
 
         for (int i = 0; i < abilities.size(); i++) {
-            matrix[i+1][0] = String.valueOf(abilities.get(i).getId());
-            matrix[i+1][1] = abilities.get(i).getName();
-            matrix[i+1][2] = abilities.get(i).getEffect();
+            matrix[i+1][0] = String.valueOf(abilities.get(i).id());
+            matrix[i+1][1] = abilities.get(i).name();
+            matrix[i+1][2] = abilities.get(i).effect();
         }
 
         return matrixService.beautify(matrix);
