@@ -22,16 +22,16 @@ final public class PokemonTransformerImpl implements PokemonTransformer<String[]
         String[][] matrix = matrixService.generate(COLUMNS, pokemons.size());
 
         for (int i = 0; i < pokemons.size(); i++) {
-            matrix[i+1][0] = String.valueOf(pokemons.get(i).getId());
-            matrix[i+1][1] = pokemons.get(i).getName();
-            matrix[i+1][2] = pokemons.get(i).getTypeOne();
-            matrix[i+1][3] = pokemons.get(i).getTypeTwo();
-            matrix[i+1][4] = String.valueOf(pokemons.get(i).getBaseStats().getHealth());
-            matrix[i+1][5] = String.valueOf(pokemons.get(i).getBaseStats().getAttack());
-            matrix[i+1][6] = String.valueOf(pokemons.get(i).getBaseStats().getDefense());
-            matrix[i+1][7] = String.valueOf(pokemons.get(i).getBaseStats().getSpecialAttack());
-            matrix[i+1][8] = String.valueOf(pokemons.get(i).getBaseStats().getSpecialDefense());
-            matrix[i+1][9] = String.valueOf(pokemons.get(i).getBaseStats().getSpeed());
+            matrix[i+1][0] = String.valueOf(pokemons.get(i).id());
+            matrix[i+1][1] = pokemons.get(i).name();
+            matrix[i+1][2] = pokemons.get(i).typeOne();
+            matrix[i+1][3] = pokemons.get(i).typeTwo();
+            matrix[i+1][4] = String.valueOf(pokemons.get(i).baseStats().health());
+            matrix[i+1][5] = String.valueOf(pokemons.get(i).baseStats().attack());
+            matrix[i+1][6] = String.valueOf(pokemons.get(i).baseStats().defense());
+            matrix[i+1][7] = String.valueOf(pokemons.get(i).baseStats().specialAttack());
+            matrix[i+1][8] = String.valueOf(pokemons.get(i).baseStats().specialDefense());
+            matrix[i+1][9] = String.valueOf(pokemons.get(i).baseStats().speed());
         }
 
         return matrixService.beautify(matrix);

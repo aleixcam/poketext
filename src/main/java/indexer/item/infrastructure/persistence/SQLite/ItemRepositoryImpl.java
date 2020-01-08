@@ -8,6 +8,7 @@ import indexer.item.domain.ItemCollection;
 import shared.infrastructure.Service.LanguageService;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 final public class ItemRepositoryImpl implements ItemRepository {
@@ -19,7 +20,7 @@ final public class ItemRepositoryImpl implements ItemRepository {
     }
 
     public ItemCollection findByCriteria(ItemCriteria criteria) {
-        List<String[]> list = repository.executeQuery("select i.id, n.name, f.flavor_text\n"
+        List<Map<String, Object>> list = repository.executeQuery("select i.id, n.name, f.flavor_text\n"
                 + "from items i, item_categories c,  item_names n, item_flavor_text f\n"
                 + "where i.category_id = c.id\n"
                 + "and i.id = n.item_id\n"
@@ -35,15 +36,10 @@ final public class ItemRepositoryImpl implements ItemRepository {
         return buildItems(list);
     }
 
-    private ItemCollection buildItems(List<String[]> list) {
+    private ItemCollection buildItems(List<Map<String, Object>> list) {
         ItemCollection items = new ItemCollection();
-        for (String[] row : list) {
-            Item item = new Item();
-            item.setId(row[0]);
-            item.setName(row[1]);
-            item.setDescription(row[2]);
-
-            items.add(item);
+        for (Map<String, Object> row : list) {
+            items.add(Item.instance(row));
         }
 
         return items;

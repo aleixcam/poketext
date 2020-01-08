@@ -50,12 +50,12 @@ public class Estadistiques {
             PokemonRepositoryImpl repository = PokemonInfrastructureInjector.injectPokemonRepository();
             BaseStats stats = repository.findStatsByPokemonId(Integer.parseInt(poke[0][0]));
             int[] base = {
-                stats.getHealth(),
-                stats.getAttack(),
-                stats.getDefense(),
-                stats.getSpecialAttack(),
-                stats.getSpecialDefense(),
-                stats.getSpeed()
+                stats.health(),
+                stats.attack(),
+                stats.defense(),
+                stats.specialAttack(),
+                stats.specialDefense(),
+                stats.speed()
             };
 
             natura = consultarNaturalesa(poke[4][6]);

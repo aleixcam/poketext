@@ -1,6 +1,6 @@
 package indexer.pokemon.domain;
 
-public class BaseStats {
+final public class BaseStats {
 
     private int health;
     private int attack;
@@ -18,27 +18,27 @@ public class BaseStats {
         this.speed = speed;
     }
 
-    public int getHealth() {
+    public int health() {
         return health;
     }
 
-    public int getAttack() {
+    public int attack() {
         return attack;
     }
 
-    public int getDefense() {
+    public int defense() {
         return defense;
     }
 
-    public int getSpecialAttack() {
+    public int specialAttack() {
         return specialAttack;
     }
 
-    public int getSpecialDefense() {
+    public int specialDefense() {
         return specialDefense;
     }
 
-    public int getSpeed() {
+    public int speed() {
         return speed;
     }
 }

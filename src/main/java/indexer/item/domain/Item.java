@@ -1,34 +1,32 @@
 package indexer.item.domain;
 
-import org.apache.commons.lang3.math.NumberUtils;
+import shared.domain.Service.SilentObjectCreator;
+import java.util.Map;
 
-public class Item {
+final public class Item {
 
     private int id;
     private String name;
     private String description;
 
-    public int getId() {
+    public int id() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = NumberUtils.isParsable(id) ? Integer.parseInt(id) : 0;
-    }
-
-    public String getName() {
+    public String name() {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
+    public String description() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public static Item instance(Map<String, Object> map) {
+        Item item = SilentObjectCreator.create(Item.class);
+        item.id = (int) map.get("id");
+        item.name = (String) map.get("name");
+        item.description = (String) map.get("flavor_text");
+
+        return item;
     }
 }

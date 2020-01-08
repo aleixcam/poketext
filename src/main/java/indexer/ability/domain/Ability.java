@@ -1,11 +1,9 @@
 package indexer.ability.domain;
 
-import org.apache.commons.lang3.math.NumberUtils;
 import shared.domain.Service.SilentObjectCreator;
+import java.util.Map;
 
-import java.io.Serializable;
-
-public class Ability implements Serializable {
+final public class Ability {
 
     private int id;
     private String name;
@@ -33,11 +31,11 @@ public class Ability implements Serializable {
         return effect;
     }
 
-    public static Ability instance(String[] array) {
+    public static Ability instance(Map<String, Object> map) {
         Ability ability = SilentObjectCreator.create(Ability.class);
-        ability.id = NumberUtils.isParsable(array[0]) ? Integer.parseInt(array[0]) : 0;
-        ability.name = array[1];
-        ability.effect = array[2];
+        ability.id = (int) map.get("ability_id");
+        ability.name = (String) map.get("name");
+        ability.effect = (String) map.get("flavor_text");
 
         return ability;
     }

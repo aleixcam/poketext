@@ -1,34 +1,32 @@
 package indexer.pokedex.domain;
 
-import org.apache.commons.lang3.math.NumberUtils;
+import shared.domain.Service.SilentObjectCreator;
+import java.util.Map;
 
-public class Pokedex {
+final public class Pokedex {
 
     private int id;
     private String name;
     private String description;
 
-    public int getId() {
+    public int id() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = NumberUtils.isParsable(id) ? Integer.parseInt(id) : 0;
-    }
-
-    public String getName() {
+    public String name() {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
+    public String description() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public static Pokedex instance(Map<String, Object> map) {
+        Pokedex pokedex = SilentObjectCreator.create(Pokedex.class);
+        pokedex.id = (int) map.get("pokedex_id");
+        pokedex.name = (String) map.get("name");
+        pokedex.description = (String) map.get("description");
+
+        return pokedex;
     }
 }

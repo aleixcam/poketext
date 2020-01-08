@@ -8,6 +8,7 @@ import shared.domain.Service.SQLiteRepository;
 import shared.infrastructure.Service.LanguageService;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 final public class AbilityRepositoryImpl implements AbilityRepository {
@@ -19,7 +20,7 @@ final public class AbilityRepositoryImpl implements AbilityRepository {
     }
 
     public AbilityCollection findByCriteria(AbilityCriteria criteria) {
-        List<String[]> list = repository.executeQuery("select f.ability_id, n.name, f.flavor_text\n"
+        List<Map<String, Object>> list = repository.executeQuery("select f.ability_id, n.name, f.flavor_text\n"
                 + "from ability_flavor_text f, ability_names n\n"
                 + "where f.ability_id = n.ability_id\n"
                 + "and f.language_id = " + LanguageService.ENGLISH + "\n"
@@ -30,9 +31,9 @@ final public class AbilityRepositoryImpl implements AbilityRepository {
         return buildAbilities(list);
     }
 
-    private AbilityCollection buildAbilities(List<String[]> list) {
+    private AbilityCollection buildAbilities(List<Map<String, Object>> list) {
         AbilityCollection abilities = new AbilityCollection();
-        for (String[] row : list) {
+        for (Map<String, Object> row : list) {
             abilities.add(Ability.instance(row));
         }
 

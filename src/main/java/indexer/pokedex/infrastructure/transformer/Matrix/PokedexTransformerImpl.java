@@ -22,9 +22,9 @@ final public class PokedexTransformerImpl implements PokedexTransformer<String[]
         String[][] matrix = matrixService.generate(COLUMNS, pokedexes.size());
 
         for (int i = 0; i < pokedexes.size(); i++) {
-            matrix[i+1][0] = String.valueOf(pokedexes.get(i).getId());
-            matrix[i+1][1] = pokedexes.get(i).getName();
-            matrix[i+1][2] = pokedexes.get(i).getDescription();
+            matrix[i+1][0] = String.valueOf(pokedexes.get(i).id());
+            matrix[i+1][1] = pokedexes.get(i).name();
+            matrix[i+1][2] = pokedexes.get(i).description();
         }
 
         return matrixService.beautify(matrix);

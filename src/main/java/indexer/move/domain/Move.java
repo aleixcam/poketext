@@ -1,8 +1,9 @@
 package indexer.move.domain;
 
-import org.apache.commons.lang3.math.NumberUtils;
+import shared.domain.Service.SilentObjectCreator;
+import java.util.Map;
 
-public class Move {
+final public class Move {
 
     private int id;
     private String name;
@@ -10,70 +11,52 @@ public class Move {
     private String category;
     private int power;
     private int accuracy;
-    private int pp;
+    private int powerPoints;
     private String effect;
 
-    public int getId() {
+    public int id() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = NumberUtils.isParsable(id) ? Integer.parseInt(id) : 0;
-    }
-
-    public String getName() {
+    public String name() {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getType() {
+    public String type() {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getCategory() {
+    public String category() {
         return category;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public int getPower() {
+    public int power() {
         return power;
     }
 
-    public void setPower(String power) {
-        this.power = NumberUtils.isParsable(power) ? Integer.parseInt(power) : 0;
-    }
-
-    public int getAccuracy() {
+    public int accuracy() {
         return accuracy;
     }
 
-    public void setAccuracy(String accuracy) {
-        this.accuracy = NumberUtils.isParsable(accuracy) ? Integer.parseInt(accuracy) : 0;
+    public int powerPoints() {
+        return powerPoints;
     }
 
-    public int getPp() {
-        return pp;
-    }
-
-    public void setPp(String pp) {
-        this.pp = NumberUtils.isParsable(pp) ? Integer.parseInt(pp) : 0;
-    }
-
-    public String getEffect() {
+    public String effect() {
         return effect;
     }
 
-    public void setEffect(String effect) {
-        this.effect = effect;
+    public static Move instance(Map<String, Object> map) {
+        Move move = SilentObjectCreator.create(Move.class);
+        move.id = (int) map.get("id");
+        move.name = (String) map.get("name");
+        move.type = (String) map.get("type");
+        move.category = (String) map.get("identifier");
+        move.power = (int) map.get("power");
+        move.accuracy = (int) map.get("accuracy");
+        move.powerPoints = (int) map.get("pp");
+        move.effect = (String) map.get("flavor_text");
+
+        return move;
     }
 }

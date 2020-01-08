@@ -7,6 +7,7 @@ import indexer.nature.domain.NatureCollection;
 import shared.infrastructure.Service.LanguageService;
 
 import java.util.List;
+import java.util.Map;
 
 final public class NatureRepositoryImpl implements NatureRepository {
 
@@ -17,35 +18,29 @@ final public class NatureRepositoryImpl implements NatureRepository {
     }
 
     public NatureCollection findAll() {
-        List<String[]> list = repository.executeQuery("select p.id, n.name, p.increased_stat_id, p.decreased_stat_id \n"
+        List<Map<String, Object>> list = repository.executeQuery("select p.id, n.name, p.increased_stat_id, p.decreased_stat_id \n"
             + "from nature_names n, natures p\n"
             + "where p.id = n.nature_id\n"
             + "and local_language_id =" + LanguageService.ENGLISH);
 
-        return buildPokedexes(list);
+        return buildNatures(list);
     }
 
-    private NatureCollection buildPokedexes(List<String[]> list) {
+    private NatureCollection buildNatures(List<Map<String, Object>> list) {
         NatureCollection natures = new NatureCollection();
-        for (String[] row : list) {
-            Nature nature = new Nature();
-            nature.setId(row[0]);
-            nature.setName(row[1]);
-            nature.setIncreasedStat(row[2]);
-            nature.setDecreasedStat(row[3]);
-
-            natures.add(nature);
+        for (Map<String, Object> row : list) {
+            natures.add(Nature.instance(row));
         }
 
         return natures;
     }
 
     public String getNameById(String id) {
-        String[] nature = repository.executeQuery("select name \n"
+        Map<String, Object> result = repository.executeQuery("select name \n"
             + "from nature_names\n"
             + "where local_language_id = " + LanguageService.ENGLISH + "\n"
             + "and nature_id = " + id).get(0);
 
-        return nature[0];
+        return (String) result.get("name");
     }
 }

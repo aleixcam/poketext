@@ -1,6 +1,7 @@
 package indexer.move.infrastructure.persistence.SQLite;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import shared.domain.Service.SQLiteRepository;
@@ -19,7 +20,7 @@ final public class MoveRepositoryImpl implements MoveRepository {
     }
 
     public MoveCollection findByCriteria(MoveCriteria criteria) {
-        List<String[]> list = repository.executeQuery("select distinct(m.id), n.name, t.name as type, d.identifier, m.power, m.accuracy, m.pp, f.flavor_text\n"
+        List<Map<String, Object>> list = repository.executeQuery("select distinct(m.id), n.name, t.name as type, d.identifier, m.power, m.accuracy, m.pp, f.flavor_text\n"
                 + "from pokemon_moves p, move_names n, moves m, type_names t, move_flavor_text f, move_damage_classes d\n"
                 + "where m.id = p.move_id\n"
                 + "and m.id = n.move_id\n"
@@ -39,20 +40,10 @@ final public class MoveRepositoryImpl implements MoveRepository {
         return buildMoves(list);
     }
 
-    private MoveCollection buildMoves(List<String[]> list) {
+    private MoveCollection buildMoves(List<Map<String, Object>> list) {
         MoveCollection moves = new MoveCollection();
-        for (String[] row : list) {
-            Move move = new Move();
-            move.setId(row[0]);
-            move.setName(row[1]);
-            move.setType(row[2]);
-            move.setCategory(row[3]);
-            move.setPower(row[4]);
-            move.setAccuracy(row[5]);
-            move.setPp(row[6]);
-            move.setEffect(row[7]);
-
-            moves.add(move);
+        for (Map<String, Object> row : list) {
+            moves.add(Move.instance(row));
         }
 
         return moves;

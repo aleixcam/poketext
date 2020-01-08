@@ -1,43 +1,38 @@
 package indexer.nature.domain;
 
-import org.apache.commons.lang3.math.NumberUtils;
+import shared.domain.Service.SilentObjectCreator;
+import java.util.Map;
 
-public class Nature {
+final public class Nature {
 
     private int id;
     private String name;
     private int increasedStat;
     private int decreasedStat;
 
-    public int getId() {
+    public int id() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = NumberUtils.isParsable(id) ? Integer.parseInt(id) : 0;
-    }
-
-    public String getName() {
+    public String name() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getIncreasedStat() {
+    public int increasedStat() {
         return increasedStat;
     }
 
-    public void setIncreasedStat(String statId) {
-        this.increasedStat = NumberUtils.isParsable(statId) ? Integer.parseInt(statId) : 0;
-    }
-
-    public int getDecreasedStat() {
+    public int decreasedStat() {
         return decreasedStat;
     }
 
-    public void setDecreasedStat(String statId) {
-        this.decreasedStat = NumberUtils.isParsable(statId) ? Integer.parseInt(statId) : 0;
+    public static Nature instance(Map<String, Object> map) {
+        Nature nature = SilentObjectCreator.create(Nature.class);
+        nature.id = (int) map.get("id");
+        nature.name = (String) map.get("name");
+        nature.increasedStat = (int) map.get("increased_stat_id");
+        nature.decreasedStat = (int) map.get("decreased_stat_id");
+
+        return nature;
     }
 }

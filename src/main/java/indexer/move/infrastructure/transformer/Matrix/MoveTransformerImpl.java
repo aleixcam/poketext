@@ -22,14 +22,14 @@ final public class MoveTransformerImpl implements MoveTransformer<String[][]> {
         String[][] matrix = matrixService.generate(COLUMNS, moves.size());
 
         for (int i = 0; i < moves.size(); i++) {
-            matrix[i+1][0] = String.valueOf(moves.get(i).getId());
-            matrix[i+1][1] = moves.get(i).getName();
-            matrix[i+1][2] = moves.get(i).getType();
-            matrix[i+1][3] = moves.get(i).getCategory();
-            matrix[i+1][4] = String.valueOf(moves.get(i).getPower());
-            matrix[i+1][5] = String.valueOf(moves.get(i).getAccuracy());
-            matrix[i+1][6] = String.valueOf(moves.get(i).getPp());
-            matrix[i+1][7] = moves.get(i).getEffect();
+            matrix[i+1][0] = String.valueOf(moves.get(i).id());
+            matrix[i+1][1] = moves.get(i).name();
+            matrix[i+1][2] = moves.get(i).type();
+            matrix[i+1][3] = moves.get(i).category();
+            matrix[i+1][4] = String.valueOf(moves.get(i).power());
+            matrix[i+1][5] = String.valueOf(moves.get(i).accuracy());
+            matrix[i+1][6] = String.valueOf(moves.get(i).powerPoints());
+            matrix[i+1][7] = moves.get(i).effect();
         }
 
         return matrixService.beautify(matrix);

@@ -1,8 +1,9 @@
 package indexer.pokemon.domain;
 
-import org.apache.commons.lang3.math.NumberUtils;
+import shared.domain.Service.SilentObjectCreator;
+import java.util.Map;
 
-public class Pokemon {
+final public class Pokemon {
 
     private int id;
     private String name;
@@ -10,43 +11,34 @@ public class Pokemon {
     private String typeTwo;
     private BaseStats baseStats;
 
-    public int getId() {
+    public int id() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = NumberUtils.isParsable(id) ? Integer.parseInt(id) : 0;
-    }
-
-    public String getName() {
+    public String name() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name.substring(0, 1).toUpperCase() + name.substring(1);
-    }
-
-    public String getTypeOne() {
+    public String typeOne() {
         return typeOne;
     }
 
-    public void setTypeOne(String type_one) {
-        this.typeOne = type_one;
-    }
-
-    public String getTypeTwo() {
+    public String typeTwo() {
         return typeTwo;
     }
 
-    public void setTypeTwo(String type_two) {
-        this.typeTwo = type_two;
-    }
-
-    public BaseStats getBaseStats() {
+    public BaseStats baseStats() {
         return baseStats;
     }
 
-    public void setBaseStats(BaseStats base_stats) {
-        this.baseStats = base_stats;
+    public static Pokemon instance(Map<String, Object> map) {
+        Pokemon ability = SilentObjectCreator.create(Pokemon.class);
+        ability.id = (int) map.get("id");
+        ability.name = (String) map.get("name");
+        ability.typeOne = (String) map.get("type_one");
+        ability.typeTwo = (String) map.get("type_two");
+        ability.baseStats = (BaseStats) map.get("base_stats");
+
+        return ability;
     }
 }

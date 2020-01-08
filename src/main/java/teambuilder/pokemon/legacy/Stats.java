@@ -63,12 +63,12 @@ class Stats {
         BaseStats stats = pokemonRepository.findStatsByPokemonId(Integer.parseInt(poke[0][0]));
 
         int[] base = {
-            stats.getHealth(),
-            stats.getAttack(),
-            stats.getDefense(),
-            stats.getSpecialAttack(),
-            stats.getSpecialDefense(),
-            stats.getSpeed()
+            stats.health(),
+            stats.attack(),
+            stats.defense(),
+            stats.specialAttack(),
+            stats.specialDefense(),
+            stats.speed()
         };
 
         System.out.printf("%n%s%n", "Nom: " + poke[0][1]);

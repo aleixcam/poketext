@@ -22,9 +22,9 @@ final public class ItemTransformerImpl implements ItemTransformer<String[][]> {
         String[][] matrix = matrixService.generate(COLUMNS, items.size());
 
         for (int i = 0; i < items.size(); i++) {
-            matrix[i+1][0] = String.valueOf(items.get(i).getId());
-            matrix[i+1][1] = items.get(i).getName();
-            matrix[i+1][2] = items.get(i).getDescription();
+            matrix[i+1][0] = String.valueOf(items.get(i).id());
+            matrix[i+1][1] = items.get(i).name();
+            matrix[i+1][2] = items.get(i).description();
         }
 
         return matrixService.beautify(matrix);

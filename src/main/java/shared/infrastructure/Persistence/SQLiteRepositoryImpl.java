@@ -5,8 +5,7 @@ import shared.legacy.Connector;
 import org.sqlite.JDBC;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class SQLiteRepositoryImpl implements SQLiteRepository {
 
@@ -19,18 +18,18 @@ public class SQLiteRepositoryImpl implements SQLiteRepository {
         this.database = Connector.getDatabase();
     }
 
-    public List<String[]> executeQuery(String query) {
-        List<String[]> rowset = null;
+    public List<Map<String, Object>> executeQuery(String query) {
+        List<Map<String, Object>> list = null;
 
         try {
             openConnection();
-            rowset = getTable(connection.prepareStatement(query).executeQuery());
+            list = getTable(connection.prepareStatement(query).executeQuery());
             closeConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
         }
 
-        return rowset;
+        return list;
     }
 
     private void openConnection() throws SQLException {
@@ -43,14 +42,13 @@ public class SQLiteRepositoryImpl implements SQLiteRepository {
         DriverManager.deregisterDriver(driver);
     }
 
-    private List<String[]> getTable(ResultSet results) throws SQLException {
-        int columns = results.getMetaData().getColumnCount();
-        List<String[]> table = new ArrayList<>();
+    private List<Map<String, Object>> getTable(ResultSet results) throws SQLException {
+        ResultSetMetaData metadata = results.getMetaData();
+        List<Map<String, Object>> table = new ArrayList<>();
         while(results.next()) {
-            String[] row = new String[columns];
-            for(int i = 1; i <= columns; i++)  {
-                Object obj = results.getObject(i);
-                row[i - 1] = (obj == null) ? null : obj.toString();
+            Map<String, Object> row = new HashMap<>();
+            for(int i = 1; i <= metadata.getColumnCount(); i++)  {
+                row.put(metadata.getColumnName(i), results.getObject(i));
             }
 
             table.add(row);

@@ -6,6 +6,7 @@ import indexer.pokedex.domain.PokedexRepository;
 import indexer.pokedex.domain.PokedexCollection;
 
 import java.util.List;
+import java.util.Map;
 
 final public class PokedexRepositoryImpl implements PokedexRepository {
 
@@ -16,22 +17,17 @@ final public class PokedexRepositoryImpl implements PokedexRepository {
     }
 
     public PokedexCollection findAll() {
-        List<String[]> list = repository.executeQuery("select pokedex_id, name, description\n"
+        List<Map<String, Object>> list = repository.executeQuery("select pokedex_id, name, description\n"
             + "from pokedex_prose\n"
             + "where local_language_id = 9");
 
         return buildPokedexes(list);
     }
 
-    private PokedexCollection buildPokedexes(List<String[]> list) {
+    private PokedexCollection buildPokedexes(List<Map<String, Object>> list) {
         PokedexCollection pokedexes = new PokedexCollection();
-        for (String[] row : list) {
-            Pokedex pokedex = new Pokedex();
-            pokedex.setId(row[0]);
-            pokedex.setName(row[1]);
-            pokedex.setDescription(row[2]);
-
-            pokedexes.add(pokedex);
+        for (Map<String, Object> row : list) {
+            pokedexes.add(Pokedex.instance(row));
         }
 
         return pokedexes;

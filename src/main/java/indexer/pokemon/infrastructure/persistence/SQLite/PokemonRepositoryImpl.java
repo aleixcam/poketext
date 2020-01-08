@@ -3,9 +3,8 @@ package indexer.pokemon.infrastructure.persistence.SQLite;
 import shared.domain.Service.SQLiteRepository;
 import shared.infrastructure.Service.LanguageService;
 import indexer.pokemon.domain.*;
-
-import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 final public class PokemonRepositoryImpl implements PokemonRepository {
@@ -17,7 +16,7 @@ final public class PokemonRepositoryImpl implements PokemonRepository {
     }
 
     public PokemonCollection findByCriteria(PokemonCriteria criteria) {
-        List<String[]> list = repository.executeQuery("select " + criteria.getIdField() + " 'id', p.identifier 'name',\n"
+        List<Map<String, Object>> list = repository.executeQuery("select " + criteria.getIdField() + " 'id', p.identifier 'name',\n"
             + "(select n.name\n"
             + "from type_names n, pokemon_types t\n"
             + "where n.type_id = t.type_id\n"
@@ -42,24 +41,18 @@ final public class PokemonRepositoryImpl implements PokemonRepository {
         return buildPokemons(list);
     }
 
-    private PokemonCollection buildPokemons(List<String[]> list) {
+    private PokemonCollection buildPokemons(List<Map<String, Object>> list) {
         PokemonCollection pokemons = new PokemonCollection();
-        for (String[] row : list) {
-            Pokemon pokemon = new Pokemon();
-            pokemon.setId(row[0]);
-            pokemon.setName(row[1]);
-            pokemon.setTypeOne(row[2]);
-            pokemon.setTypeTwo(row[3]);
-            pokemon.setBaseStats(findStatsByPokemonId(pokemon.getId()));
-
-            pokemons.add(pokemon);
+        for (Map<String, Object> row : list) {
+            row.put("base_stats", findStatsByPokemonId((int) row.get("id")));
+            pokemons.add(Pokemon.instance(row));
         }
 
         return pokemons;
     }
 
-    public BaseStats findStatsByPokemonId(int pokemon_id) {
-        List<String[]> list = repository.executeQuery("select"
+    public BaseStats findStatsByPokemonId(int pokemonId) {
+        List<Map<String, Object>> list = repository.executeQuery("select"
             + "(select s.base_stat\n"
             + "from pokemon_stats s\n"
             + "where p.id = s.pokemon_id\n"
@@ -85,14 +78,19 @@ final public class PokemonRepositoryImpl implements PokemonRepository {
             + "where p.id = s.pokemon_id\n"
             + "and s.stat_id = 6) 'spe'\n"
             + "from pokemon p\n"
-            + "where p.id = " + pokemon_id);
+            + "where p.id = " + pokemonId);
 
         return buildStats(list);
     }
 
-    private BaseStats buildStats(List<String[]> list) {
-        int[] stats = Arrays.stream(list.get(0)).mapToInt(Integer::parseInt).toArray();
-
-        return new BaseStats(stats[0], stats[1], stats[2],stats[3], stats[4], stats[5]);
+    private BaseStats buildStats(List<Map<String, Object>> list) {
+        return new BaseStats(
+            (int) list.get(0).get("hp"),
+            (int) list.get(0).get("atk"),
+            (int) list.get(0).get("def"),
+            (int) list.get(0).get("spatk"),
+            (int) list.get(0).get("spdef"),
+            (int) list.get(0).get("spe")
+        );
     }
 }
