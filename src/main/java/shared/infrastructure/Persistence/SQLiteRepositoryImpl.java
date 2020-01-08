@@ -1,4 +1,4 @@
-package shared.infrastructure.persistence;
+package shared.infrastructure.Persistence;
 
 import shared.domain.Service.SQLiteRepository;
 import shared.legacy.Connector;

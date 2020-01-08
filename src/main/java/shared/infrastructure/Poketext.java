@@ -4,7 +4,7 @@ import shared.legacy.Connector;
 import showndown.player.application.Command.ShowdownCommand;
 import indexer.pokedex.application.Command.StartPokedexCommand;
 import teambuilder.team.application.Command.TeamBuilderCommand;
-import shared.infrastructure.controller.AppController;
+import shared.infrastructure.Controller.AppController;
 import shared.domain.Command.Menu;
 
 public class Poketext {

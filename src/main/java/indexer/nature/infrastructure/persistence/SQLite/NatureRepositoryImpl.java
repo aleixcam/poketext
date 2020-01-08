@@ -4,7 +4,7 @@ import shared.domain.Service.SQLiteRepository;
 import indexer.nature.domain.Nature;
 import indexer.nature.domain.NatureRepository;
 import indexer.nature.domain.NatureCollection;
-import shared.infrastructure.service.LanguageService;
+import shared.infrastructure.Service.LanguageService;
 
 import java.util.List;
 

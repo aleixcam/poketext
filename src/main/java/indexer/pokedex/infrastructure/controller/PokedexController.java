@@ -2,8 +2,8 @@ package indexer.pokedex.infrastructure.controller;
 
 import indexer.ability.infrastructure.injector.AbilityApplicationInjector;
 import shared.domain.Command.Menu;
-import shared.infrastructure.printer.MatrixPrinter;
-import shared.infrastructure.service.ReaderService;
+import shared.infrastructure.Presentation.MatrixPrinter;
+import shared.infrastructure.Service.ReaderService;
 import indexer.item.infrastructure.injector.ItemApplicationInjector;
 import indexer.move.infrastructure.controller.MoveController;
 import indexer.pokemon.infrastructure.controller.PokemonController;

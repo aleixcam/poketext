@@ -4,7 +4,7 @@ import shared.application.search.Searcher;
 import indexer.move.application.GetMoves.GetMovesRequest;
 import indexer.move.application.GetMoves.GetMovesUseCase;
 import indexer.move.infrastructure.injector.MoveApplicationInjector;
-import shared.infrastructure.printer.MatrixPrinter;
+import shared.infrastructure.Presentation.MatrixPrinter;
 
 final public class MoveController implements Searcher {
 

@@ -1,6 +1,6 @@
 package showndown.player.legacy;
 
-import shared.infrastructure.service.ReaderService;
+import shared.infrastructure.Service.ReaderService;
 import teambuilder.team.domain.Team;
 import teambuilder.pokemon.legacy.Pokes;
 

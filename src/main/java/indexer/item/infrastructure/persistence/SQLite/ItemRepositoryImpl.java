@@ -5,7 +5,7 @@ import indexer.item.domain.Item;
 import indexer.item.domain.ItemCriteria;
 import indexer.item.domain.ItemRepository;
 import indexer.item.domain.ItemCollection;
-import shared.infrastructure.service.LanguageService;
+import shared.infrastructure.Service.LanguageService;
 
 import java.util.List;
 import java.util.Objects;

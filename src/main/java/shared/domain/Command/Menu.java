@@ -1,6 +1,6 @@
 package shared.domain.Command;
 
-import shared.infrastructure.service.ReaderService;
+import shared.infrastructure.Service.ReaderService;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;

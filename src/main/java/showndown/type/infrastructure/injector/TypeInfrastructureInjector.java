@@ -1,6 +1,6 @@
 package showndown.type.infrastructure.injector;
 
-import shared.infrastructure.injector.SharedInfrastructureInjector;
+import shared.infrastructure.Injector.SharedInfrastructureInjector;
 import showndown.type.infrastructure.persistence.SQLite.TypeRepositoryImpl;
 
 final public class TypeInfrastructureInjector {

@@ -1,6 +1,6 @@
 package indexer.nature.infrastructure.injector;
 
-import shared.infrastructure.injector.SharedInfrastructureInjector;
+import shared.infrastructure.Injector.SharedInfrastructureInjector;
 import indexer.nature.infrastructure.persistence.SQLite.NatureRepositoryImpl;
 import indexer.nature.infrastructure.transformer.Matrix.NatureTransformerImpl;
 

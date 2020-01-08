@@ -1,4 +1,4 @@
-package shared.infrastructure.service;
+package shared.infrastructure.Service;
 
 import shared.domain.Service.MatrixService;
 

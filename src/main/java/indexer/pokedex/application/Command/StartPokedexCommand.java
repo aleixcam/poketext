@@ -1,7 +1,7 @@
 package indexer.pokedex.application.Command;
 
 import shared.domain.Command.Command;
-import shared.infrastructure.controller.AppController;
+import shared.infrastructure.Controller.AppController;
 
 final public class StartPokedexCommand implements Command {
 

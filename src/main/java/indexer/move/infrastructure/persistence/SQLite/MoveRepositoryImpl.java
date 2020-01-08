@@ -8,7 +8,7 @@ import indexer.move.domain.Move;
 import indexer.move.domain.MoveCriteria;
 import indexer.move.domain.MoveRepository;
 import indexer.move.domain.MoveCollection;
-import shared.infrastructure.service.LanguageService;
+import shared.infrastructure.Service.LanguageService;
 
 final public class MoveRepositoryImpl implements MoveRepository {
 

@@ -1,19 +1,15 @@
-package shared.infrastructure.service;
+package shared.domain.Service;
 
 import sun.reflect.ReflectionFactory;
 
 public class SilentObjectCreator {
 
     public static <T> T create(Class<T> clazz) throws IllegalStateException {
-        return create(clazz, Object.class);
-    }
-
-    public static <T> T create(Class<T> clazz, Class<? super T> parent) throws IllegalStateException {
         try {
             return clazz.cast(
                 ReflectionFactory.getReflectionFactory().newConstructorForSerialization(
                     clazz,
-                    parent.getDeclaredConstructor()
+                    Object.class.getDeclaredConstructor()
                 ).newInstance()
             );
         } catch (Exception exception) {

@@ -1,6 +1,6 @@
 package indexer.pokedex.infrastructure.injector;
 
-import shared.infrastructure.injector.SharedInfrastructureInjector;
+import shared.infrastructure.Injector.SharedInfrastructureInjector;
 import indexer.pokedex.infrastructure.persistence.SQLite.PokedexRepositoryImpl;
 import indexer.pokedex.infrastructure.transformer.Matrix.PokedexTransformerImpl;
 

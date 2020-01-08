@@ -1,9 +1,11 @@
 package indexer.ability.domain;
 
 import org.apache.commons.lang3.math.NumberUtils;
-import shared.infrastructure.service.SilentObjectCreator;
+import shared.domain.Service.SilentObjectCreator;
 
-public class Ability {
+import java.io.Serializable;
+
+public class Ability implements Serializable {
 
     private int id;
     private String name;
@@ -24,7 +26,7 @@ public class Ability {
     }
 
     public String name() {
-        return this.name;
+        return name;
     }
 
     public String effect() {

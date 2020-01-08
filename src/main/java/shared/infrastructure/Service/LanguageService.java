@@ -1,4 +1,4 @@
-package shared.infrastructure.service;
+package shared.infrastructure.Service;
 
 public class LanguageService {
 

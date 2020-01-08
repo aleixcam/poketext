@@ -2,7 +2,7 @@ package indexer.ability.infrastructure.injector;
 
 import indexer.ability.infrastructure.persistence.SQLite.AbilityRepositoryImpl;
 import indexer.ability.infrastructure.transformer.Matrix.AbilityTransformerImpl;
-import shared.infrastructure.injector.SharedInfrastructureInjector;
+import shared.infrastructure.Injector.SharedInfrastructureInjector;
 
 final public class AbilityInfrastructureInjector {
 
