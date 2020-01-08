@@ -1,7 +1,7 @@
 package indexer.pokemon.infrastructure.persistence.SQLite;
 
-import shared.domain.Service.SQLiteRepository;
-import shared.infrastructure.Service.LanguageService;
+import shared.core.domain.Service.SQLiteRepository;
+import shared.core.infrastructure.Service.LanguageService;
 import indexer.pokemon.domain.*;
 import java.util.List;
 import java.util.Map;

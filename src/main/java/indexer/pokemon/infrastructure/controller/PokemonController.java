@@ -1,11 +1,11 @@
 package indexer.pokemon.infrastructure.controller;
 
-import shared.application.search.Searcher;
+import shared.searcher.application.Searcher;
 import indexer.pokemon.application.GetPokemons.GetPokemonsRequest;
 import indexer.pokemon.application.GetPokemons.GetPokemonsUseCase;
 import indexer.pokemon.infrastructure.injector.PokemonApplicationInjector;
 import indexer.pokedex.infrastructure.controller.SearchController;
-import shared.infrastructure.Presentation.MatrixPrinter;
+import shared.core.infrastructure.Presentation.MatrixPrinter;
 
 final public class PokemonController implements Searcher {
 

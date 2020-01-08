@@ -4,8 +4,8 @@ import indexer.ability.domain.Ability;
 import indexer.ability.domain.AbilityCollection;
 import indexer.ability.domain.AbilityCriteria;
 import indexer.ability.domain.AbilityRepository;
-import shared.domain.Service.SQLiteRepository;
-import shared.infrastructure.Service.LanguageService;
+import shared.core.domain.Service.SQLiteRepository;
+import shared.core.infrastructure.Service.LanguageService;
 
 import java.util.List;
 import java.util.Map;

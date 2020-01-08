@@ -1,6 +1,6 @@
 package indexer.pokemon.infrastructure.injector;
 
-import shared.infrastructure.Injector.SharedInfrastructureInjector;
+import shared.core.infrastructure.Injector.SharedInfrastructureInjector;
 import indexer.pokemon.infrastructure.persistence.FileSystem.PokemonRepositoryImpl;
 import indexer.pokemon.infrastructure.transformer.Matrix.PokemonTransformerImpl;
 

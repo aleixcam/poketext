@@ -6,8 +6,8 @@ import indexer.pokemon.domain.BaseStats;
 import indexer.nature.infrastructure.persistence.SQLite.NatureRepositoryImpl;
 import indexer.pokemon.infrastructure.injector.PokemonInfrastructureInjector;
 import indexer.pokemon.infrastructure.persistence.SQLite.PokemonRepositoryImpl;
-import shared.infrastructure.Presentation.MatrixPrinter;
-import shared.infrastructure.Service.ReaderService;
+import shared.core.infrastructure.Presentation.MatrixPrinter;
+import shared.core.infrastructure.Service.ReaderService;
 
 import showndown.pokemon.legacy.Estadistiques;
 import java.util.Arrays;

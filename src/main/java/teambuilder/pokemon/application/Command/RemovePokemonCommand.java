@@ -1,6 +1,6 @@
 package teambuilder.pokemon.application.Command;
 
-import shared.domain.Command.Command;
+import shared.core.domain.Command.Command;
 import teambuilder.team.infrastructure.controller.TeamController;
 
 final public class RemovePokemonCommand implements Command {

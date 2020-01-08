@@ -1,6 +1,6 @@
 package indexer.move.infrastructure.injector;
 
-import shared.infrastructure.Injector.SharedInfrastructureInjector;
+import shared.core.infrastructure.Injector.SharedInfrastructureInjector;
 import indexer.move.infrastructure.persistence.SQLite.MoveRepositoryImpl;
 import indexer.move.infrastructure.transformer.Matrix.MoveTransformerImpl;
 

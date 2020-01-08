@@ -1,11 +1,11 @@
 package indexer.item.infrastructure.persistence.SQLite;
 
-import shared.domain.Service.SQLiteRepository;
+import shared.core.domain.Service.SQLiteRepository;
 import indexer.item.domain.Item;
 import indexer.item.domain.ItemCriteria;
 import indexer.item.domain.ItemRepository;
 import indexer.item.domain.ItemCollection;
-import shared.infrastructure.Service.LanguageService;
+import shared.core.infrastructure.Service.LanguageService;
 
 import java.util.List;
 import java.util.Map;

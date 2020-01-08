@@ -1,16 +1,16 @@
 package teambuilder.pokemon.legacy;
 
-import shared.infrastructure.Service.MatrixServiceImpl;
+import shared.core.infrastructure.Service.MatrixServiceImpl;
 import showndown.pokemon.legacy.Estadistiques;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import indexer.item.infrastructure.injector.ItemApplicationInjector;
-import shared.infrastructure.Presentation.MatrixPrinter;
-import shared.infrastructure.Service.LanguageService;
-import shared.infrastructure.Service.ReaderService;
-import shared.legacy.Connector;
+import shared.core.infrastructure.Presentation.MatrixPrinter;
+import shared.core.infrastructure.Service.LanguageService;
+import shared.core.infrastructure.Service.ReaderService;
+import shared.core.legacy.Connector;
 
 class Detalls {
 

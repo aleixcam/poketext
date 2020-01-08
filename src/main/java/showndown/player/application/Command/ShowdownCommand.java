@@ -1,7 +1,7 @@
 package showndown.player.application.Command;
 
-import shared.domain.Command.Command;
-import shared.infrastructure.Controller.AppController;
+import shared.core.domain.Command.Command;
+import shared.core.infrastructure.Controller.AppController;
 
 final public class ShowdownCommand implements Command {
 

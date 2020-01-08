@@ -1,6 +1,6 @@
 package indexer.pokemon.domain;
 
-import shared.domain.Service.SilentObjectCreator;
+import shared.core.domain.Service.SilentObjectCreator;
 import java.util.Map;
 
 final public class Pokemon {

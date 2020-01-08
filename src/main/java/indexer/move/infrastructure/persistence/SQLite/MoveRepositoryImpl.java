@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import shared.domain.Service.SQLiteRepository;
+import shared.core.domain.Service.SQLiteRepository;
 import indexer.move.domain.Move;
 import indexer.move.domain.MoveCriteria;
 import indexer.move.domain.MoveRepository;
 import indexer.move.domain.MoveCollection;
-import shared.infrastructure.Service.LanguageService;
+import shared.core.infrastructure.Service.LanguageService;
 
 final public class MoveRepositoryImpl implements MoveRepository {
 

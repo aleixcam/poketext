@@ -1,10 +1,10 @@
 package showndown.pokemon.infrastructure.service;
 
-import showndown.move.domain.Move;
+import shared.move.domain.Move;
 import showndown.pokemon.domain.Pokemon;
-import showndown.type.domain.Type;
-import showndown.type.infrastructure.injector.TypeInfrastructureInjector;
-import showndown.type.infrastructure.persistence.SQLite.TypeRepositoryImpl;
+import shared.type.domain.Type;
+import shared.type.infrastructure.injector.TypeInfrastructureInjector;
+import shared.type.infrastructure.persistence.SQLite.TypeRepositoryImpl;
 
 public class EffectivenessService {
 

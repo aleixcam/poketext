@@ -1,10 +1,10 @@
 package indexer.nature.infrastructure.persistence.SQLite;
 
-import shared.domain.Service.SQLiteRepository;
+import shared.core.domain.Service.SQLiteRepository;
 import indexer.nature.domain.Nature;
 import indexer.nature.domain.NatureRepository;
 import indexer.nature.domain.NatureCollection;
-import shared.infrastructure.Service.LanguageService;
+import shared.core.infrastructure.Service.LanguageService;
 
 import java.util.List;
 import java.util.Map;

@@ -1,16 +1,16 @@
 package indexer.pokedex.infrastructure.controller;
 
 import indexer.ability.infrastructure.injector.AbilityApplicationInjector;
-import shared.domain.Command.Menu;
-import shared.infrastructure.Presentation.MatrixPrinter;
-import shared.infrastructure.Service.ReaderService;
+import shared.core.domain.Command.Menu;
+import shared.core.infrastructure.Presentation.MatrixPrinter;
+import shared.core.infrastructure.Service.ReaderService;
 import indexer.item.infrastructure.injector.ItemApplicationInjector;
 import indexer.move.infrastructure.controller.MoveController;
 import indexer.pokemon.infrastructure.controller.PokemonController;
 import indexer.pokedex.application.Command.SelectPokedexCommand;
-import shared.application.search.Command.RemoveFilterCommand;
-import shared.application.search.Command.SetNameFilterCommand;
-import shared.application.search.Command.SetTypeFilterCommand;
+import shared.searcher.application.Command.RemoveFilterCommand;
+import shared.searcher.application.Command.SetNameFilterCommand;
+import shared.searcher.application.Command.SetTypeFilterCommand;
 
 final public class PokedexController {
 

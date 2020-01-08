@@ -1,6 +1,6 @@
 package indexer.nature.infrastructure.transformer.Matrix;
 
-import shared.domain.Service.MatrixService;
+import shared.core.domain.Service.MatrixService;
 import indexer.nature.application.NatureTransformer;
 import indexer.nature.domain.Nature;
 import indexer.nature.domain.NatureCollection;

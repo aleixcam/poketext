@@ -1,7 +1,7 @@
 package indexer.pokemon.infrastructure.persistence.FileSystem;
 
-import shared.domain.Service.CSVService;
-import shared.infrastructure.Persistence.FileSystemRepositoryImpl;
+import shared.core.domain.Service.CSVService;
+import shared.core.infrastructure.Persistence.FileSystemRepositoryImpl;
 
 import java.util.List;
 

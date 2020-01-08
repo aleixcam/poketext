@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import indexer.pokemon.domain.BaseStats;
 import indexer.pokemon.infrastructure.injector.PokemonInfrastructureInjector;
 import indexer.pokemon.infrastructure.persistence.SQLite.PokemonRepositoryImpl;
-import shared.legacy.Connector;
+import shared.core.legacy.Connector;
 
 public class Estadistiques {
 

@@ -1,6 +1,6 @@
 package showndown.pokemon.domain;
 
-import showndown.type.domain.Type;
+import shared.type.domain.Type;
 
 public class Pokemon {
 
