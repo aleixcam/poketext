@@ -1,6 +1,6 @@
 package indexer.ability.infrastructure.persistence.SQLite;
 
-import indexer.ability.domain.Ability;
+import shared.ability.domain.Ability;
 import indexer.ability.domain.AbilityCollection;
 import indexer.ability.domain.AbilityCriteria;
 import indexer.ability.domain.AbilityRepository;

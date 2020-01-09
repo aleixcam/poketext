@@ -1,7 +1,7 @@
 package indexer.item.infrastructure.persistence.SQLite;
 
 import shared.core.domain.Service.SQLiteRepository;
-import indexer.item.domain.Item;
+import shared.item.domain.Item;
 import indexer.item.domain.ItemCriteria;
 import indexer.item.domain.ItemRepository;
 import indexer.item.domain.ItemCollection;

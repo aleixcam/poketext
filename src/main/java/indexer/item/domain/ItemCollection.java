@@ -1,5 +1,7 @@
 package indexer.item.domain;
 
+import shared.item.domain.Item;
+
 import java.util.ArrayList;
 
 public class ItemCollection {

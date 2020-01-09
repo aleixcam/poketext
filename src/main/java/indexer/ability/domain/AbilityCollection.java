@@ -1,5 +1,7 @@
 package indexer.ability.domain;
 
+import shared.ability.domain.Ability;
+
 import java.util.ArrayList;
 
 public class AbilityCollection {

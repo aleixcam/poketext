@@ -1,7 +1,7 @@
 package indexer.item.infrastructure.transformer.Matrix;
 
 import shared.core.domain.Service.MatrixService;
-import indexer.item.domain.Item;
+import shared.item.domain.Item;
 import indexer.item.application.ItemTransformer;
 import indexer.item.domain.ItemCollection;
 

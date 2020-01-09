@@ -1,9 +1,9 @@
-package indexer.item.domain;
+package shared.item.domain;
 
 import shared.core.domain.Service.SilentObjectCreator;
 import java.util.Map;
 
-final public class Item {
+public final class Item {
 
     private int id;
     private String name;
