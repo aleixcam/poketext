@@ -1,7 +1,7 @@
 package indexer.pokemon.infrastructure.transformer.Matrix;
 
 import shared.core.domain.Service.MatrixService;
-import indexer.pokemon.domain.Pokemon;
+import shared.pokemon.domain.Pokemon;
 import indexer.pokemon.application.PokemonTransformer;
 import indexer.pokemon.domain.PokemonCollection;
 

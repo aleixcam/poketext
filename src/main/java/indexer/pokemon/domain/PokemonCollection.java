@@ -1,5 +1,7 @@
 package indexer.pokemon.domain;
 
+import shared.pokemon.domain.Pokemon;
+
 import java.util.ArrayList;
 
 public class PokemonCollection {

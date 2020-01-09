@@ -1,10 +1,10 @@
 package shared.move.domain.ValueObject;
 
-final public class Category {
+public final class Category {
 
-    final int STATUS = 1;
-    final int PHYSICAL = 2;
-    final int SPECIAL = 3;
+    public static final int STATUS = 1;
+    public static final int PHYSICAL = 2;
+    public static final int SPECIAL = 3;
 
     private String value;
 

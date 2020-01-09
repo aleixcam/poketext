@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import indexer.pokemon.domain.BaseStats;
+import shared.pokemon.domain.Entity.BaseStats;
 import indexer.pokemon.infrastructure.injector.PokemonInfrastructureInjector;
 import indexer.pokemon.infrastructure.persistence.SQLite.PokemonRepositoryImpl;
 import shared.core.legacy.Connector;

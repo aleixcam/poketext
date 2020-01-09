@@ -9,16 +9,6 @@ public final class Ability {
     private String name;
     private String effect;
 
-    public Ability(
-        int id,
-        String name,
-        String effect
-    ) {
-        this.id = id;
-        this.name = name;
-        this.effect = effect;
-    }
-
     public int id() {
         return id;
     }

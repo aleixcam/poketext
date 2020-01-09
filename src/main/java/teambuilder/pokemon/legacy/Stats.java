@@ -2,7 +2,7 @@ package teambuilder.pokemon.legacy;
 
 import indexer.nature.infrastructure.injector.NatureApplicationInjector;
 import indexer.nature.infrastructure.injector.NatureInfrastructureInjector;
-import indexer.pokemon.domain.BaseStats;
+import shared.pokemon.domain.Entity.BaseStats;
 import indexer.nature.infrastructure.persistence.SQLite.NatureRepositoryImpl;
 import indexer.pokemon.infrastructure.injector.PokemonInfrastructureInjector;
 import indexer.pokemon.infrastructure.persistence.SQLite.PokemonRepositoryImpl;

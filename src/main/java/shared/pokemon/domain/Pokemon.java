@@ -1,9 +1,11 @@
-package indexer.pokemon.domain;
+package shared.pokemon.domain;
 
 import shared.core.domain.Service.SilentObjectCreator;
+import shared.pokemon.domain.Entity.BaseStats;
+
 import java.util.Map;
 
-final public class Pokemon {
+public final class Pokemon {
 
     private int id;
     private String name;

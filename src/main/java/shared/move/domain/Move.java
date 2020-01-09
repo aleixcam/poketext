@@ -3,7 +3,7 @@ package shared.move.domain;
 import shared.type.domain.Type;
 import shared.move.domain.ValueObject.Category;
 
-final public class Move {
+public final class Move {
 
     private int id;
     private String name;

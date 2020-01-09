@@ -1,6 +1,6 @@
-package indexer.pokemon.domain;
+package shared.pokemon.domain.Entity;
 
-final public class BaseStats {
+public final class BaseStats {
 
     private int health;
     private int attack;
@@ -9,7 +9,14 @@ final public class BaseStats {
     private int specialDefense;
     private int speed;
 
-    public BaseStats(int health, int attack, int defense, int specialAttack, int specialDefense, int speed) {
+    public BaseStats(
+        int health,
+        int attack,
+        int defense,
+        int specialAttack,
+        int specialDefense,
+        int speed
+    ) {
         this.health = health;
         this.attack = attack;
         this.defense = defense;
