@@ -1,12 +1,12 @@
-package teambuilder.team.infrastructure.controller;
+package teambuilder.team.infrastructure.Controller;
 
 import indexer.pokemon.domain.PokemonCollection;
 import indexer.pokemon.infrastructure.injector.PokemonInfrastructureInjector;
 import indexer.pokemon.infrastructure.persistence.FileSystem.PokemonRepositoryImpl;
 import shared.core.infrastructure.Service.ReaderService;
 import teambuilder.team.domain.Team;
-import teambuilder.team.infrastructure.injector.TeamInfrastructureInjector;
-import teambuilder.team.infrastructure.persistence.FileSystem.TeamRepositoryImpl;
+import teambuilder.team.infrastructure.Injector.TeamInfrastructureInjector;
+import teambuilder.team.infrastructure.Persistence.FileSystem.TeamRepositoryImpl;
 
 public class TeamController {
 

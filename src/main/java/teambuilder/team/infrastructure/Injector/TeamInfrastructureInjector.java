@@ -1,7 +1,7 @@
-package teambuilder.team.infrastructure.injector;
+package teambuilder.team.infrastructure.Injector;
 
 import shared.core.infrastructure.Injector.SharedInfrastructureInjector;
-import teambuilder.team.infrastructure.persistence.FileSystem.TeamRepositoryImpl;
+import teambuilder.team.infrastructure.Persistence.FileSystem.TeamRepositoryImpl;
 
 public class TeamInfrastructureInjector {
 

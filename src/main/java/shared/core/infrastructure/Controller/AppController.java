@@ -11,7 +11,7 @@ import teambuilder.pokemon.application.Command.RemovePokemonCommand;
 import teambuilder.team.application.Command.CreateTeamCommand;
 import teambuilder.team.application.Command.EditTeamCommand;
 import teambuilder.team.application.Command.RemoveTeamCommand;
-import teambuilder.team.infrastructure.controller.TeamController;
+import teambuilder.team.infrastructure.Controller.TeamController;
 
 final public class AppController {
 
@@ -19,7 +19,7 @@ final public class AppController {
         Jugadors.iniciarCombat();
     }
 
-    public void teambuilder() {
+    public void teamBuilder() {
         TeamController receiver = new TeamController();
 
         Menu menu = new Menu("POKETEXT: CONSTRUCTOR D'EQUIPS");

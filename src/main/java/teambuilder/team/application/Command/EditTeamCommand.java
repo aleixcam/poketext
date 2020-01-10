@@ -1,7 +1,7 @@
 package teambuilder.team.application.Command;
 
 import shared.core.domain.Command.Command;
-import teambuilder.team.infrastructure.controller.TeamController;
+import teambuilder.team.infrastructure.Controller.TeamController;
 
 final public class EditTeamCommand implements Command {
 

@@ -2,8 +2,8 @@ package teambuilder.team.domain;
 
 import indexer.pokemon.domain.PokemonCollection;
 import shared.core.infrastructure.Service.ReaderService;
-import teambuilder.team.infrastructure.injector.TeamInfrastructureInjector;
-import teambuilder.team.infrastructure.persistence.FileSystem.TeamRepositoryImpl;
+import teambuilder.team.infrastructure.Injector.TeamInfrastructureInjector;
+import teambuilder.team.infrastructure.Persistence.FileSystem.TeamRepositoryImpl;
 
 final public class Team {
 

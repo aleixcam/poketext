@@ -16,6 +16,6 @@ final public class TeamBuilderCommand implements Command {
     }
 
     public void execute(String... args) {
-        receiver.teambuilder();
+        receiver.teamBuilder();
     }
 }
