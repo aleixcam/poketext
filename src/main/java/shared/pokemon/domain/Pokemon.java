@@ -5,7 +5,7 @@ import shared.pokemon.domain.Entity.BaseStats;
 
 import java.util.Map;
 
-public final class Pokemon {
+public class Pokemon {
 
     private int id;
     private String name;

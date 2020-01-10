@@ -3,18 +3,18 @@ package teambuilder.pokemon.domain;
 import javax.naming.LimitExceededException;
 import java.util.ArrayList;
 
-public final class TeamPokemonCollection {
+public final class PokemonCollection {
 
     public static final int MAX_SIZE = 6;
 
-    private ArrayList<TeamPokemon> pokemons = new ArrayList<>();
+    private ArrayList<Pokemon> pokemons = new ArrayList<>();
 
-    public void add(TeamPokemon pokemon) throws LimitExceededException {
+    public void add(Pokemon pokemon) throws LimitExceededException {
         guardFromTooManyPokemons();
         pokemons.add(pokemon);
     }
 
-    public ArrayList<TeamPokemon> pokemons() {
+    public ArrayList<Pokemon> pokemons() {
         return pokemons;
     }
 

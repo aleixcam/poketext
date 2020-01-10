@@ -2,17 +2,17 @@ package teambuilder.pokemon.domain;
 
 import shared.ability.domain.Ability;
 import shared.item.domain.Item;
-import shared.pokemon.domain.Pokemon;
 import teambuilder.pokemon.domain.Collection.MoveCollection;
 import teambuilder.pokemon.domain.ValueObject.Gender;
 import teambuilder.pokemon.domain.ValueObject.Happiness;
 import teambuilder.pokemon.domain.ValueObject.Level;
 
-public final class TeamPokemon {
+public final class Pokemon {
+    static final class BasePokemon extends shared.pokemon.domain.Pokemon {}
 
     private int id;
     private String nickname;
-    private Pokemon pokemon;
+    private BasePokemon basePokemon;
     private Item item;
     private Ability ability;
     private Level level;
