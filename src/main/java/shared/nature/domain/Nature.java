@@ -1,4 +1,4 @@
-package indexer.nature.domain;
+package shared.nature.domain;
 
 import shared.core.domain.Service.SilentObjectCreator;
 import java.util.Map;

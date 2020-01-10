@@ -31,7 +31,7 @@ final public class AppController {
         menu.execute();
     }
 
-    public void pokedex() {
+    public void indexer() {
         PokedexController receiver = new PokedexController();
 
         Menu menu = new Menu("POKETEXT: POKÈDEX");

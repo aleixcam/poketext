@@ -3,19 +3,19 @@ package indexer.pokedex.application.Command;
 import shared.core.domain.Command.Command;
 import shared.core.infrastructure.Controller.AppController;
 
-final public class StartPokedexCommand implements Command {
+final public class IndexerCommand implements Command {
 
     private final AppController receiver;
 
-    private StartPokedexCommand(AppController receiver) {
+    private IndexerCommand(AppController receiver) {
         this.receiver = receiver;
     }
 
-    public static StartPokedexCommand of(AppController receiver) {
-        return new StartPokedexCommand(receiver);
+    public static IndexerCommand of(AppController receiver) {
+        return new IndexerCommand(receiver);
     }
 
     public void execute(String... args) {
-        receiver.pokedex();
+        receiver.indexer();
     }
 }
