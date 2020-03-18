@@ -1,15 +1,20 @@
 package shared.move.domain.ValueObject;
 
-public final class Category {
+public enum Category {
+    STATUS(1, "Status"),
+    PHYSICAL(2, "Physical"),
+    SPECIAL(3, "Special");
 
-    public static final int STATUS = 1;
-    public static final int PHYSICAL = 2;
-    public static final int SPECIAL = 3;
-
+    private int id;
     private String value;
 
-    public Category(String value) {
+    Category(int id, String value) {
+        this.id = id;
         this.value = value;
+    }
+
+    public int id() {
+        return id;
     }
 
     public String value() {

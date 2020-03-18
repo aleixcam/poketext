@@ -13,12 +13,30 @@ public final class Move {
     private int accuracy;
     private int powerPoints;
 
+    public Move(
+        int id,
+        String name,
+        Type type,
+        Category category,
+        int power,
+        int accuracy,
+        int powerPoints
+    ) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.category = category;
+        this.power = power;
+        this.accuracy = accuracy;
+        this.powerPoints = powerPoints;
+    }
+
     public int id() {
         return id;
     }
 
     public String name() {
-        return this.name;
+        return name;
     }
 
     public Type type() {
