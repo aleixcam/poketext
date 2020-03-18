@@ -1,5 +1,7 @@
 package indexer.nature.domain;
 
+import shared.nature.domain.Nature;
+
 import java.util.ArrayList;
 
 public class NatureCollection {

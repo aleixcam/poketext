@@ -1,7 +1,7 @@
 package indexer.nature.infrastructure.persistence.SQLite;
 
 import shared.core.domain.Service.SQLiteRepository;
-import indexer.nature.domain.Nature;
+import shared.nature.domain.Nature;
 import indexer.nature.domain.NatureRepository;
 import indexer.nature.domain.NatureCollection;
 import shared.core.infrastructure.Service.LanguageService;
