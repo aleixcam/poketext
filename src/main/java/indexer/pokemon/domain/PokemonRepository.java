@@ -1,6 +1,6 @@
 package indexer.pokemon.domain;
 
-import shared.pokemon.domain.Entity.BaseStats;
+import indexer.pokemon.domain.ValueObject.BaseStats;
 
 public interface PokemonRepository {
 

@@ -6,8 +6,8 @@ public class PokemonApplicationInjector {
 
     public static GetPokemonsUseCase injectGetPokemonsUseCase() {
         return new GetPokemonsUseCase(
-                PokemonInfrastructureInjector.injectPokemonRepository(),
-                PokemonInfrastructureInjector.injectPokemonTransformer()
+                PokemonInfrastructureInjector.SQLitePokemonRepository(),
+                PokemonInfrastructureInjector.matrixPokemonTransformer()
         );
     }
 }

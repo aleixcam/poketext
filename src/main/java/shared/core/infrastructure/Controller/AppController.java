@@ -6,20 +6,20 @@ import indexer.pokedex.infrastructure.controller.PokedexController;
 import indexer.item.application.Command.SearchItemsCommand;
 import indexer.move.application.Command.SearchMovesCommand;
 import indexer.pokemon.application.Command.SearchPokemonsCommand;
-import showndown.player.legacy.Jugadors;
+import showdown.player.legacy.Jugadors;
 import teambuilder.pokemon.application.Command.RemovePokemonCommand;
-import teambuilder.team.application.Command.CreateTeamCommand;
-import teambuilder.team.application.Command.EditTeamCommand;
-import teambuilder.team.application.Command.RemoveTeamCommand;
-import teambuilder.team.infrastructure.Controller.TeamController;
+import teambuilder.party.application.Command.CreateTeamCommand;
+import teambuilder.party.application.Command.EditTeamCommand;
+import teambuilder.party.application.Command.RemoveTeamCommand;
+import teambuilder.party.infrastructure.Controller.TeamController;
 
 final public class AppController {
 
-    public void play() {
+    public void showdown(String... args) {
         Jugadors.iniciarCombat();
     }
 
-    public void teamBuilder() {
+    public void teamBuilder(String... args) {
         TeamController receiver = new TeamController();
 
         Menu menu = new Menu("POKETEXT: CONSTRUCTOR D'EQUIPS");
@@ -31,7 +31,7 @@ final public class AppController {
         menu.execute();
     }
 
-    public void indexer() {
+    public void indexer(String... args) {
         PokedexController receiver = new PokedexController();
 
         Menu menu = new Menu("POKETEXT: POKÈDEX");

@@ -6,8 +6,8 @@ final public class MoveApplicationInjector {
 
     public static GetMovesUseCase<String[][]> injectGetMovesUseCase() {
         return new GetMovesUseCase<>(
-            MoveInfrastructureInjector.injectMoveRepository(),
-            MoveInfrastructureInjector.injectMoveTransformer()
+            MoveInfrastructureInjector.SQLiteMoveRepository(),
+            MoveInfrastructureInjector.matrixMoveTransformer()
         );
     }
 }

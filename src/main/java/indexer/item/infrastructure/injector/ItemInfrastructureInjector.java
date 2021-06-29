@@ -1,20 +1,20 @@
 package indexer.item.infrastructure.injector;
 
 import shared.core.infrastructure.Injector.SharedInfrastructureInjector;
-import indexer.item.infrastructure.persistence.SQLite.ItemRepositoryImpl;
-import indexer.item.infrastructure.transformer.Matrix.ItemTransformerImpl;
+import indexer.item.infrastructure.persistence.SQLite.SQLiteItemRepository;
+import indexer.item.infrastructure.transformer.Matrix.MatrixItemTransformer;
 
 final public class ItemInfrastructureInjector {
 
-    public static ItemRepositoryImpl injectItemRepository() {
-        return new ItemRepositoryImpl(
-            SharedInfrastructureInjector.injectSQLiteRepository()
+    public static SQLiteItemRepository SQLiteItemRepository() {
+        return new SQLiteItemRepository(
+            SharedInfrastructureInjector.SQLiteManager()
         );
     }
 
-    public static ItemTransformerImpl injectItemTransformer() {
-        return new ItemTransformerImpl(
-            SharedInfrastructureInjector.injectMatrixService()
+    public static MatrixItemTransformer matrixItemTransformer() {
+        return new MatrixItemTransformer(
+            SharedInfrastructureInjector.matrixService()
         );
     }
 }

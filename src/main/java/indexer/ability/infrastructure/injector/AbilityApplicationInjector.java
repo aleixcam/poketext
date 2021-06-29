@@ -6,8 +6,8 @@ final public class AbilityApplicationInjector {
 
     public static GetAbilitiesUseCase<String[][]> injectGetAbilitiesUseCase() {
         return new GetAbilitiesUseCase<>(
-            AbilityInfrastructureInjector.injectAbilityRepository(),
-            AbilityInfrastructureInjector.injectAbilityTransformer()
+            AbilityInfrastructureInjector.SQLiteAbilityRepository(),
+            AbilityInfrastructureInjector.matrixAbilityTransformer()
         );
     }
 }

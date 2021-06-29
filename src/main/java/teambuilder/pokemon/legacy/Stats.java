@@ -2,14 +2,14 @@ package teambuilder.pokemon.legacy;
 
 import indexer.nature.infrastructure.injector.NatureApplicationInjector;
 import indexer.nature.infrastructure.injector.NatureInfrastructureInjector;
-import shared.pokemon.domain.Entity.BaseStats;
-import indexer.nature.infrastructure.persistence.SQLite.NatureRepositoryImpl;
+import indexer.pokemon.domain.ValueObject.BaseStats;
+import indexer.nature.infrastructure.persistence.SQLite.SQLiteNatureRepository;
 import indexer.pokemon.infrastructure.injector.PokemonInfrastructureInjector;
-import indexer.pokemon.infrastructure.persistence.SQLite.PokemonRepositoryImpl;
+import indexer.pokemon.infrastructure.persistence.SQLite.SQLitePokemonRepository;
 import shared.core.infrastructure.Presentation.MatrixPrinter;
 import shared.core.infrastructure.Service.ReaderService;
 
-import showndown.pokemon.legacy.Estadistiques;
+import showdown.pokemon.legacy.Estadistiques;
 import java.util.Arrays;
 
 class Stats {
@@ -58,12 +58,12 @@ class Stats {
         int i, j;
         String[] noms = {"HP", "Attack", "Defense", "Sp. Atk.", "Sp. Def.", "Speed"};
 
-        PokemonRepositoryImpl pokemonRepository = PokemonInfrastructureInjector.injectPokemonRepository();
-        NatureRepositoryImpl natureRepository = NatureInfrastructureInjector.injectNatureRepository();
+        SQLitePokemonRepository pokemonRepository = PokemonInfrastructureInjector.SQLitePokemonRepository();
+        SQLiteNatureRepository natureRepository = NatureInfrastructureInjector.SQLiteNatureRepository();
         BaseStats stats = pokemonRepository.findStatsByPokemonId(Integer.parseInt(poke[0][0]));
 
         int[] base = {
-            stats.health(),
+            stats.healthPoints(),
             stats.attack(),
             stats.defense(),
             stats.specialAttack(),

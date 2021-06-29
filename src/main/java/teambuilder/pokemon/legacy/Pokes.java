@@ -2,7 +2,7 @@ package teambuilder.pokemon.legacy;
 
 import indexer.pokemon.application.GetPokemons.GetPokemonsRequest;
 import indexer.pokemon.application.GetPokemons.GetPokemonsUseCase;
-import showndown.pokemon.legacy.Estadistiques;
+import showdown.pokemon.legacy.Estadistiques;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

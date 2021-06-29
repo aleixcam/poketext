@@ -6,8 +6,8 @@ public class NatureApplicationInjector {
 
     public static GetNaturesUseCase<String[][]> injectGetNaturesUseCase() {
         return new GetNaturesUseCase<>(
-                NatureInfrastructureInjector.injectNatureRepository(),
-                NatureInfrastructureInjector.injectNatureTransformer()
+                NatureInfrastructureInjector.SQLiteNatureRepository(),
+                NatureInfrastructureInjector.matrixNatureTransformer()
         );
     }
 }

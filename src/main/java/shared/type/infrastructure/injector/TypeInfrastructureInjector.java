@@ -1,13 +1,13 @@
 package shared.type.infrastructure.injector;
 
 import shared.core.infrastructure.Injector.SharedInfrastructureInjector;
-import shared.type.infrastructure.persistence.SQLite.TypeRepositoryImpl;
+import shared.type.infrastructure.persistence.SQLite.SQLiteTypeRepository;
 
 final public class TypeInfrastructureInjector {
 
-    public static TypeRepositoryImpl injectTypeRepository() {
-        return new TypeRepositoryImpl(
-            SharedInfrastructureInjector.injectSQLiteRepository()
+    public static SQLiteTypeRepository injectTypeRepository() {
+        return new SQLiteTypeRepository(
+            SharedInfrastructureInjector.SQLiteManager()
         );
     }
 }

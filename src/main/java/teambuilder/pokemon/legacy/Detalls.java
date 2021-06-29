@@ -1,7 +1,7 @@
 package teambuilder.pokemon.legacy;
 
-import shared.core.infrastructure.Service.MatrixServiceImpl;
-import showndown.pokemon.legacy.Estadistiques;
+import shared.core.infrastructure.Service.MatrixService;
+import showdown.pokemon.legacy.Estadistiques;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -97,7 +97,7 @@ class Detalls {
                 + "and f.version_group_id = 15\n"
                 + "and a.pokemon_id = " + id);
         result = st.executeQuery();
-        return MatrixServiceImpl.getMatrix(result, col);
+        return MatrixService.getMatrix(result, col);
     }
 
     // Consultar l'ID del objecte seleccionat

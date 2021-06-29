@@ -21,12 +21,12 @@ public class Menu {
     }
 
     public void execute() {
-        String[] args;
+        String[] arguments;
 
         do {
-            args = render();
-            args[0] = args[0].toUpperCase();
-        } while (execute(args));
+            arguments = ask();
+            arguments[0] = arguments[0].toUpperCase();
+        } while (execute(arguments));
     }
 
     private boolean execute(String... args) {
@@ -44,7 +44,7 @@ public class Menu {
         return true;
     }
 
-    private String[] render() {
+    private String[] ask() {
         System.out.printf("%n%s%n", title);
 
         for(Map.Entry<String, MenuOption> entry : actions.entrySet()) {

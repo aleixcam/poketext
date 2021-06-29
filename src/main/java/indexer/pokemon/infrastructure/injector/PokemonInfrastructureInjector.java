@@ -1,26 +1,20 @@
 package indexer.pokemon.infrastructure.injector;
 
+import indexer.pokemon.infrastructure.persistence.SQLite.SQLitePokemonRepository;
 import shared.core.infrastructure.Injector.SharedInfrastructureInjector;
-import indexer.pokemon.infrastructure.persistence.FileSystem.PokemonRepositoryImpl;
-import indexer.pokemon.infrastructure.transformer.Matrix.PokemonTransformerImpl;
+import indexer.pokemon.infrastructure.transformer.Matrix.MatrixPokemonTransformer;
 
 public class PokemonInfrastructureInjector {
 
-    public static indexer.pokemon.infrastructure.persistence.SQLite.PokemonRepositoryImpl injectPokemonRepository() {
-        return new indexer.pokemon.infrastructure.persistence.SQLite.PokemonRepositoryImpl(
-            SharedInfrastructureInjector.injectSQLiteRepository()
+    public static SQLitePokemonRepository SQLitePokemonRepository() {
+        return new SQLitePokemonRepository(
+            SharedInfrastructureInjector.SQLiteManager()
         );
     }
 
-    public static PokemonRepositoryImpl injectFileSystemPokemonRepository() {
-        return new PokemonRepositoryImpl(
-            SharedInfrastructureInjector.injectCSVService()
-        );
-    }
-
-    public static PokemonTransformerImpl injectPokemonTransformer() {
-        return new PokemonTransformerImpl(
-            SharedInfrastructureInjector.injectMatrixService()
+    public static MatrixPokemonTransformer matrixPokemonTransformer() {
+        return new MatrixPokemonTransformer(
+            SharedInfrastructureInjector.matrixService()
         );
     }
 }

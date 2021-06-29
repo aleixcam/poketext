@@ -1,20 +1,20 @@
 package indexer.nature.infrastructure.injector;
 
 import shared.core.infrastructure.Injector.SharedInfrastructureInjector;
-import indexer.nature.infrastructure.persistence.SQLite.NatureRepositoryImpl;
-import indexer.nature.infrastructure.transformer.Matrix.NatureTransformerImpl;
+import indexer.nature.infrastructure.persistence.SQLite.SQLiteNatureRepository;
+import indexer.nature.infrastructure.transformer.Matrix.MatrixNatureTransformer;
 
 public class NatureInfrastructureInjector {
 
-    public static NatureRepositoryImpl injectNatureRepository() {
-        return new NatureRepositoryImpl(
-            SharedInfrastructureInjector.injectSQLiteRepository()
+    public static SQLiteNatureRepository SQLiteNatureRepository() {
+        return new SQLiteNatureRepository(
+            SharedInfrastructureInjector.SQLiteManager()
         );
     }
 
-    public static NatureTransformerImpl injectNatureTransformer() {
-        return new NatureTransformerImpl(
-            SharedInfrastructureInjector.injectMatrixService()
+    public static MatrixNatureTransformer matrixNatureTransformer() {
+        return new MatrixNatureTransformer(
+            SharedInfrastructureInjector.matrixService()
         );
     }
 }

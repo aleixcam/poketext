@@ -6,8 +6,8 @@ public class PokedexApplicationInjector {
 
     public static GetPokedexesUseCase<String[][]> injectGetPokedexesUseCase() {
         return new GetPokedexesUseCase<>(
-                PokedexInfrastructureInjector.injectPokedexRepository(),
-                PokedexInfrastructureInjector.injectPokedexTransformer()
+                PokedexInfrastructureInjector.SQLitePokedexRepository(),
+                PokedexInfrastructureInjector.matrixPokedexTransformer()
         );
     }
 }

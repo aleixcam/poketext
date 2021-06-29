@@ -6,8 +6,8 @@ final public class ItemApplicationInjector {
 
     public static GetItemsUseCase<String[][]> injectGetItemsUseCase() {
         return new GetItemsUseCase<>(
-            ItemInfrastructureInjector.injectItemRepository(),
-                ItemInfrastructureInjector.injectItemTransformer()
+            ItemInfrastructureInjector.SQLiteItemRepository(),
+                ItemInfrastructureInjector.matrixItemTransformer()
         );
     }
 }

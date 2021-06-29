@@ -1,7 +1,7 @@
 package shared.pokemon.domain;
 
 import shared.core.domain.Service.SilentObjectCreator;
-import shared.pokemon.domain.Entity.BaseStats;
+import indexer.pokemon.domain.ValueObject.BaseStats;
 
 import java.util.Map;
 
