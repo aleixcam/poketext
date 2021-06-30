@@ -7,11 +7,8 @@ import indexer.item.application.Command.SearchItemsCommand;
 import indexer.move.application.Command.SearchMovesCommand;
 import indexer.pokemon.application.Command.SearchPokemonsCommand;
 import showdown.player.legacy.Jugadors;
-import teambuilder.pokemon.application.Command.RemovePokemonCommand;
-import teambuilder.party.application.Command.CreateTeamCommand;
-import teambuilder.party.application.Command.EditTeamCommand;
-import teambuilder.party.application.Command.RemoveTeamCommand;
-import teambuilder.party.infrastructure.Controller.TeamController;
+import teambuilder.pokemon.infrastructure.Controller.PokemonController;
+import teambuilder.team.infrastructure.Controller.TeamController;
 
 final public class AppController {
 
@@ -20,13 +17,14 @@ final public class AppController {
     }
 
     public void teamBuilder(String... args) {
-        TeamController receiver = new TeamController();
+        TeamController teamController = new TeamController();
+        PokemonController pokemonController = new PokemonController();
 
         Menu menu = new Menu("POKETEXT: CONSTRUCTOR D'EQUIPS");
-        menu.register("C", CreateTeamCommand.of(receiver), "Crear un nou equip");
-        menu.register("M", EditTeamCommand.of(receiver), "Modificar un equip");
-        menu.register("E", RemoveTeamCommand.of(receiver), "Eliminar un equip");
-        menu.register("P", RemovePokemonCommand.of(receiver), "Eliminar un Pokèmon");
+        menu.register("C", teamController::create, "Crear un nou equip");
+        menu.register("M", teamController::edit, "Modificar un equip");
+        menu.register("E", teamController::remove, "Eliminar un equip");
+        menu.register("P", pokemonController::remove, "Eliminar un Pokèmon");
 
         menu.execute();
     }

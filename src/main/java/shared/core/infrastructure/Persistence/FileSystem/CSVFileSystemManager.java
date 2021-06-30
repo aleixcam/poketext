@@ -1,22 +1,22 @@
 package shared.core.infrastructure.Persistence.FileSystem;
 
-import shared.core.infrastructure.Transformer.FileSystemCSVTransformer;
+import shared.core.infrastructure.Service.FinalCSVService;
 
 import java.util.List;
 
 public class CSVFileSystemManager extends FileSystemManager<String[][]> {
 
-    public final FileSystemCSVTransformer transformer;
+    public final FinalCSVService transformer;
 
-    public CSVFileSystemManager(FileSystemCSVTransformer csvService) {
+    public CSVFileSystemManager(FinalCSVService csvService) {
         this.transformer = csvService;
     }
 
     protected String[][] importData(List<String> data) {
-        return this.transformer.toCSV(data.toArray(new String[0]));
+        return this.transformer.toMatrix(data.toArray(new String[0]));
     }
 
     protected String[] exportData(String[][] csv) {
-        return this.transformer.fromCSV(csv);
+        return this.transformer.toCSV(csv);
     }
 }

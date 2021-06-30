@@ -4,9 +4,8 @@ import shared.core.infrastructure.Persistence.FileSystem.CSV3FileSystemManager;
 import shared.core.infrastructure.Persistence.FileSystem.CSVFileSystemManager;
 import shared.core.infrastructure.Persistence.FileSystem.ShowdownFileSystemManager;
 import shared.core.infrastructure.Persistence.SQLite.SQLiteManager;
-import shared.core.infrastructure.Transformer.FileSystemCSVTransformer;
+import shared.core.infrastructure.Service.FinalCSVService;
 import shared.core.infrastructure.Service.MatrixService;
-import shared.core.infrastructure.Transformer.FileSystemShowdownTransformer;
 import shared.core.legacy.Connector;
 import org.sqlite.JDBC;
 
@@ -21,7 +20,7 @@ final public class SharedInfrastructureInjector {
     }
 
     public static <T> ShowdownFileSystemManager<T> showdownFileSystemManager() {
-        return new ShowdownFileSystemManager<>(fileSystemShowdownTransformer());
+        return new ShowdownFileSystemManager<>();
     }
 
     public static SQLiteManager SQLiteManager() {
@@ -35,11 +34,7 @@ final public class SharedInfrastructureInjector {
         return new MatrixService();
     }
 
-    public static FileSystemCSVTransformer fileSystemCSVTransformer() {
-        return new FileSystemCSVTransformer();
-    }
-
-    public static FileSystemShowdownTransformer fileSystemShowdownTransformer() {
-        return new FileSystemShowdownTransformer();
+    public static FinalCSVService fileSystemCSVTransformer() {
+        return new FinalCSVService();
     }
 }

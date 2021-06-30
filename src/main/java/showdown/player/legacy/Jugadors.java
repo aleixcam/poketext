@@ -1,7 +1,7 @@
 package showdown.player.legacy;
 
 import shared.core.infrastructure.Service.ReaderService;
-import teambuilder.party.domain.Team;
+import teambuilder.team.domain.Team;
 import teambuilder.pokemon.legacy.Pokes;
 
 public class Jugadors {
