@@ -1,8 +1,11 @@
 package shared.core.infrastructure.Injector;
 
+import shared.core.domain.Service.ShowdownPokemonTransformer;
+import shared.core.domain.Service.ShowdownTeamTransformer;
 import shared.core.infrastructure.Persistence.FileSystem.CSV3FileSystemManager;
 import shared.core.infrastructure.Persistence.FileSystem.CSVFileSystemManager;
-import shared.core.infrastructure.Persistence.FileSystem.ShowdownFileSystemManager;
+import shared.core.infrastructure.Persistence.FileSystem.ShowdownPokemonFileSystemManager;
+import shared.core.infrastructure.Persistence.FileSystem.ShowdownTeamFileSystemManager;
 import shared.core.infrastructure.Persistence.SQLite.SQLiteManager;
 import shared.core.infrastructure.Service.FinalCSVService;
 import shared.core.infrastructure.Service.MatrixService;
@@ -19,8 +22,16 @@ final public class SharedInfrastructureInjector {
         return new CSV3FileSystemManager(fileSystemCSVTransformer());
     }
 
-    public static <T> ShowdownFileSystemManager<T> showdownFileSystemManager() {
-        return new ShowdownFileSystemManager<>();
+    public static <T> ShowdownPokemonFileSystemManager<T> showdownPokemonFileSystemManager(
+            ShowdownPokemonTransformer<T> transformer
+    ) {
+        return new ShowdownPokemonFileSystemManager<>(transformer);
+    }
+
+    public static <T> ShowdownTeamFileSystemManager<T> showdownTeamFileSystemManager(
+            ShowdownTeamTransformer<T> transformer
+    ) {
+        return new ShowdownTeamFileSystemManager<>(transformer);
     }
 
     public static SQLiteManager SQLiteManager() {

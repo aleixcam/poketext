@@ -4,7 +4,7 @@ import shared.ability.domain.Ability;
 import shared.item.domain.Item;
 import shared.type.domain.Type;
 import showdown.pokemon.domain.ValueObject.Stats;
-import showdown.pokemon.domain.ValueObject.Gender;
+import shared.pokemon.domain.Gender;
 
 public class Pokemon {
 

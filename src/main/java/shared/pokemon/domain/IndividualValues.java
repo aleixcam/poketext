@@ -1,6 +1,6 @@
-package teambuilder.pokemon.domain.ValueObject;
+package shared.pokemon.domain;
 
-public final class EffortValues {
+public final class IndividualValues {
 
     private final int healthPoints;
     private final int attack;
@@ -9,13 +9,13 @@ public final class EffortValues {
     private final int specialDefense;
     private final int speed;
 
-    public EffortValues(
-            int healthPoints,
-            int attack,
-            int defense,
-            int specialAttack,
-            int specialDefense,
-            int speed
+    public IndividualValues(
+        int healthPoints,
+        int attack,
+        int defense,
+        int specialAttack,
+        int specialDefense,
+        int speed
     ) {
         this.healthPoints = healthPoints;
         this.attack = attack;

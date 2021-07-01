@@ -1,4 +1,4 @@
-package showdown.pokemon.domain.ValueObject;
+package shared.pokemon.domain;
 
 public final class Gender {
 

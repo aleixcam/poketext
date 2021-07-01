@@ -1,14 +1,14 @@
 package teambuilder.team.infrastructure.Persistence.FileSystem;
 
-import shared.core.infrastructure.Persistence.FileSystem.ShowdownFileSystemManager;
+import shared.core.infrastructure.Persistence.FileSystem.ShowdownTeamFileSystemManager;
 import teambuilder.team.domain.Service.TeamRepository;
 import teambuilder.team.domain.Team;
 
 public class ShowdownTeamRepository implements TeamRepository {
 
-    private final ShowdownFileSystemManager<Team> fileSystemManager;
+    private final ShowdownTeamFileSystemManager<Team> fileSystemManager;
 
-    public ShowdownTeamRepository(ShowdownFileSystemManager<Team> fileSystemManager) {
+    public ShowdownTeamRepository(ShowdownTeamFileSystemManager<Team> fileSystemManager) {
         this.fileSystemManager = fileSystemManager;
     }
 

@@ -1,4 +1,4 @@
-package teambuilder.pokemon.domain.Collection;
+package shared.move.domain;
 
 import shared.move.domain.Move;
 
@@ -9,18 +9,18 @@ public final class MoveCollection {
 
     public static final int MAX_SIZE = 4;
 
-    private ArrayList<Move> moves = new ArrayList<>();
+    private final ArrayList<Move> moves = new ArrayList<>();
 
-    public void add(Move pokemon) throws LimitExceededException {
-        guardFromTooManyPokemons();
-        moves.add(pokemon);
+    public void add(Move move) throws LimitExceededException {
+        guardFromTooManyMoves();
+        moves.add(move);
     }
 
     public ArrayList<Move> moves() {
         return moves;
     }
 
-    private void guardFromTooManyPokemons() throws LimitExceededException {
+    private void guardFromTooManyMoves() throws LimitExceededException {
         if (moves.size() > MAX_SIZE) {
             throw new LimitExceededException();
         }

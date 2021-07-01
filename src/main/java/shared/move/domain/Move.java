@@ -1,7 +1,6 @@
 package shared.move.domain;
 
 import shared.type.domain.Type;
-import shared.move.domain.ValueObject.Category;
 
 public final class Move {
 

@@ -1,20 +1,55 @@
 package teambuilder.team.domain;
 
-import indexer.pokemon.domain.PokemonCollection;
 import shared.core.infrastructure.Service.ReaderService;
+import teambuilder.pokemon.domain.Pokemon;
 import teambuilder.team.infrastructure.Injector.TeamInfrastructureInjector;
 import teambuilder.team.infrastructure.Persistence.FileSystem.CSVTeamRepository;
 
+import javax.naming.LimitExceededException;
+import java.util.ArrayList;
+import java.util.List;
+
 final public class Team {
 
-    private final PokemonCollection pokemons;
+    public static final int MAX_SIZE = 6;
 
-    public Team(PokemonCollection pokemons) {
+    private final List<Pokemon> pokemons;
+
+    public Team(List<Pokemon> pokemons) {
         this.pokemons = pokemons;
     }
 
-    public PokemonCollection pokemons() {
+    public static Team empty() {
+        return new Team(new ArrayList<>());
+    }
+
+    public static Team fromPokemons(Pokemon[] pokemons) {
+        Team team = Team.empty();
+
+        for (Pokemon pokemon : pokemons) {
+            try {
+                team.add(pokemon);
+            } catch (LimitExceededException e) {
+                break;
+            }
+        }
+
+        return team;
+    }
+
+    public void add(Pokemon pokemon) throws LimitExceededException {
+        guardFromTooManyPokemons();
+        pokemons.add(pokemon);
+    }
+
+    public List<Pokemon> pokemons() {
         return pokemons;
+    }
+
+    private void guardFromTooManyPokemons() throws LimitExceededException {
+        if (pokemons.size() > MAX_SIZE) {
+            throw new LimitExceededException();
+        }
     }
 
     public static String[][][] retrieve() {

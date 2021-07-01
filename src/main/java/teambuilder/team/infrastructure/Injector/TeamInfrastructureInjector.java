@@ -1,8 +1,10 @@
 package teambuilder.team.infrastructure.Injector;
 
 import shared.core.infrastructure.Injector.SharedInfrastructureInjector;
+import teambuilder.pokemon.infrastructure.Injector.PokemonInfrastructureInjector;
 import teambuilder.team.infrastructure.Persistence.FileSystem.CSVTeamRepository;
 import teambuilder.team.infrastructure.Persistence.FileSystem.ShowdownTeamRepository;
+import teambuilder.team.infrastructure.Transformer.ShowdownTeamTransformerImpl;
 
 public class TeamInfrastructureInjector {
 
@@ -14,7 +16,15 @@ public class TeamInfrastructureInjector {
 
     public static ShowdownTeamRepository showdownTeamRepository() {
         return new ShowdownTeamRepository(
-                SharedInfrastructureInjector.showdownFileSystemManager()
+            SharedInfrastructureInjector.showdownTeamFileSystemManager(
+                showdownTeamTransformer()
+            )
+        );
+    }
+
+    public static ShowdownTeamTransformerImpl showdownTeamTransformer() {
+        return new ShowdownTeamTransformerImpl(
+            PokemonInfrastructureInjector.showdownPokemonTransformer()
         );
     }
 }

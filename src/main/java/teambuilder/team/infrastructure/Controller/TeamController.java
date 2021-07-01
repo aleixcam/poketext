@@ -1,6 +1,5 @@
 package teambuilder.team.infrastructure.Controller;
 
-import indexer.pokemon.domain.PokemonCollection;
 import shared.core.infrastructure.Service.ReaderService;
 import teambuilder.team.domain.Team;
 import teambuilder.team.infrastructure.Injector.TeamInfrastructureInjector;
@@ -8,7 +7,7 @@ import teambuilder.team.infrastructure.Injector.TeamInfrastructureInjector;
 public class TeamController {
 
     public void create(String... args) {
-        new Team(new PokemonCollection());
+        Team.empty();
     }
 
     public void edit(String... args) {

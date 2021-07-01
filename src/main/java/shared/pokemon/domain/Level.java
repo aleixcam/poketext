@@ -1,11 +1,11 @@
-package teambuilder.pokemon.domain.ValueObject;
+package shared.pokemon.domain;
 
 public final class Level {
 
     private static final int MIN_LEVEL = 1;
     private static final int MAX_LEVEL = 100;
 
-    private int value;
+    private final int value;
 
     public Level(int value) throws IllegalArgumentException {
         guardFromIllegalLevel(value);
