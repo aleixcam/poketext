@@ -15,9 +15,8 @@ public class PokemonInfrastructureInjector {
 
     public static ShowdownPokemonRepository showdownPokemonRepository() {
         return new ShowdownPokemonRepository(
-            SharedInfrastructureInjector.showdownPokemonFileSystemManager(
-                showdownPokemonTransformer()
-            )
+            SharedInfrastructureInjector.showdownFileSystemManager(),
+            showdownPokemonTransformer()
         );
     }
 

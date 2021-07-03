@@ -1,9 +1,7 @@
 package shared.core.infrastructure.Persistence.FileSystem;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public abstract class FileSystemManager<T> {
 
@@ -13,7 +11,7 @@ public abstract class FileSystemManager<T> {
         this.directory = directory;
     }
 
-    public T read(String ref) {
+    protected String[] read(String ref) {
         List<String> data = new ArrayList<>();
 
         try {
@@ -29,14 +27,14 @@ public abstract class FileSystemManager<T> {
             System.err.println(ex.getMessage());
         }
 
-        return importData(data);
+        return data.toArray(new String[0]);
     }
 
-    public void write(T data, String name) {
+    protected void write(String ref, String[] data) {
         try {
-            PrintWriter pw = new PrintWriter(new FileWriter(getPath(name), false));
+            PrintWriter pw = new PrintWriter(new FileWriter(getPath(ref), false));
 
-            for (String line : exportData(data)) {
+            for (String line : data) {
                 pw.println(line);
             }
 
@@ -94,6 +92,8 @@ public abstract class FileSystemManager<T> {
         return getDirectory(String.format("%s/%s", directory, file));
     }
 
-    abstract protected T importData(List<String> data);
-    abstract protected String[] exportData(T data);
+    abstract public T importOne(String ref);
+    abstract public T[] importMany(String ref);
+    abstract public void exportOne(String ref, T data);
+    abstract public void exportMany(String ref, T[] data);
 }

@@ -1,14 +1,13 @@
 package teambuilder.team.infrastructure.Persistence.FileSystem;
 
-import shared.core.infrastructure.Persistence.FileSystem.CSV3FileSystemManager;
+import shared.core.infrastructure.Persistence.FileSystem.CSVFileSystemManager;
 import teambuilder.team.domain.Service.TeamRepository;
-import teambuilder.team.domain.Team;
 
-final public class CSVTeamRepository implements TeamRepository {
+final public class CSVTeamRepository implements TeamRepository<String[][][]> {
 
-    private final CSV3FileSystemManager fileSystemManager;
+    private final CSVFileSystemManager fileSystemManager;
 
-    public CSVTeamRepository(CSV3FileSystemManager fileSystemManager) {
+    public CSVTeamRepository(CSVFileSystemManager fileSystemManager) {
         this.fileSystemManager = fileSystemManager;
         this.fileSystemManager.setDirectory("data/memory/team");
     }
@@ -18,7 +17,7 @@ final public class CSVTeamRepository implements TeamRepository {
     }
 
     public String[][][] get(String ref) {
-        return this.fileSystemManager.read(ref);
+        return this.fileSystemManager.importMany(ref);
     }
 
     public void remove(String ref) {

@@ -1,8 +1,8 @@
 package teambuilder.team.domain.Service;
 
-public interface TeamRepository {
+public interface TeamRepository<R> {
 
     String[] list();
-    <R> R get(String ref);
+    R get(String ref);
     void remove(String ref);
 }

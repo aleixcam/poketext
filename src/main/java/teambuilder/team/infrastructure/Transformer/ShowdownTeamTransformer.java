@@ -8,14 +8,11 @@ import teambuilder.team.domain.Team;
 
 import java.util.Arrays;
 
-public class ShowdownTeamTransformerImpl implements
-    TeamTransformer<ShowdownPokemon[]>,
-    shared.core.domain.Service.ShowdownTeamTransformer<Team>
-{
+public class ShowdownTeamTransformer implements TeamTransformer<ShowdownPokemon> {
 
     private final ShowdownPokemonTransformer pokemonTransformer;
 
-    public ShowdownTeamTransformerImpl(ShowdownPokemonTransformer pokemonTransformer) {
+    public ShowdownTeamTransformer(ShowdownPokemonTransformer pokemonTransformer) {
         this.pokemonTransformer = pokemonTransformer;
     }
 

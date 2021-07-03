@@ -1,15 +1,23 @@
 package teambuilder.team.infrastructure.Persistence.FileSystem;
 
-import shared.core.infrastructure.Persistence.FileSystem.ShowdownTeamFileSystemManager;
+import shared.core.domain.ShowdownPokemon;
+import shared.core.infrastructure.Persistence.FileSystem.ShowdownFileSystemManager;
 import teambuilder.team.domain.Service.TeamRepository;
+import teambuilder.team.domain.Service.TeamTransformer;
 import teambuilder.team.domain.Team;
 
-public class ShowdownTeamRepository implements TeamRepository {
+public class ShowdownTeamRepository implements TeamRepository<Team> {
 
-    private final ShowdownTeamFileSystemManager<Team> fileSystemManager;
+    private final ShowdownFileSystemManager fileSystemManager;
+    private final TeamTransformer<ShowdownPokemon> transformer;
 
-    public ShowdownTeamRepository(ShowdownTeamFileSystemManager<Team> fileSystemManager) {
+    public ShowdownTeamRepository(
+            ShowdownFileSystemManager fileSystemManager,
+            TeamTransformer<ShowdownPokemon> transformer
+    ) {
         this.fileSystemManager = fileSystemManager;
+        this.transformer = transformer;
+        this.fileSystemManager.setDirectory("data/memory/team");
     }
 
     public String[] list() {
@@ -17,7 +25,7 @@ public class ShowdownTeamRepository implements TeamRepository {
     }
 
     public Team get(String ref) {
-        return this.fileSystemManager.read(ref);
+        return this.transformer.reverseTransform(this.fileSystemManager.importMany(ref));
     }
 
     public void remove(String ref) {

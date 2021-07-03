@@ -11,12 +11,11 @@ import teambuilder.pokemon.domain.Service.PokemonTransformer;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ShowdownPokemonTransformer implements
-    PokemonTransformer<ShowdownPokemon>,
-    shared.core.domain.Service.ShowdownPokemonTransformer<Pokemon>
-{
+public class ShowdownPokemonTransformer implements PokemonTransformer<ShowdownPokemon> {
 
     public ShowdownPokemon transform(Pokemon pokemon) {
+        EffortValues effortValues = pokemon.getEffortValues();
+        IndividualValues individualValues = pokemon.getIndividualValues();
         return new ShowdownPokemon(
             pokemon.getBasePokemon().name(),
             pokemon.getNickname(),
@@ -25,70 +24,62 @@ public class ShowdownPokemonTransformer implements
             pokemon.getAbility().name(),
             pokemon.getLevel().value(),
             pokemon.isShiny(),
-            this.transformEffortValues(pokemon.getEffortValues()),
+            transformStats(
+                    effortValues.healthPoints(),
+                    effortValues.attack(),
+                    effortValues.defense(),
+                    effortValues.specialAttack(),
+                    effortValues.specialDefense(),
+                    effortValues.speed()
+            ),
             pokemon.getNature().name(),
-            this.transformIndividualValues(pokemon.getIndividualValues()),
+            transformStats(
+                    individualValues.healthPoints(),
+                    individualValues.attack(),
+                    individualValues.defense(),
+                    individualValues.specialAttack(),
+                    individualValues.specialDefense(),
+                    individualValues.speed()
+            ),
             pokemon.getMoves().moves().stream().map(Move::name).toArray(String[]::new)
         );
     }
 
-    private Map<Stat, Integer> transformEffortValues(EffortValues effortValues) {
-        Map<Stat, Integer> evs = new HashMap<>();
+    private Map<Stat, Integer> transformStats(
+            int healthPoints,
+            int attack,
+            int defense,
+            int specialAttack,
+            int specialDefense,
+            int speed
+    ) {
+        Map<Stat, Integer> values = new HashMap<>();
 
-        if (effortValues.healthPoints() != 0) {
-            evs.put(Stat.HP, effortValues.healthPoints());
+        if (healthPoints != 0) {
+            values.put(Stat.HP, healthPoints);
         }
 
-        if (effortValues.attack() != 0) {
-            evs.put(Stat.HP, effortValues.attack());
+        if (attack != 0) {
+            values.put(Stat.ATK, attack);
         }
 
-        if (effortValues.defense() != 0) {
-            evs.put(Stat.HP, effortValues.defense());
+        if (defense != 0) {
+            values.put(Stat.DEF, defense);
         }
 
-        if (effortValues.specialAttack() != 0) {
-            evs.put(Stat.HP, effortValues.specialAttack());
+        if (specialAttack != 0) {
+            values.put(Stat.SPA, specialAttack);
         }
 
-        if (effortValues.specialDefense() != 0) {
-            evs.put(Stat.HP, effortValues.specialDefense());
+        if (specialDefense != 0) {
+            values.put(Stat.SPD, specialDefense);
         }
 
-        if (effortValues.speed() != 0) {
-            evs.put(Stat.HP, effortValues.speed());
+        if (speed != 0) {
+            values.put(Stat.SPE, speed);
         }
 
-        return evs;
-    }
-
-    private Map<Stat, Integer> transformIndividualValues(IndividualValues individualValues) {
-        Map<Stat, Integer> ivs = new HashMap<>();
-
-        if (individualValues.healthPoints() != 0) {
-            ivs.put(Stat.HP, individualValues.healthPoints());
-        }
-
-        if (individualValues.attack() != 0) {
-            ivs.put(Stat.HP, individualValues.attack());
-        }
-
-        if (individualValues.defense() != 0) {
-            ivs.put(Stat.HP, individualValues.defense());
-        }
-
-        if (individualValues.specialAttack() != 0) {
-            ivs.put(Stat.HP, individualValues.specialAttack());
-        }
-
-        if (individualValues.specialDefense() != 0) {
-            ivs.put(Stat.HP, individualValues.specialDefense());
-        }
-
-        if (individualValues.speed() != 0) {
-            ivs.put(Stat.HP, individualValues.speed());
-        }
-        return ivs;
+        return values;
     }
 
     public Pokemon reverseTransform(ShowdownPokemon data) {
