@@ -4,7 +4,7 @@ import shared.core.legacy.Connector;
 import shared.core.infrastructure.Controller.AppController;
 import shared.core.domain.Command.Menu;
 
-public class Poketext {
+final public class Poketext {
 
     public static void main(String... args) {
         System.out.println("Carregant...");

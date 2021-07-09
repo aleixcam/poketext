@@ -8,7 +8,7 @@ import teambuilder.team.domain.Team;
 
 import java.util.Arrays;
 
-public class ShowdownTeamTransformer implements TeamTransformer<ShowdownPokemon> {
+final public class ShowdownTeamTransformer implements TeamTransformer<ShowdownPokemon> {
 
     private final ShowdownPokemonTransformer pokemonTransformer;
 

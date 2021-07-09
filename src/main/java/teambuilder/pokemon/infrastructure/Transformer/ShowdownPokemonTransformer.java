@@ -11,7 +11,7 @@ import teambuilder.pokemon.domain.Service.PokemonTransformer;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ShowdownPokemonTransformer implements PokemonTransformer<ShowdownPokemon> {
+final public class ShowdownPokemonTransformer implements PokemonTransformer<ShowdownPokemon> {
 
     public ShowdownPokemon transform(Pokemon pokemon) {
         EffortValues effortValues = pokemon.getEffortValues();
@@ -19,7 +19,7 @@ public class ShowdownPokemonTransformer implements PokemonTransformer<ShowdownPo
         return new ShowdownPokemon(
             pokemon.getBasePokemon().name(),
             pokemon.getNickname(),
-            pokemon.getGender().value(),
+            pokemon.getGender() != null ? pokemon.getGender().value() : Character.MIN_VALUE,
             pokemon.getItem().name(),
             pokemon.getAbility().name(),
             pokemon.getLevel().value(),

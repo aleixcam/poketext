@@ -5,7 +5,7 @@ import teambuilder.pokemon.infrastructure.Persistence.FileSystem.CSVPokemonRepos
 import teambuilder.pokemon.infrastructure.Persistence.FileSystem.ShowdownPokemonRepository;
 import teambuilder.pokemon.infrastructure.Transformer.ShowdownPokemonTransformer;
 
-public class PokemonInfrastructureInjector {
+final public class PokemonInfrastructureInjector {
 
     public static CSVPokemonRepository csvPokemonRepository() {
         return new CSVPokemonRepository(

@@ -1,10 +1,11 @@
 package shared.core.domain;
 
+import shared.pokemon.domain.Gender;
 import shared.pokemon.domain.Stat;
 
 import java.util.Map;
 
-public class ShowdownPokemon {
+final public class ShowdownPokemon {
 
     private final String name;
     private final String nickname;
@@ -86,5 +87,17 @@ public class ShowdownPokemon {
 
     public String[] getMoves() {
         return moves;
+    }
+
+    public boolean hasNickname() {
+        return this.nickname != null;
+    }
+
+    public boolean hasGender() {
+        return this.gender != Character.MIN_VALUE && this.gender != Gender.random().value();
+    }
+
+    public boolean hasItem() {
+        return this.item != null;
     }
 }

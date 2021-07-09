@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MatrixService {
+final public class MatrixService {
 
     public String[][] generate(String[] columns, int rows) {
         String[][] matrix = new String[rows + 1][columns.length];

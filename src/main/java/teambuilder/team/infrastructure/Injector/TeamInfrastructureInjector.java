@@ -6,7 +6,7 @@ import teambuilder.team.infrastructure.Persistence.FileSystem.CSVTeamRepository;
 import teambuilder.team.infrastructure.Persistence.FileSystem.ShowdownTeamRepository;
 import teambuilder.team.infrastructure.Transformer.ShowdownTeamTransformer;
 
-public class TeamInfrastructureInjector {
+final public class TeamInfrastructureInjector {
 
     public static CSVTeamRepository csvTeamRepository() {
         return new CSVTeamRepository(

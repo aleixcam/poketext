@@ -6,7 +6,7 @@ import teambuilder.pokemon.domain.Pokemon;
 import teambuilder.pokemon.domain.Service.PokemonRepository;
 import teambuilder.pokemon.domain.Service.PokemonTransformer;
 
-public class ShowdownPokemonRepository implements PokemonRepository<Pokemon> {
+final public class ShowdownPokemonRepository implements PokemonRepository<Pokemon> {
 
     private final ShowdownFileSystemManager fileSystemManager;
     private final PokemonTransformer<ShowdownPokemon> transformer;

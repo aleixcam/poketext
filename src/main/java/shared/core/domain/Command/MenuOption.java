@@ -1,6 +1,6 @@
 package shared.core.domain.Command;
 
-class MenuOption {
+final class MenuOption {
 
     private final Command action;
     private final String text;

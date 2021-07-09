@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Menu {
+final public class Menu {
 
     private final String EXIT = "Q";
 

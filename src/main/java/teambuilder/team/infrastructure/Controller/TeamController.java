@@ -4,7 +4,7 @@ import shared.core.infrastructure.Service.ReaderService;
 import teambuilder.team.domain.Team;
 import teambuilder.team.infrastructure.Injector.TeamInfrastructureInjector;
 
-public class TeamController {
+final public class TeamController {
 
     public void create(String... args) {
         Team.empty();

@@ -1,6 +1,6 @@
 package shared.core.domain.Service;
 
-public class SilentObjectCreator {
+final public class SilentObjectCreator {
 
     public static <T> T create(Class<T> clazz) {
         try {

@@ -5,7 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CSVFileSystemManager extends FileSystemManager<String[][]> {
+final public class CSVFileSystemManager extends FileSystemManager<String[][]> {
 
     private static final String CSV_SEPARATOR = ",";
     private static final String CSV3_SEPARATOR = ";";
@@ -33,7 +33,7 @@ public class CSVFileSystemManager extends FileSystemManager<String[][]> {
     }
 
     public void exportMany(String ref, String[][][] parallelepiped) {
-        List<String> data = new ArrayList<>();
+        ArrayList<String> data = new ArrayList<>();
 
         for (String[][] matrix : parallelepiped) {
             data.add(StringUtils.join(this.toCSV(matrix), CSV3_SEPARATOR));
@@ -42,11 +42,11 @@ public class CSVFileSystemManager extends FileSystemManager<String[][]> {
         this.write(ref, data.toArray(new String[0]));
     }
 
-    private String[][] fromCSV(String[] data) {
-        String[][] matrix = new String[data.length][];
+    private String[][] fromCSV(String[] csv) {
+        String[][] matrix = new String[csv.length][];
 
-        for (int i = 0; i < data.length; i++) {
-            matrix[i] = data[i].split(CSV_SEPARATOR);
+        for (int i = 0; i < csv.length; i++) {
+            matrix[i] = csv[i].split(CSV_SEPARATOR);
         }
 
         return matrix;

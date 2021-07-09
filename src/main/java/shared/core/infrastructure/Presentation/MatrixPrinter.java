@@ -1,6 +1,6 @@
 package shared.core.infrastructure.Presentation;
 
-public class MatrixPrinter {
+final public class MatrixPrinter {
 
     public static void print(String[][] matrix) {
         String[] format = new String[matrix[0].length];
